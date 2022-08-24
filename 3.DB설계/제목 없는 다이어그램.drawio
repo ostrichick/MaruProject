@@ -1,5 +1,5 @@
-<mxfile host="app.diagrams.net" modified="2022-08-24T05:49:42.826Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="rToPIaVFzVqTn893v-T-" version="20.2.6" type="github">
-  <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
+<mxfile host="app.diagrams.net" modified="2022-08-24T06:05:53.043Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="2_O38bIqjmAvdUmUF1WD" version="20.2.6" type="github" pages="2">
+  <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="회원가입">
     <mxGraphModel dx="1102" dy="637" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -158,6 +158,121 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="350" y="440" as="sourcePoint" />
             <mxPoint x="270" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="2pmcGRS6dtbRZ_BKUxWc" name="로그인">
+    <mxGraphModel dx="1102" dy="637" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-1" value="고객" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="100" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-2" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="QAPQvBMivtKfQnfH5dEY-1">
+          <mxGeometry x="45" y="70" width="10" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-3" value="로그인 요청" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="QAPQvBMivtKfQnfH5dEY-1" target="QAPQvBMivtKfQnfH5dEY-5">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="60" y="130" as="sourcePoint" />
+            <mxPoint x="125" y="130" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="85" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-5" value="화면" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="100" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-6" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="QAPQvBMivtKfQnfH5dEY-5">
+          <mxGeometry x="45" y="70" width="10" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-7" value="홈페이지화면 출력" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="QAPQvBMivtKfQnfH5dEY-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="46" y="100" as="sourcePoint" />
+            <mxPoint x="-129.5" y="100" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-8" value="아이디 및 비밀번호 전송" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="QAPQvBMivtKfQnfH5dEY-5" target="QAPQvBMivtKfQnfH5dEY-14">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="55" y="160" as="sourcePoint" />
+            <mxPoint x="135" y="160" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-9" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fontFamily=Lucida Console;" vertex="1" parent="QAPQvBMivtKfQnfH5dEY-5">
+          <mxGeometry x="45" y="130" width="10" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-10" value="로그인 결과 출력" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="QAPQvBMivtKfQnfH5dEY-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="45" y="320" as="sourcePoint" />
+            <mxPoint x="-130.5" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-13" value="시스템접속" style="verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;shadow=0;strokeWidth=1;fontFamily=Lucida Console;fontStyle=5;horizontal=1;" edge="1" parent="1" source="QAPQvBMivtKfQnfH5dEY-2" target="QAPQvBMivtKfQnfH5dEY-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="275" y="160" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-14" value="서버" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="80" width="100" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-15" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fontFamily=Lucida Console;" vertex="1" parent="QAPQvBMivtKfQnfH5dEY-14">
+          <mxGeometry x="45" y="150" width="10" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-16" value="로그인 정보 확인 요청" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="QAPQvBMivtKfQnfH5dEY-14">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="55" y="173" as="sourcePoint" />
+            <mxPoint x="209.5" y="173" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="130" y="173" />
+              <mxPoint x="140" y="173" />
+              <mxPoint x="150" y="173" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-17" value="로그인 결과 반환" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="QAPQvBMivtKfQnfH5dEY-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="45" y="290" as="sourcePoint" />
+            <mxPoint x="-110.5" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-31" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fontFamily=Lucida Console;" vertex="1" parent="QAPQvBMivtKfQnfH5dEY-14">
+          <mxGeometry x="50" y="250" width="10" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-32" value="로그인 정보 세션에 저장" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;fontFamily=Lucida Console;" edge="1" target="QAPQvBMivtKfQnfH5dEY-31" parent="QAPQvBMivtKfQnfH5dEY-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="230" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="85" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-22" value="DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="80" width="100" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-23" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="QAPQvBMivtKfQnfH5dEY-22">
+          <mxGeometry x="45" y="170" width="10" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-24" value="로그인 결과 반환" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="QAPQvBMivtKfQnfH5dEY-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="210" as="sourcePoint" />
+            <mxPoint x="-110.5" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-25" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fontFamily=Lucida Console;" vertex="1" parent="QAPQvBMivtKfQnfH5dEY-22">
+          <mxGeometry x="55" y="180" width="10" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QAPQvBMivtKfQnfH5dEY-26" value="로그인 정보 확인" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;fontFamily=Lucida Console;" edge="1" parent="QAPQvBMivtKfQnfH5dEY-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="170" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="85" y="170" />
+            </Array>
+            <mxPoint x="65" y="200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
