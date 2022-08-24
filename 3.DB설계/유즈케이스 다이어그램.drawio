@@ -1,1 +1,28 @@
-<mxfile host="app.diagrams.net" modified="2022-08-24T07:24:35.846Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" version="20.2.6" etag="OB6PSxr68kYyY4GB0RV5" type="github"><diagram id="06q67e0eo0sH8_D3uSy_">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-08-24T07:27:12.405Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="Um3VBA3QIMiuzpvikbdl" version="20.2.6" type="github">
+  <diagram id="06q67e0eo0sH8_D3uSy_" name="페이지-1">
+    <mxGraphModel dx="1102" dy="1806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tB0mkt_xWfgJxFO7g79Q-1" value="비로그인 유저" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="-20" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tB0mkt_xWfgJxFO7g79Q-5" value="로그인 유저" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="290" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tB0mkt_xWfgJxFO7g79Q-6" value="관리자" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="730" y="280" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tB0mkt_xWfgJxFO7g79Q-7" value="결제API" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="390" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tB0mkt_xWfgJxFO7g79Q-8" value="본인인증API" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="-130" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tB0mkt_xWfgJxFO7g79Q-10" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="-10" width="580" height="380" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
