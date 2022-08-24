@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-08-24T07:14:09.662Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="wku06E8mptHEzGcn3DCF" version="20.2.6" type="github" pages="6">
+<mxfile host="app.diagrams.net" modified="2022-08-24T07:16:21.869Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="UxJUZYCRpRxnkOgi8CVl" version="20.2.6" type="github" pages="6">
   <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="회원가입">
     <mxGraphModel dx="1102" dy="637" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -639,7 +639,7 @@
         <mxCell id="ETDrX0p7VUwEH2A4yiXU-17" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry x="165" y="150" width="10" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="ETDrX0p7VUwEH2A4yiXU-18" value="상품 리뷰 클릭" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
+        <mxCell id="ETDrX0p7VUwEH2A4yiXU-18" value="마이페이지&amp;gt;구매내역 클릭" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="170" y="160" as="sourcePoint" />
             <mxPoint x="349.5" y="160" as="targetPoint" />
@@ -648,13 +648,13 @@
         <mxCell id="ETDrX0p7VUwEH2A4yiXU-19" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry x="345" y="150" width="10" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="ETDrX0p7VUwEH2A4yiXU-20" value="상품 리뷰 목록 요청" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
+        <mxCell id="ETDrX0p7VUwEH2A4yiXU-20" value="구매내역 목록 요청" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="350" y="170" as="sourcePoint" />
             <mxPoint x="509.5" y="170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ETDrX0p7VUwEH2A4yiXU-21" value="상품 리뷰 목록 요청" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
+        <mxCell id="ETDrX0p7VUwEH2A4yiXU-21" value="구매내역 목록 요청" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="510" y="180" as="sourcePoint" />
             <mxPoint x="669.5" y="180" as="targetPoint" />
@@ -663,19 +663,19 @@
         <mxCell id="ETDrX0p7VUwEH2A4yiXU-22" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fontFamily=Lucida Console;" vertex="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry x="665" y="160" width="10" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="ETDrX0p7VUwEH2A4yiXU-23" value="상품 리뷰글 목록, &lt;br&gt;구매내역 유무 여부 반환" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
+        <mxCell id="ETDrX0p7VUwEH2A4yiXU-23" value="구매내역 목록 및&lt;br&gt;리뷰를 작성 안 한 &lt;br&gt;구매내역 목록 반환" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="670" y="250" as="sourcePoint" />
             <mxPoint x="509.5" y="250" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ETDrX0p7VUwEH2A4yiXU-24" value="상품 리뷰글 목록,&lt;br&gt;구매내역 유무 여부 반환" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
+        <mxCell id="ETDrX0p7VUwEH2A4yiXU-24" value="구매내역 목록 및&lt;br&gt;리뷰를 작성 안 한&lt;br&gt;구매내역 목록 반환" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="510" y="260" as="sourcePoint" />
             <mxPoint x="349.5" y="260" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ETDrX0p7VUwEH2A4yiXU-25" value="상품 리뷰글 목록 출력,&lt;br&gt;구매내역이 있을 시 &lt;br&gt;리뷰 작성버튼 출력" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
+        <mxCell id="ETDrX0p7VUwEH2A4yiXU-25" value="구매내역 출력,&lt;br&gt;리뷰를 작성 안 한 구매내역에&lt;br&gt;리뷰 작성버튼 출력" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;fontFamily=Lucida Console;" edge="1" parent="ETDrX0p7VUwEH2A4yiXU-1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="350" y="270" as="sourcePoint" />
             <mxPoint x="169.5" y="270" as="targetPoint" />
