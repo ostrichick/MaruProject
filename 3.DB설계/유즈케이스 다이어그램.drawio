@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-08-25T06:07:59.453Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="ATJwbR1gLpYoO4au56Ne" version="20.2.7" type="github">
+<mxfile host="app.diagrams.net" modified="2022-08-25T06:15:15.003Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="Ta8sY376R4FJZLqoJ24S" version="20.2.7" type="github">
   <diagram id="06q67e0eo0sH8_D3uSy_" name="유즈케이스1">
     <mxGraphModel dx="1581" dy="1851" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -20,13 +20,13 @@
           <mxGeometry x="60" y="-1040" width="710" height="640" as="geometry" />
         </mxCell>
         <mxCell id="tB0mkt_xWfgJxFO7g79Q-11" value="상품 상세정보 보기" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="197.5" y="-700" width="110" height="40" as="geometry" />
+          <mxGeometry x="230" y="-670" width="110" height="40" as="geometry" />
         </mxCell>
         <mxCell id="tB0mkt_xWfgJxFO7g79Q-12" value="상품 검색하기" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="260" y="-770" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="tB0mkt_xWfgJxFO7g79Q-14" value="상품 정렬하기" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="369" y="-720" width="100" height="40" as="geometry" />
+          <mxGeometry x="360" y="-710" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="tB0mkt_xWfgJxFO7g79Q-15" value="상품&lt;br&gt;장바구니에&lt;br&gt;넣기" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="81.5" y="-600" width="100" height="50" as="geometry" />
@@ -244,7 +244,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="pWr_5GK8HhrTUvCBfWbT-10" value="리뷰 열람" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="369" y="-620" width="90" height="40" as="geometry" />
+          <mxGeometry x="350" y="-605" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="pWr_5GK8HhrTUvCBfWbT-11" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="pWr_5GK8HhrTUvCBfWbT-10" target="tB0mkt_xWfgJxFO7g79Q-11">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -269,18 +269,12 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="pWr_5GK8HhrTUvCBfWbT-15" value="사진 업로드" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="595" y="-600" width="115" height="40" as="geometry" />
+          <mxGeometry x="540" y="-640" width="115" height="40" as="geometry" />
         </mxCell>
         <mxCell id="pWr_5GK8HhrTUvCBfWbT-16" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="pWr_5GK8HhrTUvCBfWbT-15" target="tB0mkt_xWfgJxFO7g79Q-36">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="520" y="-440" as="sourcePoint" />
             <mxPoint x="680" y="-440" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="pWr_5GK8HhrTUvCBfWbT-17" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="pWr_5GK8HhrTUvCBfWbT-15" target="tB0mkt_xWfgJxFO7g79Q-35">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="500" y="-450" as="sourcePoint" />
-            <mxPoint x="660" y="-450" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="pWr_5GK8HhrTUvCBfWbT-18" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="pWr_5GK8HhrTUvCBfWbT-15" target="tB0mkt_xWfgJxFO7g79Q-34">
@@ -296,7 +290,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="pWr_5GK8HhrTUvCBfWbT-20" value="FAQ 페이지 업데이트" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="620" y="-500" width="130" height="40" as="geometry" />
+          <mxGeometry x="620" y="-465" width="130" height="40" as="geometry" />
         </mxCell>
         <mxCell id="pWr_5GK8HhrTUvCBfWbT-21" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="pWr_5GK8HhrTUvCBfWbT-20" target="tB0mkt_xWfgJxFO7g79Q-6">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -320,6 +314,21 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="840" y="-600" as="sourcePoint" />
             <mxPoint x="890" y="-650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pWr_5GK8HhrTUvCBfWbT-27" value="상품 추가 및 관리" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="-550" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pWr_5GK8HhrTUvCBfWbT-28" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="pWr_5GK8HhrTUvCBfWbT-27" target="tB0mkt_xWfgJxFO7g79Q-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="-540" as="sourcePoint" />
+            <mxPoint x="880" y="-590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pWr_5GK8HhrTUvCBfWbT-29" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="pWr_5GK8HhrTUvCBfWbT-15" target="pWr_5GK8HhrTUvCBfWbT-27">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="510" y="-530" as="sourcePoint" />
+            <mxPoint x="670" y="-530" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
