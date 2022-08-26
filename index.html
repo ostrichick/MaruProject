@@ -13,6 +13,14 @@
       .asd {
         width: 130px;
       }
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      td,
+      th {
+        border: 1px solid black;
+      }
     </style>
   </head>
   <body>
@@ -21,6 +29,44 @@
     <img class="asd" src="maru v2.png" />
     <img class="asd" src="maru v3.png" />
     <img src="maru logo small.png" />
+    <hr />
+    <table>
+      <tr>
+        <th>문의등록일</th>
+        <th>카테고리</th>
+        <th>내용</th>
+        <th>답변일자</th>
+      </tr>
+      <tr>
+        <td>2022.08.25</td>
+        <td>교환</td>
+        <td>
+          <details>
+            <summary>사이즈가 안맞아요</summary>
+            너무작아
+            <hr />
+            <h4>관리자</h4>
+            그러세요
+          </details>
+        </td>
+        <td>2022.08.26</td>
+      </tr>
+      <tr>
+        <td>2022.08.01</td>
+        <td>환불</td>
+        <td>
+          <details>
+            <summary>맛이 없어요</summary>
+            환불해주세요
+            <hr />
+            <h4>관리자</h4>
+            알겠읍니다
+          </details>
+        </td>
+        <td>2022.08.02</td>
+      </tr>
+    </table>
+
     <script></script>
   </body>
 </html>
