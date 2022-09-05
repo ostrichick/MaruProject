@@ -69,6 +69,11 @@ public class HomeController {
 	public String shopping_cart() {
 		return "shopping-cart";
 	}
+	
+	@GetMapping("/review")
+	public String review() {
+		return "review";
+	}
 
 	/////////////////////////
 	// cozamall controller // 주석 아래부분 참고하여 작성 후 아래 부분은 삭제
