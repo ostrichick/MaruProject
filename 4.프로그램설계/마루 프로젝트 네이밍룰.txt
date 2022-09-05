@@ -1,3 +1,0 @@
-변수이름 네이밍 규칙 : 카멜표기법 orderCancelTrue
-
-DB 테이블 네이밍 규칙 : 스네이크 order_cancel_true 
