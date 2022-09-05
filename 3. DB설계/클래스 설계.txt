@@ -1,0 +1,6 @@
+BoardVo - 게시판 CRUD 기능 관련 부모 interface
+ ㄴ AnnounceVo - 공지사항 vo
+ ㄴ QnaserviceVo - 1:1문의 vo
+ ㄴ ProductPnaVo - 상품문의 vo
+ ㄴ ReviewVo - 리뷰 vo
+

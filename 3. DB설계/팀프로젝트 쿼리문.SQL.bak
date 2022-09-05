@@ -1,0 +1,143 @@
+﻿--회원정보
+INSERT INTO MEMBER_INFO(
+member_id, member_pw, member_name, member_email, member_phone, member_addr,
+member_addr2, member_postcode, member_grade, member_admin, deleted_yn
+) VALUES('hong1','1234','홍','hong@naver.com',11111111111,'전라북도','전주시',1000,'1','Y','N');
+
+--공지사항
+INSERT INTO ANNOUNCE(
+announce_title, announce_content,
+announce_file_originalname, announce_file_systemname, announce_file_extension
+)VALUES('제목','내용','원본이름','시스템이름','확장자');
+
+-- 공지사항 목록 보기
+SELECT * FROM announce;
+
+-- 공지사항 글 수정
+UPDATE announce
+SET
+announce_title = '수정할 제목',
+announce_content = '수정할 본문',
+announce_file_originalname = 4,
+announce_file_systemname = 4,
+announce_file_extension = 'png'
+WHERE
+announce_idx = 1;
+
+-- 공지사항 글 삭제
+DELETE FROM announce
+WHERE announce_idx = 1;
+
+
+--상품등록
+INSERT INTO product (
+PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_SIZE, PRODUCT_DELIVERY_INFO,
+PRODUCT_MAJOR_CATEGORY, PRODUCT_MINOR_CATEGORY, PRODUCT_INVENTORY,
+PRODUCT_AVGSTAR
+) VALUES (
+'파란소파', 18000, '100X200',
+'배송정보~', '침실', '침대', 100, 5);
+
+--상품수정
+UPDATE product
+SET
+PRODUCT_NAME ='파란1',
+PRODUCT_PRICE = 1000,
+PRODUCT_SIZE = '100x300',
+PRODUCT_DELIVERY_INFO = 'xx',
+PRODUCT_MAJOR_CATEGORY = '거실',
+PRODUCT_MINOR_CATEGORY = '소가구',
+PRODUCT_INVENTORY=50
+WHERE
+product_idx = 5;
+
+-- 상품조회
+SELECT * FROM PRODUCT WHERE PRODUCT_IDX = ;
+
+-- 상품 삭제
+DELETE FROM PRODUCT
+WHERE PRODUCT_IDX = 5;
+
+--장바구니
+INSERT INTO PRODUCT_CART(
+member_idx,
+PRODUCT_IDX,
+cart_product_number
+)VALUES(1,1,1);
+
+--제품용사진
+INSERT INTO PRODUCT_PHOTO(
+PRODUCT_IDX,
+PRODUCT_FILE_ORIGINALNAME,
+PRODUCT_FILE_SYSTEMNAME,
+PRODUCT_FILE_EXTENSION
+)VALUES(1,'ORGNAME','SYSNAME','Y');
+
+
+--상품문의X
+INSERT INTO PRODUCT_QNA(
+PRODUCT_QNA_IDX,
+PRODUCT_IDX,
+MEMBER_IDX,
+PRODUCT_QNA_CONTENT,
+PRODUCT_QNA_ISANSWERED,
+PRODUCT_QNA_PARENT_IDX
+)VALUES(1,1,1,'CONTENT','DAS',1);
+
+--주문내역
+INSERT INTO ORDER_LOG(
+MEMBER_IDX,
+ORDER_TOTAL_PRICE,
+ORDER_NAME,
+ORDER_ADDRESS,
+ORDER_ADDRESS2,
+ORDER_POSTCODE,
+ORDER_PHONE,
+ORDER_STATE,
+ORDER_CANCEL,
+ORDER_REFUND
+)VALUES(1,370000,'주문이름','전라북도','익산시',50156,01112121212,20,'N','N');
+
+--주문상품
+INSERT INTO ORDER_PRODUCT(
+ORDER_IDX,
+PRODUCT_IDX,
+ORDER_QUANTITY
+)VALUES(1,1,1);
+
+--주문교환 및 취소
+INSERT INTO ORDER_CHANGE_CANCEL_REFUND(
+ORDER_IDX,
+ORDER_TYPE,
+ORDER_REFUND_MONEY,
+ORDER_CCR_STATUS
+)VALUES(1,'Y',170000,'환불중');
+
+--배송정보
+INSERT INTO DELIVERY_INFO(
+DELIVERY_CODE,
+ORDER_IDX,
+DELIVERY_STATUS
+)VALUES('택배번호',1,1);
+
+--일대일문의
+INSERT INTO QNASERVICE(
+MEMBER_IDX,
+QNASERVICE_CONTENT,
+QNASERVICE_ISANSWERED,
+QNASERVICE_FILE_ORIGINALNAMEQNASERQNA,
+QNASERVICE_FILE_ORIGINALNAME,
+QNASERVICE_FILE_SYSTEMNAME,
+QNASERVICE_FILE_EXTENSION
+)VALUES(1,'내용','O',1,'원본','시스템','확장');
+
+--리뷰X
+INSERT INTO REVIEW_TBL(
+PRODUCT_IDX,
+MEMBER_IDX,
+REVIEW_CONTENT,
+REVIEW_STAR,
+REVIEW_FILE_ORIGINALNAME,
+REVIEW_FILE_SYSTEMNAME,
+REVIEW_FILE_EXTENSION
+)VALUES(1, 1,'리뷰내용', 3, '원본이름','sysname','Y');

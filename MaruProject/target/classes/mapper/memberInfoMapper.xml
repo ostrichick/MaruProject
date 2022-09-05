@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.maru.pjt.memberInfo">
+  <insert id="signup" parameterType="memberInfoVo">
+    INSERT INTO MEMBER_INFO(
+    member_id, member_pw, member_name, member_email, member_phone, member_addr,
+    member_addr2, member_postcode
+    )VALUES(
+    #{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{member_phone}, #{member_addr},
+    #{member_addr2}, #{member_postcode})
+  </insert>
+
+  <select id="signin" parameterType="memberInfoVo" resultType="memberInfoVo">
+    select * from member_info
+    where member_id = #{member_id}
+    and member_pw = #{member_pw}
+    and deleted_yn = 'N'
+  </select>
+
+  <select id="getMember" parameterType="string" resultType="memberInfoVo">
+    select * from member_info where member_id = #{member_id}
+  </select>
+
+  <update id="updateMember" parameterType="memberInfoVo">
+    UPDATE MEMBER_INFO
+    SET
+    member_pw = #{member_pw},
+    member_email = #{member_email},
+    member_phone = #{member_phone},
+    member_addr = #{member_addr},
+    member_addr2 = #{member_addr2},
+    member_postcode = #{member_postcode}
+    WHERE
+    member_idx = #{member_idx}
+  </update>
+
+  <update id="deactiveMember" parameterType="memberInfoVo">
+    UPDATE MEMBER_INFO
+    SET
+    deleted_yn = 'Y'
+    WHERE
+    member_idx = #{member_idx}
+  </update>
+
+
+
+  <!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- -->
+
+
+  <select id="getMemberList" resultType="memberVo">
+    select * from member_tbl
+  </select>
+
+
+  <update id="updateGrade" parameterType="map">
+    update member_tbl set member_grade = #{member_grade}
+    where member_idx = #{member_idx}
+  </update>
+
+  <delete id="deleteMember" parameterType="list">
+    delete from member_tbl where member_idx in
+    <foreach collection="list" item="member_idx" open="(" separator="," close=")">
+      #{member_idx}
+    </foreach>
+  </delete>
+
+  <select id="getUpdateList" resultType="memberVo">
+    select * from member_tbl_bak where modify_type = '수정'
+  </select>
+
+  <select id="getDeleteList" resultType="memberVo">
+    select * from member_tbl_bak where modify_type = '삭제'
+  </select>
+
+
+</mapper>	
