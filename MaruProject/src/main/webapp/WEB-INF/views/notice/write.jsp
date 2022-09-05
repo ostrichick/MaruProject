@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>공지사항</title>
+<title>공지사항 글쓰기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -22,15 +22,16 @@
       <input type="text" name="title" class="form-control mt-4 mb-2" placeholder="제목을 입력해주세요." required>
       <div class="form-group">
         <textarea id="summernote" name="editordata"></textarea>
-        <textarea class="form-control" rows="3" name="content" id="content" required>내용</textarea>
+        <textarea class="form-control" rows="3" name="content" id="content" hidden>내용</textarea>
       </div>
       <input type="file" name="uploadFile" class="btn btn-secondary mb-3" />
+      <input type="hidden" name="idx" class="form-control mt-4 mb-2" value="${boardVo.idx}">
       <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">제출하기</button>
     </form>
   </div>
   <script>
       $("#summernote").summernote({
-        placeholder : "내~~~용?",
+        placeholder : "내용을 작성해주세요.",
         tabsize : 2,
         height : 300,
         lang : "ko-KR", // 한글 설정

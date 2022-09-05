@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +60,7 @@
 
               <div class="p-t-32">
                 <h4 class="p-b-15">
-                  <a href="blog-detail.do" class="ltext-108 cl2 hov-cl1 trans-04"> The Great Big List of Men’s Gifts for the Holidays </a>
+                  <a href="blog-detail.do" class="ltext-108 cl2 hov-cl1 trans-04"> The Great Big List of Menâs Gifts for the Holidays </a>
                 </h4>
 
                 <p class="stext-117 cl6">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius</p>
