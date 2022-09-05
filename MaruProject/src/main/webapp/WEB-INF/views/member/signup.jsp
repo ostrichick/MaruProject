@@ -10,34 +10,34 @@
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
-  <!-- 시작 -->
+ <!-- 시작 -->
   <section class="container row" style="margin:150px auto">
 	<h3 class="d-block">회원가입</h3><br>
 	<form class="col-md-6 m-auto bg-secondary text-white p-5" action="${pageContext.request.contextPath}/member/signup_process.do" method="post">
 		<div class="" id="container">
 			<p for="exampleFormControlInput1" class="form-label">아이디</p>
-			<input type="text" class="form-control col-md-10 float-left" id="exampleFormControlInput1" name="member_id" placeholder="아이디를 입력해주세요">
+			<input type="text" class="form-control col-md-10 float-left" id="member_id" name="member_id" placeholder="아이디를 입력해주세요">
 			<button type="button" class="btn btn-dark float-right">중복확인</button>
 		</div><br><br>
 		<div class="">
 			<p for="exampleFormControlInput1" class="form-label">비밀번호</p>
-			<input type="password" class="form-control" id="exampleFormControlInput1" name="member_pw" placeholder="비밀번호를 입력해주세요">
+			<input type="password" class="form-control" id="member_pw" name="member_pw" placeholder="비밀번호를 입력해주세요">
 		</div><br>
 		<div class="">
 			<p for="exampleFormControlInput1" class="form-label">비밀번호확인</p>
-			<input type="password" class="form-control" id="exampleFormControlInput1" name="member_pw2" placeholder="비밀번호 확인">
+			<input type="password" class="form-control" id="member_pw2" name="member_pw2" placeholder="비밀번호 확인">
 		</div><br>
 		<div class="">
 			<p for="exampleFormControlInput1" class="form-label">이름</p>
-			<input type="text" class="form-control" id="exampleFormControlInput1" name="member_name" placeholder="이름을 입력해주세요">
+			<input type="text" class="form-control" id="member_name" name="member_name" placeholder="이름을 입력해주세요">
 		</div><br>
 		<div class="">
 			<p for="exampleFormControlInput1" class="form-label">휴대전화번호</p>
-			<input type="phone" class="form-control" id="exampleFormControlInput1" name="member_phone" placeholder="휴대전화번호를 입력해주세요">
+			<input type="phone" class="form-control" id="member_phone" name="member_phone" placeholder="휴대전화번호를 입력해주세요">
 		</div><br>		
 		<div class="">
 			<p for="exampleFormControlInput1" class="form-label">이메일</p>
-			<input type="email" class="form-control col-md-9 float-left" id="exampleFormControlInput1" name="member_email" placeholder="이메일을 입력해주세요">
+			<input type="email" class="form-control col-md-9 float-left" id="member_email" name="member_email" placeholder="이메일을 입력해주세요">
 			<button type="button" class="btn btn-dark float-right">인증번호 전송</button>
 		</div><br><br>		
 		<div class="">
@@ -46,85 +46,30 @@
 		</div><br>		
 		<div class="">
 			<p for="exampleFormControlInput1" class="form-label">주소</p>
-			<input type="text" class="form-control col-md-10 float-left" id="exampleFormControlInput1" name="member_addr" placeholder="주소를 입력해주세요">
-			<button type="button" class="btn btn-dark float-right">주소찾기</button>
+			<input type="text" class="form-control col-md-10 float-left" id="member_addr" name="member_addr" placeholder="주소를 입력해주세요">
+			<button type="button" id="member_addr_btn" class="btn btn-dark float-right">주소찾기</button>
 		</div><br><br>
 		<div class="">
 			<p for="exampleFormControlInput1" class="form-label">상세주소</p>
-			<input type="text" class="form-control" id="exampleFormControlInput1" name="member_addr2" placeholder="상세주소를 입력해주세요">
+			<input type="text" class="form-control" id="member_addr2" name="member_addr2" placeholder="상세주소를 입력해주세요">
 		</div><br>
+		<div class="">
+			<p for="exampleFormControlInput1" class="form-label">우편번호</p>        	
+          	<input type="text" class="form-control" id="member_postcode" name="member_postcode" placeholder="우편번호">        	
+     	</div><br><br>
 		<div class="text-center">
 		<button type="submit" class="btn btn-dark">가입하기</button>
 		<button type="reset" class="btn btn-dark">취소</button>
 		</div>
-	</form>
+	</form>	
 </section>
   <!-- 끝 -->
   
   
-  <form action="${pageContext.request.contextPath}/member/signup_process.do" method="post">
-    <!-- 폼 입력값을 서버로 전송하면 서버에서는 DispatcherServlet이 요청을 받아서 HandlerMapping에게
-     요청을 전달하고 HandlerMapping은 요청을 처리할 Controller가 어디인지 확인해서 그 정보를 DispatcherServlet에게
-     보낸다. 그러면 DispatcherServlet은 받은 정보를 이용해서 요청을 처리할 Controller에게 요청을 보낸다.
-     이 요청을 받은 Controller가 자신이 가지고 있는 요청처리 메소드를 실행시킴으로써 요청에 대해 처리한다. -->
-    <div id="container" style="margin: 30px auto 0; width: 250px;">
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="text" class="form-control" id="member_id" name="member_id" placeholder="아이디">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="password" class="form-control" id="member_pw" name="member_pw" placeholder="비밀번호">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="password" class="form-control" id="member_pw2" name="member_pw2" placeholder="비밀번호 확인">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="text" class="form-control" id="member_name" name="member_name" placeholder="이름">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="email" class="form-control" id="member_email" name="member_email" placeholder="이메일">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="phone" class="form-control" id="member_phone" name="member_phone" placeholder="핸드폰">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="text" class="form-control" id="member_addr" name="member_addr" placeholder="주소">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="text" class="form-control" id="member_addr2" name="member_addr2" placeholder="상세주소">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-sm-15">
-          <input type="text" class="form-control" id="member_postcode" name="member_postcode" placeholder="우편번호">
-        </div>
-      </div>
-      <div style="margin: 15px;">
-        <button type="submit" class="btn btn-primary">가입하기</button>
-        &nbsp;&nbsp;
-        <button type="reset" class="btn btn-primary">취소하기</button>
-      </div>
-    </div>
-
-  </form>
   <hr style="clear: both; visibility: hidden; margin: 0;">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
-      document.getElementById("member_addr").addEventListener("click", function() { //주소입력칸을 클릭하면
+      document.getElementById("member_addr_btn").addEventListener("click", function() { //주소입력칸을 클릭하면
         //카카오 지도 발생
         new daum.Postcode({
           oncomplete : function(data) { //선택시 입력값 세팅
