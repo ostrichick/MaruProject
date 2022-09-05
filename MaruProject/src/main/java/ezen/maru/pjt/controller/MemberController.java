@@ -19,9 +19,9 @@ import ezen.maru.pjt.vo.MemberVo;
 @Controller
 public class MemberController {
 
-	//////////////
-	// MARU end // 주석 아래부분 참고하여 작성 후 아래 부분은 삭제
-	//////////////
+	//////////////////////////////////////
+	// 사용하지 않는 파일임 (추후 삭제) //
+	//////////////////////////////////////
 
 	MemberService joinService, loginService, updateService;
 
