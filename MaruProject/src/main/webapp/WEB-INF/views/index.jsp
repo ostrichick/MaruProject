@@ -63,7 +63,7 @@
                   <li><a href="${MaruContextPath}/home-03">Homepage 3</a></li>
                 </ul></li>
 
-              <li><a href="${MaruContextPath}/product">제품</a></li>
+              <li><a href="${MaruContextPath}/product/list">제품</a></li>
 
               <li class="label1" data-label1="hot"><a href="${MaruContextPath}/shopping-cart">Features</a></li>
 
@@ -144,7 +144,7 @@
           </ul> <span class="arrow-main-menu-m"> <i class="fa fa-angle-right" aria-hidden="true"></i>
         </span></li>
 
-        <li><a href="${MaruContextPath}/product">Shop</a></li>
+        <li><a href="${MaruContextPath}/product/list">Shop</a></li>
 
         <li><a href="${MaruContextPath}/shopping-cart" class="label1 rs1" data-label1="hot">Features</a></li>
 
@@ -248,7 +248,7 @@
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                <a href="${MaruContextPath}/product" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금 구매 </a>
+                <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금 구매 </a>
               </div>
             </div>
           </div>
@@ -266,7 +266,7 @@
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-                <a href="${MaruContextPath}/product" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금 구매 </a>
+                <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금 구매 </a>
               </div>
             </div>
           </div>
@@ -284,7 +284,7 @@
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-                <a href="${MaruContextPath}/product" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금구매 </a>
+                <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금구매 </a>
               </div>
             </div>
           </div>
@@ -304,7 +304,7 @@
         <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
           <!-- Block1 -->
           <div class="block1 wrap-pic-w">
-            <img src="${MaruContextPath}/resources/images/banner-01.jpg" alt="IMG-BANNER"> <a href="${MaruContextPath}/product" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+            <img src="${MaruContextPath}/resources/images/banner-01.jpg" alt="IMG-BANNER"> <a href="${MaruContextPath}/product/list" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
               <div class="block1-txt-child1 flex-col-l">
                 <span class="block1-name ltext-102 trans-04 p-b-8"> 부엌장 </span> <span class="block1-info stext-102 trans-04"> 2022년 가을 </span>
               </div>
@@ -319,7 +319,7 @@
         <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
           <!-- Block1 -->
           <div class="block1 wrap-pic-w">
-            <img src="${MaruContextPath}/resources/images/banner-02.jpg" alt="IMG-BANNER"> <a href="${MaruContextPath}/product" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+            <img src="${MaruContextPath}/resources/images/banner-02.jpg" alt="IMG-BANNER"> <a href="${MaruContextPath}/product/list" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
               <div class="block1-txt-child1 flex-col-l">
                 <span class="block1-name ltext-102 trans-04 p-b-8"> 세면대 </span> <span class="block1-info stext-102 trans-04"> 2022년 여름 </span>
               </div>
@@ -334,7 +334,7 @@
         <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
           <!-- Block1 -->
           <div class="block1 wrap-pic-w">
-            <img src="${MaruContextPath}/resources/images/banner-03.jpg" alt="IMG-BANNER"> <a href="${MaruContextPath}/product" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+            <img src="${MaruContextPath}/resources/images/banner-03.jpg" alt="IMG-BANNER"> <a href="${MaruContextPath}/product/list" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
               <div class="block1-txt-child1 flex-col-l">
                 <span class="block1-name ltext-102 trans-04 p-b-8"> 식탁 의자 세트 </span> <span class="block1-info stext-102 trans-04"> 2022년 여름 </span>
               </div>
