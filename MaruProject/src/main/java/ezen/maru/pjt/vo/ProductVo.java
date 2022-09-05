@@ -4,9 +4,9 @@ public class ProductVo {
 	private int product_idx;
 	private String product_name;
 	private int product_price;
-	private String product_sale;
+	private String product_sale; // 할인여부 Y N
 	private long product_sale_percent;
-	private String product_size;
+	private String product_size; // 사이즈 500x1000
 	private String product_delivery_info;
 	private int product_inventory;
 	private String product_major_category;

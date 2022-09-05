@@ -7,49 +7,22 @@
 <title>공지사항 수정</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/fonts/linearicons-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/animate/animate.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/util.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
-<!--===============================================================================================-->
-
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/slick/slick.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/magnific-popup.css">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 </head>
 <body class="animsition">
-  <%@include file="/include/header-wo-style.jsp"%>
+  <%@include file="/include/header.jsp"%>
   <div class="container" style="margin: 30px auto;">
     <form action="edit_process" method="post" enctype="multipart/form-data">
       <input type="text" name="title" class="form-control mt-4 mb-2" value="${boardVo.title}" required>
       <div class="form-group">
         <textarea id="summernote" name="editordata"></textarea>
-        <textarea class="form-control" rows="3" name="content" id="content" required>${boardVo.content}</textarea>
+        <textarea class="form-control" rows="3" name="content" id="content" hidden>${boardVo.content}</textarea>
       </div>
       <input type="file" name="uploadFile" class="btn btn-secondary mb-3" />
       <input type="hidden" name="idx" class="form-control mt-4 mb-2" value="${boardVo.idx}">
@@ -58,7 +31,7 @@
   </div>
   <script>
       $("#summernote").summernote({
-        placeholder : "${boardVo.content}",
+        placeholder : "내용을 작성해주세요.",
         tabsize : 2,
         height : 300,
         lang : "ko-KR", // 한글 설정
@@ -68,8 +41,11 @@
         fontNames : [ 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체' ],
         fontSizes : [ '8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72' ]
       });
-
       $("body").on("keyup", function() {
+        let sn_val = $('#summernote').summernote('code');
+        $("#content").val(sn_val);
+      })
+      $("body").on("mousemove", function() {
         let sn_val = $('#summernote').summernote('code');
         $("#content").val(sn_val);
       })
