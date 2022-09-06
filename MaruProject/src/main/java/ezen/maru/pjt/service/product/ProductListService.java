@@ -1,5 +1,24 @@
 package ezen.maru.pjt.service.product;
 
-public class ProductListService implements ProductService {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ezen.maru.pjt.dao.ProductDao;
+import ezen.maru.pjt.vo.ProductVo;
+
+@Service("p_list")
+public class ProductListService implements ProductService {
+	private ProductDao productDao;
+
+	@Autowired(required = false)
+	public ProductListService(ProductDao productDao) {
+		this.productDao = productDao;
+	}
+
+	@Override
+	public List<ProductVo> getProductList() {
+		return productDao.getProductList();
+	}
 }
