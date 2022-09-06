@@ -13,6 +13,15 @@ public class ProductVo {
 	private String product_minor_category;
 	private String product_isnew;
 	private long product_avgstar;
+	private int product_hit;
+
+	public int getProduct_hit() {
+		return product_hit;
+	}
+
+	public void setProduct_hit(int product_hit) {
+		this.product_hit = product_hit;
+	}
 
 	public int getProduct_idx() {
 		return product_idx;

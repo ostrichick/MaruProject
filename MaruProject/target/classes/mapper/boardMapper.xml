@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ezen.maru.pjt.board">
-
+  <!-- notice -->
   <insert id="noticeWriteProcess" parameterType="boardVo">
     INSERT INTO announce (
     title, content,
@@ -41,7 +41,16 @@
     where idx = #{idx}
   </delete>
 
-
+  <!-- qna -->
+  <insert id="qnaWriteProcess" parameterType="boardVo">
+    INSERT INTO qnaservice (
+    content,
+    file_original, file_system, file_extension
+    ) VALUES (
+    #{content},
+    #{file_original}, #{file_system}, #{file_extension}
+    )
+  </insert>
   <!-- =====================MARU END=========================== -->
   <insert id="board_insert" parameterType="boardVo">
     insert into board_tbl(

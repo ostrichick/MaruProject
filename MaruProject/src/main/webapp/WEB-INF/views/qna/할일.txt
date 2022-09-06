@@ -1,9 +1,0 @@
-목록 list.jsp
-
-글쓰기 write.jsp
-
-수정 edit.jsp
-
-삭제 
-
-관리자 답변작성 write_answer.jsp

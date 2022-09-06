@@ -226,6 +226,8 @@ CREATE TABLE product
 	product_isnew varchar2(3) DEFAULT 'N' NOT NULL,
 	-- 리뷰 평점
 	product_avgstar float DEFAULT 0 NOT NULL,
+	-- 상품 조회수
+	product_hit number DEFAULT 0 NOT NULL,
 	PRIMARY KEY (product_idx)
 );
 
@@ -589,6 +591,7 @@ COMMENT ON COLUMN product.product_major_category IS '상품 대분류';
 COMMENT ON COLUMN product.product_minor_category IS '상품 소분류';
 COMMENT ON COLUMN product.product_isnew IS '신제품 여부';
 COMMENT ON COLUMN product.product_avgstar IS '리뷰 평점';
+COMMENT ON COLUMN product.product_hit IS '상품 조회수';
 COMMENT ON TABLE product_cart IS '장바구니';
 COMMENT ON COLUMN product_cart.cart_idx IS '장바구니 번호';
 COMMENT ON COLUMN product_cart.member_idx IS '회원번호';

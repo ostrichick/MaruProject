@@ -1,17 +1,20 @@
 package ezen.maru.pjt.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
 	@GetMapping("/")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("indexHeader", "Y");
 		return "index";
 	}
 
 	@GetMapping("/index")
-	public String indexdo() {
+	public String indexdo(Model model) {
+		model.addAttribute("indexHeader", "Y");
 		return "index";
 	}
 
@@ -69,12 +72,12 @@ public class HomeController {
 	public String shopping_cart() {
 		return "shopping-cart";
 	}
-	
+
 	@GetMapping("/review")
 	public String review() {
 		return "review";
 	}
-	
+
 	@GetMapping("/qnaservice")
 	public String qnaservice() {
 		return "qnaservice";

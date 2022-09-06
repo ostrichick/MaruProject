@@ -8,93 +8,63 @@
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 </head>
 <body class="animsition">
-  <%@include file="/include/header.jsp"%>
-  <figure style="text-align: center; margin-top: 100px;">
-    <blockquote class="blockquote">
-      <p>회 원 정 보</p>
-    </blockquote>
-  </figure>
-  <div id="container" class="container text-center" style="width: 470px">
-    <form id="frm" action="${pageContext.request.contextPath}/member/updateinfo.do" method="post">
-      <div class="row g-2">
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">아이디</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">
-            <input type="hidden" name="member_id" value="${member_id}" />${member_id}</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">비밀번호</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light">
-            <input type="password" name="member_pw" value="${memberInfoVo.member_pw}" />
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">이름</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light">
-            <input type="hidden" name="member_name" value="${memberInfoVo.member_name}" />${memberInfoVo.member_name}
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">이메일</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light">
-            <input type="text" name="member_email" value="${memberInfoVo.member_email}" />
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">핸드폰번호</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light">
-            <input type="text" name="member_phone" value="${memberInfoVo.member_phone}" />
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">주소</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light">
-            <input type="text" name="member_addr" id="member_addr" value="${memberInfoVo.member_addr}" />
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">상세 주소</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light">
-            <input type="text" name="member_addr2" id="member_addr2" value="${memberInfoVo.member_addr2}" />
-          </div>
-        </div>
-
-        <div class="col-6">
-          <div class="p-2 border bg-light" style="height: 48px;">우편번호</div>
-        </div>
-        <div class="col-6">
-          <div class="p-2 border bg-light">
-            <input type="text" name="member_postcode" id="member_postcode" value="${memberInfoVo.member_postcode}" />
-          </div>
-        </div>
-        <div style="margin: 15px;">
-          <button type="submit" class="btn btn-primary">수정하기</button>
-          &nbsp;&nbsp;
-          <input type="button" id="deleteAccount" class="btn btn-primary" value="회원탈퇴">
-          &nbsp;&nbsp;
-          <input type="button" id="main_btn" class="btn btn-primary" value="메인화면">
-        </div>
-      </div>
-    </form>
-  </div>
+  <%@include file="/include/header.jsp"%>  
+  
+  <section class="container row" style="margin:150px auto">
+	<h3 class="d-block">회원정보수정</h3><br>
+	<form class="col-md-6 m-auto bg-secondary text-white p-5" id="frm" action="${pageContext.request.contextPath}/member/updateinfo.do" method="post">
+		<div>
+			<p class="form-label">아이디</p>
+			<div>
+			<input type="text" class="form-control" name="member_id" value="${member_id}" readonly/>
+			</div>			
+		</div><br><br>
+		<div>
+			<p class="form-label">비밀번호</p>
+			<input type="password" class="form-control" name="member_pw" value="${memberInfoVo.member_pw}" placeholder="비밀번호를 입력해주세요">
+		</div><br>	
+		<div>
+			<p class="form-label">비밀번호확인</p>
+			<input type="password" class="form-control" id="member_pw2" name="member_pw2" placeholder="비밀번호 확인">
+		</div><br>		
+		<div>
+			<p class="form-label">이름</p>
+			<input type="text" class="form-control" name="member_name" value="${memberInfoVo.member_name}" readonly />			
+		</div><br>
+		<div>
+			<p class="form-label">휴대전화번호</p>
+			<input type="text" class="form-control" name="member_phone" value="${memberInfoVo.member_phone}" placeholder="휴대전화번호를 입력해주세요">			
+		</div><br>		
+		<div>
+			<p class="form-label">이메일</p>
+			<input type="text" class="form-control col-md-9 float-left" name="member_email" value="${memberInfoVo.member_email}" placeholder="이메일을 입력해주세요">
+			<button type="button" class="btn btn-dark float-right">인증번호 전송</button>
+		</div><br><br>		
+		<div>
+			<p class="form-label">인증번호</p>
+			<input type="text" class="form-control" placeholder="인증번호를 입력해주세요">
+		</div><br>		
+		<div>
+			<p class="form-label">주소</p>
+			<input type="text" class="form-control col-md-10 float-left" name="member_addr" id="member_addr" value="${memberInfoVo.member_addr}" placeholder="주소를 입력해주세요">			
+			<button type="button" id="member_addr_btn" class="btn btn-dark float-right">주소찾기</button>
+		</div><br><br>
+		<div>
+			<p class="form-label">상세주소</p>
+			<input type="text" class="form-control" name="member_addr2" id="member_addr2" value="${memberInfoVo.member_addr2}" placeholder="상세주소를 입력해주세요">
+		</div><br>
+		<div class="text-center">
+		<button type="submit" class="btn btn-dark">수정하기</button>
+		<input type="button" id="deleteAccount" class="btn btn-dark" value="회원탈퇴">
+		<input type="button" id="main_btn" class="btn btn-dark" value="메인화면">		
+		</div>
+	</form>
+</section>  
+  
   <hr style="clear: both; visibility: hidden; margin: 0;">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
-      document.getElementById("member_addr").addEventListener("click", function() {
+      document.getElementById("member_addr_btn").addEventListener("click", function() {
         new daum.Postcode({
           oncomplete : function(data) { //선택시 입력값 세팅
             document.getElementById("member_addr").value = data.address; // 주소 넣기
