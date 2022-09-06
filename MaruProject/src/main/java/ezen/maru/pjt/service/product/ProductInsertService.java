@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 
 import ezen.maru.pjt.dao.ProductDao;
 
-@Service("p_add")
-public class ProductAddService implements ProductService {
+@Service("p_insert")
+public class ProductInsertService implements ProductService {
 	private ProductDao productDao;
 
 	@Autowired(required = false)
-	public ProductAddService(ProductDao productDao) {
+	public ProductInsertService(ProductDao productDao) {
 		this.productDao = productDao;
 	}
 }

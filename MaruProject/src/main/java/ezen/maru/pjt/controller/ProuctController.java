@@ -15,7 +15,7 @@ import ezen.maru.pjt.vo.ProductVo;
 @Controller
 @RequestMapping("/product")
 public class ProuctController {
-	ProductService addService, listService, editService, deleteService;
+	ProductService insertService, listService, updateService, deleteService;
 
 	@Autowired(required = false)
 	public void setListService(@Qualifier("p_list") ProductService listService) {
@@ -23,13 +23,13 @@ public class ProuctController {
 	}
 
 	@Autowired(required = false)
-	public void setAddService(@Qualifier("p_add") ProductService addService) {
-		this.addService = addService;
+	public void setInsertService(@Qualifier("p_insert") ProductService insertService) {
+		this.insertService = insertService;
 	}
 
 	@Autowired(required = false)
-	public void setEditService(@Qualifier("p_edit") ProductService editService) {
-		this.editService = editService;
+	public void setUpdateService(@Qualifier("p_update") ProductService updateService) {
+		this.updateService = updateService;
 	}
 
 	@Autowired(required = false)
