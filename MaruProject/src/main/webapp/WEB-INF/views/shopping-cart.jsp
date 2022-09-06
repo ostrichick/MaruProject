@@ -33,128 +33,82 @@
 
 
 <!-- Shoping Cart -->
-<h3 class="ml-5" style="margin-top:50px;">장바구니</h3>
-<form class="bg0 p-t-75 p-b-85 " style="margin-top:50px;">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-				<div class="m-l-25 m-r--38 m-lr-0-xl">
-					<div class="wrap-table-shopping-cart">
-						<table class="table-shopping-cart">
-							<tr class="table_head">
-								<th class="column-1">제품</th>
-								<th class="column-2"></th>
-								<th class="column-3">가격</th>
-								<th class="column-4">수량</th>
-								<th class="column-5">주문금액</th>
-							</tr>
+<h3 class="ml-5" style="margin-top:150px;">장바구니</h3>
+<form class="container" style="margin-bottom:200px;">	
+	
+	<div class="wrap-table-shopping-cart">
+		<table class="table-shopping-cart">
+			<tr class="table_head" >
+				<th class="column-1">선택</th>
+				<th class="column-2">이미지</th>
+				<th class="column-3">제품명</th>
+				<th class="column-4">가격</th>
+				<th class="column-5">제품규격</th>
+				<th class="column-6">색상</th>
+				<th class="column-7">수량선택</th>
+				<th class="column-8"></th>
+			</tr>
 
-							<tr class="table_row">
-								<td class="column-1">
-									<div class="how-itemcart1">
-										<img src="${pageContext.request.contextPath}/resources/images/item-cart-04.jpg" alt="IMG">
-									</div>
-								</td>
-								<td class="column-2">Fresh Strawberries</td>
-								<td class="column-3">$ 36.00</td>
-								<td class="column-4">
-									<div class="wrap-num-product flex-w m-l-auto m-r-0">
-										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
-										</div>
-
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
-
-										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>
-									</div>
-								</td>
-								<td class="column-5">$ 36.00</td>
-							</tr>
-
-							<tr class="table_row">
-								<td class="column-1">
-									<div class="how-itemcart1">
-										<img src="${pageContext.request.contextPath}/resources/images/item-cart-05.jpg" alt="IMG">
-									</div>
-								</td>
-								<td class="column-2">Lightweight Jacket</td>
-								<td class="column-3">$ 16.00</td>
-								<td class="column-4">
-									<div class="wrap-num-product flex-w m-l-auto m-r-0">
-										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
-										</div>
-
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
-
-										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>
-									</div>
-								</td>
-								<td class="column-5">$ 16.00</td>
-							</tr>
-						</table>
+			<tr class="table_row">
+				<td class="column-1">
+					<div class="form-check m-5 float-left">
+						<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>				
+					</div>	
+				</td>
+				<td class="column-2">
+					<div class="">
+						<img src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150px" height="150px" alt="IMG">
 					</div>
-
-				
-				</div>
-			</div>
-
-			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-				<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-					<h4 class="mtext-109 cl2 p-b-30">
-						주문내역
-					</h4>
-
-					<div class="flex-w flex-t bor12 p-b-13">
-						<div class="size-208">
-							<span class="stext-110 cl2">
-								주문금액:
-							</span>
+				</td>
+				<td class="column-3">제품명</td>
+				<td class="column-4">180,000원</td>				
+				<td class="column-5">2000x1600</td>
+				<td class="column-6">흰색</td>
+				<td class="column-7">
+					<div class="wrap-num-product flex-w">
+						<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+							<i class="fs-16 zmdi zmdi-minus"></i>
 						</div>
 
-						<div class="size-209">
-							<span class="mtext-110 cl2">
-								$79.65
-							</span>
+						<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+
+						<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+							<i class="fs-16 zmdi zmdi-plus"></i>
 						</div>
 					</div>
+				</td>
+				<td class="column-8"><button type="button" class="btn btn-outline-dark">장바구니에서 삭제</button></td>
+			</tr>
 
-					<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-						<div class="size-208 w-full-ssm">
-							<span class="stext-110 cl2">
-								배송비:
-							</span>
-						</div>
-
-						
-					</div>
-
-					<div class="flex-w flex-t p-t-27 p-b-33">
-						<div class="size-208">
-							<span class="mtext-101 cl2">
-								합계:
-							</span>
-						</div>
-
-						<div class="size-209 p-t-1">
-							<span class="mtext-110 cl2">
-								$79.65
-							</span>
-						</div>
-					</div>
-
-					<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-						상품구매
-					</button>
-				</div>
-			</div>
-		</div>
+		</table>
 	</div>
+		
+		<div class="bg-secondary text-dark p-3" style="font-size:18px;">
+			<p style="font-size:20px;"><strong>[ 주문내역 ]</strong></p>
+			<hr>
+			<table style="text-align:center;">				
+				<tr>
+					<td>주문금액 : </td>
+					<td>180,000원</td>
+				</tr>
+				<tr>
+					<td>배송비 : </td>
+					<td>2,500원</td>
+				</tr>
+				<tr>
+					<td>총주문금액 : </td>
+					<td>182,500원</td>
+				</tr>
+			</table>
+		</div>
+		<div class="mt-5">
+			<button type="button" class="btn btn-outline-dark" style="margin-left:300px;">선택 상품 구매</button>
+			<button type="button" class="btn bg-dark text-white ml-3">취소</button>
+		</div>
 </form>
+<br>
+
+
 
 
 
