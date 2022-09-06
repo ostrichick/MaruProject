@@ -21,8 +21,7 @@
     <form action="write_process" id="writeForm" method="post" enctype="multipart/form-data">
       <input type="text" name="title" class="form-control mt-4 mb-2" placeholder="제목을 입력해주세요." required>
       <div class="form-group">
-        <textarea id="summernote" name="editordata"></textarea>
-        <textarea class="form-control" rows="3" name="content" id="content" hidden>내용</textarea>
+        <textarea id="summernote" name="content" id="content"></textarea>
       </div>
       <input type="file" name="uploadFile" class="btn btn-secondary mb-3" />
       <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">제출하기</button>
@@ -40,14 +39,14 @@
         fontNames : [ 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체' ],
         fontSizes : [ '8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72' ]
       });
-      $("body").on("keyup", function() {
-        let sn_val = $('#summernote').summernote('code');
-        $("#content").val(sn_val);
-      })
-      $("body").on("mousemove", function() {
-        let sn_val = $('#summernote').summernote('code');
-        $("#content").val(sn_val);
-      })
+      //       $("body").on("keyup", function() {
+      //         let sn_val = $('#summernote').summernote('code');
+      //         $("#content").val(sn_val);
+      //       })
+      //       $("body").on("mousemove", function() {
+      //         let sn_val = $('#summernote').summernote('code');
+      //         $("#content").val(sn_val);
+      //       })
     </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
