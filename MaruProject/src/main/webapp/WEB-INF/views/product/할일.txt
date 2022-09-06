@@ -14,4 +14,3 @@ pjt/product/
 
 상품 등록 add.jsp
 상품 수정 edit.jsp
-
