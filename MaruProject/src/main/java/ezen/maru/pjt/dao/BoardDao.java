@@ -50,6 +50,14 @@ public class BoardDao {
 		return sqlSession.selectList(MAPPER + ".getBoardList");
 	}
 
+/////////////////////////////////////
+/////// 이 위는 옛날 코드 /////////
+/////////////////////////////////////
+
+	public int qnaWriteProcess(BoardVo boardVo) {
+		return sqlSession.insert(MAPPER + ".qnaWriteProcess", boardVo);
+	}
+
 }
 
 /*
