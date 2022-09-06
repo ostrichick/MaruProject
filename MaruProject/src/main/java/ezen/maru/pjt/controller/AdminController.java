@@ -29,7 +29,7 @@ public class AdminController {
 	public String dashboard() {
 		return "admin/dashboard";
 	}
-/////////
+
 	//////////////
 	// MARU end // 주석 아래부분 참고하여 작성 후 아래 부분은 삭제
 	//////////////
@@ -52,6 +52,7 @@ public class AdminController {
 		this.deleteService = deleteService;
 	}
 
+	/////////////////////////////////
 	@Autowired(required = false)
 	public void setFileService(@Qualifier("file") AdminService fileService) {
 		this.fileService = fileService;
