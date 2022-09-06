@@ -25,7 +25,6 @@
         <textarea class="form-control" rows="3" name="content" id="content" hidden>내용</textarea>
       </div>
       <input type="file" name="uploadFile" class="btn btn-secondary mb-3" />
-      <input type="hidden" name="idx" class="form-control mt-4 mb-2" value="${boardVo.idx}">
       <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">제출하기</button>
     </form>
   </div>
