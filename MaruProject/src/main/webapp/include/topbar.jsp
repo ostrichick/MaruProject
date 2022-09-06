@@ -20,7 +20,7 @@
     </c:choose>
 
     <div class="right-top-bar flex-w h-full">
-      <a href="${pageContext.request.contextPath}/notice/list" class="flex-c-m trans-04 p-lr-25"> 공지사항 </a> <a href="${pageContext.request.contextPath}/#" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a>
+      <a href="${MaruContextPath}/review" class="flex-c-m trans-04 p-lr-25"> 리뷰(임시)</a> <a href="${pageContext.request.contextPath}/notice/list" class="flex-c-m trans-04 p-lr-25"> 공지사항 </a> <a href="${pageContext.request.contextPath}/#" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a>
       <c:choose>
         <c:when test="${not empty sessionScope.member_id }">
           <a href="${MaruContextPath}/member/signout" class="flex-c-m trans-04 p-lr-25"> 로그아웃 </a>
