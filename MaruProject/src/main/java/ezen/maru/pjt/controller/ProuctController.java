@@ -2,14 +2,19 @@ package ezen.maru.pjt.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartRequest;
 
 import ezen.maru.pjt.service.product.ProductService;
+import ezen.maru.pjt.vo.FileVo;
 import ezen.maru.pjt.vo.ProductVo;
 
 @Controller
@@ -52,4 +57,17 @@ public class ProuctController {
 		return "product/add";
 	}
 
+	@PostMapping("/add_process")
+	public String product_add(ProductVo productVo, FileVo fileVo, MultipartRequest uploadFile1,
+			MultipartRequest uploadFile2, HttpServletRequest request, Model model) {
+
+		int result = insertService.productAdd(productVo, uploadFile1, uploadFile2, request);
+
+		String viewPage = "board/board_insert";
+
+		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
+			viewPage = "product/view";
+		}
+		return viewPage;
+	}
 }

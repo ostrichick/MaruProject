@@ -6,7 +6,7 @@ DROP TRIGGER TRI_delivery_info_delivery_idx;
 DROP TRIGGER TRI_member_info_member_idx;
 DROP TRIGGER TRI_order_log_order_idx;
 DROP TRIGGER TRI_product_cart_cart_idx;
-DROP TRIGGER TRI_product_photo_idx;
+DROP TRIGGER TRI_product_photo_file_idx;
 DROP TRIGGER TRI_product_product_idx;
 DROP TRIGGER TRI_product_qna_idx;
 DROP TRIGGER TRI_qnaservice_idx;
@@ -38,7 +38,7 @@ DROP SEQUENCE SEQ_delivery_info_delivery_idx;
 DROP SEQUENCE SEQ_member_info_member_idx;
 DROP SEQUENCE SEQ_order_log_order_idx;
 DROP SEQUENCE SEQ_product_cart_cart_idx;
-DROP SEQUENCE SEQ_product_photo_idx;
+DROP SEQUENCE SEQ_product_photo_file_idx;
 DROP SEQUENCE SEQ_product_product_idx;
 DROP SEQUENCE SEQ_product_qna_idx;
 DROP SEQUENCE SEQ_qnaservice_idx;
@@ -54,7 +54,7 @@ CREATE SEQUENCE SEQ_delivery_info_delivery_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_member_info_member_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_order_log_order_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_cart_cart_idx INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_product_photo_idx INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_product_photo_file_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_product_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_product_qna_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_qnaservice_idx INCREMENT BY 1 START WITH 1;
@@ -253,14 +253,14 @@ CREATE TABLE product_photo
 	-- 상품번호
 	product_idx number NOT NULL,
 	-- 사진 번호
-	idx number NOT NULL,
+	file_idx number NOT NULL,
 	-- 파일 원본이름
 	file_original varchar2(90),
 	-- 파일 시스템이름
 	file_system varchar2(90),
 	-- 파일 확장자
 	file_extension varchar2(9),
-	PRIMARY KEY (idx)
+	PRIMARY KEY (file_idx)
 );
 
 
@@ -469,11 +469,11 @@ END;
 
 /
 
-CREATE OR REPLACE TRIGGER TRI_product_photo_idx BEFORE INSERT ON product_photo
+CREATE OR REPLACE TRIGGER TRI_product_photo_file_idx BEFORE INSERT ON product_photo
 FOR EACH ROW
 BEGIN
-	SELECT SEQ_product_photo_idx.nextval
-	INTO :new.idx
+	SELECT SEQ_product_photo_file_idx.nextval
+	INTO :new.file_idx
 	FROM dual;
 END;
 
@@ -599,7 +599,7 @@ COMMENT ON COLUMN product_cart.product_idx IS '상품번호';
 COMMENT ON COLUMN product_cart.cart_product_number IS '상품 수량';
 COMMENT ON TABLE product_photo IS '제품용 사진';
 COMMENT ON COLUMN product_photo.product_idx IS '상품번호';
-COMMENT ON COLUMN product_photo.idx IS '사진 번호';
+COMMENT ON COLUMN product_photo.file_idx IS '사진 번호';
 COMMENT ON COLUMN product_photo.file_original IS '파일 원본이름';
 COMMENT ON COLUMN product_photo.file_system IS '파일 시스템이름';
 COMMENT ON COLUMN product_photo.file_extension IS '파일 확장자';
