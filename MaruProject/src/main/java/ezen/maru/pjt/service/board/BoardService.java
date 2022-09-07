@@ -14,11 +14,11 @@ public interface BoardService {
 		return null;
 	}
 
-	default int noticeWriteProcess(BoardVo boardVo, MultipartRequest uploadFile, HttpServletRequest req) {
+	default int noticeWriteProcess(BoardVo boardVo) {
 		return 0;
 	}
 
-	default int noticeEditProcess(BoardVo boardVo, MultipartRequest uploadFile, HttpServletRequest req) {
+	default int noticeEditProcess(BoardVo boardVo) {
 		return 0;
 	}
 

@@ -11,7 +11,12 @@
     <beans:property name="suffix" value=".jsp" />
   </beans:bean>
   <!-- 파일업로드 관련 MultipartResolver 빈 등록 -->
-  <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
+  <!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean> -->
+  <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <beans:property name="maxUploadSize" value="100000000"></beans:property>
+  </beans:bean>
+
+  <!-- 컴포넌트스캔 경로 -->
   <context:component-scan base-package="ezen.maru.pjt" />
   <interceptors>
     <interceptor>

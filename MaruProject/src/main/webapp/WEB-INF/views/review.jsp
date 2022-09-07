@@ -48,9 +48,7 @@
 		*내용
 	  </div>
 	  <div class="col-8">
-		<textarea style="border-style:solid; width:400px; height:150px;" name="content">
-				
-		</textarea>
+		<textarea style="border-style:solid; width:400px; height:150px;" name="content" id="re_content"></textarea>
 	</div>
 	</div>
 	<hr>
@@ -68,8 +66,8 @@
 	</div>
 </div>
 <div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<input class="btn btn-primary" type="submit" value="등록하기" style="margin-right:30px ;">
-<input class="btn btn-primary" type="reset" value="취소" >
+<a id="re_submit" class="btn btn-primary" type="submit"  style="margin-right:30px ;">등록</a>
+<a id="re_reset" class="btn btn-primary" type="reset" >취소</a>
 </div>
 
 
@@ -77,7 +75,21 @@
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
   <%@include file="/include/style.jsp"%>
- <!-- =========================================== -->
+<!-- =========================================== -->
+<script type="text/javascript">
+$("#re_submit").on("click", function(e){
+	
+			location.href = "${MaruContextPath}/index";
+});
+</script>	
+<script type="text/javascript">
+$("#re_reset").on("click", function(e){
+	 location.href = "${MaruContextPath}/index";
+});	
+
+</script>
+<!-- =========================================== -->
+<!-- =========================================== -->
  <style>
 .filebox .upload-name {
     display: inline-block;

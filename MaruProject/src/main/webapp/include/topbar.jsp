@@ -32,6 +32,7 @@
         </c:otherwise>
       </c:choose>
       <c:if test="${sessionScope.member_admin eq 'Y' }">
+        <a href="${MaruContextPath}/product/add" class="flex-c-m trans-04 p-lr-25"> 상품등록</a>
         <a href="${MaruContextPath}/admin/dashboard" class="flex-c-m trans-04 p-lr-25"> 관리자페이지</a>
       </c:if>
     </div>
