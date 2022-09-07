@@ -15,12 +15,10 @@
     #{product_major_category}, #{product_minor_category}, #{product_inventory})
   </insert>
   <insert id="productAdd_file" parameterType="fileVo">
-    INSERT INTO announce (
-    title, content,
-    file_original, file_system, file_extension
+    INSERT INTO product_photo (
+    product_idx, file_original, file_system, file_extension
     ) VALUES (
-    #{title}, #{content},
-    #{file_original}, #{file_system}, #{file_extension}
+    #{product_idx}, #{file_original}, #{file_system}, #{file_extension}
     )
   </insert>
 

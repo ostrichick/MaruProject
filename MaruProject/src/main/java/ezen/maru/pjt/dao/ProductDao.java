@@ -23,8 +23,6 @@ public class ProductDao {
 	}
 
 	public int productAdd(ProductVo productVo) {
-		System.out.println(productVo);
-		System.out.println(productVo.getProduct_name());
 		return sqlSession.insert(MAPPER + ".productAdd", productVo);
 	}
 }
