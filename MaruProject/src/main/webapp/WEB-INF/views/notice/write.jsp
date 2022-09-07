@@ -23,8 +23,8 @@
       <div class="form-group">
         <textarea id="summernote" name="content"></textarea>
       </div>
-      <input type="file" name="uploadFile" class="btn btn-secondary mb-3" />
-      <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">제출하기</button>
+      <!--       <input type="file" name="uploadFile" class="btn btn-secondary mb-3" /> -->
+      <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">작성하기</button>
     </form>
   </div>
   <script>

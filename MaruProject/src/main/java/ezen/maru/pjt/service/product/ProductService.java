@@ -14,8 +14,7 @@ public interface ProductService {
 		return null;
 	}
 
-	default int productAdd(ProductVo productVo, MultipartRequest uploadFile1, MultipartRequest uploadFile2,
-			HttpServletRequest req) {
+	default int productAdd(ProductVo productVo, MultipartRequest uploadFile1, HttpServletRequest req) {
 		return 0;
 	}
 

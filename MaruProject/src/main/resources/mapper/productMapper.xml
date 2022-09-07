@@ -6,7 +6,15 @@
   </select>
 
   <!-- ================================================= -->
-  <insert id="noticeWriteProcess" parameterType="productVo">
+  <insert id="productAdd" parameterType="productVo">
+    insert into product (
+    product_name, product_price, product_size, product_delivery_info,
+    product_major_category, product_minor_category, product_inventory
+    ) values (
+    #{product_name}, #{product_price}, #{product_size}, #{product_delivery_info},
+    #{product_major_category}, #{product_minor_category}, #{product_inventory})
+  </insert>
+  <insert id="productAdd_file" parameterType="fileVo">
     INSERT INTO announce (
     title, content,
     file_original, file_system, file_extension
@@ -15,6 +23,8 @@
     #{file_original}, #{file_system}, #{file_extension}
     )
   </insert>
+
+
 
   <select id="getNotice" parameterType="int" resultType="boardVo">
     select * from announce where idx = #{idx}

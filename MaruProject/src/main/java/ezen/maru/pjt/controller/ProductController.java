@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartRequest;
 
 import ezen.maru.pjt.service.product.ProductService;
-import ezen.maru.pjt.vo.FileVo;
 import ezen.maru.pjt.vo.ProductVo;
 
 @Controller
 @RequestMapping("/product")
-public class ProuctController {
+public class ProductController {
 	ProductService insertService, listService, updateService, deleteService;
 
 	@Autowired(required = false)
@@ -58,15 +57,15 @@ public class ProuctController {
 	}
 
 	@PostMapping("/add_process")
-	public String product_add(ProductVo productVo, FileVo fileVo, MultipartRequest uploadFile1,
-			MultipartRequest uploadFile2, HttpServletRequest request, Model model) {
+	public String product_add(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest request,
+			Model model) {
 
-		int result = insertService.productAdd(productVo, uploadFile1, uploadFile2, request);
+		int result = insertService.productAdd(productVo, uploadFile, request);
 
-		String viewPage = "board/board_insert";
+		String viewPage = "product/add";
 
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
-			viewPage = "product/view";
+			viewPage = "product/list";
 		}
 		return viewPage;
 	}

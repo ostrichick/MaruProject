@@ -1,8 +1,17 @@
 package ezen.maru.pjt.vo;
 
-public class ProductVo {
-	private int product_idx;
+public class ProductVo extends FileVo {
 	private String product_name;
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	private int product_idx;
 	private int product_price;
 	private String product_sale; // 할인여부 Y N
 	private long product_sale_percent;
@@ -29,14 +38,6 @@ public class ProductVo {
 
 	public void setProduct_idx(int product_idx) {
 		this.product_idx = product_idx;
-	}
-
-	public String getProduct_name() {
-		return product_name;
-	}
-
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
 	}
 
 	public int getProduct_price() {

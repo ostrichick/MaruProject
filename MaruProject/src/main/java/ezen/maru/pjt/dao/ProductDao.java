@@ -21,4 +21,10 @@ public class ProductDao {
 	public List<ProductVo> getProductList() {
 		return sqlSession.selectList(MAPPER + ".getProductList");
 	}
+
+	public int productAdd(ProductVo productVo) {
+		System.out.println(productVo);
+		System.out.println(productVo.getProduct_name());
+		return sqlSession.insert(MAPPER + ".productAdd", productVo);
+	}
 }
