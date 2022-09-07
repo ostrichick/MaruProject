@@ -22,7 +22,7 @@
               <ul class="main-menu">
 
 
-                <li><a href="${MaruContextPath}/index">Home</a>
+                <li><a href="${MaruContextPath}/index">메인화면</a>
                   <ul class="sub-menu">
                     <li><a href="${MaruContextPath}/index">Homepage 1</a></li>
                     <li><a href="${MaruContextPath}/home-02">Homepage 2</a></li>
@@ -31,14 +31,14 @@
 
                 <li><a href="${MaruContextPath}/product/list">제품</a></li>
 
-                <li class="label1" data-label1="hot"><a href="${MaruContextPath}/shopping-cart">Features</a></li>
+                <li class="label1" data-label1="hot"><a href="${MaruContextPath}/shopping-cart">장바구니</a></li>
 
-                <li><a href="${MaruContextPath}/blog">Blog</a></li>
+                <li><a href="${MaruContextPath}/blog">임시</a></li>
                 <!-- jstl 조건문 이용한 현재 액티브메뉴 구현? -->
                 <!--             <li class="active-menu"> -->
-                <li><a href="${MaruContextPath}/about">About</a></li>
+                <li><a href="${MaruContextPath}/about">임시</a></li>
 
-                <li><a href="${MaruContextPath}/contact">Contact</a></li>
+                <li><a href="${MaruContextPath}/contact">연락처</a></li>
               </ul>
             </div>
 
@@ -162,13 +162,13 @@
 
                 <li><a href="${MaruContextPath}/product/list">제품</a></li>
 
-                <li class="label1" data-label1="hot"><a href="${MaruContextPath}/shopping-cart">Features</a></li>
+                <li class="label1" data-label1="hot"><a href="${MaruContextPath}/shopping-cart">장바구니</a></li>
 
-                <li><a href="${MaruContextPath}/blog">Blog</a></li>
+                <li><a href="${MaruContextPath}/blog">임시</a></li>
 
-                <li><a href="${MaruContextPath}/about">About</a></li>
+                <li><a href="${MaruContextPath}/about">임시</a></li>
 
-                <li><a href="${MaruContextPath}/contact">Contact</a></li>
+                <li><a href="${MaruContextPath}/contact">연락처</a></li>
               </ul>
             </div>
 

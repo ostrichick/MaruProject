@@ -24,9 +24,10 @@
 
 
 
-  <select id="getNotice" parameterType="int" resultType="boardVo">
-    select * from announce where idx = #{idx}
+  <select id="getProduct" parameterType="int" resultType="productVo">
+    select * from product where product_idx = #{product_idx}
   </select>
+  
   <update id="upHit" parameterType="int">
     UPDATE announce
     SET

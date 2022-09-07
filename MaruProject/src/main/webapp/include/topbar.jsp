@@ -20,7 +20,7 @@
     </c:choose>
 
     <div class="right-top-bar flex-w h-full">
-      <a href="${MaruContextPath}/review" class="flex-c-m trans-04 p-lr-25"> 리뷰(임시)</a> <a href="${pageContext.request.contextPath}/notice/list" class="flex-c-m trans-04 p-lr-25"> 공지사항 </a> <a href="${pageContext.request.contextPath}/qna/write" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a>
+      <a href="${MaruContextPath}/review" class="flex-c-m trans-04 p-lr-25"> 리뷰(임시)</a> <a href="${pageContext.request.contextPath}/notice/list" class="flex-c-m trans-04 p-lr-25"> 공지사항 </a> <a href="${pageContext.request.contextPath}/qna/write" class="flex-c-m trans-04 p-lr-25"> 1:1 문의 </a>
       <c:choose>
         <c:when test="${not empty sessionScope.member_id }">
           <a href="${MaruContextPath}/member/signout" class="flex-c-m trans-04 p-lr-25"> 로그아웃 </a>
@@ -32,8 +32,9 @@
         </c:otherwise>
       </c:choose>
       <c:if test="${sessionScope.member_admin eq 'Y' }">
-        <a href="${MaruContextPath}/product/add" class="flex-c-m trans-04 p-lr-25"> 상품등록</a>
+
         <a href="${MaruContextPath}/admin/dashboard" class="flex-c-m trans-04 p-lr-25"> 관리자페이지</a>
+        <a href="${MaruContextPath}/product/add" class="flex-c-m trans-04 p-lr-25"> 상품등록</a>
       </c:if>
     </div>
   </div>

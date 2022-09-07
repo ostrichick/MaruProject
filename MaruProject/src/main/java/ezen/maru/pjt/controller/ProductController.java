@@ -48,6 +48,13 @@ public class ProductController {
 		return "product/list";
 	}
 
+	@GetMapping("/detail")
+	public String detail(Model model, int product_idx) {
+		ProductVo productVo = listService.getProduct(product_idx);
+		model.addAttribute("productVo", productVo);
+		return "product/detail";
+	}
+
 //////////////////////////
 	// 이하 관리자 전용 //
 	//////////////////////

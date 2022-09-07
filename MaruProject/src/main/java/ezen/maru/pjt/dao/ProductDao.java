@@ -25,4 +25,8 @@ public class ProductDao {
 	public int productAdd(ProductVo productVo) {
 		return sqlSession.insert(MAPPER + ".productAdd", productVo);
 	}
+
+	public ProductVo getProduct(int product_idx) {
+		return sqlSession.selectOne(MAPPER + ".getProduct", product_idx);
+	}
 }

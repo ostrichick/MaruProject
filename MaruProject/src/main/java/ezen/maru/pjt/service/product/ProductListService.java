@@ -21,4 +21,9 @@ public class ProductListService implements ProductService {
 	public List<ProductVo> getProductList() {
 		return productDao.getProductList();
 	}
+
+	@Override
+	public ProductVo getProduct(int product_idx) {
+		return productDao.getProduct(product_idx);
+	}
 }

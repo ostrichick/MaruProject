@@ -18,4 +18,8 @@ public interface ProductService {
 		return 0;
 	}
 
+	default ProductVo getProduct(int product_idx) {
+		return null;
+	}
+
 }
