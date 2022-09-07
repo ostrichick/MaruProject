@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import ezen.maru.pjt.dao.ProductDao;
+import ezen.maru.pjt.vo.FileVo;
 import ezen.maru.pjt.vo.ProductVo;
 
 @Service("p_insert")
@@ -29,6 +30,22 @@ public class ProductInsertService implements ProductService {
 	@Override
 	public int productAdd(ProductVo productVo, MultipartRequest uploadFile1, MultipartRequest uploadFile2,
 			HttpServletRequest req) {
+
+		String directory = "C:\\Users\\MYCOM\\Dropbox\\PC\\Music\\221025\\workspace\\model1pjt\\src\\main\\webapp\\upload";
+		// 경로 지정할 때 역슬러스 두개 \\ 사용하거나 슬러시 한개 / 사용
+
+		int sizeLimit = 100 * 1024 * 1024; // 100mb
+		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8",
+				new DefaultFileRenamePolicy());
+
+		String file_system = multi.getFilesystemName("uploadFile1"); // 파일을 업로드한 form의 parameter 이름 - 실제 서버상의 파일이름
+		String file_original = multi.getOriginalFileName("uploadFile1"); // 유저가 업로드할 당시의 원래 파일이름
+
+		String realFileName2 = multi.getFilesystemName("uploadFile2");
+		String originFileName2 = multi.getOriginalFileName("uploadFile2");
+
+		String realFileName3 = multi.getFilesystemName("uploadFile3");
+		String originFileName3 = multi.getOriginalFileName("uploadFile3");
 
 		List<MultipartFile> fileList = uploadFile1.getFiles("uploadFile1");
 		String upload_dir = "resources/upload";
@@ -70,8 +87,9 @@ public class ProductInsertService implements ProductService {
 
 				switch (i) {
 				case 0:
-					fileVo.setFile_original(origin_filename);
-					productVo.setFile_system(system_filename);
+					FileVo thumbnail = new FileVo();
+					thumbnail.setFile_original(origin_filename);
+					thumbnail.setFile_system(system_filename);
 					productVo.setFile_extension(extension);
 //					boardVo.setOrigin_filename1(origin_filename);
 //					boardVo.setSystem_filename1(system_filename);
