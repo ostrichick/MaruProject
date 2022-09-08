@@ -6,6 +6,18 @@
 .main-menu>li>a {
   font-size: 135%;
 }
+
+#cart-opacity-body::after {
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.5;
+}
+
 </style>
 <!-- Header 
     상단 메뉴바와 css를 담은 style.jsp, 최상단 topbar.jsp를 include함 -->
@@ -19,28 +31,20 @@
         <div class="wrap-menu-desktop how-shadow1">
           <nav class="limiter-menu-desktop container">
             <!-- Logo desktop -->
-            <a href="${MaruContextPath}/#" class="logo"> <img src="${MaruContextPath}/resources/images/icons/logo-01.png" alt="IMG-LOGO" />
+            <a href="${MaruContextPath}/#" class="logo"> <img src="${MaruContextPath}/resources/images/icons/logo-01.png" alt="logo" />
             </a>
 
             <!-- Menu desktop -->
             <div class="menu-desktop">
               <ul class="main-menu">
+                <li><a href="${MaruContextPath}/product/list?category=거실">거실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=침실">침실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=드레스룸">드레스룸</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=서재">서재</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=주방">주방</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=욕실">욕실</a></li>
 
 
-                <li><a href="${MaruContextPath}/index">메인화면</a>
-                  <ul class="sub-menu">
-                    <li><a href="${MaruContextPath}/index">Homepage 1</a></li>
-                    <li><a href="${MaruContextPath}/home-02">Homepage 2</a></li>
-                    <li><a href="${MaruContextPath}/home-03">Homepage 3</a></li>
-                  </ul></li>
-
-                <li><a href="${MaruContextPath}/product/list">제품</a></li>
-
-                <li class="label1" data-label1="hot"><a href="${MaruContextPath}/shopping-cart">장바구니</a></li>
-
-                <li><a href="${MaruContextPath}/blog">임시</a></li>
-                <!-- jstl 조건문 이용한 현재 액티브메뉴 구현? -->
-                <!--             <li class="active-menu"> -->
                 <li><a href="${MaruContextPath}/about">임시</a></li>
 
                 <li><a href="${MaruContextPath}/contact">찾아오는 길</a></li>
@@ -52,11 +56,10 @@
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                 <i class="zmdi zmdi-search"></i>
               </div>
-              <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-                <i class="zmdi zmdi-shopping-cart"></i>
+              <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart" data-notify="0">
+                <i class="zmdi zmdi-view-headline"></i>
               </div>
-              <a href="${MaruContextPath}/#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0"> <i class="zmdi zmdi-favorite-outline"></i>
-              </a>
+
             </div>
           </nav>
         </div>
@@ -277,19 +280,21 @@
 </c:choose>
 
 
-<!-- Cart -->
+<!-- Cart 기능을 메뉴바로 변경 -->
 <div class="wrap-header-cart js-panel-cart">
   <div class="s-full js-hide-cart"></div>
 
-  <div class="header-cart flex-col-l p-l-65 p-r-25">
+  <div id="cart-opacity-body" class="header-cart flex-col-l p-l-65 p-r-25">
     <div class="header-cart-title flex-w flex-sb-m p-b-8">
-      <span class="mtext-103 cl2"> Your Cart </span>
+      <span class="mtext-103 cl2"> 메뉴 </span>
 
       <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
         <i class="zmdi zmdi-close"></i>
       </div>
     </div>
-
+    <ul>
+      <li><a href="${MaruContextPath}/shopping-cart">장바구니</a></li>
+    </ul>
     <div class="header-cart-content flex-w js-pscroll">
       <ul class="header-cart-wrapitem w-full">
         <li class="header-cart-item flex-w flex-t m-b-12">

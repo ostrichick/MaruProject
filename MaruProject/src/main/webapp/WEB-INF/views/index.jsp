@@ -78,7 +78,7 @@
   <div class="sec-banner bg0 p-t-80 p-b-50">
     <div class="container">
       <div class="p-b-10">
-        <h3 class="ltext-103 cl5">이 달의 신제품</h3>
+        <h3 class="ltext-103 cl5">할인 중인 제품</h3> product_sale eq 'Y' 인 아이템들 List로 가져와서 하나씩 진열
       </div>
       <div class="row">
         <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">

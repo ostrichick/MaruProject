@@ -3,39 +3,24 @@
 <footer class="bg3 p-t-75 p-b-32">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 col-lg-3 p-b-50">
-        <h4 class="stext-301 cl0 p-b-30">분류</h4>
-
-        <ul>
-          <li class="p-b-10"><a href="#" class="stext-107 cl7 hov-cl1 trans-04"> 1 </a></li>
-
-          <li class="p-b-10"><a href="#" class="stext-107 cl7 hov-cl1 trans-04"> 2 </a></li>
-
-          <li class="p-b-10"><a href="#" class="stext-107 cl7 hov-cl1 trans-04"> 3 </a></li>
-
-          <li class="p-b-10"><a href="#" class="stext-107 cl7 hov-cl1 trans-04"> 4 </a></li>
-        </ul>
+      <div class="col-sm-6 col-lg-4 p-b-50">
+        <img src="${MaruContextPath}/resources/images/icons/logo-01.png" alt="IMG-LOGO" />
       </div>
 
-      <div class="col-sm-6 col-lg-3 p-b-50">
-        <h4 class="stext-301 cl0 p-b-30">고객 지원</h4>
-
-        <ul>
-          <li class="p-b-10"><a href="#" class="stext-107 cl7 hov-cl1 trans-04"> 배송 조회 </a></li>
-
-          <li class="p-b-10"><a href="#" class="stext-107 cl7 hov-cl1 trans-04"> 환불 및 반송 </a></li>
-
-          <li class="p-b-10"><a href="#" class="stext-107 cl7 hov-cl1 trans-04"> 배송 정보 </a></li>
-
-          <li class="p-b-10"><a href="#" class="stext-107 cl7 hov-cl1 trans-04"> 자주 묻는 질문 </a></li>
-        </ul>
+      <div class="col-sm-6 col-lg-4 p-b-50">
+        <h4 class="stext-301 cl0 p-b-30">마루 가구</h4>
+        <p class="stext-107 cl7 size-201">
+          주소 : 이젠 컴퓨터 학원 <br />사업자 등록번호 : 101-111-444567 <br />대표자 : 김마루 <br />통신판매업 신고 : 2022-통신판매업-05-23 <br />
+        </p>
       </div>
 
-      <div class="col-sm-6 col-lg-3 p-b-50">
-        <h4 class="stext-301 cl0 p-b-30">연락처</h4>
+      <div class="col-sm-6 col-lg-4 p-b-50">
+        <h4 class="stext-301 cl0 p-b-30">고객센터</h4>
+        <p class="stext-107 cl7 size-201">전북 전주시 덕진구 백제대로 572</p>
+        <p class="stext-107 cl7 size-201">Tel : 1600-1234 (평일 09:00 ~ 18:00)</p>
+        <p class="stext-107 cl7 size-201">Fax : 063-123-1234</p>
+        <p class="stext-107 cl7 size-201">Email : customer@maru.net</p>
 
-        <p class="stext-107 cl7 size-201">(대충 지어낸 전화번호랑 주소같은거)</p>
-        <p class="stext-107 cl7 size-201">(대충 사업자 등록번호 뭐 그런거같은거)</p>
 
         <div class="p-t-27">
           <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i class="fa fa-facebook"></i>
@@ -45,32 +30,7 @@
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-3 p-b-50">
-        <h4 class="stext-301 cl0 p-b-30">소식지</h4>
-
-        <form>
-          <div class="wrap-input1 w-full p-b-4">
-            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-            <div class="focus-input1 trans-04"></div>
-          </div>
-
-          <div class="p-t-18">
-            <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">구독</button>
-          </div>
-        </form>
-      </div>
     </div>
-
-    <div class="p-t-40">
-      <div class="flex-c-m flex-w p-b-18">
-        <a href="#" class="m-all-1"> <img src="${pageContext.request.contextPath}/resources/images/icons/icon-pay-01.png" alt="ICON-PAY">
-        </a> <a href="#" class="m-all-1"> <img src="${pageContext.request.contextPath}/resources/images/icons/icon-pay-02.png" alt="ICON-PAY">
-        </a> <a href="#" class="m-all-1"> <img src="${pageContext.request.contextPath}/resources/images/icons/icon-pay-03.png" alt="ICON-PAY">
-        </a> <a href="#" class="m-all-1"> <img src="${pageContext.request.contextPath}/resources/images/icons/icon-pay-04.png" alt="ICON-PAY">
-        </a> <a href="#" class="m-all-1"> <img src="${pageContext.request.contextPath}/resources/images/icons/icon-pay-05.png" alt="ICON-PAY">
-        </a>
-      </div>
-
       <p class="stext-107 cl6 txt-center">
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         Copyright &copy;

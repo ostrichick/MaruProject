@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Product Detail</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
+<link rel="icon" type="image/png" href="${MaruContextPath}/resources/images/icons/favicon.png" />
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
@@ -14,8 +15,8 @@
   <!-- breadcrumb -->
   <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-      <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04"> 전체 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-      </a> <a href="product.html" class="stext-109 cl8 hov-cl1 trans-04"> 거실 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+      <a href="${MaruContextPath}/" class="stext-109 cl8 hov-cl1 trans-04"> 전체 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+      </a> <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> 거실 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
       </a> <span class="stext-109 cl4"> 나무 테이블 </span>
     </div>
   </div>
@@ -186,7 +187,7 @@
                       </div>
                     </div>
 
-                  
+
                   </div>
                 </div>
               </div>
