@@ -25,7 +25,7 @@
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">고양이 장난감 걸이</h2>
+                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">행거</h2>
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
@@ -39,11 +39,11 @@
           <div class="container h-full">
             <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
               <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-                <span class="ltext-101 cl2 respon2"> 우리 뽀삐가 2층을 좋아해요 멍멍 </span>
+                <span class="ltext-101 cl2 respon2"> 2층 침대 </span>
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
-                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">강아지용 2층 침대</h2>
+                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">......</h2>
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
@@ -57,11 +57,11 @@
           <div class="container h-full">
             <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
               <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
-                <span class="ltext-101 cl2 respon2"> 병원 대기실용 소파 </span>
+                <span class="ltext-101 cl2 respon2"> 와이드 소파 </span>
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
-                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">안락하죠?</h2>
+                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">......</h2>
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">

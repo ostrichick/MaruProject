@@ -2,6 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
 <%@include file="/include/style.jsp"%>
+<style>
+.main-menu>li>a {
+  font-size: 135%;
+}
+</style>
 <!-- Header 
     상단 메뉴바와 css를 담은 style.jsp, 최상단 topbar.jsp를 include함 -->
 <c:choose>
@@ -38,7 +43,7 @@
                 <!--             <li class="active-menu"> -->
                 <li><a href="${MaruContextPath}/about">임시</a></li>
 
-                <li><a href="${MaruContextPath}/contact">연락처</a></li>
+                <li><a href="${MaruContextPath}/contact">찾아오는 길</a></li>
               </ul>
             </div>
 

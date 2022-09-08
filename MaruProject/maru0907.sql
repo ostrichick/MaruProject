@@ -214,8 +214,6 @@ CREATE TABLE product
 	product_sale_percent number DEFAULT 0,
 	-- 상품 규격 (100x200)
 	product_size varchar2(30),
-	-- 배송 특이사항
-	product_delivery_info varchar2(150),
 	-- 상품 재고
 	product_inventory number,
 	-- 상품 대분류
@@ -587,7 +585,6 @@ COMMENT ON COLUMN product.product_price IS '상품가격';
 COMMENT ON COLUMN product.product_sale IS '할인 여부';
 COMMENT ON COLUMN product.product_sale_percent IS '상품 할인율';
 COMMENT ON COLUMN product.product_size IS '상품 규격 (100x200)';
-COMMENT ON COLUMN product.product_delivery_info IS '배송 특이사항';
 COMMENT ON COLUMN product.product_inventory IS '상품 재고';
 COMMENT ON COLUMN product.product_major_category IS '상품 대분류';
 COMMENT ON COLUMN product.product_minor_category IS '상품 소분류';

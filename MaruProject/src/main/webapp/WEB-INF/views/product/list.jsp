@@ -135,7 +135,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 램프1 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 램프1 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -155,7 +155,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 램프2 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 램프2 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -175,7 +175,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 램프3 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 램프3 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -195,7 +195,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 탁자1 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 탁자1 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -215,7 +215,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 탁자2 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 탁자2 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -235,7 +235,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 깔개 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 깔개 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -255,7 +255,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 작은 소파 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 작은 소파 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -275,7 +275,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 소파 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 소파 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -295,7 +295,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 흰 안락의자 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 흰 안락의자 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -315,7 +315,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 소파 테이블 세트 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 소파 테이블 세트 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -335,7 +335,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 탁자 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 탁자 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -355,7 +355,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 탁자 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 탁자 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -375,7 +375,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 테이블 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 테이블 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -395,7 +395,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 등 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 등 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -415,7 +415,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 티 테이블 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 티 테이블 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
@@ -435,7 +435,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.do" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 옷장 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 옷장 </a> <span class="stext-105 cl3"> ₩165,000 </span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">

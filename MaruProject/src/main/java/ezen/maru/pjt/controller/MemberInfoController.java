@@ -91,6 +91,15 @@ public class MemberInfoController {
 		return "member/myinfo";
 	}
 
+	@GetMapping("/myinfo_edit") // 내 회원정보 페이지
+	public String myinfo_edit(HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		MemberInfoVo memberInfoVo = updateService.getMember(member_id);
+		model.addAttribute("memberInfoVo", memberInfoVo);
+		return "member/myinfo_edit";
+	}
+
 	@PostMapping("/updateinfo") // 회원정보 수정
 	public String update(MemberInfoVo memberInfoVo, HttpServletRequest req, RedirectAttributes redirect) {
 		HttpSession session = req.getSession();

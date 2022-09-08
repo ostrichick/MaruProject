@@ -48,11 +48,11 @@ public class ProductController {
 		return "product/list";
 	}
 
-	@GetMapping("/detail")
-	public String detail(Model model, int product_idx) {
-		ProductVo productVo = listService.getProduct(product_idx);
-		model.addAttribute("productVo", productVo);
-		return "product/detail";
+	@GetMapping("/product-detail")
+	public String detail(Model model) {
+//		ProductVo productVo = listService.getProduct(product_idx);
+//		model.addAttribute("productVo", productVo);
+		return "product/product-detail";
 	}
 
 //////////////////////////
