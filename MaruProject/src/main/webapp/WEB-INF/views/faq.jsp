@@ -56,6 +56,27 @@
 	          <th>조회수</th>
         </tr>
       </tbody>
+         <tbody>
+      	<c:forEach var="faq" items="${noticeList}" varStatus="status">
+          <tr>
+            <td class="text-right"><input type="checkbox" value="선택" name="celect"></td>
+            <td class="text-right">
+              <select>
+              	<option>거실</option>
+              	<option>침실</option>
+              	<option>드레스룸</option>
+              	<option>서재</option>
+              	<option>주방</option>
+              	<option>욕실</option>
+              </select>
+            </td>
+            <td class="text-center">
+              <a href='#' onClick='fn_view(${faq.idx})'>${faq.title}</a>
+            </td>
+            <td class="text-right">${faq.hit}</td>
+          </tr>
+        </c:forEach>
+      </tbody>
     </table>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
