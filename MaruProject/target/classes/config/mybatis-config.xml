@@ -8,7 +8,7 @@
   </settings>
   <!-- VO객체에 대한 별칭 설정 -->
   <typeAliases>
-    <typeAlias alias="memberVo" type="ezen.maru.pjt.vo.MemberVo" />
+    
     <typeAlias alias="fileVo" type="ezen.maru.pjt.vo.FileVo" />
     <typeAlias alias="boardVo" type="ezen.maru.pjt.vo.BoardVo" />
     <!-- -->

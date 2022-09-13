@@ -47,12 +47,6 @@
 
   <!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- -->
 
-
-  <select id="getMemberList" resultType="memberVo">
-    select * from member_tbl
-  </select>
-
-
   <update id="updateGrade" parameterType="map">
     update member_tbl set member_grade = #{member_grade}
     where member_idx = #{member_idx}
@@ -65,13 +59,6 @@
     </foreach>
   </delete>
 
-  <select id="getUpdateList" resultType="memberVo">
-    select * from member_tbl_bak where modify_type = '수정'
-  </select>
-
-  <select id="getDeleteList" resultType="memberVo">
-    select * from member_tbl_bak where modify_type = '삭제'
-  </select>
 
 
 </mapper>	
