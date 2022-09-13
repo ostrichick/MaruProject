@@ -18,6 +18,7 @@ import ezen.maru.pjt.vo.ProductVo;
 
 @Controller
 @RequestMapping("/product")
+// 회원들이 조회하고 관리자가 업로드, 수정, 삭제할 수 있는 상품 페이지 관련 컨트롤러
 public class ProductController {
 	ProductService insertService, listService, updateService, deleteService;
 

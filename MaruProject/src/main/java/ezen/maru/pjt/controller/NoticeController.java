@@ -16,6 +16,7 @@ import ezen.maru.pjt.vo.BoardVo;
 
 @Controller
 @RequestMapping("/notice")
+// 회원들이 조회하고 관리자가 작성, 수정, 삭제 할 수 있는 공지사항 게시판 컨트롤러
 public class NoticeController {
 
 	BoardService insertService, listService, updateService, deleteService;

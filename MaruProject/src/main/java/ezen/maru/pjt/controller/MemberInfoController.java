@@ -19,6 +19,7 @@ import ezen.maru.pjt.vo.MemberInfoVo;
 
 @Controller
 @RequestMapping("/member")
+// 회원가입, 로그인, 정보수정, 탈퇴 등 회원 관리기능 컨트롤러
 public class MemberInfoController {
 
 	MemberInfoService signupService, signinService, updateService;

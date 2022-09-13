@@ -18,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonObject;
 
 @Controller
+// SummerNote내장 파일업로드 기능을 지원하는 컨트롤러
 public class FileController {
+
 	@RequestMapping(value = "notice/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
@@ -32,15 +34,10 @@ public class FileController {
 		// 내부경로로 저장
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 		String fileRoot = contextRoot + "resources/fileupload/";
-		System.out.println(contextRoot);
-		System.out.println(fileRoot);
 
 		String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-		System.out.println(originalFileName);
-		System.out.println(extension);
-		System.out.println(savedFileName);
 
 		File targetFile = new File(fileRoot + savedFileName);
 		try {

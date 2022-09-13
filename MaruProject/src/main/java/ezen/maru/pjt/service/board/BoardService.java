@@ -25,17 +25,6 @@ public interface BoardService {
 	default int deleteNotice(int idx) {
 		return 0;
 	}
-	//////////////
-	// MARU end //
-	//////////////
-
-	default int board_insert(BoardVo boardVo, MultipartRequest uploadFile, HttpServletRequest request) {
-		return 0;
-	}
-
-	default List<BoardVo> getBoardList() {
-		return null;
-	}
 
 	default BoardVo getNotice(int idx) {
 		return null;

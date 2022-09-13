@@ -16,6 +16,7 @@ import ezen.maru.pjt.vo.BoardVo;
 
 @Controller
 @RequestMapping("/qna")
+//회원들이 작성하고 관리자가 답변, 삭제 할 수 있는 1:1 문의 게시판 컨트롤러
 public class QnaController {
 	BoardService insertService, listService, updateService, deleteService;
 

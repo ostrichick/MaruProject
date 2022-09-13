@@ -10,6 +10,12 @@ import ezen.maru.pjt.vo.BoardVo;
 
 @Service("b_list")
 public class BoardListService implements BoardService {
+	private BoardDao boardDao;
+
+	@Autowired(required = false)
+	public BoardListService(BoardDao boardDao) {
+		this.boardDao = boardDao;
+	}
 
 	@Override
 	public List<BoardVo> getNoticeList() {
@@ -20,21 +26,4 @@ public class BoardListService implements BoardService {
 	public BoardVo getNotice(int idx) {
 		return boardDao.getNotice(idx);
 	}
-
-	//////////////
-	// MARU end //
-	//////////////
-
-	private BoardDao boardDao;
-
-	@Autowired(required = false)
-	public BoardListService(BoardDao boardDao) {
-		this.boardDao = boardDao;
-	}
-
-	@Override
-	public List<BoardVo> getBoardList() {
-		return boardDao.getBoardList();
-	}
-
 }
