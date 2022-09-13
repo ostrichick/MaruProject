@@ -17,6 +17,7 @@
   z-index: -1;
   opacity: 0.5;
 }
+.menu-subcategory>li:hover{background: #e6e6e6;}
 
 /* div, ul, li { */
 /*   outline: blue solid 1px; */
@@ -299,18 +300,18 @@
     <div class="wrap-menu-category w-full txt-center">
       <ul class="">
         <li class="m-tb-20 bg7 p-t-10 txt-center cl7">로그인/회원가입
-          <ul class="w-full bg6">
-            <li class="m-tb-15 p-tb-10 txt-center bg6 cl2">로그인</li>
-            <li class="m-tb-15 p-tb-10 txt-center bg6 cl2">회원가입</li>
+          <ul class="bg6 menu-subcategory">
+            <li class="m-tb-5 p-tb-10 txt-center bg6 cl2">로그인</li>
+            <li class="m-tb-5 p-tb-10 txt-center bg6 cl2">회원가입</li>
           </ul>
         </li>
         <li class="m-tb-20 p-tb-10 bg7 cl7">마이페이지</li>
         <li class="m-tb-20 p-tb-10 bg7 cl7">장바구니</li>
         <li class="m-tb-20 p-t-10 bg7 cl7">고객센터
-          <ul class="w-full bg6">
-            <li class="m-tb-15 p-tb-10 bg6 cl2">공지사항</li>
-            <li class="m-tb-15 p-tb-10 bg6 cl2">자주 묻는 질문</li>
-            <li class="m-tb-15 p-tb-10 bg6 cl2">1:1 문의</li>
+          <ul class="bg6 menu-subcategory">
+            <li class="m-tb-5 p-tb-10 bg6 cl2">공지사항</li>
+            <li class="m-tb-5 p-tb-10 bg6 cl2">자주 묻는 질문</li>
+            <li class="m-tb-5 p-tb-10 bg6 cl2">1:1 문의</li>
           </ul>
         </li>
       </ul>
