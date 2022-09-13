@@ -17,7 +17,10 @@
   z-index: -1;
   opacity: 0.5;
 }
-.menu-subcategory>li:hover{background: #e6e6e6;}
+
+.menu-subcategory>li:hover {
+  background: #e6e6e6;
+}
 
 /* div, ul, li { */
 /*   outline: blue solid 1px; */
@@ -301,17 +304,17 @@
       <ul class="">
         <li class="m-tb-20 bg7 p-t-10 txt-center cl7">로그인/회원가입
           <ul class="bg6 menu-subcategory">
-            <li class="m-tb-5 p-tb-10 txt-center bg6 cl2">로그인</li>
-            <li class="m-tb-5 p-tb-10 txt-center bg6 cl2">회원가입</li>
+            <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/member/signin" class="flex-c-m trans-04 p-lr-25 cl2">로그인</a></li>
+            <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/member/signup" class="flex-c-m trans-04 p-lr-25 cl2">회원가입</a></li>
           </ul>
         </li>
-        <li class="m-tb-20 p-tb-10 bg7 cl7">마이페이지</li>
-        <li class="m-tb-20 p-tb-10 bg7 cl7">장바구니</li>
+        <li class="m-tb-20 p-tb-10 bg7"><a href="${MaruContextPath}/member/myinfo" class="flex-c-m trans-04 p-lr-25 cl7">마이페이지</a></li>
+        <li class="m-tb-20 p-tb-10 bg7 cl7"><a href="${MaruContextPath}/shopping-cart" class="flex-c-m trans-04 p-lr-25  cl7" data-label1="hot">장바구니</a></li>
         <li class="m-tb-20 p-t-10 bg7 cl7">고객센터
           <ul class="bg6 menu-subcategory">
-            <li class="m-tb-5 p-tb-10 bg6 cl2">공지사항</li>
-            <li class="m-tb-5 p-tb-10 bg6 cl2">자주 묻는 질문</li>
-            <li class="m-tb-5 p-tb-10 bg6 cl2">1:1 문의</li>
+            <li class="m-tb-5 p-tb-10 bg6"><a href="${MaruContextPath}/notice/list" class="flex-c-m trans-04 p-lr-25 cl2">공지사항</a></li> 
+            <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/faq" class="flex-c-m trans-04 p-lr-25 cl2">자주 묻는 질문</a></li>
+            <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/qna/write" class="flex-c-m trans-04 p-lr-25 cl2">1:1 문의</a></li>
           </ul>
         </li>
       </ul>
