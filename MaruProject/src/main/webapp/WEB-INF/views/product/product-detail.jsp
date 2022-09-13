@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Product Detail</title>
+<title>상품 상세보기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${MaruContextPath}/resources/images/icons/favicon.png" />
@@ -12,7 +12,7 @@
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
 
-  <!-- breadcrumb -->
+  <!-- 경로 -->
   <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
       <a href="${MaruContextPath}/" class="stext-109 cl8 hov-cl1 trans-04"> 전체 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
@@ -22,7 +22,7 @@
   </div>
 
 
-  <!-- Product Detail -->
+  <!-- 상품 상세 -->
   <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
 
@@ -66,6 +66,11 @@
             <h4 class="mtext-106 cl2">₩ 125,000 &#36;{product_price * product_sale_percent}</h4>
             <del>₩ 150,000 &#36;{product_price}</del>
 
+            <p class="txt-right">
+              <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i>
+              </span>
+            </p>
+
             <p class="stext-102 cl3 p-t-23">200x600 &#36;{product_size}</p>
             <p class="stext-102 cl3 p-t-23">
               제주/도서산간 제외 <strong>전국 배송 가능</strong><br>수도권 <strong>무료배송</strong>/그 외 지역 유료배송(하단 배송기준 참고)
@@ -81,7 +86,7 @@
                       <i class="fs-16 zmdi zmdi-minus"></i>
                     </div>
 
-                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="product_number" value="1">
 
                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                       <i class="fs-16 zmdi zmdi-plus"></i>
@@ -98,17 +103,7 @@
             </div>
 
             <!--  -->
-            <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-              <div class="flex-m bor9 p-r-10 m-r-11">
-                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist"> <i class="zmdi zmdi-favorite"></i>
-                </a>
-              </div>
 
-              <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook"> <i class="fa fa-facebook"></i>
-              </a> <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter"> <i class="fa fa-twitter"></i>
-              </a> <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -119,10 +114,9 @@
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item p-b-10"><a class="nav-link active" data-toggle="tab" href="#description" role="tab">상세정보</a></li>
-
-            <li class="nav-item p-b-10"><a class="nav-link" data-toggle="tab" href="#information" role="tab">배송안내</a></li>
-
             <li class="nav-item p-b-10"><a class="nav-link" data-toggle="tab" href="#reviews" role="tab">리뷰</a></li>
+            <li class="nav-item p-b-10"><a class="nav-link" data-toggle="tab" href="#productqna" role="tab">상품문의</a></li>
+            <li class="nav-item p-b-10"><a class="nav-link" data-toggle="tab" href="#information" role="tab">배송/교환/반품 안내</a></li>
           </ul>
 
           <!-- Tab panes -->
@@ -137,17 +131,54 @@
             <!-- - -->
             <div class="tab-pane fade" id="information" role="tabpanel">
               <div class="row">
-                <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                  <ul class="p-lr-28 p-lr-15-sm">
-                    <li class="flex-w flex-t p-b-7"><span class="stext-102 cl3 size-205"> 무게 </span> <span class="stext-102 cl6 size-206"> 20.79 kg </span></li>
+                <div class="col-sm-10 col-md-10 col-lg-8 m-lr-auto">
+                  <table class="table table-bordered table-sm align-middle delivery m-b-50">
+                    <tr>
+                      <th rowspan="3" class="align-middle bg2 text-center">수도권</th>
+                      <th class="bg6 text-center">서울</th>
+                      <td>무료배송, 전지역 (1~2일 이내 도착)</td>
+                    </tr>
+                    <tr>
+                      <th class="bg6 text-center">인천</th>
+                      <td>무료배송, 전지역 (1~2일 이내 도착) (배송불가 도서지역 제외)</td>
+                    </tr>
+                    <tr>
+                      <th class="bg6 text-center">경기</th>
+                      <td>무료배송, 전지역 (1~2일 이내 도착)</td>
+                    </tr>
+                    <tr>
+                      <th colspan="2" class="bg2 text-center">지방</th>
+                      <td>유료배송(5,000원), 전지역 (2~3일 이내 도착)</td>
+                    </tr>
+                    <tr>
+                      <th colspan="2" class="align-middle bg2 text-center">배송불가지역</th>
+                      <td>
+                        <p>제주도, 제부도, 대부도, 울릉도 등 섬지역 및 도서산간 지역</p>
+                        <p>인천: 강화군, 영종도 일부지역, 옹진군</p>
+                        <p>전라: 완도 일부지역, 진도 일부지역, 신안 일부지역</p>
+                      </td>
+                    </tr>
+                  </table>
 
-                    <li class="flex-w flex-t p-b-7"><span class="stext-102 cl3 size-205"> 규격 </span> <span class="stext-102 cl6 size-206"> 1000 x 600 x 300 mm </span></li>
+                  <table class="table table-bordered table-sm align-middle refund">
+                    <tr>
+                      <th class="align-middle bg2 text-center">교환/반품 비용</th>
+                      <td>
+                        <p>마루 멤버쉽 회원: 무료로 반품, 교환 가능</p>
+                        <p>
+                          마루 멤버쉽 회원 아닌 경우: <br />1) [총 주문금액] - [반품 상품금액] = 20,000원 미만인 경우 반품비 5,000원 <br>1) [총 주문금액] - [반품 상품금액] = 20,000원 이상인 경우 반품비 3,000원
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="align-middle bg2 text-center">교환/반품 신청 기준일</th>
+                      <td>
+                        <p>단숨변심에 의한 교환 반품은 제품 수령 후 2주일 이내</p>
+                        <p>상품의 내용이 표시, 광고의 내용과 다른 경우에는 상품을 수령한 날 부터 1개월 이내에 청약철회 가능</p>
+                      </td>
+                    </tr>
+                  </table>
 
-                    <li class="flex-w flex-t p-b-7"><span class="stext-102 cl3 size-205"> 재질 </span> <span class="stext-102 cl6 size-206"> 오크나무 </span></li>
-
-                    <li class="flex-w flex-t p-b-7"><span class="stext-102 cl3 size-205"> 색깔 </span> <span class="stext-102 cl6 size-206"> 베이지색 </span></li>
-
-                  </ul>
                 </div>
               </div>
             </div>
@@ -159,37 +190,40 @@
                   <div class="p-b-30 m-lr-15-sm">
                     <!-- Review -->
                     <div class="flex-w flex-t p-b-68">
-                      <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                        <img src="${pageContext.request.contextPath}/resources/images/avatar-01.jpg" alt="AVATAR">
-                      </div>
 
-                      <div class="size-207">
+
+                      <div class="size-290">
                         <div class="flex-w flex-sb-m p-b-17">
-                          <span class="mtext-107 cl2 p-r-20"> 김삼식 </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i>
+                          <span class="mtext-107 cl2 p-r-20"> &#36;{member_id} </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i>
                           </span>
                         </div>
 
-                        <p class="stext-102 cl6">리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰</p>
+                        <p class="stext-102 cl6">&#36;{content}리뷰리뷰리ㅇㅇㅇㅇㅇㅇㅇ뷰리뷰리뷰리뷰리뷰리뷰</p>
                       </div>
                     </div>
                     <div class="flex-w flex-t p-b-68">
-                      <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                        <img src="${pageContext.request.contextPath}/resources/images/avatar-01.jpg" alt="AVATAR">
-                      </div>
 
-                      <div class="size-207">
+
+                      <div class="size-290">
                         <div class="flex-w flex-sb-m p-b-17">
                           <span class="mtext-107 cl2 p-r-20"> 김삼식2 </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i>
                           </span>
                         </div>
 
-                        <p class="stext-102 cl6">2리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰</p>
+                        <p class="stext-102 cl6">2222222222 리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰</p>
                       </div>
                     </div>
 
 
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!--  -->
+            <div class="tab-pane fade" id="productqna" role="tabpanel">
+              <div class="how-pos2 p-lr-15-md">
+                <p class="stext-102 cl6">상품문의! &#36;{product_detail}</p>
               </div>
             </div>
           </div>
