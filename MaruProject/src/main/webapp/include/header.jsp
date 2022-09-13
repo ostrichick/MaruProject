@@ -18,6 +18,9 @@
   opacity: 0.5;
 }
 
+/* div, ul, li { */
+/*   outline: blue solid 1px; */
+/* } */
 </style>
 <!-- Header 
     상단 메뉴바와 css를 담은 style.jsp, 최상단 topbar.jsp를 include함 -->
@@ -292,48 +295,25 @@
         <i class="zmdi zmdi-close"></i>
       </div>
     </div>
-    <ul>
-      <li><a href="${MaruContextPath}/shopping-cart">장바구니</a></li>
-    </ul>
-    <div class="header-cart-content flex-w js-pscroll">
-      <ul class="header-cart-wrapitem w-full">
-        <li class="header-cart-item flex-w flex-t m-b-12">
-          <div class="header-cart-item-img">
-            <img src="${MaruContextPath}/resources/images/item-cart-01.jpg" alt="IMG" />
-          </div>
 
-          <div class="header-cart-item-txt p-t-8">
-            <a href="${MaruContextPath}/#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> White Shirt Pleat </a> <span class="header-cart-item-info"> 1 x $19.00 </span>
-          </div>
+    <div class="wrap-menu-category w-full txt-center">
+      <ul class="">
+        <li class="m-tb-20 bg7 p-t-10 txt-center cl7">로그인/회원가입
+          <ul class="w-full bg6">
+            <li class="m-tb-15 p-tb-10 txt-center bg6 cl2">로그인</li>
+            <li class="m-tb-15 p-tb-10 txt-center bg6 cl2">회원가입</li>
+          </ul>
         </li>
-
-        <li class="header-cart-item flex-w flex-t m-b-12">
-          <div class="header-cart-item-img">
-            <img src="${MaruContextPath}/resources/images/item-cart-02.jpg" alt="IMG" />
-          </div>
-
-          <div class="header-cart-item-txt p-t-8">
-            <a href="${MaruContextPath}/#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> Converse All Star </a> <span class="header-cart-item-info"> 1 x $39.00 </span>
-          </div>
-        </li>
-
-        <li class="header-cart-item flex-w flex-t m-b-12">
-          <div class="header-cart-item-img">
-            <img src="${MaruContextPath}/resources/images/item-cart-03.jpg" alt="IMG" />
-          </div>
-
-          <div class="header-cart-item-txt p-t-8">
-            <a href="${MaruContextPath}/#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> Nixon Porter Leather </a> <span class="header-cart-item-info"> 1 x $17.00 </span>
-          </div>
+        <li class="m-tb-20 p-tb-10 bg7 cl7">마이페이지</li>
+        <li class="m-tb-20 p-tb-10 bg7 cl7">장바구니</li>
+        <li class="m-tb-20 p-t-10 bg7 cl7">고객센터
+          <ul class="w-full bg6">
+            <li class="m-tb-15 p-tb-10 bg6 cl2">공지사항</li>
+            <li class="m-tb-15 p-tb-10 bg6 cl2">자주 묻는 질문</li>
+            <li class="m-tb-15 p-tb-10 bg6 cl2">1:1 문의</li>
+          </ul>
         </li>
       </ul>
-
-      <div class="w-full">
-        <div class="header-cart-total w-full p-tb-40">Total: $75.00</div>
-        <div class="header-cart-buttons flex-w w-full">
-          <a href="${MaruContextPath}/shoping-cart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10"> View Cart </a> <a href="${MaruContextPath}/shoping-cart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10"> Check Out </a>
-        </div>
-      </div>
     </div>
   </div>
 </div>

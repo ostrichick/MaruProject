@@ -34,7 +34,6 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<style>div,li{outline:blue 1px solid;}</style>
 </head>
 <body class="animsition">
 	
