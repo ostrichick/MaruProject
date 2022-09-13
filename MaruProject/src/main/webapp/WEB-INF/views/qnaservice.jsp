@@ -28,10 +28,12 @@
 	<div class="col-2">
 		<select class="form-select" aria-label="Categories">
 			<option selected>상품의 카테고리를 선택해주세요</option>
-			<option value="1">침실</option>
-			<option value="2">거실</option>
-			<option value="3">부엌</option>
-			<option value="4">욕실</option>
+			<option value="1">거실</option>
+			<option value="2">침실</option>
+			<option value="3">드레스룸</option>
+			<option value="4">서재</option>
+			<option value="5">주방</option>
+			<option value="6">욕실</option> 
 		</select>
 	</div>
 	</div>
