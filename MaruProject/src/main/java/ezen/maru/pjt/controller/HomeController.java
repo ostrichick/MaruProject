@@ -82,6 +82,11 @@ public class HomeController {
 	public String qnaservice() {
 		return "qnaservice";
 	}
+	
+	@GetMapping("/faq")
+	public String faq() {
+		return "faq";
+	}
 
 	/////////////////////////
 	// cozamall controller // 주석 아래부분 참고하여 작성 후 아래 부분은 삭제
