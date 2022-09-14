@@ -92,6 +92,12 @@ public class HomeController {
 	public String faq_write() {
 		return "faq_write";
 	}
+	
+	
+	@GetMapping("/edit")
+	public String edit() {
+		return "edit";
+	}
 
 
 	/////////////////////////

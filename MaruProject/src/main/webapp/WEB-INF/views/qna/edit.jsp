@@ -11,12 +11,12 @@
 
 <br><br><br><br><br><br>
 <div class="container" >
-<h3 class="col-2" style="float:left ;">1대1문의</h3>
+<h3 class="col-3" style="float:left ;">1대1문의수정</h3>
 <div style="border-left:100;"></div>
 	<div style="float:left;">
 	FAQ에서 해결하지 못한 질문이 있으시면 1:1문의에 등록해주시면 친절히 답변해드립니다.<br>
 	평균 답변 시간:2~3일
-	</div>
+	</div> 
 </div>
 <br>
 <br>
@@ -63,8 +63,8 @@
 	</div>
 </div>
 <div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<input class="btn btn-primary" type="submit" value="등록하기" style="margin-right:30px ;">
-<input class="btn btn-primary" type="reset" value="취소">
+<input id="button" class="btn btn-primary" type="submit" value="수정" style="margin-right:30px ;">
+<input id="button" class="btn btn-primary" type="reset" value="취소">
 </div>
   
 
@@ -100,14 +100,22 @@
     overflow: hidden;
     border: 0;
 }
-</style>
+#button {
+	    color: #fff; 
+    background-color: #6c757d;
+    border-color: #6c757d;
+   
+}
+</style> 
 <script>
 $("#file").on('change',function(){
   var fileName = $("#file").val();
   $(".upload-name").val(fileName);
 });
 
+
 </script>
+
 <!--=============================================================================-->
 </body>
 </html>

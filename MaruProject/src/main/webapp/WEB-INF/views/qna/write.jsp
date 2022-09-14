@@ -16,7 +16,7 @@
 	<div style="float:left;">
 	FAQ에서 해결하지 못한 질문이 있으시면 1:1문의에 등록해주시면 친절히 답변해드립니다.<br>
 	평균 답변 시간:2~3일
-	</div>
+	</div> 
 </div>
 <br>
 <br>
@@ -28,10 +28,12 @@
 	<div class="col-2">
 		<select class="form-select" aria-label="Categories">
 			<option selected>상품의 카테고리를 선택해주세요</option>
-			<option value="1">침실</option>
-			<option value="2">거실</option>
-			<option value="3">부엌</option>
-			<option value="4">욕실</option>
+			<option value="1">거실</option>
+			<option value="2">침실</option>
+			<option value="3">드레스룸</option>
+			<option value="4">서재</option>
+			<option value="5">주방</option>
+			<option value="6">욕실</option> 
 		</select>
 	</div>
 	</div>
@@ -98,7 +100,7 @@
     overflow: hidden;
     border: 0;
 }
-</style>
+</style> 
 <script>
 $("#file").on('change',function(){
   var fileName = $("#file").val();
