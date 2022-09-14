@@ -9,8 +9,8 @@ public class ProductVo extends FileVo {
 	private String product_size; // 사이즈 500x1000
 	private int product_inventory;
 	private String product_major_category;
-	private String product_minor_category;
 	private String product_isnew;
+	private String product_detail;
 	private long product_avgstar;
 	private int product_hit;
 
@@ -86,12 +86,12 @@ public class ProductVo extends FileVo {
 		this.product_major_category = product_major_category;
 	}
 
-	public String getProduct_minor_category() {
-		return product_minor_category;
+	public String getProduct_detail() {
+		return product_detail;
 	}
 
-	public void setProduct_minor_category(String product_minor_category) {
-		this.product_minor_category = product_minor_category;
+	public void setProduct_detail(String product_detail) {
+		this.product_detail = product_detail;
 	}
 
 	public String getProduct_isnew() {

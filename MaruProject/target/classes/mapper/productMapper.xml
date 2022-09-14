@@ -8,11 +8,11 @@
   <!-- ================================================= -->
   <insert id="productAdd" parameterType="productVo">
     insert into product (
-    product_name, product_price, product_size, product_delivery_info,
-    product_major_category, product_minor_category, product_inventory
+    product_name, product_price, product_size,
+    product_major_category, product_detail, product_inventory
     ) values (
-    #{product_name}, #{product_price}, #{product_size}, #{product_delivery_info},
-    #{product_major_category}, #{product_minor_category}, #{product_inventory})
+    #{product_name}, #{product_price}, #{product_size},
+    #{product_major_category}, #{product_detail}, #{product_inventory})
   </insert>
   <insert id="productAdd_file" parameterType="fileVo">
     INSERT INTO product_photo (
@@ -27,7 +27,7 @@
   <select id="getProduct" parameterType="int" resultType="productVo">
     select * from product where product_idx = #{product_idx}
   </select>
-  
+
   <update id="upHit" parameterType="int">
     UPDATE announce
     SET

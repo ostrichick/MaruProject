@@ -216,14 +216,12 @@ CREATE TABLE product
 	product_size varchar2(30),
 	-- 상품 재고
 	product_inventory number,
-	-- 상품 대분류
+	-- 상품 분류 (대분류)
 	product_major_category varchar2(30),
-	-- 상품 소분류
-	product_minor_category varchar2(30),
 	-- 신제품 여부
 	product_isnew varchar2(3) DEFAULT 'N' NOT NULL,
 	-- 상품 상세 설명
-	product_detail varchar2(30000) NOT NULL,
+	product_detail varchar2(4000) NOT NULL,
 	-- 리뷰 평점
 	product_avgstar float DEFAULT 0 NOT NULL,
 	-- 상품 조회수
@@ -586,8 +584,7 @@ COMMENT ON COLUMN product.product_sale IS '할인 여부';
 COMMENT ON COLUMN product.product_sale_percent IS '상품 할인율';
 COMMENT ON COLUMN product.product_size IS '상품 규격 (100x200)';
 COMMENT ON COLUMN product.product_inventory IS '상품 재고';
-COMMENT ON COLUMN product.product_major_category IS '상품 대분류';
-COMMENT ON COLUMN product.product_minor_category IS '상품 소분류';
+COMMENT ON COLUMN product.product_major_category IS '상품 분류 (대분류)';
 COMMENT ON COLUMN product.product_isnew IS '신제품 여부';
 COMMENT ON COLUMN product.product_detail IS '상품 상세 설명';
 COMMENT ON COLUMN product.product_avgstar IS '리뷰 평점';

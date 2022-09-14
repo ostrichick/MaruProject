@@ -64,6 +64,11 @@ public class ProductController {
 		return "product/add";
 	}
 
+	@GetMapping("/add2")
+	public String add2() {
+		return "product/add2";
+	}
+
 	@PostMapping("/add_process")
 	public String product_add(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest request,
 			Model model) {
