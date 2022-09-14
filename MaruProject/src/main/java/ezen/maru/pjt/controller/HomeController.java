@@ -92,6 +92,11 @@ public class HomeController {
 	public String faq_write() {
 		return "faq_write";
 	}
+	
+	@GetMapping("/qnaservice2")
+	public String qnaservice2() {
+		return "qnaservice2";
+	}
 
 
 	/////////////////////////
