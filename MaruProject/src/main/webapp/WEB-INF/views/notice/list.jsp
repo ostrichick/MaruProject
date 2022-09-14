@@ -12,6 +12,19 @@
 .pagination {
   justify-content: center;
 }
+
+a.page-link {
+  color: #666;
+}
+
+li.page-item.active>a.page-link {
+  background: #666;
+  color: #eee;
+}
+
+li.page-item.active>a.page-link:hover {
+  background: #444;
+}
 </style>
 </head>
 <body class="animsition">
@@ -48,11 +61,11 @@
     </c:if>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
         <li class="page-item active"><a class="page-link" href="#">1</a></li>
         <li class="page-item"><a class="page-link" href="#">2</a></li>
         <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link" href="#">다음</a></li>
       </ul>
     </nav>
     <div></div>
