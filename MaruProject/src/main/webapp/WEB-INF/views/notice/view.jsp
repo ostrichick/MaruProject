@@ -15,17 +15,16 @@
   <div class="container" style="margin: 30px auto;">
     <div class="container my-1">
       <div class="row">
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <tr class="table-active">
-              <th scope="col" style="width: 60%">${boardVo.title}<br>
-              </th>
-              <th scope="col" style="width: 40%" class="text-right">조회 : ${boardVo.hit} <br>${boardVo.wdate }</th>
+              <th scope="col" style="width: 60%"><h3>${boardVo.title}</h3></th>
+              <th scope="col" style="width: 40%" class="text-right"><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${boardVo.wdate}" /><br />조회 : ${boardVo.hit}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>
+              <td colspan="2">
                 <pre>${boardVo.content}</pre>
                 <br>
                 <c:if test="${not empty boardVo.file_original}">
@@ -39,12 +38,13 @@
         </table>
       </div>
     </div>
-
-    <button onClick='toList()' class="toList btn btn-secondary mb-3">목록으로</button>
-    <c:if test="${member_admin eq 'Y' }">
-      <button onClick='toEdit()' class="toEdit btn btn-secondary mb-3">수정</button>
-      <button onClick='toDelete()' class="toDelete btn btn-secondary mb-3">삭제</button>
-    </c:if>
+    <div class="txt-right">
+      <button onClick='toList()' class="toList btn btn-secondary mb-3">목록으로</button>
+      <c:if test="${member_admin eq 'Y' }">
+        <button onClick='toEdit()' class="toEdit btn btn-secondary mb-3">수정</button>
+        <button onClick='toDelete()' class="toDelete btn btn-secondary mb-3">삭제</button>
+      </c:if>
+    </div>
   </div>
   <script>
       function toList() {
@@ -54,18 +54,12 @@
         let url = "${MaruContextPath}/notice/edit?idx=";
         let idx = "${boardVo.idx}"
         url += idx;
-
-        console.log(idx);
-        console.log(url);
         location.href = url;
       }
       function toDelete() {
         let url = "${MaruContextPath}/notice/delete?idx=";
         let idx = "${boardVo.idx}"
         url += idx;
-
-        console.log(idx);
-        console.log(url);
         location.href = url;
       }
     </script>

@@ -7,12 +7,7 @@
 <title>공지사항 글쓰기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<%@include file="/include/summernote-head.jsp"%>
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 </head>
 <body class="animsition">
@@ -24,7 +19,9 @@
         <textarea id="summernote" name="content"></textarea>
       </div>
       <!--       <input type="file" name="uploadFile" class="btn btn-secondary mb-3" /> -->
-      <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">작성하기</button>
+      <div class="text-right">
+        <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">작성하기</button>
+      </div>
     </form>
   </div>
   <script>
@@ -74,100 +71,6 @@
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/detail.jsp"%>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/animsition/js/animsition.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.js"></script>
-  <script>
-      $(".js-select2").each(function() {
-        $(this).select2({
-          minimumResultsForSearch : 20,
-          dropdownParent : $(this).next('.dropDownSelect2')
-        });
-      })
-    </script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/daterangepicker/moment.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/vendor/daterangepicker/daterangepicker.js"></script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/slick/slick.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/slick-custom.js"></script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/parallax100/parallax100.js"></script>
-  <script>
-      $('.parallax100').parallax100();
-    </script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-  <script>
-      $('.gallery-lb').each(function() { // the containers for all your galleries
-        $(this).magnificPopup({
-          delegate : 'a', // the selector for gallery item
-          type : 'image',
-          gallery : {
-            enabled : true
-          },
-          mainClass : 'mfp-fade'
-        });
-      });
-    </script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/isotope/isotope.pkgd.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
-  <script>
-      $('.js-addwish-b2, .js-addwish-detail').on('click', function(e) {
-        e.preventDefault();
-      });
-
-      $('.js-addwish-b2').each(function() {
-        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        $(this).on('click', function() {
-          swal(nameProduct, "is added to wishlist !", "success");
-
-          $(this).addClass('js-addedwish-b2');
-          $(this).off('click');
-        });
-      });
-
-      $('.js-addwish-detail').each(function() {
-        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-        $(this).on('click', function() {
-          swal(nameProduct, "is added to wishlist !", "success");
-
-          $(this).addClass('js-addedwish-detail');
-          $(this).off('click');
-        });
-      });
-
-      /*---------------------------------------------*/
-
-      $('.js-addcart-detail').each(function() {
-        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-        $(this).on('click', function() {
-          swal(nameProduct, "is added to cart !", "success");
-        });
-      });
-    </script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-  <script>
-      $('.js-pscroll').each(function() {
-        $(this).css('position', 'relative');
-        $(this).css('overflow', 'hidden');
-        var ps = new PerfectScrollbar(this, {
-          wheelSpeed : 1,
-          scrollingThreshold : 1000,
-          wheelPropagation : false,
-        });
-
-        $(window).on('resize', function() {
-          ps.update();
-        })
-      });
-    </script>
-  <!--===============================================================================================-->
-  <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+  <%@include file="/include/script-wo-jqbs.jsp"%>
 </body>
 </html>

@@ -20,6 +20,7 @@ a.page-link {
 li.page-item.active>a.page-link {
   background: #666;
   color: #eee;
+  border-color: #333;
 }
 
 li.page-item.active>a.page-link:hover {
@@ -35,23 +36,23 @@ li.page-item.active>a.page-link:hover {
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th class="text-center">번호</th>
-          <th class="text-center">제목</th>
-          <th class="text-center">날짜</th>
-          <th class="text-center">조회수</th>
+          <th class="text-center cl3">번호</th>
+          <th class="text-center cl3">제목</th>
+          <th class="text-center cl3">날짜</th>
+          <th class="text-center cl3">조회수</th>
         </tr>
       </thead>
       <tbody>
         <c:forEach var="notice" items="${noticeList}" varStatus="status">
           <tr>
-            <td class="text-right">${notice.idx}</td>
+            <td class="text-right cl3">${notice.idx}</td>
             <td class="">
-              <a href='#' onClick='fn_view(${notice.idx})'>${notice.title}</a>
+              <a class="cl5" href='#' onClick='fn_view(${notice.idx})'>${notice.title}</a>
             </td>
-            <td class="text-center">
+            <td class="text-center cl3">
               <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${notice.wdate}" />
             </td>
-            <td class="text-right">${notice.hit}</td>
+            <td class="text-right cl3">${notice.hit}</td>
           </tr>
         </c:forEach>
       </tbody>

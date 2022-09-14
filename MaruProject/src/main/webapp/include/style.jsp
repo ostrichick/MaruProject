@@ -5,7 +5,6 @@
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="${MaruContextPath}/resources/images/icons/favicon.png" />
 <!--===============================================================================================-->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" /> -->
 <link rel="stylesheet" type="text/css" href="${MaruContextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="${MaruContextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
