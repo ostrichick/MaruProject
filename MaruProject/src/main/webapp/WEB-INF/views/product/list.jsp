@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
+<style>
+span.cart_plus:hover {
+  color: #333;
+}
+
+span.cart_plus>i:hover {
+  width: 110%;
+}
+</style>
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
@@ -48,7 +57,7 @@
               <i class="zmdi zmdi-search"></i>
             </button>
 
-            <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+            <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="검색">
           </div>
         </div>
 
@@ -81,38 +90,6 @@
                 <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> ₩1,000,000 이상 </a></li>
               </ul>
             </div>
-
-<!--             <div class="filter-col3 p-r-15 p-b-27"> -->
-<!--               <div class="mtext-102 cl2 p-b-15">Color</div> -->
-
-<!--               <ul> -->
-<!--                 <li class="p-b-6"><span class="fs-15 lh-12 m-r-6" style="color: #222;"> <i class="zmdi zmdi-circle"></i> -->
-<!--                 </span> <a href="#" class="filter-link stext-106 trans-04"> Black </a></li> -->
-
-<!--                 <li class="p-b-6"><span class="fs-15 lh-12 m-r-6" style="color: #4272d7;"> <i class="zmdi zmdi-circle"></i> -->
-<!--                 </span> <a href="#" class="filter-link stext-106 trans-04 filter-link-active"> Blue </a></li> -->
-
-<!--                 <li class="p-b-6"><span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;"> <i class="zmdi zmdi-circle"></i> -->
-<!--                 </span> <a href="#" class="filter-link stext-106 trans-04"> Grey </a></li> -->
-
-<!--                 <li class="p-b-6"><span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;"> <i class="zmdi zmdi-circle"></i> -->
-<!--                 </span> <a href="#" class="filter-link stext-106 trans-04"> Green </a></li> -->
-
-<!--                 <li class="p-b-6"><span class="fs-15 lh-12 m-r-6" style="color: #fa4251;"> <i class="zmdi zmdi-circle"></i> -->
-<!--                 </span> <a href="#" class="filter-link stext-106 trans-04"> Red </a></li> -->
-
-<!--                 <li class="p-b-6"><span class="fs-15 lh-12 m-r-6" style="color: #aaa;"> <i class="zmdi zmdi-circle-o"></i> -->
-<!--                 </span> <a href="#" class="filter-link stext-106 trans-04"> White </a></li> -->
-<!--               </ul> -->
-<!--             </div> -->
-
-<!--             <div class="filter-col4 p-b-27"> -->
-<!--               <div class="mtext-102 cl2 p-b-15">태그</div> -->
-
-<!--               <div class="flex-w p-t-4 m-r--5"> -->
-<!--                 <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"> Fashion </a> <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"> Lifestyle </a> <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"> Denim </a> <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"> Streetstyle </a> <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"> Crafts </a> -->
-<!--               </div> -->
-<!--             </div> -->
           </div>
         </div>
       </div>
@@ -127,12 +104,11 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 램프1 </a> <span class="stext-105 cl3"> ₩165,000 </span>
+                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> {product_name} </a> <span class="stext-105 cl3"> ₩{product_price} </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i>
               </div>
 
-              <div class="block2-txt-child2 flex-r p-t-3">
-                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="${pageContext.request.contextPath}/resources/images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="${pageContext.request.contextPath}/resources/images/icons/icon-heart-02.png" alt="ICON">
-                </a>
+              <div class="block2-txt-child2 flex-r p-t-15">
+                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>
               </div>
             </div>
           </div>

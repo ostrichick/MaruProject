@@ -206,7 +206,7 @@
 
                       <div class="size-290">
                         <div class="flex-w flex-sb-m p-b-17">
-                          <span class="mtext-107 cl2 p-r-20"> 김삼식2 </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i>
+                          <span class="mtext-107 cl2 p-r-20"> 김삼식2 </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i>
                           </span>
                         </div>
 

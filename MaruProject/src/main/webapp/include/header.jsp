@@ -291,7 +291,7 @@
 <div class="wrap-header-cart js-panel-cart">
   <div class="s-full js-hide-cart"></div>
 
-  <div id="cart-opacity-body" class="header-cart flex-col-l p-l-65 p-r-25">
+  <div id="cart-opacity-body" class="header-cart flex-col-l p-l-65 p-r-25" style="background: rgba(255, 255, 255, 0.3)">
     <div class="header-cart-title flex-w flex-sb-m p-b-8">
       <span class="mtext-103 cl2"> 메뉴 </span>
 
@@ -312,7 +312,7 @@
         <li class="m-tb-20 p-tb-10 bg7 cl7"><a href="${MaruContextPath}/shopping-cart" class="flex-c-m trans-04 p-lr-25  cl7" data-label1="hot">장바구니</a></li>
         <li class="m-tb-20 p-t-10 bg7 cl7">고객센터
           <ul class="bg6 menu-subcategory">
-            <li class="m-tb-5 p-tb-10 bg6"><a href="${MaruContextPath}/notice/list" class="flex-c-m trans-04 p-lr-25 cl2">공지사항</a></li> 
+            <li class="m-tb-5 p-tb-10 bg6"><a href="${MaruContextPath}/notice/list" class="flex-c-m trans-04 p-lr-25 cl2">공지사항</a></li>
             <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/faq" class="flex-c-m trans-04 p-lr-25 cl2">자주 묻는 질문</a></li>
             <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/qna/write" class="flex-c-m trans-04 p-lr-25 cl2">1:1 문의</a></li>
           </ul>
