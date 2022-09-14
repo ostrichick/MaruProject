@@ -42,11 +42,17 @@
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/detail.jsp"%>
   <%@include file="/include/script.jsp"%>
+  
   <style>  
   .faq_submit , .faq_retrun { 
   		  justify-content: center; 
   		  text-align:center;
   	}
+  	button {
+	    color: #fff; 
+    background-color: #6c757d;
+    border-color: #6c757d;  
+}
   </style>
   <script type="text/javascript">
   $("#faq_retrun").on("click", function(e){
