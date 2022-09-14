@@ -79,7 +79,7 @@
   </style>
   <script type="text/javascript">
   function qna_write() {
-   location.href = "${MaruContextPath}/qna_write";
+   location.href = "${MaruContextPath}/qna_write"; 
  }
   </script>
 </html> 

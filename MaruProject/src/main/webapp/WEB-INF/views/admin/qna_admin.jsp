@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>1:1문의 작성</title>
+<title>관리자:1:1문의 답변작성</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
@@ -12,7 +12,7 @@
 <body class="animsition">
 <%@include file="/include/header.jsp"%>
 <br><br>
-	<h3 style="text-align:center;">1:1문의 작성</h3>  
+	<h3 style="text-align:center;">1:1문의 답변작성</h3>  
 	<div class="container" style="width:500px; height:400px; border:1px solid; "> 
 		<div style="margin:0 10px;">
 		    <form action="write_process" id="writeForm" method="post" enctype="multipart/form-data">
