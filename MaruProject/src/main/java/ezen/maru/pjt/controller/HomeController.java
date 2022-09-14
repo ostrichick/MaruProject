@@ -97,6 +97,16 @@ public class HomeController {
 	public String qnaservice2() {
 		return "qnaservice2";
 	}
+	
+	@GetMapping("/qna_write")
+	public String qna_write() {
+		return "qna_write";
+	}
+	
+	@GetMapping("/qna_list")
+	public String qna_list() {
+		return "qna_list";
+	}
 
 
 	/////////////////////////
