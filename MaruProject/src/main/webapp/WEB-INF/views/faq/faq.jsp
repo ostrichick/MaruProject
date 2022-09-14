@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>자주뭍는 질문</title>
+<title>자주묻는 질문(FAQ)</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
@@ -24,7 +24,7 @@
   <div class="container" style="margin: 30px auto;">
    <table class="table table-striped table-hover">
 	<thead>
-    <h3>자주하는 질문(FAQ)</h3>
+    <h3>자주묻는 질문(FAQ)</h3>
     <div style="float:left; border:1px solid; width:70%; height:140px;">   
       	 	<p style="text-align: center; margin-top:20px;">검색을 이용하시면 보다 빠르게 원하시는 답변을 얻으실 수 있습니다.</p>  
       	 	<h4 style="float:left; margin:10px 85px 0 0; ">FAQ 검색</h4> 
@@ -57,7 +57,7 @@
         </tr>
       </tbody>
          <tbody>
-      	<c:forEach var="faq" items="${noticeList}" varStatus="status"> 
+      	<c:forEach var="faq" items="${noticeList}" varStatus="status">
           <tr>
             <td class="text-right"><input type="checkbox" value="선택" name="celect"></td>
             <td class="text-right">

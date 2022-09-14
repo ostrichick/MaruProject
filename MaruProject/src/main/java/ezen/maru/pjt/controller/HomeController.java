@@ -87,6 +87,12 @@ public class HomeController {
 	public String faq() {
 		return "faq";
 	}
+	
+	@GetMapping("/faq_write")
+	public String faq_write() {
+		return "faq_write";
+	}
+
 
 	/////////////////////////
 	// cozamall controller // 주석 아래부분 참고하여 작성 후 아래 부분은 삭제
