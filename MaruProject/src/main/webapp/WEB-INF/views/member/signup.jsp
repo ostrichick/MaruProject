@@ -6,22 +6,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
-
 </head>
 <body class="animsition">
-  <%@include file="/include/header.jsp"%>
+  <%@include file="/include/header.jsp"%> 
   <!-- 시작 -->
-  <section class="container row" style="margin: 150px auto">
-    <h3 class="d-block">회원가입</h3>
-    <br>
-    <form class="col-md-6 m-auto bg-secondary text-white p-5" action="${pageContext.request.contextPath}/member/signup_process" method="post">
-      <div class="" id="container">
+<br><br><br> 
+<div class="container" style="width:700px;"> 
+<h3 class="col-4" style="float:left ;">회원가입</h3>  
+<br> 
+<br>
+    <form class="bg0 text-black p-5" action="${pageContext.request.contextPath}/member/signup_process" method="post">
+     	<div class="" id="container">  
         <p for="exampleFormControlInput1" class="form-label">아이디</p>
         <input type="text" class="form-control col-md-10 float-left" id="member_id" name="member_id" placeholder="아이디를 입력해주세요">
-        <button type="button" class="btn btn-dark float-right">중복확인</button>
+        <button type="button" class="col-2 btn btn-dark float-right">중복확인</button> 
       </div>
-      <br>
-      <br>
+      <br> <br>
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">비밀번호</p>
         <input type="password" class="form-control" id="member_pw" name="member_pw" placeholder="비밀번호를 입력해주세요">
@@ -36,18 +36,17 @@
         <p for="exampleFormControlInput1" class="form-label">이름</p>
         <input type="text" class="form-control" id="member_name" name="member_name" placeholder="이름을 입력해주세요">
       </div>
-      <br>
+       <br>
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">휴대전화번호</p>
-        <input type="phone" class="form-control" id="member_phone" name="member_phone" placeholder="휴대전화번호를 입력해주세요">
+        <input type="phone" class="form-control" id="member_phone" name="member_phone" placeholder="휴대 전화번호 를 입력해주세요">
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">이메일</p>
+        <p for="exampleFormControlInput1" class="form-label">이메일</p> 
         <input type="email" class="form-control col-md-9 float-left" id="member_email" name="member_email" placeholder="이메일을 입력해주세요">
-        <button type="button" class="btn btn-dark float-right">인증번호 전송</button>
-      </div>
-      <br>
+        <button type="button" class="col-3 btn btn-dark float-right">인증번호 전송</button> 
+      </div> 
       <br>
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">인증번호</p>
@@ -57,11 +56,9 @@
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">주소</p>
         <input type="text" class="form-control col-md-10 float-left" id="member_addr" name="member_addr" placeholder="주소를 입력해주세요">
-        <button type="button" id="member_addr_btn" class="btn btn-dark float-right">주소찾기</button>
+        <button type="button" id="member_addr_btn" class="col-2 btn btn-dark float-right">주소찾기</button>
       </div>
-      <br>
-      <br>
-      <div class="">
+       <div class="">
         <p for="exampleFormControlInput1" class="form-label">상세주소</p>
         <input type="text" class="form-control" id="member_addr2" name="member_addr2" placeholder="상세주소를 입력해주세요">
       </div>
@@ -71,15 +68,20 @@
         <input type="text" class="form-control" id="member_postcode" name="member_postcode" placeholder="우편번호">
       </div>
       <br>
-      <br>
       <div class="text-center">
         <button type="submit" class="btn btn-dark">가입하기</button>
         <button type="reset" class="btn btn-dark">취소</button>
       </div>
-    </form>
-  </section>
+    </form> 
+  </div>
   <!-- 끝 -->
 
+<style>
+form{
+	border:1px solid #000 ;
+	margin-bottom:30px;
+}
+</style>
 
   <hr style="clear: both; visibility: hidden; margin: 0;">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
