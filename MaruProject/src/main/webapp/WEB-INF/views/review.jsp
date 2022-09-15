@@ -23,10 +23,10 @@
 <br>
 <div class="container text-center" style="border-style:solid; margin-top:10px;">
 	<div class="row" style="margin-top: 25px;">
-	  <div class="col-2">
-		*별점
+	  <div class="col-2" style="margin-top:20px;">
+		*별점 
 		</div>
-		<div class="rating">
+		<div class="rating" style="margin-left:20px;">
 			<!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
 			<input type="checkbox" name="star" id="rating1" value="1" class="rate_radio" title="1점">
 			<label for="rating1"></label>
@@ -44,20 +44,20 @@
 	<br><br><br>
 	<hr>
 	<div class="row">
-	<div class="col-2">
+	<div class="col-2" style="margin-top:50px;"> 
 		*내용
 	  </div>
 	  <div class="col-8">
-		<textarea style="border-style:solid; width:400px; height:150px;" name="content" id="re_content"></textarea>
+		<textarea  name="content" id="re_content"></textarea>
 	</div>
-	</div>
-	<hr>
+	</div> 
+	<hr> 
 	<div class="row">
-	<div class="col-2">
+	<div class="col-2" style="margin-top:10px;"> 
 		*파일첨부
 	 </div>
-	<div class="col-8" style="margin-bottom:30px;">
-	<div class="filebox">
+	<div class="col-8" style="margin-bottom:20px;">  
+	<div class="filebox" id="filebox">
 		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
 		<label for="file">파일찾기</label> 
 		<input type="file" id="file">
@@ -66,8 +66,8 @@
 	</div>
 </div>
 <div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<a id="re_submit" class="btn btn-primary" type="submit"  style="margin-right:30px ;">등록</a>
-<a id="re_reset" class="btn btn-primary" type="reset" >취소</a>
+<a id="re_submit" class="btn btn-primary bg1 " type="submit"  style="margin-right:30px ;"><p class="cl0">등록</p></a>
+<a id="re_reset" class="btn btn-primary bg1" type="reset" ><p class="cl0">취소</p></a> 
 </div>
 
 
@@ -91,11 +91,22 @@ $("#re_reset").on("click", function(e){
 <!-- =========================================== -->
 <!-- =========================================== -->
  <style>
+ #filebox{
+ 	width:600px; 
+ }
+ 
+ #re_content{
+ 	border:1px solid #666; 
+ 	width:400px; 
+ 	height:150px;
+ 	margin-left:10px;
+ }
+ 
 .filebox .upload-name {
     display: inline-block;
     height: 40px;
     padding: 0 10px;
-    vertical-align: middle;
+    vertical-align: middle; 
     border: 1px solid #dddddd;
     width: 78%;
     color: #999999;

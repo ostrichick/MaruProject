@@ -15,7 +15,7 @@
 	<h3 style="text-align:center;">1:1문의 답변작성</h3>  
 	<div class="container" style="width:500px; height:400px; border:1px solid; "> 
 		<div style="margin:0 10px;">
-		    <form action="write_process" id="writeForm" method="post" enctype="multipart/form-data">
+		    <form action="answer_process" id="writeForm" method="post" enctype="multipart/form-data">
 		    <br>
 		      <select>
 		      	<option>선택</option>  

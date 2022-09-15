@@ -22,7 +22,7 @@
       <div class="text-right">
         <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">수정하기</button>
       </div>
-    </form>
+    </form> 
   </div>
   <script>
       $("#summernote").summernote({
