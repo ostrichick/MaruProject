@@ -46,7 +46,6 @@
               <ul class="main-menu">
                 <li><a href="${MaruContextPath}/product/list?category=거실">거실</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=침실">침실</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=드레스룸">드레스룸</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=서재">서재</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=주방">주방</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=욕실">욕실</a></li>
