@@ -327,65 +327,100 @@
 	</div>
 <!-- ==================================================== -->
 <!-- ==================================================== -->
-<!-- ==================================================== -->
+<!-- ====================================================시작 -->
+<h3 class="ml-5" style="margin-top:150px;">구매내역</h3>
+<form class="container" style="margin-bottom:200px;">	
+	
+	<table class="table">
+		<tr class="table_head" >
+			<th class="column-1">선택</th>
+			<th class="column-2">이미지</th>
+			<th class="column-3">제품명</th>
+			<th class="column-4">가격</th>
+			<th class="column-5">제품규격</th>
+			<th class="column-6">색상</th>				
+			
+		</tr>
 
-<br><br><br><br><br><br>
-<div class="container" style="background: lightgrey;" >
-<h3 class="col-2" style="float:left ;">1대1문의</h3>
-<div style="border-left:100;"></div>
-	<div style="float:left;">
-	FAQ에서 해결하지 못한 질문이 있으시면 1:1문의에 등록해주시면 친절히 답변해드립니다.<br>
-	평균 답변 시간:2~3일
-	</div>
-</div>
-<br>
-<br>
-<div class="container text-center" style="border-style:solid; margin-top:10px;">
-	<div class="row" style="margin-top: 25px;">
-	  <div class="col-2">
-		*카테고리
+		<tr class="table_row">
+			<td class="column-1">
+				<div class="form-check m-5 float-left">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>				
+				</div>	
+			</td>
+			<td class="column-2">
+				<div class="">
+					<img src="images/product-01.jpg" width="150px" height="150px" alt="IMG">
+				</div>
+			</td>
+			<td class="column-3">제품명</td>
+			<td class="column-4">180,000원</td>				
+			<td class="column-5">2000x1600</td>
+			<td class="column-6">흰색</td>
+							
+		</tr>
+	</table>
+	
+		
+		<div class="bg-secondary text-dark p-3" style="font-size:18px;">			
+			<h3 class="col-md-4 bg-dark text-white mt-1">주문내역</h3>
+			<hr>
+			<table style="padding:20px 150px;">				
+				<tr>
+					<td>주문금액 : </td>
+					<td>180,000원</td>
+				</tr>
+				<tr>
+					<td>배송비 : </td>
+					<td>2,500원</td>
+				</tr>
+				<tr>
+					<td>총주문금액 : </td>
+					<td>182,500원</td>
+				</tr>
+			</table>
 		</div>
-	<div class="col-2">
-		<select class="form-select" aria-label="Categories">
-			<option selected>상품의 카테고리를 선택해주세요</option>
-			<option value="1">침실</option>
-			<option value="2">거실</option>
-			<option value="3">부엌</option>
-			<option value="4">욕실</option>
-		</select>
-	</div>
-	</div>
-	<hr>
-	<div class="row">
-	<div class="col-2">
-		*내용
-	  </div>
-	  <div class="col-8">
-		<textarea style="border-style:solid; width:400px; height:150px;">
+		<!-- ==================== -->
+		<section class="bg-secondary text-white" style="margin:50px auto; padding:20px 150px;">			
+			<!-- <form class="col-md-6 m-auto bg-secondary text-white p-5"> -->
+				<h3 class="col-md-4 bg-dark mt-5">배송정보</h3>
+				<hr>
+				<div class="">
+					<p for="exampleFormControlInput1" class="form-label">주문자</p>
+					<p class="form-control col-md-10">홍길동</p>			
+				</div><br>
+				<div class="">
+					<p for="exampleFormControlInput1" class="form-label">연락처</p>
+					<p class="form-control col-md-10">010-1111-1111</p>
+
+				</div><br>
+				<div class="">
+					<p for="exampleFormControlInput1" class="form-label">배송주소</p>
+					<p class="form-control col-md-10">전주시 덕진구 </p>
+					
+				</div><br>
+				<div class="">
+					<p for="exampleFormControlInput1" class="form-label">결제방식</p>
+					<p class="form-control col-md-10">신용카드</p>					
+				</div><br>
+				<div class="">
+					<p for="exampleFormControlInput1" class="form-label">배송일자</p>
+					<p class="form-control col-md-10">2022.08.25</p>					
+				</div>	
 				
-		</textarea>
-	</div>
-	</div>
-	<hr>
-	<div class="row">
-	<div class="col-2">
-		파일첨부
-	 </div>
-	<div class="col-8" style="margin-bottom:30px;">
-	<div class="filebox">
-		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
-		<label for="file">파일찾기</label> 
-		<input type="file" id="file">
-	</div>
-	</div>
-	</div>
-</div>
-<div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<input class="btn btn-primary" type="submit" value="등록하기" style="margin-right:30px ;">
-<input class="btn btn-primary" type="reset" value="취소">
-</div>
-  
-<!-- ==================================================== -->
+			<!-- </form> -->
+		</section>
+		
+		<!-- ================= -->
+
+		<div class="mt-5">
+			<button type="button" class="btn btn-outline-dark btn-lg" style="margin-left:300px;">선택 상품 교환/반품</button>
+			<button type="button" class="btn bg-dark text-white ml-3 btn-lg">선택상품 결제 취소</button>
+		</div>
+</form>
+<br>
+
+<!-- ====================================================끝-->
 <!-- ==================================================== -->
 <!-- ==================================================== -->
 	<!-- Footer -->
@@ -796,44 +831,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-<!--=====================================================================================================-->
-<style>
-.filebox .upload-name {
-    display: inline-block;
-    height: 40px;
-    padding: 0 10px;
-    vertical-align: middle;
-    border: 1px solid #dddddd;
-    width: 78%;
-    color: #999999;
-}
-.filebox label {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    vertical-align: middle;
-    background-color: #999999;
-    cursor: pointer;
-    height: 40px;
-    margin-left: 10px;
-}
-.filebox input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
-}
-</style>
-<script>
-$("#file").on('change',function(){
-  var fileName = $("#file").val();
-  $(".upload-name").val(fileName);
-});
-
-</script>
-<!--=============================================================================-->
 
 </body>
 </html>

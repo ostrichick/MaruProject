@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
-<!-- Summernote 용 js와 css -->
+<!-- Summernote 용 js와 css. 
+Summernote 사용시에는 footer에 script.jsp대신 script-wo-jqbs.jsp를 include 해야함 -->
 <!--===============================================================================================-->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

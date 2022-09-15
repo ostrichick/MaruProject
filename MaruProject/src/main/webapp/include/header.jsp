@@ -7,24 +7,9 @@
   font-size: 135%;
 }
 
-#cart-opacity-body::after {
-  width: 100%;
-  height: 100%;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 0.5;
-}
-
 .menu-subcategory>li:hover {
   background: #e6e6e6;
 }
-
-/* div, ul, li { */
-/*   outline: blue solid 1px; */
-/* } */
 </style>
 <!-- Header 
     상단 메뉴바와 css를 담은 style.jsp, 최상단 topbar.jsp를 include함 -->
@@ -153,7 +138,8 @@
     </header>
   </c:when>
   <c:otherwise>
-
+    <!-- 메인화면 -->
+    <!-- 메인화면 -->
     <header>
       <!-- Header desktop -->
       <div class="container-menu-desktop">

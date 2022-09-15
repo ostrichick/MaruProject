@@ -59,14 +59,7 @@
           }
         });
       }
-      //       $("body").on("keyup", function() {
-      //         let sn_val = $('#summernote').summernote('code');
-      //         $("#content").val(sn_val);
-      //       })
-      //       $("body").on("mousemove", function() {
-      //         let sn_val = $('#summernote').summernote('code');
-      //         $("#content").val(sn_val);
-      //       })
+
     </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>

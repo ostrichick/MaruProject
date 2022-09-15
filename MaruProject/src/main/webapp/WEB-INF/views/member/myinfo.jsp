@@ -32,27 +32,29 @@
 }
 
 .star-rating :checked ~ label {
-  -webkit-text-fill-color: red;
+  -webkit-text-fill-color: #f9ba48;
 }
 
 .star-rating label:hover, .star-rating label:hover ~ label {
-  -webkit-text-fill-color: red;
+  -webkit-text-fill-color: #f9ba48;
 }
 </style>
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
-  <h3 class="ml-5" style="margin-top: 150px;">마이페이지</h3>
   <section class="">
     <hr>
     <div class="container">
-      <h5 class="float-left ml-5">
+      <h3 class="ml-5" style="margin-top: 150px;">마이페이지</h3>
+      <hr />
+      <button type="button" class="btn bg-dark text-white pull-right link_to_myinfo_edit" style="margin-right: 100px;">회원정보수정</button>
+      <h5 class="ml-5 m-tb-10">
         <strong>member_name 님 환영합니다</strong>
       </h5>
-      <button type="button" class="btn bg-dark text-white float-right link_to_myinfo_edit" style="margin-right: 100px;">회원정보수정</button>
+      <br>
+      <hr />
     </div>
-    <hr style="clear: both; visibility: hidden; margin: 0;">
-    <hr>
+
     <!-- 주문내역 목록 시작-->
     <div class="mt-5 container">
       <h5 class="ml-5">
@@ -87,15 +89,15 @@
             <td>
               <div class="star-rating space-x-4">
                 <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" />
-                <label for="5-stars" class="star pr-4">★</label>
+                <label for="5-stars" class="star pr-4"><i class="zmdi zmdi-star"></i></label>
                 <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" />
-                <label for="4-stars" class="star">★</label>
+                <label for="4-stars" class="star"><i class="zmdi zmdi-star"></i></label>
                 <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" />
-                <label for="3-stars" class="star">★</label>
+                <label for="3-stars" class="star"><i class="zmdi zmdi-star"></i></label>
                 <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" />
-                <label for="2-stars" class="star">★</label>
+                <label for="2-stars" class="star"><i class="zmdi zmdi-star"></i></label>
                 <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
-                <label for="1-star" class="star">★</label>
+                <label for="1-star" class="star"><i class="zmdi zmdi-star"></i></label>
               </div>
             </td>
             <td>
