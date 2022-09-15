@@ -70,7 +70,7 @@
           </td>
 
           <td class="">
-            <button type="button" class="btn bg7 cl7 btn-outline-dark">삭제</button>
+            <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
           </td>
         </tr>
 
@@ -101,13 +101,13 @@
             </div>
           </td>
           <td class="">
-            <button type="button" class="btn bg7 cl7 btn-outline-dark">삭제</button>
+            <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
           </td>
         </tr>
       </table>
     </div>
 
-    <div class="bg8 text-dark p-l-150 p-tb-20 fs-18 ">
+    <div class="bg8 text-dark p-l-150 p-tb-40 fs-18 ">
       <p class="fs-20 p-tb-10">
         <strong>[ 주문내역 ]</strong>
       </p>
@@ -127,7 +127,7 @@
       </table>
     </div>
     <div class="mt-5 txt-center">
-      <button type="button" class="btn btn-lg bg7 cl7 btn-outline-dark">상품 구매</button>
+      <button type="button" class="btn btn-lg bg7 cl7 btn-outline-secondary">상품 구매</button>
       <button type="button" class="btn bg2 cl2 ml-5 btn-outline-secondary">취소</button>
     </div>
   </form>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- 장바구니 모듈 -->
-<!-- Modal1 -->
+<!-- product/list 에 포함된 상품 간단히 보기용 modal -->
 <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
   <div class="overlay-modal1 js-hide-modal1"></div>
 
