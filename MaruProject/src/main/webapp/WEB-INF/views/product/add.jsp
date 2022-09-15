@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>상품 상세보기</title>
+<title>상품 등록</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="/include/summernote-head.jsp"%>
@@ -65,7 +65,6 @@
                   <option value="">분류 선택</option>
                   <option value="거실">거실</option>
                   <option value="침실">침실</option>
-                  <option value="드레스룸">드레스룸</option>
                   <option value="서재">서재</option>
                   <option value="주방">주방</option>
                   <option value="욕실">욕실</option>
