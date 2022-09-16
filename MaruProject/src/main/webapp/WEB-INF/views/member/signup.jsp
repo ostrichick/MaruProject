@@ -15,11 +15,11 @@
 <h3 class="col-4" style="float:left ;">회원가입</h3>  
 <br> 
 <br>
-    <form class="bg0 text-black p-5" action="${pageContext.request.contextPath}/member/signup_process" method="post">
+    <form class="bg0 text-black p-5 bor10 m-b-50" action="${pageContext.request.contextPath}/member/signup_process" method="post">
      	<div class="" id="container">  
         <p for="exampleFormControlInput1" class="form-label">아이디</p>
         <input type="text" class="form-control col-md-10 float-left" id="member_id" name="member_id" placeholder="아이디를 입력해주세요">
-        <button type="button" class="col-2 btn btn-dark float-right">중복확인</button> 
+        <button type="button" class="col-2 btn bg2 float-right">중복확인</button> 
       </div>
       <br> <br>
       <div class="">
@@ -45,7 +45,7 @@
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">이메일</p> 
         <input type="email" class="form-control col-md-9 float-left" id="member_email" name="member_email" placeholder="이메일을 입력해주세요">
-        <button type="button" class="col-3 btn btn-dark float-right">인증번호 전송</button> 
+        <button type="button" class="col-3 btn bg2 float-right">인증번호 전송</button> 
       </div> 
       <br>
       <div class="">
@@ -56,7 +56,7 @@
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">주소</p>
         <input type="text" class="form-control col-md-10 float-left" id="member_addr" name="member_addr" placeholder="주소를 입력해주세요">
-        <button type="button" id="member_addr_btn" class="col-2 btn btn-dark float-right">주소찾기</button>
+        <button type="button" id="member_addr_btn" class="col-2 btn bg2 float-right">주소찾기</button>
       </div>
        <div class="">
         <p for="exampleFormControlInput1" class="form-label">상세주소</p>
@@ -69,19 +69,13 @@
       </div>
       <br>
       <div class="text-center">
-        <button type="submit" class="btn btn-dark">가입하기</button>
-        <button type="reset" class="btn btn-dark">취소</button>
+        <button type="submit" class="btn bg2">가입하기</button>
+        <button type="reset" class="btn bg2"  >취소</button>
       </div>
     </form> 
   </div>
   <!-- 끝 -->
 
-<style>
-form{
-	border:1px solid #000 ;
-	margin-bottom:30px;
-}
-</style>
 
   <hr style="clear: both; visibility: hidden; margin: 0;">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
