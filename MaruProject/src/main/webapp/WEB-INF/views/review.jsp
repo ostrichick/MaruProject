@@ -7,23 +7,28 @@
 <title>리뷰</title>
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/starrate.png" />
+<style>
+	#container{
+		width:700px;
+	} 
+</style>
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
   
   <!-- breadcrumb -->
+ <br><br><br> 
 <div class="container" >
-<h3 class="col-2" style="float:left ;">리뷰 페이지</h3>
-<div style="border-left:100;"></div>
-	<div style="float:left;">
-	리뷰를 등록해주세요.
-	</div>
-</div>
+<h3 class="col-2 m-l-220" style="float:left ;">리뷰 페이지</h3>
+	<div style="float:left;">  
+	리뷰를 등록해주세요. 
+	</div> 
+</div>   
 <br>
-<br>
-<div class="container text-center" style="border-style:solid; margin-top:10px;">
+<br> 
+<div class="container text-center m-t-10 bor4" id="container"> 
 	<div class="row" style="margin-top: 25px;">
-	  <div class="col-2" style="margin-top:20px;">
+	  <div class="col-2" style="margin-top:20px;"> 
 		*별점 
 		</div>
 		<div class="rating" style="margin-left:20px;">
@@ -44,7 +49,7 @@
 	<br><br><br>
 	<hr>
 	<div class="row">
-	<div class="col-2" style="margin-top:50px;"> 
+	<div class="col-2 m-t-50"> 
 		*내용
 	  </div>
 	  <div class="col-8">
@@ -53,22 +58,22 @@
 	</div> 
 	<hr> 
 	<div class="row">
-	<div class="col-2" style="margin-top:10px;"> 
+	<div class="col-2 m-t-10"> 
 		*파일첨부
 	 </div>
-	<div class="col-8" style="margin-bottom:20px;">  
+	<div class="col-8 m-b-20">   
 	<div class="filebox" id="filebox">
-		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
+		<input class="col-8 upload-name" id="filename" value="첨부파일" placeholder="첨부파일">
 		<label for="file">파일찾기</label> 
-		<input type="file" id="file">
-	</div>
+		<input type="file" id="file" class="col-1">
+	</div> 
 	</div>
 	</div>
 </div>
 <div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<a id="re_submit" class="btn btn-primary bg1 " type="submit"  style="margin-right:30px ;"><p class="cl0">등록</p></a>
-<a id="re_reset" class="btn btn-primary bg1" type="reset" ><p class="cl0">취소</p></a> 
-</div>
+<a id="re_submit" class="btn btn-dark bg1 " type="submit"  style="margin-right:30px ;"><p class="cl0">등록</p></a>
+<a id="re_reset" class="btn btn-dark bg1" type="reset" ><p class="cl0">취소</p></a> 
+</div> 
 
 
  <!-- Footer -->
@@ -91,8 +96,9 @@ $("#re_reset").on("click", function(e){
 <!-- =========================================== -->
 <!-- =========================================== -->
  <style>
- #filebox{
- 	width:600px; 
+ 
+ #filename{ 
+ 	margin-bottom:.5rem; 
  }
  
  #re_content{
@@ -104,11 +110,11 @@ $("#re_reset").on("click", function(e){
  
 .filebox .upload-name {
     display: inline-block;
-    height: 40px;
+    height: 40px; 
     padding: 0 10px;
     vertical-align: middle; 
     border: 1px solid #dddddd;
-    width: 78%;
+    width: 78%; 
     color: #999999;
 }
 .filebox label {
@@ -118,13 +124,12 @@ $("#re_reset").on("click", function(e){
     vertical-align: middle;
     background-color: #999999;
     cursor: pointer;
-    height: 40px;
-    margin-left: 10px;
+    height: 40px; 
 }
 .filebox input[type="file"] {
     position: absolute;
     width: 0;
-    height: 0;
+    height: 0; 
     padding: 0;
     overflow: hidden;
     border: 0;
