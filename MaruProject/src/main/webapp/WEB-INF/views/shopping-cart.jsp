@@ -24,8 +24,8 @@
   <!-- breadcrumb -->
   <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-      <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04"> Home <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-      </a> <span class="stext-109 cl4"> Shoping Cart </span>
+      <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04"> 메인화면 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+      </a> <span class="stext-109 cl4"> 장바구니 </span>
     </div>
   </div>
 
@@ -70,7 +70,7 @@
           </td>
 
           <td class="">
-            <button type="button" class="btn bg7 cl7 btn-outline-dark">삭제</button>
+            <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
           </td>
         </tr>
 
@@ -101,13 +101,13 @@
             </div>
           </td>
           <td class="">
-            <button type="button" class="btn bg7 cl7 btn-outline-dark">삭제</button>
+            <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
           </td>
         </tr>
       </table>
     </div>
 
-    <div class="bg8 text-dark p-l-150 p-tb-20 fs-18 ">
+    <div class="bg8 text-dark p-l-150 p-tb-40 fs-18 ">
       <p class="fs-20 p-tb-10">
         <strong>[ 주문내역 ]</strong>
       </p>
@@ -127,11 +127,10 @@
       </table>
     </div>
     <div class="mt-5 txt-center">
-      <button type="button" class="btn btn-lg bg7 cl7 btn-outline-dark">상품 구매</button>
+      <button type="button" class="btn btn-lg bg7 cl7 btn-outline-secondary">상품 구매</button>
       <button type="button" class="btn bg2 cl2 ml-5 btn-outline-secondary">취소</button>
     </div>
   </form>
->>>>>>> Stashed changes
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>

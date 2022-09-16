@@ -223,15 +223,52 @@
             <!--  -->
             <div class="tab-pane fade" id="productqna" role="tabpanel">
               <div class="how-pos2 p-lr-15-md">
-                <p class="stext-102 cl6">상품문의! &#36;{product_detail}</p>
+
+                <div class="container w-full m-tb-40">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th class="text-center cl3">내용</th>
+                        <th class="text-center cl3">날짜</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="">
+                          <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content1" aria-expanded="false" aria-controls="answer_content">상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 </a>
+                        </td>
+                        <td class="text-center cl3">2022.09.01 11:23</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <div id="answer_content1" class="collapse">얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="">
+                          <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content2" aria-expanded="false" aria-controls="answer_content">혼자 조립 설치하기 쉽나요 </a>
+                        </td>
+                        <td class="text-center cl3">2022.09.01 11:23</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <div id="answer_content2" class="collapse">그럼요</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+
+
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
   </section>
 
 
