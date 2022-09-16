@@ -7,17 +7,6 @@
   font-size: 135%;
 }
 
-#cart-opacity-body::after {
-  width: 100%;
-  height: 100%;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 0.5;
-}
-
 .menu-subcategory>li:hover {
   background: #e6e6e6;
 }
@@ -50,10 +39,8 @@
                 <li><a href="${MaruContextPath}/product/list?category=주방">주방</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=욕실">욕실</a></li>
 
-
                 <li><a href="${MaruContextPath}/about">임시</a></li>
-
-                <li><a href="${MaruContextPath}/contact">찾아오는 길</a></li>
+                <li><a href="${MaruContextPath}/contact">오시는 길</a></li>
               </ul>
             </div>
 

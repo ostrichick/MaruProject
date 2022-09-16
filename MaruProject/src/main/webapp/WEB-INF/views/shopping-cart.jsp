@@ -127,10 +127,23 @@
       </table>
     </div>
     <div class="mt-5 txt-center">
-      <button type="button" class="btn btn-lg bg7 cl7 btn-outline-secondary">상품 구매</button>
-      <button type="button" class="btn bg2 cl2 ml-5 btn-outline-secondary">취소</button>
+      <button id="linkToOrder" type="button" class="btn btn-lg bg7 cl7 btn-outline-secondary">상품 구매</button>
+      <button id="linkToMain" type="button" class="btn bg2 cl2 ml-5 btn-outline-secondary">계속 쇼핑하기</button>
     </div>
   </form>
+  <script>
+      document.querySelector("#linkToOrder").addEventListener("click", fn_linkToOrder);
+      function fn_linkToOrder() {
+        let url = "${MaruContextPath}/order/order?cart_idx=";
+        //         url += idx; // fn_linkToOrder() 인자를 cart_idx 로 받아서 url에 더할 것
+        location.href = url;
+      }
+
+      document.querySelector("#linkToMain").addEventListener("click", fn_linkToMain);
+      function fn_linkToMain() {
+        location.href = "${MaruContextPath}/";
+      }
+    </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
