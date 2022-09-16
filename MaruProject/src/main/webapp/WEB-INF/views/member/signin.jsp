@@ -18,23 +18,24 @@
 	 <div class="container">   
 		<form action="${pageContext.request.contextPath}/member/signin_process.do" method="post">
 			<div class="bor8 m-b-20 how-pos4-parent">
-					<input class="stext-111 cl2 plh3 size-116" type="text" id="member_id" name="member_id" placeholder="아이디를 입력해주세요">
+					<input class="form-control" type="text" id="member_id" name="member_id" placeholder="아이디를 입력해주세요">
 			</div>
 			<div class="bor8 m-b-20 how-pos4-parent">
-				<input class="stext-111 cl2 plh3 size-116" type="password" id="member_pw" name="member_pw" placeholder="패스워드를 입력해주세요">
+				<input class="form-control" type="password" id="member_pw" name="member_pw" placeholder="패스워드를 입력해주세요">
 			</div>
 			<div class="flex-w m-l-70 m-t-50"> 
-			<button type="submit" class="flex-c-m m-l-20 stext-107 cl0 size-60 bg3 bor1 hov-btn3 p-lr-35 trans-04 pointer">
+			<button type="submit" class="btn btn-dark bg1 m-l-50">
 				로그인
 			</button>
-			</br>
-			<button class="flex-c-m m-l-50 stext-107 cl0 size-60 bg3 bor1 hov-btn3 p-lr-27 trans-04 pointer">
+			<br>
+			<button class="btn btn-dark bg1 m-l-50">
 				회원가입
 			</button>
-				<br>
-			<a href="#" class="flex-c-m m-l-40 m-t-30 stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-						아이디/비번을 잊어버리셨나요?
+		<div class="m-t-20">
+			<a href="#" class="btn bg1 btn-dark m-l-30"> 
+				아이디/비번을 잊어버리셨나요?
 			</a>
+			</div>
 		</div>
 		</form>
 	 </div>
