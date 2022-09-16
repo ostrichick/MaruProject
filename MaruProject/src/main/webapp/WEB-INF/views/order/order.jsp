@@ -15,9 +15,9 @@
 
   <section class="container row m-lr-auto m-tb-150">
     <!-- 	<h4 class="d-block">주문페이지</h4><br> -->
-    <form action="${MaruContextPath}/order/order_process" method="post" class="col-md-6 m-auto bg-secondary text-white p-5">
+    <form action="${MaruContextPath}/order/order_process" method="post" class="col-md-6 m-auto bg2 cl2 p-5">
       <!-- DB로부터 주문자 정보와 주소를 불러와서 input 태그 기본값으로 집어넣을 것 -->
-      <h3 class="col-md-4 bg-dark">주문자정보</h3>
+      <h3 class="col-md-4">주문자정보</h3>
       <hr>
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">주문자</p>
@@ -48,7 +48,7 @@
       <br>
 
 
-      <h3 class="col-md-4 bg-dark mt-5">배송지정보</h3>
+      <h3 class="col-md-4 mt-5">배송지정보</h3>
       <hr>
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">이름</p>
@@ -57,8 +57,9 @@
       <br>
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">주소</p>
+        
         <input type="text" class="form-control col-md-10 float-left" id="exampleFormControlInput1" placeholder="주소를 입력해주세요">
-        <button type="button" class="btn btn-dark float-right">주소찾기</button>
+        <button type="button" class="btn btn-dark pull-right">주소찾기</button>
         <input type="text" class="form-control" id="exampleFormControlInput1">
         <input type="text" class="form-control" id="exampleFormControlInput1">
       </div>
