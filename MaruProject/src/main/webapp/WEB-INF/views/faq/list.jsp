@@ -17,6 +17,19 @@
     background-color: #6c757d;
     border-color: #6c757d;
 }
+a.page-link {
+  color: #666;
+}
+
+li.page-item.active>a.page-link {
+  background: #666;
+  color: #eee;
+  border-color: #333;
+}
+
+li.page-item.active>a.page-link:hover {
+  background: #444;
+}
 </style> 
 </head>
 <body class="animsition">
@@ -43,24 +56,24 @@
       	 FAQ &gt; 전체</h3>
       	<div style="float:right;">
       	  <c:if test="${member_admin eq 'Y' }">  
-	        <a href="#" onclick="fn_delet()" class="btn btn-delet" id="button" >삭제</a>
+	        <a href="#" onclick='fq_delet()' class="btn btn-delet" id="button" >삭제</a>
 	      </c:if>
-       	  <a href="#" onclick="fn_write()" class="btn btn-success" id="button" >등록</a>
-    	</div>
+       	  <a href="#" onclick='fq_write()' class="btn btn-success" id="button" >등록</a>
+    	</div> 
       </thead>
       <tbody>
        	 <tr>
 	          <th>선택</th>
 	          <th>카테고리</th>
-	          <th>제목</th>
+	          <th>제목</th> 
 	          <th>조회수</th>
         </tr>
       </tbody>
-         <tbody>
+         <tbody> 
       	<c:forEach var="faq" items="${noticeList}" varStatus="status">
           <tr>
             <td class="text-right"><input type="checkbox" value="선택" name="celect"></td>
-            <td class="text-right">
+            <td class="text-right"> 
               <select>
               	<option>거실</option>
               	<option>침실</option>
@@ -78,34 +91,28 @@
         </c:forEach>
       </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
-    </nav>
+	<nav aria-label="Page navigation example">
+	      <ul class="pagination">
+	        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+	        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+	        <li class="page-item"><a class="page-link" href="#">2</a></li>
+	        <li class="page-item"><a class="page-link" href="#">3</a></li>
+	        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	      </ul> 
+	    </nav> 
   </div>
   <script>
   /*1대1문의페이지이동*/
   function faq_qna() { 
 //     e.preventDefault();
-    location.href = "${MaruContextPath}/qnaservice";
+    location.href = "${MaruContextPath}/qna/list";  
   }
   
 /**글쓰기*/
-      function fn_write() {
-//         e.preventDefault();
-        location.href = "${MaruContextPath}/notice/write";
-      }
-      /**글조회*/
-      function fn_view(idx) {
-        let url = "${MaruContextPath}/notice/view?idx=";
-        url += idx;
-        location.href = url;
-      }
+   function fq_write() { 
+       location.href = "${MaruContextPath}/faq/write";
+    }
+      
 </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>

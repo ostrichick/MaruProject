@@ -79,24 +79,10 @@ public class HomeController {
 		return "review";
 	}
 
-	@GetMapping("/qnaservice")
-	public String qnaservice() {
-		return "qnaservice";
-	}
-
 	@GetMapping("/faq")
 	public String faq() {
-		return "faq";
+		return "/faq/list";
 	}
 
-	@GetMapping("/faq_write")
-	public String faq_write() {
-		return "faq_write";
-	}
-
-	@GetMapping("/edit")
-	public String edit() {
-		return "edit";
-	}
 
 }

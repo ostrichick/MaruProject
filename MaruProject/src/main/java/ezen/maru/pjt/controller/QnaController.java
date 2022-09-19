@@ -47,6 +47,11 @@ public class QnaController {
 	public String write() {
 		return "qna/write";
 	}
+	
+	@GetMapping("/list")
+	public String list() {
+		return "qna/list";
+	} 
 
 	@PostMapping("/write_process")
 	public String write_process(BoardVo boardVo, MultipartRequest uploadFile, HttpServletRequest req,

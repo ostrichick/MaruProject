@@ -17,6 +17,20 @@
     border-color: #6c757d;
    
 }
+
+a.page-link {
+  color: #666;
+}
+
+li.page-item.active>a.page-link {
+  background: #666;
+  color: #eee;
+  border-color: #333;
+}
+
+li.page-item.active>a.page-link:hover {
+  background: #444;
+}
 </style>
 </head>
 <body class="animsition"> 

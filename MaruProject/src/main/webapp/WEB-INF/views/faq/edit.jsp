@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 </head>
-<body class="animsition">
+<body class="animsition"> 
 <%@include file="/include/header.jsp"%>
 <br><br>
 	<h3 style="text-align:center;">자주묻는 질문(FAQ) 수정</h3>  

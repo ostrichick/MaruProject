@@ -15,7 +15,7 @@
 	<h3 style="text-align:center;">자주묻는 질문(FAQ) 작성</h3>  
 	<div class="container" style="width:500px; height:400px; border:1px solid; "> 
 		<div style="margin:0 10px;">
-		    <form action="write_process" id="writeForm" method="post" enctype="multipart/form-data">
+		    <form action="write_process" id="writeForm" method="post" enctype="multipart/form-data"> 
 		    <br>
 		      <select>
 		      	<option>선택</option>  
@@ -54,7 +54,7 @@
    <script>
       $("#summernote").summernote({
         placeholder : "내용을 작성해주세요.",
-        tabsize : 2,
+        tabsize : 2, 
         height : 300,
         lang : "ko-KR", // 한글 설정
         toolbar : [

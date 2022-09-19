@@ -13,7 +13,7 @@
 <br><br><br>
 <h2 style="text-align:center;">Maru</h2>
 <br>
-<div class="container bor10" style="width:500px;">  
+<div class="container bor10" style="width:400px;">   
 <br>
 	 <div class="container">   
 		<form action="${pageContext.request.contextPath}/member/signin_process.do" method="post">
@@ -23,16 +23,16 @@
 			<div class="bor8 m-b-20 how-pos4-parent">
 				<input class="form-control" type="password" id="member_pw" name="member_pw" placeholder="패스워드를 입력해주세요">
 			</div>
-			<div class="flex-w m-l-70 m-t-50"> 
-			<button type="submit" class="btn btn-dark bg1 m-l-50">
-				로그인
+			<div class="flex-w m-l-30 m-t-50"> 
+			<button type="submit" class="btn btn-dark bg1 m-l-30">
+				로그인 
 			</button>
 			<br>
-			<button class="btn btn-dark bg1 m-l-50">
-				회원가입
+			<button class="btn btn-dark bg1 m-l-40" onclick='signup()'>
+				회원가입 
 			</button>
 		<div class="m-t-20">
-			<a href="#" class="btn bg1 btn-dark m-l-30"> 
+			<a href="#" class="btn bg1 btn-dark m-l-10"> 
 				아이디/비번을 잊어버리셨나요?
 			</a>
 			</div>
@@ -43,7 +43,11 @@
 </div>
 <br><br><br> 
 <hr style="clear: both; visibility: hidden; margin: 0;">
-
+<script type="text/javascript">
+function signup() {
+    location.href = "${MaruContextPath}/member/signup";
+  }
+</script>
  
 
   <!-- Footer -->
