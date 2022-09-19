@@ -52,16 +52,16 @@ li.page-item.active>a.page-link:hover {
       	 	<a href="#" onclick="faq_qna()" class="btn btn-success" id="button" >문의하기</a> 
       </div>
       	 <br><br><br><br>
-      	 <br><br><br><br><h3>
-      	 FAQ &gt; 전체</h3>
+      	 <br><br><br><br>
+      	 <h3>FAQ &gt; 전체</h3>
       	<div style="float:right;">
       	  <c:if test="${member_admin eq 'Y' }">  
-	        <a href="#" onclick='fq_delet()' class="btn btn-delet" id="button" >삭제</a>
+	        <a href="#" onclick="fq_delet()" class="btn btn-delet" id="button" >삭제</a>
 	      </c:if>
-       	  <a href="#" onclick='fq_write()' class="btn btn-success" id="button" >등록</a>
-    	</div> 
-      </thead>
-      <tbody>
+       	   <a href="${MaruContextPath}/faq/write" onclick="write()" class="btn btn-success" id="button" >등록</a>
+    	</div>   
+      </thead> 
+      <tbody> 
        	 <tr>
 	          <th>선택</th>
 	          <th>카테고리</th>
@@ -102,15 +102,15 @@ li.page-item.active>a.page-link:hover {
 	    </nav> 
   </div>
   <script>
-  /*1대1문의페이지이동*/
+  /*1대1문의페이지이동*/ 
   function faq_qna() { 
 //     e.preventDefault();
     location.href = "${MaruContextPath}/qna/list";  
   }
   
 /**글쓰기*/
-   function fq_write() { 
-       location.href = "${MaruContextPath}/faq/write";
+   function write() {  
+       location.href = "${MaruContextPath}/faq/write"; 
     }
       
 </script>

@@ -78,11 +78,22 @@ public class HomeController {
 	public String review() {
 		return "review";
 	}
-
+ 
 	@GetMapping("/faq")
 	public String faq() {
 		return "/faq/list";
 	}
+	
+	@GetMapping("/faq/write")
+	public String write() {
+		return "/faq/write";
+	} 
+	
+	@GetMapping("/faq/edit")
+	public String edit() {
+		return "/faq/edit";
+	}	
+
 
 
 }
