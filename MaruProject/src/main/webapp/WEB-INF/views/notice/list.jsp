@@ -36,10 +36,10 @@ li.page-item.active>a.page-link:hover {
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th class="text-center cl3">번호</th>
-          <th class="text-center cl3">제목</th>
-          <th class="text-center cl3">날짜</th>
-          <th class="text-center cl3">조회수</th>
+          <th class="text-center cl3 col-1">번호</th>
+          <th class="text-center cl3 col-6">제목</th>
+          <th class="text-center cl3 col-2">날짜</th>
+          <th class="text-center cl3 col-1">조회수</th>
         </tr>
       </thead>
       <tbody>
