@@ -22,7 +22,7 @@
           <div class="col-md-5 col-lg-6 p-b-30 m-l-auto">
             <div class="p-l-25 p-r-30 p-lr-0-lg" style="">
               <img class="img-fluid" src="https://place-hold.it/500x500.png" alt="" />
-              <input type="file" class="form-control m-tb-5" name="uploadFile" required/>
+              <input type="file" class="form-control m-tb-5" name="uploadFile" required />
             </div>
           </div>
 
@@ -33,7 +33,7 @@
               </h2>
 
               <div class="input-group">
-                <input type="number" class="form-control txt-right" name="price" id="price" placeholder="가격" />
+                <input type="number" class="form-control txt-right" name="product_price" id="price" placeholder="가격" />
                 <div class="input-group-text">₩</div>
               </div>
 

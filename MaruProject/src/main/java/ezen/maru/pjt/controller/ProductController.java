@@ -76,10 +76,10 @@ public class ProductController {
 
 		int result = insertService.productAdd(productVo, uploadFile, request);
 
-		String viewPage = "product/add";
+		String viewPage = "redirect:/product/add";
 
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
-			viewPage = "product/list";
+			viewPage = "redirect:/product/list";
 		}
 		return viewPage;
 	}
