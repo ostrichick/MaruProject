@@ -133,9 +133,9 @@ public class MemberInfoController {
 		return viewPage;
 	}
 
-	@GetMapping("/order_list")
-	public String order_list() {
-		return "member/order_list";
+	@GetMapping("/order_detail")
+	public String order_detail() {
+		return "member/order_detail";
 	}
 
 	public void userSessionUpdate(MemberInfoVo memberInfoVo, HttpServletRequest req) {

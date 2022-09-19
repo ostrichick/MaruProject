@@ -46,6 +46,7 @@ public class ProductController {
 	public String list(Model model) {
 		List<ProductVo> productList = listService.getProductList();
 		model.addAttribute("productList", productList);
+		System.out.println(productList.toString());
 		return "product/list";
 	}
 
