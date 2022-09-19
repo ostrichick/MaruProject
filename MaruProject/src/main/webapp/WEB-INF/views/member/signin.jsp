@@ -6,7 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
-
+<style type="text/css">
+	#sign{  
+		width:340px;
+		text-align:center;  
+	}
+</style>
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
@@ -23,21 +28,22 @@
 			<div class="bor8 m-b-20 how-pos4-parent">
 				<input class="form-control" type="password" id="member_pw" name="member_pw" placeholder="패스워드를 입력해주세요">
 			</div>
-			<div class="flex-w m-l-30 m-t-50"> 
-			<button type="submit" class="btn btn-dark bg1 m-l-30">
+			<div class="flex-w m-t-30"> 
+			<button type="submit" class="btn btn-dark bg1" id="sign">
 				로그인 
 			</button>
-			<br>
-			<button class="btn btn-dark bg1 m-l-40" onclick='signup()'>
-				회원가입 
-			</button>
-		<div class="m-t-20">
-			<a href="#" class="btn bg1 btn-dark m-l-10"> 
-				아이디/비번을 잊어버리셨나요?
-			</a>
-			</div>
 		</div>
 		</form>
+		<div class="m-t-20"> 
+			<button class="btn btn-dark bg1" onclick="signup()" id="sign">
+				회원가입 
+			</button>
+		</div>
+		<div class="m-t-20">
+			<a href="#" class="btn bg1 btn-dark" id="sign"> 
+				아이디/비밀번호을 잊어버리셨나요?
+			</a>
+			</div>
 	 </div>
 	 <br>
 </div>

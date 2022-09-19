@@ -13,13 +13,13 @@
 <br><br><br> 
 <div class="container" style="width:700px;"> 
 <h3 class="col-4" style="float:left ;">회원가입</h3>  
-<br> 
-<br>
-    <form class="bg0 text-black p-5 bor10 m-b-50" action="${pageContext.request.contextPath}/member/signup_process" method="post">
+<br>  
+<br>  
+    <form class="bg2 text-black p-5 bor10 m-b-50" action="${pageContext.request.contextPath}/member/signup_process" method="post">
      	<div class="" id="container">  
         <p for="exampleFormControlInput1" class="form-label">아이디</p>
         <input type="text" class="form-control col-md-10 float-left" id="member_id" name="member_id" placeholder="아이디를 입력해주세요">
-        <button type="button" class="col-2 btn bg2 float-right">중복확인</button> 
+        <button type="button" class="col-2 btn cl0 bg7 float-right">중복확인</button> 
       </div>
       <br> <br>
       <div class="">
@@ -45,7 +45,7 @@
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">이메일</p> 
         <input type="email" class="form-control col-md-9 float-left" id="member_email" name="member_email" placeholder="이메일을 입력해주세요">
-        <button type="button" class="col-3 btn bg2 float-right">인증번호 전송</button> 
+        <button type="button" class="col-3 btn cl0 bg7 float-right">인증번호 전송</button> 
       </div> 
       <br>
       <div class="">
@@ -56,8 +56,8 @@
       <div class="">
         <p for="exampleFormControlInput1" class="form-label">주소</p>
         <input type="text" class="form-control col-md-10 float-left" id="member_addr" name="member_addr" placeholder="주소를 입력해주세요">
-        <button type="button" id="member_addr_btn" class="col-2 btn bg2 float-right">주소찾기</button>
-      </div>
+        <button type="button" id="member_addr_btn" class="col-2 btn cl0 bg7 float-right">주소찾기</button>
+      </div>  
        <div class="">
         <p for="exampleFormControlInput1" class="form-label">상세주소</p>
         <input type="text" class="form-control" id="member_addr2" name="member_addr2" placeholder="상세주소를 입력해주세요">
@@ -69,8 +69,8 @@
       </div>
       <br>
       <div class="text-center">
-        <button type="submit" class="btn bg2">가입하기</button>
-        <button type="reset" class="btn bg2"  >취소</button>
+        <button type="submit" class="btn cl0 bg7">가입하기</button> 
+        <button type="reset" class="btn cl0 bg1"  >취소</button> 
       </div>
     </form> 
   </div>
