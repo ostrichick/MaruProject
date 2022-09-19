@@ -21,146 +21,111 @@
   </div>
 
   <!-- Shoping Cart -->
-  <form class="container m-b-50">
-    <h3 class="m-tb-50 m-l-50">주문 상세 내역</h3>
-    <div class="wrap-table-shopping-cart">
-      <table class="table-shopping-cart txt-center">
-        <tr class="table_head">
-          <th class="">선택</th>
-          <th colspan="2" class="">상품</th>
-          <th class="">가격</th>
-          <th class="">수량선택</th>
-          <th class=""></th>
-        </tr>
+  <section class="container">
+    <form class="m-b-50">
+      <h3 class="m-tb-50 m-l-50">주문 상세 내역</h3>
+      <div class="wrap-table-shopping-cart">
+        <table class="table-shopping-cart txt-center">
+          <tr class="table_head">
+            <th class="col-1">선택</th>
+            <th class="col-8" colspan="2">상품</th>
+            <th class="col-2 p-r-10">가격</th>
+            <th class="col-1">수량</th>
+          </tr>
 
-        <tr class="table_row">
-          <td class="">
-            <div class="form-check">
-              <input class="input-lg form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
-            </div>
-          </td>
-          <td class="">
-            <div class="">
-              <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
-            </div>
-          </td>
-          <td class="txt-left">제품명ㅇㅇㅇㅇ ㅇㅇㅇㅇㅇ</td>
-          <td class="txt-right">1,380,000원</td>
-          <td class="">
-            <div class="wrap-num-product flex-w m-auto">
-              <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                <i class="fs-16 zmdi zmdi-minus"></i>
+          <tr class="table_row">
+            <td class="">
+              <div class="form-check">
+                <input class="input-lg form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
               </div>
-
-              <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
-
-              <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                <i class="fs-16 zmdi zmdi-plus"></i>
+            </td>
+            <td class="">
+              <div class="">
+                <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
               </div>
-            </div>
-          </td>
+            </td>
+            <td class=" txt-left">제품명ㅇㅇㅇㅇ ㅇㅇㅇㅇㅇ</td>
+            <td class=" txt-right p-r-10">1,380,000원</td>
+            <td class="">1</td>
+          </tr>
 
-          <td class="">
-            <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
-          </td>
-        </tr>
-
-        <tr class="table_row">
-          <td class="">
-            <div class="form-check">
-              <input class="form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
-            </div>
-          </td>
-          <td class="">
-            <div class="">
-              <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
-            </div>
-          </td>
-          <td class="txt-left">제품명ㅇㅇㅇㅇ ㅇㅇㅇㅇㅇㅇㅇ ㅇㅇㅇㅇ</td>
-          <td class="txt-right">180,000원</td>
-          <td class="">
-            <div class="wrap-num-product flex-w m-auto">
-              <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                <i class="fs-16 zmdi zmdi-minus"></i>
+          <tr class="table_row">
+            <td class="">
+              <div class="form-check">
+                <input class="form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
               </div>
-
-              <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
-
-              <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                <i class="fs-16 zmdi zmdi-plus"></i>
+            </td>
+            <td class="">
+              <div class="">
+                <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
               </div>
-            </div>
-          </td>
-          <td class="">
-            <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
-          </td>
-        </tr>
-      </table>
-    </div>
+            </td>
+            <td class=" txt-left">제품명ㅇㅇㅇㅇ ㅇㅇㅇㅇㅇㅇㅇ ㅇㅇㅇㅇ</td>
+            <td class=" txt-right p-r-10">180,000원</td>
+            <td class="">2</td>
+          </tr>
+        </table>
+      </div>
 
-    <div class="bg8 text-dark p-l-150 p-tb-40 fs-18 ">
-      <p class="fs-20 p-tb-10">
-        <strong>[ 주문내역 ]</strong>
-      </p>
-      <table class="txt-right table-hover">
-        <tr>
-          <td>주문금액 :</td>
-          <td>180,000원</td>
-        </tr>
-        <tr>
-          <td>배송비 :</td>
-          <td>2,500원</td>
-        </tr>
-        <tr>
-          <td>총주문금액 :</td>
-          <td>182,500원</td>
-        </tr>
-      </table>
-    </div>
+
+      <div class="bg8 text-dark p-l-150 p-tb-40 fs-18 ">
+        <p class="fs-20 p-tb-10">
+          <strong>[ 주문내역 ]</strong>
+        </p>
+        <table class="txt-right table-hover">
+          <tr>
+            <td>주문금액 :</td>
+            <td>180,000원</td>
+          </tr>
+          <tr>
+            <td>배송비 :</td>
+            <td>2,500원</td>
+          </tr>
+          <tr>
+            <td>총주문금액 :</td>
+            <td>182,500원</td>
+          </tr>
+        </table>
+      </div>
+      <div class="mt-5 txt-center">
+        <button type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택 상품 교환/반품</button>
+        <button type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택상품 결제 취소</button>
+      </div>
+    </form>
     <!-- ==================== -->
-    <section class="bg-secondary text-white" style="margin: 50px auto; padding: 20px 150px;">
-      <!-- <form class="col-md-6 m-auto bg-secondary text-white p-5"> -->
-      <h3 class="col-md-4 bg-dark mt-5">배송정보</h3>
+    <section class="col-6 m-lr-auto p-all-20 m-tb-50 cl6 bg2">
+      <h3 class="mt-5">배송정보</h3>
       <hr>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">주문자</p>
-        <p class="form-control col-md-10">홍길동</p>
+        <p class="form-label">수령인</p>
+        <p class="form-control">홍길동</p>
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">연락처</p>
-        <p class="form-control col-md-10">010-1111-1111</p>
+        <p class="form-label">연락처</p>
+        <p class="form-control">010-1111-1111</p>
 
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">배송주소</p>
-        <p class="form-control col-md-10">전주시 덕진구</p>
+        <p class="form-label">배송주소</p>
+        <p class="form-control">전라북도 전주시 덕진구</p>
+        <p class="form-control">백제대로 342</p>
+        <p class="form-control">54915</p>
 
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">결제방식</p>
-        <p class="form-control col-md-10">신용카드</p>
+        <p class="form-label">결제방식</p>
+        <p class="form-control">신용카드</p>
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">배송일자</p>
-        <p class="form-control col-md-10">2022.08.25</p>
+        <p class="form-label">배송일자</p>
+        <p class="form-control">2022.08.25</p>
       </div>
-
-      <!-- </form> -->
     </section>
-
-    <!-- ================= -->
-
-    <div class="mt-5">
-      <button type="button" class="btn btn-outline-dark btn-lg" style="margin-left: 300px;">선택 상품 교환/반품</button>
-      <button type="button" class="btn bg-dark text-white ml-3 btn-lg">선택상품 결제 취소</button>
-    </div>
-  </form>
-  <br>
-
+  </section>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
