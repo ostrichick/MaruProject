@@ -15,7 +15,7 @@
   <section class="container m-lr-auto m-tb-50">
     <h3 class="m-all-50">결제 완료</h3>
     <hr />
-    <p class="bg7 cl7 txt-center col-md-5 p-3 fs-20 m-lr-auto">구매가 정상적으로 완료되었습니다.</p>
+    <p class="bg7 cl7 txt-center col-md-5 p-3 fs-20 m-lr-auto rounded">구매가 정상적으로 완료되었습니다.</p>
     <br>
     <!--  -->
     <table class="table col-6 m-lr-auto">

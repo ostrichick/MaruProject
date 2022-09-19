@@ -99,7 +99,7 @@ span.cart_plus>i:hover {
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> {product_name} </a> <span class="stext-105 cl3"> ₩{product_price} </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i>
+                <a href="product-detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> {product_name} </a> <span class="stext-105 cl3"> ₩{product_price} </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-15">

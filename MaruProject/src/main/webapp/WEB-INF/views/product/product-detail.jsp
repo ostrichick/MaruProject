@@ -225,11 +225,38 @@
               <div class="how-pos2 p-lr-15-md">
 
                 <div class="container w-full m-tb-40">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-lg bg7 cl7  m-all-20" data-toggle="modal" data-target="#product_qna_write">문의하기</button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="product_qna_write" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <form action="" method="post">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">문의 작성하기</h5>
+                            <a type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                            </a>
+                          </div>
+                          <div class="modal-body">
+                            <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                          </div>
+                          <div class="modal-footer">
+                            <a type="button" class="btn bg6 btn-outline-secondary" data-dismiss="modal">취소</a>
+                            <button type="button" class="btn bg7 cl7 btn-outline-dark">등록</button>
+                            <!-- 등록버튼 누르면 문의 등록시키고 ajax로 새로 목록 불러올 것 -->
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+
                   <table class="table table-striped table-hover">
                     <thead>
                       <tr>
-                        <th class="text-center cl3">내용</th>
-                        <th class="text-center cl3">날짜</th>
+                        <th class="text-center cl3 col-8">내용</th>
+                        <th class="text-center cl3 col-2">날짜</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -257,11 +284,6 @@
                       </tr>
                     </tbody>
                   </table>
-
-
-
-
-
                 </div>
               </div>
             </div>
