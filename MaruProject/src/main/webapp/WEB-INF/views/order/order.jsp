@@ -17,119 +17,114 @@
     <!-- 	<h4 class="d-block">주문페이지</h4><br> -->
     <form action="${MaruContextPath}/order/order_process" method="post" class="col-md-6 m-auto bg2 cl2 p-5">
       <!-- DB로부터 주문자 정보와 주소를 불러와서 input 태그 기본값으로 집어넣을 것 -->
-      <h3 class="col-md-4">주문자정보</h3>
+      <h3 class="">주문자정보</h3>
       <hr>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">주문자</p>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="주문자를 입력해주세요">
+        <p class="form-label">주문자</p>
+        <input type="text" class="form-control" placeholder="주문자를 입력해주세요">
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">휴대폰번호</p>
-        <div class="row">
-          <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle ml-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">010</a></li>
-              <li><a class="dropdown-item" href="#">011</a></li>
-              <li><a class="dropdown-item" href="#">016</a></li>
-              <li><a class="dropdown-item" href="#">017</a></li>
-            </ul>
-          </div>
-          <input type="text" class="form-control col-md-4 ml-5" id="exampleFormControlInput1">
-          <input type="text" class="form-control col-md-4 ml-4" id="exampleFormControlInput1">
+        <p class="form-label">휴대폰번호</p>
+        <div class="input-group">
+          <select class="form-select col-4" id="phone_1">
+            <option value="010" selected>010</option>
+            <option value="011">011</option>
+            <option value="016">016</option>
+            <option value="019">019</option>
+          </select>
+          <input type="text" class="form-control col-4" id="phone_2" maxlength="4">
+          <input type="text" class="form-control col-4" id="phone_3" maxlength="4">
+          <!-- 자바스크립트로 phone_1,2,3을 하나의 input:text,hidden,name=member_phone 으로 합쳐서 form으로 전송시킬것 -->
         </div>
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">이메일</p>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이메일을 입력해주세요">
+        <p class="form-label">이메일</p>
+        <input type="text" class="form-control" placeholder="이메일을 입력해주세요">
       </div>
       <br>
 
 
-      <h3 class="col-md-4 mt-5">배송지정보</h3>
+      <h3 class="">배송지정보</h3>
       <hr>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">이름</p>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름을 입력해주세요">
+        <p class="form-label">이름</p>
+        <input type="text" class="form-control" placeholder="이름을 입력해주세요">
       </div>
       <br>
-      <div class="">
-        <p for="exampleFormControlInput1" class="form-label">주소</p>
-        
-        <input type="text" class="form-control col-md-10 float-left" id="exampleFormControlInput1" placeholder="주소를 입력해주세요">
-        <button type="button" class="btn btn-dark pull-right">주소찾기</button>
-        <input type="text" class="form-control" id="exampleFormControlInput1">
-        <input type="text" class="form-control" id="exampleFormControlInput1">
-      </div>
-      <br>
-      <div class="">
-        <p for="exampleFormControlInput1" class="form-label">휴대폰번호</p>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="휴대폰번호를 입력해주세요">
-      </div>
-      <br>
-      <div class="">
-        <p for="exampleFormControlInput1" class="form-label">배송요청사항</p>
-        <input type="text" class="form-control col-md-10 float-left" id="exampleFormControlInput1">
-        <div class="dropdown">
-          <button class="btn btn-dark dropdown-toggle float-right" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">문앞에 놓아주세요</a></li>
-            <li><a class="dropdown-item" href="#">부재시 연락주세요</a></li>
-            <li><a class="dropdown-item" href="#">경비실에 맡겨주세요</a></li>
-            <li><a class="dropdown-item" href="#">직접입력</a></li>
-          </ul>
+      <div>
+        <p class="form-label">주소</p>
+        <div class="input-group">
+          <input type="text" class="form-control col-md-10 float-left" placeholder="주소를 입력해주세요">
+          <button type="button" class="btn bg7 cl7 btn-outline-dark pull-right">주소찾기</button>
         </div>
+        <input type="text" class="form-control">
+        <input type="text" class="form-control">
+      </div>
+      <br>
+      <div class="">
+        <p class="form-label">휴대폰번호</p>
+        <input type="text" class="form-control" placeholder="휴대폰번호를 입력해주세요">
+      </div>
+      <br>
+      <div class="">
+        <p class="form-label">배송요청사항</p>
+        <input type="text" class="form-control" id="delivery_request" list="request_list">
+        <datalist id="request_list">
+          <option value="문 앞"></option>
+          <option value="경비실"></option>
+          <option value="택배함"></option>
+          <option value="직접 입력"></option>
+
+        </datalist>
       </div>
       <br> <br>
 
 
-      <h3 class="col-md-4 bg-dark mt-5">결제수단</h3>
+      <h3 class="">결제수단</h3>
       <hr>
       <!-- 버튼을 클릭하여 결제수단을 선택하고, 결제수단이 변경되면 하단에 보여지는 입력폼이 달라짐-->
-      <button type="button" class="btn btn-primary">신용카드결제</button>
-      <button type="button" class="btn btn-primary disabled">계좌입금</button>
+
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group m-tb-10">
+        <input type="radio" class="btn-check m-b-7" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class=" col-4" for="btnradio1">신용카드</label>
+
+        <input type="radio" class="btn-check m-b-7" name="btnradio" id="btnradio2" autocomplete="off">
+        <label class=" col-4" for="btnradio2">계좌이체</label>
+
+        <input type="radio" class="btn-check m-b-7" name="btnradio" id="btnradio3" autocomplete="off">
+        <label class=" col-4" for="btnradio3">간편결제</label>
+      </div>
+
+
 
       <!-- 신용카드버튼을 눌렀을때의 입력폼-->
-      <div class="dropdown mt-3">
-        카드선택
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">삼성카드</a></li>
-          <li><a class="dropdown-item" href="#">신한카드</a></li>
-          <li><a class="dropdown-item" href="#">국민카드</a></li>
-          <li><a class="dropdown-item" href="#">등등</a></li>
-        </ul>
-      </div>
-      <div class="dropdown mt-3">
-        할부선택
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">일시불</a></li>
-          <li><a class="dropdown-item" href="#">2개월</a></li>
-          <li><a class="dropdown-item" href="#">3개월</a></li>
-          <li><a class="dropdown-item" href="#">4개월</a></li>
-          <li><a class="dropdown-item" href="#">5개월</a></li>
-          <li><a class="dropdown-item" href="#">6개월</a></li>
-        </ul>
+      <div class="input-group m-tb-20">
+        <span class="input-group-text"> 카드 선택 </span>
+        <select class="form-select" id="order_card">
+          <option value="삼성" selected>삼성카드</option>
+          <option value="현대">현대카드</option>
+          <option value="신한">신한카드</option>
+          <option value="...">...</option>
+        </select>
       </div>
       <br>
-      <p>총결제예정금액: 150,000,000</p>
+      <p>결제 예정 금액: 150,000,000</p>
 
-      <div class="bg-secondary text-white m-5">
+      <div class="bg-secondary text-white m-5 rounded p-all-10">
         <strong> 구매동의 및 결제대행 서비스 이용약관 등에 동의하십니까?</strong><br>
-        <div class="form-check m-3 ml-5">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault"> 모두동의 </label>
+        <div class="form-check m-3">
+          <input class="form-check-input" type="checkbox" value="" id="agree">
+          <label class="form-check-label" for="agree"> 모두 동의 </label>
         </div>
       </div>
 
 
 
       <div class="text-center mt-3">
-        <button id="linkToPay" type="submit" class="btn btn-dark">결제하기</button>
-        <button id="linkToMain" type="button" class="btn btn-dark">계속 쇼핑하기</button>
+        <button id="linkToPay" type="submit" class="btn bg7 cl7 btn-outline-dark">결제하기</button>
+        <button id="linkToMain" type="button" class="btn bg7 cl7 btn-outline-dark">계속 쇼핑하기</button>
       </div>
     </form>
   </section>
