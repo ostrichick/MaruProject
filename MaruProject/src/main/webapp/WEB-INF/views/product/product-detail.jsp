@@ -287,16 +287,17 @@
                 </div>
               </div>
             </div>
+            <!-- 문의 탭 끝 -->
           </div>
+          <!-- 탭 목록 끝 -->
         </div>
+        <!-- 전체 탭 끝 -->
+
       </div>
+
     </div>
+    <!-- 제품 상세 컨테이너 -->
   </section>
-
-
-
-
-
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/detail.jsp"%>
