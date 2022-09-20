@@ -4,99 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">  
 <title>리뷰</title>
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/starrate.png" />
-<style>
-	#container{
-		width:700px;
-	} 
-</style>
-</head>
-<body class="animsition">
-  <%@include file="/include/header.jsp"%>
-  
-  <!-- breadcrumb -->
- <br><br><br> 
-<div class="container" >
-<h3 class="col-2 m-l-220" style="float:left ;">리뷰 페이지</h3>
-	<div style="float:left;">  
-	리뷰를 등록해주세요. 
-	</div> 
-</div>   
-<br>
-<br> 
-<div class="container text-center m-t-10 bor4" id="container"> 
-	<div class="row" style="margin-top: 25px;">
-	  <div class="col-2" style="margin-top:20px;"> 
-		*별점 
-		</div>
-		<div class="rating" style="margin-left:20px;">
-			<!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
-			<input type="checkbox" name="star" id="rating1" value="1" class="rate_radio" title="1점">
-			<label for="rating1"></label>
-			<input type="checkbox" name="star" id="rating2" value="2" class="rate_radio" title="2점">
-			<label for="rating2"></label>
-			<input type="checkbox" name="star" id="rating3" value="3" class="rate_radio" title="3점" >
-			<label for="rating3"></label>
-			<input type="checkbox" name="star" id="rating4" value="4" class="rate_radio" title="4점">
-			<label for="rating4"></label>
-			<input type="checkbox" name="star" id="rating5" value="5" class="rate_radio" title="5점">
-			<label for="rating5"></label>
-		</div>
-	</div>
-	<hr>
-	<br><br><br>
-	<hr>
-	<div class="row">
-	<div class="col-2 m-t-50"> 
-		*내용
-	  </div>
-	  <div class="col-8">
-		<textarea  name="content" id="re_content"></textarea>
-	</div>
-	</div> 
-	<hr> 
-	<div class="row">
-	<div class="col-2 m-t-10"> 
-		*파일첨부
-	 </div>
-	<div class="col-8 m-b-20">   
-	<div class="filebox" id="filebox">
-		<input class="col-8 upload-name" id="filename" value="첨부파일" placeholder="첨부파일">
-		<label for="file">파일찾기</label> 
-		<input type="file" id="file" class="col-1">
-	</div> 
-	</div>
-	</div>
-</div>
-<div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<a id="re_submit" class="btn btn-dark bg1 cl0" type="submit"  style="margin-right:30px ;"><p>등록</p></a>
-<a id="re_reset" class="btn btn-dark bg1 cl0" type="reset" ><p>취소</p></a> 
-</div> 
-
-
- <!-- Footer -->
-  <%@include file="/include/footer.jsp"%>
-  <%@include file="/include/script.jsp"%>
-  <%@include file="/include/style.jsp"%>
-<!-- =========================================== -->
-<script type="text/javascript">
-$("#re_submit").on("click", function(e){
-	
-			location.href = "${MaruContextPath}/index";
-});
-</script>	
-<script type="text/javascript">
-$("#re_reset").on("click", function(e){
-	 location.href = "${MaruContextPath}/index";
-});	
-
-</script>
-<!-- =========================================== -->
-<!-- =========================================== -->
  <style>
+ #container{
+		width:700px;
+	}
  
  #filename{ 
  	margin-bottom:.5rem; 
@@ -174,6 +89,86 @@ $("#file").on('change',function(){
     background-color: #ff8;
 }
 </style>
+</head>
+<body class="animsition">
+  <%@include file="/include/header.jsp"%>
+
+<div class="container m-t-50" >
+<h3 class="col-2 m-l-220" style="float:left ;">리뷰 페이지</h3>
+	<div style="float:left;">  
+	리뷰를 등록해주세요. 
+	</div> 
+</div>   
+<br>
+<br> 
+<div class="container text-center m-t-10 bor4" id="container"> 
+	<div class="row" style="margin-top: 25px;">
+	  <div class="col-2" style="margin-top:20px;"> 
+		*별점 
+		</div>
+		<div class="rating" style="margin-left:20px;">
+			<!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
+			<input type="checkbox" name="star" id="rating1" value="1" class="rate_radio" title="1점">
+			<label for="rating1"></label>
+			<input type="checkbox" name="star" id="rating2" value="2" class="rate_radio" title="2점">
+			<label for="rating2"></label>
+			<input type="checkbox" name="star" id="rating3" value="3" class="rate_radio" title="3점" >
+			<label for="rating3"></label>
+			<input type="checkbox" name="star" id="rating4" value="4" class="rate_radio" title="4점">
+			<label for="rating4"></label>
+			<input type="checkbox" name="star" id="rating5" value="5" class="rate_radio" title="5점">
+			<label for="rating5"></label>
+		</div>
+	</div>
+	<hr>
+	<br><br><br>
+	<hr>
+	<div class="row">
+	<div class="col-2 m-t-50"> 
+		*내용
+	  </div>
+	  <div class="col-8">
+		<textarea  name="content" id="re_content"></textarea>
+	</div>
+	</div> 
+	<hr> 
+	<div class="row">
+	<div class="col-2 m-t-10"> 
+		*파일첨부
+	 </div>
+	<div class="col-8 m-b-20">   
+	<div class="filebox" id="filebox">
+		<input class="col-8 upload-name" id="filename" value="첨부파일" placeholder="첨부파일">
+		<label for="file">파일찾기</label> 
+		<input type="file" id="file" class="col-1">
+	</div> 
+	</div>
+	</div>
+</div>
+<div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
+<a id="re_submit" class="btn btn-dark bg1 cl0" type="submit"  style="margin-right:30px ;">등록</a> 
+<a id="re_reset" class="btn btn-dark bg1 cl0" type="reset" >취소</a> 
+</div> 
+
+
+ <!-- Footer -->
+  <%@include file="/include/footer.jsp"%>
+  <%@include file="/include/script.jsp"%>
+<!-- =========================================== -->
+<script type="text/javascript">
+$("#re_submit").on("click", function(e){
+	
+			location.href = "${MaruContextPath}/index";
+});
+</script>	
+<script type="text/javascript">
+$("#re_reset").on("click", function(e){
+	 location.href = "${MaruContextPath}/index";
+});	
+
+</script>
+<!-- =========================================== -->
+<!-- =========================================== -->
 <script>
 
 function Rating(){};
