@@ -212,7 +212,6 @@ tr,th ,td{
  <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
-  <%@include file="/include/style.jsp"%>
  
 </body>
 </html>

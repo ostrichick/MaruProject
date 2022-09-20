@@ -80,7 +80,7 @@
  <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
-  <%@include file="/include/style.jsp"%>
+<%--   <%@include file="/include/style.jsp"%> --%>
 <!-- =========================================== -->
 <script type="text/javascript">
 $("#re_submit").on("click", function(e){
