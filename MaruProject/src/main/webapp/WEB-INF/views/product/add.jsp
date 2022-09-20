@@ -17,7 +17,6 @@
   <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
       <form action="${pageContext.request.contextPath}/product/add_process" method="post" enctype="multipart/form-data">
-
         <div class="row">
           <div class="col-md-5 col-lg-6 p-b-30 m-l-auto">
             <div class="p-l-25 p-r-30 p-lr-0-lg" style="">
@@ -31,12 +30,10 @@
               <h2 class="mtext-105 cl2 js-name-detail p-b-14">
                 <input type="text" class="form-control" name="product_name" placeholder="제품명" />
               </h2>
-
               <div class="input-group">
                 <input type="number" class="form-control txt-right" name="product_price" id="price" placeholder="가격" />
                 <div class="input-group-text">₩</div>
               </div>
-
 
               <div class="input-group m-tb-10">
                 <div class="input-group-text">
@@ -54,7 +51,6 @@
               <script>
                               
                             </script>
-
               <p class="stext-102 cl3 p-t-23">
                 규격
                 <input type="text" class="form-control" name="product_size" placeholder="예시: '800x1500'" />
@@ -69,13 +65,7 @@
                   <option value="주방">주방</option>
                   <option value="욕실">욕실</option>
                 </select>
-                <!--                 <br />소분류 -->
-                <!--                 <select id="product_minor_category" class="form-control m-b-15" name="product_minor_category"> -->
-                <!--                   <option value="">소분류 선택</option> -->
-                <!--                 </select> -->
               </p>
-              <!--  -->
-              <!--  -->
             </div>
           </div>
           <div class="m-lr-auto">
@@ -84,68 +74,48 @@
               <button type="submit" id="btn_submit" class="btn btn-secondary m-tb-10">상품 등록</button>
             </div>
           </div>
-
         </div>
-
       </form>
     </div>
   </section>
   <!-- Footer -->
   <script>
       $(function() {
-        //         $("#product_major_category").change(function() {
-        //           let major_category = $("#product_major_category option:selected").val();
-        //           let print_minor_option = null;
-        //           switch (major_category) {
-        //           case "거실":
-        //             $("#product_minor_category").empty();
-        //             print_minor_option = "<option value=''>소분류 선택</option>";
-        //             print_minor_option += "<option value=''>거실 하위분류 추가</option>";
-        //             break;
-        //           case "침실":
-        //             $("#product_minor_category").empty();
-        //             print_minor_option = "<option value=''>소분류 선택</option>";
-        //             print_minor_option += "<option value=''>침실 하위분류 추가</option>";
-        //             break;
-        //           // case 4개 더 추가해서 완성시킬것
-        //           }
-        //           $("#product_minor_category").append(print_minor_option);
-        //         });
-      });
-      $("#summernote").summernote({
-        placeholder : "내용을 작성해주세요.",
-        tabsize : 2,
-        height : 300,
-        lang : "ko-KR", // 한글 설정
-        toolbar : [
-        // [groupName, [list of button]]
-        [ "fontname", [ "fontname" ] ], [ "fontsize", [ "fontsize" ] ], [ "style", [ "bold", "italic", "underline", "strikethrough", "clear" ] ], [ "color", [ "forecolor", "color" ] ], [ "table", [ "table" ] ], [ "para", [ "ul", "ol", "paragraph" ] ], [ "height", [ "height" ] ], [ "insert", [ "picture", "link", "video" ] ], [ "view", [ "fullscreen", "help" ] ], ],
-        fontNames : [ "Arial", "Arial Black", "Comic Sans MS", "Courier New", "맑은 고딕", "궁서", "굴림체", "굴림", "돋움체", "바탕체" ],
-        fontSizes : [ "8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "28", "30", "36", "50", "72" ],
-        callbacks : {
-          onImageUpload : function(files, editor, welEditable) {
-            // 파일 업로드(다중업로드를 위해 반복문 사용)
-            for (var i = files.length - 1; i >= 0; i--) {
-              uploadSummernoteImageFile(files[i], this);
-            }
-          },
-        },
-      });
-      function uploadSummernoteImageFile(file, el) {
-        data = new FormData();
-        data.append("file", file);
-        $.ajax({
-          data : data,
-          type : "POST",
-          url : "uploadSummernoteImageFile",
-          contentType : false,
-          enctype : "multipart/form-data",
-          processData : false,
-          success : function(data) {
-            $(el).summernote("editor.insertImage", data.url);
+        $("#summernote").summernote({
+          placeholder : "내용을 작성해주세요.",
+          tabsize : 2,
+          height : 300,
+          lang : "ko-KR", // 한글 설정
+          toolbar : [
+          // [groupName, [list of button]]
+          [ "fontname", [ "fontname" ] ], [ "fontsize", [ "fontsize" ] ], [ "style", [ "bold", "italic", "underline", "strikethrough", "clear" ] ], [ "color", [ "forecolor", "color" ] ], [ "table", [ "table" ] ], [ "para", [ "ul", "ol", "paragraph" ] ], [ "height", [ "height" ] ], [ "insert", [ "picture", "link", "video" ] ], [ "view", [ "fullscreen", "help" ] ], ],
+          fontNames : [ "Arial", "Arial Black", "Comic Sans MS", "Courier New", "맑은 고딕", "궁서", "굴림체", "굴림", "돋움체", "바탕체" ],
+          fontSizes : [ "8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "28", "30", "36", "50", "72" ],
+          callbacks : {
+            onImageUpload : function(files, editor, welEditable) {
+              // 파일 업로드(다중업로드를 위해 반복문 사용)
+              for (var i = files.length - 1; i >= 0; i--) {
+                uploadSummernoteImageFile(files[i], this);
+              }
+            },
           },
         });
-      }
+        function uploadSummernoteImageFile(file, el) {
+          data = new FormData();
+          data.append("file", file);
+          $.ajax({
+            data : data,
+            type : "POST",
+            url : "uploadSummernoteImageFile",
+            contentType : false,
+            enctype : "multipart/form-data",
+            processData : false,
+            success : function(data) {
+              $(el).summernote("editor.insertImage", data.url);
+            },
+          });
+        }
+      })
     </script>
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/detail.jsp"%>
