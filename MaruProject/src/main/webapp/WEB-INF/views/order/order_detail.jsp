@@ -88,8 +88,8 @@
         </table>
       </div>
       <div class="mt-5 txt-center">
-        <button type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택 상품 교환/반품</button>
-        <button type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택상품 결제 취소</button>
+        <a href="order_refund?order_idx=" type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택 상품 환불/결제 취소</a>
+<!--         <button type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택 상품 교환</button> -->
       </div>
     </form>
     <!-- ==================== -->

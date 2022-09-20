@@ -23,4 +23,14 @@ public class OrderController {
 	public String order_process() {
 		return "order/order_complete";
 	}
+
+	@GetMapping("/order_detail")
+	public String order_detail() {
+		return "order/order_detail";
+	}
+
+	@GetMapping("/order_refund")
+	public String order_refund() {
+		return "order/order_refund";
+	}
 }
