@@ -53,9 +53,9 @@ public class ProductInsertService implements ProductService {
 			File originFile = new File(fullPath1);
 			File thumbnail = new File(realPath, "s_" + origin_filename);
 			BufferedImage image1 = ImageIO.read(originFile);
-			BufferedImage image2 = new BufferedImage(400, 400, BufferedImage.TYPE_3BYTE_BGR);
+			BufferedImage image2 = new BufferedImage(500, 500, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = image2.createGraphics();
-			graphic.drawImage(image1, 0, 0, 400, 400, null);
+			graphic.drawImage(image1, 0, 0, 500, 500, null);
 			ImageIO.write(image2, "png", thumbnail);
 
 		} catch (Exception e) {

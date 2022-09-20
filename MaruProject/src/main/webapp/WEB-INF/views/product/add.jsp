@@ -54,15 +54,6 @@
                                 let product_sale_percent = document.querySelector("product_sale_percent");
                                 let sale_price = document.querySelector("sale_price");
 
-                                product_price.addEventListener("change", updateSalePrice)
-                                function updateSalePrice() {
-                                  console.log(product_price.value);
-                                  console.log(product_sale.value);
-                                  console.log(product_sale_percent.value);
-                                  if (product_sale.checked && product_sale_percent != "") {
-                                    sale_price.value = product_price * product_sale_percent / 100;
-                                  }
-                                }
                               }
                             </script>
 
