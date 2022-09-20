@@ -53,7 +53,7 @@ tr,th ,td{
  </style>
 </head>
 <body class="animsition">
-  <%@include file="/include/header.jsp"%>
+ <%@include file="/include/header.jsp"%>  
  <div class="container m-t-50" >
 
 <h2>관리자 페이지</h2>
@@ -212,6 +212,9 @@ tr,th ,td{
  <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
+<<<<<<< HEAD
+=======
  
+>>>>>>> c355e85ceb09599937e47221afe6cff910407ec2
 </body>
 </html>
