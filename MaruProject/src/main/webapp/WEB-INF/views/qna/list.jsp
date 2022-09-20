@@ -39,10 +39,9 @@ li.page-item.active>a.page-link:hover {
   <div class="container" >
   <table class="table table-striped table-hover">
 	<h3>1:1문의 페이지</h3> 
-		<select style="float:right;">
+		<select style="float:right;" class="m-t-20"> 
 			<option>정렬</option>
-		</select>
-		<br> <br> <br>  
+		</select>  
 		<thead style="background-color:#d3d3d3; text-align:center;"> 
 			<tr class="row">
 				<th class="col-6">제목</th>
@@ -64,11 +63,11 @@ li.page-item.active>a.page-link:hover {
 	<br>
 	 	<nav aria-label="Page navigation example">
 	      <ul class="pagination">
-	        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+	        <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
 	        <li class="page-item active"><a class="page-link" href="#">1</a></li>
 	        <li class="page-item"><a class="page-link" href="#">2</a></li>
 	        <li class="page-item"><a class="page-link" href="#">3</a></li>
-	        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	        <li class="page-item"><a class="page-link" href="#">다음</a></li>
 	      </ul>
 	    </nav> 
   </div>
@@ -83,11 +82,11 @@ li.page-item.active>a.page-link:hover {
   #button{  
   	float:right;
   } 
-  	td{
-  		border:1px solid;
-  	} 
-	tr,th{ 
-		border:1px solid; 
+  td{
+  	  border: 1px solid #e6e6e6;
+  }
+	tr,th{   
+		border: 1px solid #e6e6e6;
 		background-color:#d3d3d3;
 	}
   </style>

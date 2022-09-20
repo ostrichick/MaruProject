@@ -33,23 +33,23 @@ li.page-item.active>a.page-link:hover {
 </style> 
 </head>
 <body class="animsition">
-  <%@include file="/include/header.jsp"%>
-  <div class="container" style="margin: 30px auto;">
+  <%@include file="/include/header.jsp"%> 
+  <div class="container" style="margin: 40px auto;"> 
    <table class="table table-striped table-hover">
 	<thead>
     <h3>자주묻는 질문(FAQ)</h3>
-    <div style="float:left; border:1px solid; width:70%; height:140px;">   
-      	 	<p style="text-align: center; margin-top:20px;">검색을 이용하시면 보다 빠르게 원하시는 답변을 얻으실 수 있습니다.</p>  
-      	 	<h4 style="float:left; margin:10px 85px 0 0; ">FAQ 검색</h4> 
+    <div class="bor10 m-t-20 " style="float:left; width:70%; height:140px;">   
+      	 	<p class="m-t-20 m-b-10" style="text-align: center;">검색을 이용하시면 보다 빠르게 원하시는 답변을 얻으실 수 있습니다.</p>  
+      	 	<h4 class="m-l-40 m-t-5 m-r-50" style="float:left;">FAQ 검색</h4>  
     		<div class="input-group" style="width:460px;">  
       	 	 <input type="text" class="form-control" placeholder="검색어를 입력하세요" aria-label="검색어를 입력하세요" aria-describedby="button-addon2">
  			 <button id="button" style="width:80px;" class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
       	 	</div>  
      </div>
-     <div style="float:right; border:1px solid; width:30%; height:140px; text-align:center;"> 
+     <div class="bor10 m-t-20" style="float:right; width:30%; height:140px; text-align:center;"> 
       	 	<br>
       	 	<p>원하시는 정보를 얻지 못하셨나요?</p>
-      	 	<a href="#" onclick="faq_qna()" class="btn btn-success" id="button" >문의하기</a> 
+      	 	<a href="#" onclick="faq_qna()" class="btn btn-success m-t-10" id="button" >문의하기</a> 
       </div>
       	 <br><br><br><br>
       	 <br><br><br><br>
@@ -93,11 +93,11 @@ li.page-item.active>a.page-link:hover {
     </table>
 	<nav aria-label="Page navigation example">
 	      <ul class="pagination">
-	        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+	        <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
 	        <li class="page-item active"><a class="page-link" href="#">1</a></li>
 	        <li class="page-item"><a class="page-link" href="#">2</a></li>
-	        <li class="page-item"><a class="page-link" href="#">3</a></li>
-	        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	        <li class="page-item"><a class="page-link" href="#">3</a></li> 
+	        <li class="page-item"><a class="page-link" href="#">다음</a></li>
 	      </ul> 
 	    </nav> 
   </div>

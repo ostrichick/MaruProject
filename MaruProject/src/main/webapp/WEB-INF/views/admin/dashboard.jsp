@@ -60,7 +60,7 @@ tr,th ,td{
 <br> 
 <div class="container" id="box">
 	<a href="${pageContext.request.contextPath}/admin/memberList" class="btn btn-success m-l--15" id="button" >회원관리</a>
-	<table class="table table-bordered col-7" id="mbox">   
+	<table class="table table-bordered col-10" id="mbox">    
 		<tr class="bg1">   
 			<th>선택</th>
 			<th>아이디</th>
@@ -69,17 +69,17 @@ tr,th ,td{
 			<th>주소</th>
 			<th>상세주소</th>
 			<th>가입일</th>
-			<th>삭제여부</th> 
+			<th>탈퇴여부</th> 
 		</tr>
 		<tr class="bg0"> 
 			<td><input type="checkbox" value="선택" id="checkbox"/></td>
-			<td><a href="#" class="">1</a></td>
-			<td></td>
-			<td></td> 
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><input type="checkbox" value="삭제여부" id="checkbox"/></td>
+			<td><a href="#" class="">sdifas</a></td>
+			<td>홍길동</td> 
+			<td>12341221</td> 
+			<td>전라북도 전주시</td>
+			<td>인후동 00도로 125-21번지</td>
+			<td>20221211</td> 
+			<td>탈퇴</td>  
 		</tr>
 	</table>   
 	<br>   
@@ -96,7 +96,7 @@ tr,th ,td{
 <br><br>
 <div class="container" id="box">
 	<a href="${pageContext.request.contextPath}/admin/updateList" class="btn btn-success  m-l--15" id="button" >상품 업데이트</a>
-	<table class="table table-bordered col-4" id="mbox">   
+	<table class="table table-bordered col-5" id="mbox">   
 		<tr class="bg1">  
 			<th>선택</th>
 			<th>상품명</th>
@@ -105,9 +105,9 @@ tr,th ,td{
 		</tr>
 		<tr class="bg0"> 
 			<td><input type="checkbox" value="선택" id="checkbox"/></td>
-			<td><a href="#" class="">1</a></td>
-			<td></td>
-			<td></td> 
+			<td><a href="#" class="">파란소파123</a></td>
+			<td>123412412</td>
+			<td>50</td> 
 		</tr> 
 	</table>  
 	<nav aria-label="Page navigation example">
@@ -132,9 +132,9 @@ tr,th ,td{
 		</tr>
 		<tr class="bg0"> 
 			<td><input type="checkbox" value="선택" id="checkbox"/></td>
-			<td><a href="#" class="">1</a></td>
-			<td></td>
-			<td></td>
+			<td><a href="#" class="">공지사항123</a></td>
+			<td>14553445</td>
+			<td>999</td>
 		</tr>
 	</table>  
 	<nav aria-label="Page navigation example">
@@ -150,8 +150,8 @@ tr,th ,td{
 <br><br>
 <div class="container" id="box">
 	<a href="${pageContext.request.contextPath}/admin/" class="btn btn-success  m-l--15" id="button" >1:1문의</a>
-<table class="table table-bordered col-4" id="mbox">      
-		<tr class="bg1">  
+<table class="table table-bordered col-6" id="mbox">      
+		<tr class="bg1">   
 			<th>선택</th>
 			<th>문의내용</th>
 			<th>아이디</th>
@@ -160,10 +160,10 @@ tr,th ,td{
 		</tr>
 		<tr class="bg0"> 
 			<td><input type="checkbox" value="선택" id="checkbox"/></td>
-			<td><a href="#" class="">1</a></td>
-			<td></td>
-			<td></td>
-			<td><input type="checkbox" value="답변여부" id="checkbox"/></td>
+			<td><a href="#" class="">문의내용버튼</a></td>
+			<td>홍길동1</td>
+			<td>12312321</td>
+			<td>답변O</td> 
 		</tr>
 	</table>  
 	<nav aria-label="Page navigation example">
@@ -190,11 +190,11 @@ tr,th ,td{
 		</tr> 
 		<tr class="bg0"> 
 			<td><input type="checkbox" value="선택" id="checkbox"/></td>
-			<td></td> 
-			<td><a href="#" class="">1</a></td>
-			<td></td>
-			<td></td>
-			<td><input type="checkbox" value="답변 여부" id="checkbox"/></td>
+			<td>카테고리</td> 
+			<td><a href="#" class="">1123123</a></td>
+			<td>djhoqs</td>
+			<td>20220222</td> 
+			<td>답변O</td>
 		</tr>
 	</table>  
 	<nav aria-label="Page navigation example">
@@ -207,14 +207,10 @@ tr,th ,td{
 	      </ul>
 	</nav> 
 </div>
-<br><br> 
+<br><br>  
 </div><!-- end first container -->
  <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
-<<<<<<< HEAD
-=======
- 
->>>>>>> c355e85ceb09599937e47221afe6cff910407ec2
 </body>
 </html>
