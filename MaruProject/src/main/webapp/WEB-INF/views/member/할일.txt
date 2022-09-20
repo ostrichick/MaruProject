@@ -1,6 +1,6 @@
 pjt/member
 
-
+회원가입, 로그인 등 페이지에 정규식을 통합 검증 추가 (숫자만 입력, 비밀번호 확인 등)
 
 
 myinfo.jsp 는 내 정보 관련된 사항 쭉 나열된 페이지로 새로 작성 - ㅇ
@@ -10,9 +10,10 @@ myinfo.jsp 는 내 정보 관련된 사항 쭉 나열된 페이지로 새로 작
 
 현재 배송중 상품 delivery.jsp
 
-주문 내역 조회 order_log.jsp
- ㄴ 취소, 교환, 환불 신청
+주문 내역 조회 
+ ㄴ 주문 상세보기 order_detail
+   ㄴ 취소, 교환, 환불 신청 order_refund
  ㄴ 리뷰 작성
 
-취소, 교환, 환불 내역 refund.jsp
+취소, 교환, 환불 내역 refund.jsp?
 

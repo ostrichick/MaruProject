@@ -17,48 +17,48 @@
 <br> 
     <form class="bg0 text-black p-5 bor10 m-b-50" action="${pageContext.request.contextPath}/member/updateinfo.do" method="post">
      	<div class="" id="container">  
-        <p for="exampleFormControlInput1" class="form-label">아이디</p>
+        <p class="form-label">아이디</p>
         <input type="text" class="form-control col-md-12 float-left" id="member_id" name="member_id" value="${member_id}" readonly/>
       </div>
       <br> <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">비밀번호</p>
+        <p class="form-label">비밀번호</p>
         <input type="password" class="form-control" id="member_pw" name="member_pw"  value="${memberInfoVo.member_pw}" placeholder="비밀번호를 입력해주세요">
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">비밀번호확인</p>
+        <p class="form-label">비밀번호확인</p>
         <input type="password" class="form-control" id="member_pw2" name="member_pw2" placeholder="비밀번호 확인">
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">이름</p>
+        <p class="form-label">이름</p>
         <input type="text" class="form-control" id="member_name" name="member_name" value="${memberInfoVo.member_name}" readonly/>
       </div>
        <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">휴대전화번호</p>
-        <input type="phone" class="form-control" id="member_phone" name="member_phone" value="${memberInfoVo.member_phone}" placeholder="휴대 전화번호 를 입력해주세요">
+        <p class="form-label">휴대전화번호</p>
+        <input type="text" class="form-control" id="member_phone" name="member_phone" value="${memberInfoVo.member_phone}" placeholder="휴대 전화번호 를 입력해주세요">
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">이메일</p> 
+        <p class="form-label">이메일</p> 
         <input type="email" class="form-control col-md-9 float-left" id="member_email" name="member_email" value="${memberInfoVo.member_email}" placeholder="이메일을 입력해주세요">
         <button type="button" class="col-3 btn bg2 float-right">인증번호 전송</button> 
       </div> 
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">인증번호</p>
+        <p class="form-label">인증번호</p>
         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="인증번호를 입력해주세요">
       </div>
       <br>
       <div class="">
-        <p for="exampleFormControlInput1" class="form-label">주소</p>
+        <p class="form-label">주소</p>
         <input type="text" class="form-control col-md-10 float-left" id="member_addr" name="member_addr" value="${memberInfoVo.member_addr}" placeholder="주소를 입력해주세요">
         <button type="button" id="member_addr_btn" class="col-2 btn bg2 float-right">주소찾기</button>
       </div>
        <div class="">
-        <p for="exampleFormControlInput1" class="form-label">상세주소</p>
+        <p  class="form-label">상세주소</p>
         <input type="text" class="form-control" id="member_addr2" name="member_addr2" value="${memberInfoVo.member_addr2}" placeholder="상세주소를 입력해주세요">
       </div>
       <br>

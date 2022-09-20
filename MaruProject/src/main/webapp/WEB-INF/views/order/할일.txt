@@ -1,0 +1,9 @@
+장바구니에서 list 받아서 order.jsp로 이동
+
+order.jsp에서 결제 완료되면 order_complete.jsp로 이동
+
+member/myinfo 에서 주문 상세보기 누르면 order_detail로 이동
+
+order_detail에서 환불 신청하면 order_refund로 이동
+
+order_refund 에서 환불 완료하면 order_refund_complete로 이동
