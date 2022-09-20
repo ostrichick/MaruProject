@@ -95,7 +95,7 @@ span.cart_plus>i:hover {
           <!-- Block2 -->
           <div class="block2">
             <div class="block2-pic hov-img0">
-              <img src="${pageContext.request.contextPath}/resources/images/product-01.jpg" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
+              <a href="product-detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <img src="${pageContext.request.contextPath}/resources/images/product-01.jpg" alt="IMG-PRODUCT"></a>
             </div>
 
             <div class="block2-txt flex-w flex-t p-t-14">
@@ -115,7 +115,8 @@ span.cart_plus>i:hover {
             <!-- Block2 -->
             <div class="block2">
               <div class="block2-pic hov-img0">
-                <img src="https://place-hold.it/270x270" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> 간단히 보기 </a>
+                <a href="product-detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <img src="https://place-hold.it/270x270" alt="IMG-PRODUCT">
+                </a>
               </div>
 
               <div class="block2-txt flex-w flex-t p-t-14">
@@ -144,7 +145,6 @@ span.cart_plus>i:hover {
 
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
-  <%@include file="/include/detail.jsp"%>
   <%@include file="/include/script.jsp"%>
 </body>
 </html>
