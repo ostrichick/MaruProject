@@ -73,7 +73,7 @@
         <tbody>
           <tr>
             <td>
-              <a href="${MaruContextPath}/member/order_detail?order_idx=" id="order_list">상세보기</a>
+              <a href="${MaruContextPath}/order/order_detail?order_idx=" id="order_detail">상세보기</a>
             </td>
             <td>2022.07.08</td>
             <td>180,000원</td>

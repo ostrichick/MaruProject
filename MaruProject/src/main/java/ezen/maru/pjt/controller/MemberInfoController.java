@@ -133,11 +133,6 @@ public class MemberInfoController {
 		return viewPage;
 	}
 
-	@GetMapping("/order_detail")
-	public String order_detail() {
-		return "member/order_detail";
-	}
-
 	public void userSessionUpdate(MemberInfoVo memberInfoVo, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		session.setAttribute("member_id", memberInfoVo.getMember_id());
