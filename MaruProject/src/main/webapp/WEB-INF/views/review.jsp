@@ -71,8 +71,8 @@
 	</div>
 </div>
 <div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<a id="re_submit" class="btn btn-dark bg1 " type="submit"  style="margin-right:30px ;"><p class="cl0">등록</p></a>
-<a id="re_reset" class="btn btn-dark bg1" type="reset" ><p class="cl0">취소</p></a> 
+<a id="re_submit" class="btn btn-dark bg1 cl0" type="submit"  style="margin-right:30px ;"><p>등록</p></a>
+<a id="re_reset" class="btn btn-dark bg1 cl0" type="reset" ><p>취소</p></a> 
 </div> 
 
 
