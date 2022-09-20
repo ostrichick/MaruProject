@@ -47,10 +47,26 @@
                 <input type="number" class="form-control txt-right" name="sale_price" id="sale_price" placeholder="할인율이 적용 된 가격" readonly />
                 <div class="input-group-text">₩</div>
               </div>
-              (입력한 가격과 할인율에 따라 할인된 가격이 계산되는 스크립트 추가, 100원단위 반올림)
               <script>
-                              
+                              window.load = function() {
+                                let product_price = document.querySelector("#price");
+                                let product_sale = document.querySelector("product_sale");
+                                let product_sale_percent = document.querySelector("product_sale_percent");
+                                let sale_price = document.querySelector("sale_price");
+
+                                product_price.addEventListener("change", updateSalePrice)
+                                function updateSalePrice() {
+                                  console.log(product_price.value);
+                                  console.log(product_sale.value);
+                                  console.log(product_sale_percent.value);
+                                  if (product_sale.checked && product_sale_percent != "") {
+                                    sale_price.value = product_price * product_sale_percent / 100;
+                                  }
+                                }
+                              }
                             </script>
+
+              (입력한 가격과 할인율에 따라 할인된 가격이 계산되는 스크립트 추가, 100원단위 반올림)
               <p class="stext-102 cl3 p-t-23">
                 규격
                 <input type="text" class="form-control" name="product_size" placeholder="예시: '800x1500'" />
