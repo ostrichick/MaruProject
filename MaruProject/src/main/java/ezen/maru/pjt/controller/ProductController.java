@@ -50,11 +50,11 @@ public class ProductController {
 		return "product/list";
 	}
 
-	@GetMapping("/product-detail")
-	public String detail(Model model) {
-//		ProductVo productVo = listService.getProduct(product_idx);
-//		model.addAttribute("productVo", productVo);
-		return "product/product-detail";
+	@GetMapping("/detail")
+	public String detail(int product_idx, Model model) {
+		ProductVo productVo = listService.getProduct(product_idx);
+		model.addAttribute("product", productVo);
+		return "product/detail";
 	}
 
 //////////////////////////

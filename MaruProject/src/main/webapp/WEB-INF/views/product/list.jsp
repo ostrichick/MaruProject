@@ -95,12 +95,12 @@ span.cart_plus>i:hover {
           <!-- Block2 -->
           <div class="block2">
             <div class="block2-pic hov-img0">
-              <a href="product-detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <img src="${pageContext.request.contextPath}/resources/images/product-01.jpg" alt="IMG-PRODUCT"></a>
+              <a href="detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <img src="${pageContext.request.contextPath}/resources/images/product-01.jpg" alt="IMG-PRODUCT"></a>
             </div>
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> {product_name} </a> <span class="stext-105 cl3"> ₩{product_price} </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
+                <a href="detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> {product_name} </a> <span class="stext-105 cl3"> ₩{product_price} </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-15">
@@ -115,15 +115,13 @@ span.cart_plus>i:hover {
             <!-- Block2 -->
             <div class="block2">
               <div class="block2-pic hov-img0">
-                <a href="product-detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <img src="https://place-hold.it/270x270" alt="IMG-PRODUCT">
+                <a onClick="fn_viewDetail(${product.product_idx})" href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <img src="https://place-hold.it/270x270" alt="IMG-PRODUCT">
                 </a>
               </div>
-
               <div class="block2-txt flex-w flex-t p-t-14">
                 <div class="block2-txt-child1 flex-col-l ">
-                  <a href="product-detail?product_idx=" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.product_name} </a> <span class="stext-105 cl3"> ${product.product_price } </span><span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
+                  <a onClick="fn_viewDetail(${product.product_idx})" href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.product_name} </a> <span class="stext-105 cl3"> ${product.product_price } </span><span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
                 </div>
-
                 <div class="block2-txt-child2 flex-r p-t-15">
                   <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>
 
@@ -141,7 +139,14 @@ span.cart_plus>i:hover {
       </div>
     </div>
   </div>
-
+  <script>
+function fn_viewDetail(idx){
+  let url = "${MaruContextPath}/product/detail?product_idx=";
+  console.log(idx);
+  url += idx;
+  location.href = url;
+}
+</script>
 
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>

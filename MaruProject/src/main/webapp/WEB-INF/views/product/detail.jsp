@@ -16,8 +16,8 @@
   <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
       <a href="${MaruContextPath}/" class="stext-109 cl8 hov-cl1 trans-04"> 전체 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-      </a> <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> 거실 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-      </a> <span class="stext-109 cl4"> 나무 테이블 </span>
+      </a> <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> ${product.product_major_category} <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+      </a> <span class="stext-109 cl4"> ${product.product_name} </span>
     </div>
   </div>
 
@@ -61,17 +61,17 @@
 
         <div class="col-md-6 col-lg-5 p-b-30">
           <div class="p-r-50 p-t-5 p-lr-0-lg">
-            <h2 class="mtext-105 cl2 js-name-detail p-b-14">나무 테이블 &#36;{product_name}</h2>
+            <h2 class="mtext-105 cl2 js-name-detail p-b-14">${product.product_name}</h2>
 
-            <h4 class="mtext-106 cl2">₩ 125,000 &#36;{product_price * product_sale_percent}</h4>
-            <del>₩ 150,000 &#36;{product_price}</del>
+            <h4 class="mtext-106 cl2">₩ ${product.product_price * product.product_sale_percent/100}</h4>
+            <del>₩ ${product_price}</del>
 
             <p class="txt-right">
               <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i>
               </span>
             </p>
 
-            <p class="stext-102 cl3 p-t-23">200x600 &#36;{product_size}</p>
+            <p class="stext-102 cl3 p-t-23">${product_size}</p>
             <p class="stext-102 cl3 p-t-23">
               제주/도서산간 제외 <strong>전국 배송 가능</strong><br>수도권 <strong>무료배송</strong>/그 외 지역 유료배송(하단 배송기준 참고)
             </p>
@@ -124,7 +124,7 @@
             <!-- - -->
             <div class="tab-pane fade show active" id="description" role="tabpanel">
               <div class="how-pos2 p-lr-15-md">
-                <p class="stext-102 cl6">상세설명을 적어주세요. &#36;{product_detail}</p>
+                <p class="stext-102 cl6">상세설명을 적어주세요. &#36;{product.product_detail} ${product.product_detail}</p>
               </div>
             </div>
 
