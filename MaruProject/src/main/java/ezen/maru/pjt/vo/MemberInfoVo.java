@@ -8,7 +8,7 @@ public class MemberInfoVo {
 	private String member_pw;
 	private String member_name;
 	private String member_email;
-	private int member_phone;
+	private String member_phone;
 	private String member_addr;
 	private String member_addr2;
 	private int member_postcode;
@@ -68,11 +68,11 @@ public class MemberInfoVo {
 		this.member_email = member_email;
 	}
 
-	public int getMember_phone() {
+	public String getMember_phone() {
 		return member_phone;
 	}
 
-	public void setMember_phone(int member_phone) {
+	public void setMember_phone(String member_phone) {
 		this.member_phone = member_phone;
 	}
 
