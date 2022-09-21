@@ -142,13 +142,8 @@ span.cart_plus>i:hover {
   <script>
 function fn_viewDetail(idx){
   let url = "${MaruContextPath}/product/detail?product_idx=";
-  console.log(idx);
   url += idx;
   location.href = url;
-}
-
-function addCategoryClass(){
-  document.querySelectorAll("")
 }
 </script>
 

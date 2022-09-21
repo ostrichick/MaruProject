@@ -94,7 +94,7 @@
                   </div>
 
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button class="flex-c-m stext-101 cl0 size-107 bg1  hov-btn1 m-lr-15 trans-04 js-addcart-detail">장바구니</button>
+                    <button onClick="fn_addCart(${product.product_idx})" class="flex-c-m stext-101 cl0 size-107 bg1  hov-btn1 m-lr-15 trans-04 js-addcart-detail">장바구니</button>
                     <button class="flex-c-m stext-101 cl0 size-107 bg1  hov-btn1 m-lr-15 trans-04 js-addcart-detail">즉시구매</button>
                   </div>
 
@@ -298,6 +298,31 @@
     </div>
     <!-- 제품 상세 컨테이너 -->
   </section>
+  <script>
+  /** 장바구니 CRUD 기능을 및 ajax로 구현하는 게 목표 
+  
+  로그인 여부 -> 세션값을 가져와서 체크
+    
+  1. 로그인 됨, 장바구니 클릭 
+    -> 세션에서 member_idx를 받아와 cart_product_number, product_idx를 cartVo로 담아 전송
+  2. 로그인 됨, 구매 클릭 
+    -> 장바구니로 전송하는 대신 위의 정보를 cartVo로 담아서 구매페이지로 즉시 이동
+  3. 비로그인, 장바구니 클릭 
+    -> 쿠키나 localstorage 이용하여 검증
+  
+  번외
+  회원가입시 -> 장바구니 쿠키를 가지고 있을경우 해당 정보를 새로운 member_idx에 귀속된 회원용 장바구니로 이동
+  
+  
+  
+  */
+  function addCart(idx){
+    let cart_product_number = document.getElementById(product_number).value;
+    let url = "${MaruContextPath}/product/detail?product_idx=";
+    url += idx;
+    location.href = url;
+  }
+  </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/detail.jsp"%>

@@ -86,14 +86,9 @@ public class ProductController {
 	@PostMapping("/edit_process")
 	public String edit_process(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest request,
 			Model model) {
-		System.out.println("pidx : " + productVo.getProduct_idx());
-		System.out.println("pdet : " + productVo.getProduct_detail());
-
 		int result = updateService.productEdit(productVo, uploadFile, request);
-		System.out.println("result : " + result);
 		String viewPage = "redirect:/product/edit?product_idx=" + productVo.getProduct_idx();
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
-			System.out.println(productVo.getProduct_idx());
 			viewPage = "redirect:/product/detail?product_idx=" + productVo.getProduct_idx();
 		}
 		return viewPage;

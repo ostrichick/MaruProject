@@ -59,41 +59,29 @@ public class HomeController {
 		return "product";
 	}
 
-	@GetMapping("/product2")
-	public String product2() {
-		return "product2";
-	}
-
-	@GetMapping("/product-detail")
-	public String product_detail() {
-		return "product-detail";
-	}
-
-	@GetMapping("/shopping-cart")
-	public String shopping_cart() {
-		return "shopping-cart";
+	@GetMapping("/cart")
+	public String cart() {
+		return "cart";
 	}
 
 	@GetMapping("/review")
 	public String review() {
 		return "review";
 	}
- 
+
 	@GetMapping("/faq")
 	public String faq() {
 		return "/faq/list";
 	}
-	
+
 	@GetMapping("/faq/write")
 	public String write() {
 		return "/faq/write";
-	} 
-	
+	}
+
 	@GetMapping("/faq/edit")
 	public String edit() {
 		return "/faq/edit";
-	}	
-
-
+	}
 
 }
