@@ -118,7 +118,7 @@ CREATE TABLE member_info
 	-- 이메일
 	member_email varchar2(100) NOT NULL,
 	-- 전화번호
-	member_phone number NOT NULL,
+	member_phone varchar2(12) NOT NULL,
 	-- 회원주소
 	member_addr varchar2(255) NOT NULL,
 	-- 상세주소
@@ -318,11 +318,11 @@ CREATE TABLE review_tbl
 	-- 회원번호
 	member_idx number NOT NULL,
 	-- 리뷰 내용
-	content varchar2(999) NOT NULL,
+	content varchar2(999),
 	-- 리뷰 별점
 	star number NOT NULL,
 	-- 리뷰 작성일
-	wdate date DEFAULT sysdate,
+	wdate date DEFAULT sysdate NOT NULL,
 	-- 리뷰 사진 원본이름
 	file_original varchar2(90),
 	-- 리뷰 사진 시스템 이름
