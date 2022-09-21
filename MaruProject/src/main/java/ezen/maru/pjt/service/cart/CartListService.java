@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ezen.maru.pjt.dao.CartDao;
 import ezen.maru.pjt.vo.CartVo;
 
-@Service("p_list")
+@Service("c_list")
 public class CartListService implements CartService {
 	private CartDao cartDao;
 
