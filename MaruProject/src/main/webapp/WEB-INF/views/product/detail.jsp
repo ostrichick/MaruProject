@@ -86,7 +86,7 @@
                       <i class="fs-16 zmdi zmdi-minus"></i>
                     </div>
 
-                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="product_number" value="1">
+                    <input class="mtext-104 cl3 txt-center num-product" id="cart_product_number" type="number" name="cart_product_number" value="1">
 
                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                       <i class="fs-16 zmdi zmdi-plus"></i>
@@ -319,22 +319,29 @@
   
   번외
   회원가입시 -> 장바구니 쿠키를 가지고 있을경우 해당 정보를 새로운 member_idx에 귀속된 회원용 장바구니로 이동
-  
-  
-  
+    
   */
-  function addCart(idx){ //idx 값에는 product_idx가 담김
-    let cart_product_number = document.getElementById(product_number).value; // 담을 물건 숫자
+  function fn_addCart(idx){ //idx 값에는 product_idx가 담김. 장바구니 버튼 위치 line 096
+    
+    let cart_product_number = document.getElementById("cart_product_number").value; // 담을 물건 숫자
     
     $.ajax({
       type:"post",
-      url:"${MaruContextPath}/cart/add_process?product_idx=" + idx;
-      data:({})
-    })
-    
-    let url = "${MaruContextPath}/product/detail?product_idx=";
-    url += idx;
-    location.href = url;
+      url:"${MaruContextPath}/cart/add_process?product_idx=" + idx + "&cart_product_number=" + cart_product_number, 
+      data: { 
+        "product_idx" : idx,
+        "cart_product_number" : cart_product_number 
+      },
+      success : addCartSuccess,
+      error : addCartFail,
+     })
+   }
+  function addCartSuccess(){
+    //장바구니로 이동 혹은 계속 쇼핑하기 여부 modal 창으로 출력
+    alert("성공");
+  }
+  function addCartFail(){
+    alert("오류가 발생했습니다. 다시 시도해주세요.");
   }
   </script>
   <!-- Footer -->

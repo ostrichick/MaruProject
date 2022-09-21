@@ -6,6 +6,12 @@ public class CartVo {
 	private int product_idx;
 	private int cart_product_number;
 
+	@Override
+	public String toString() {
+		return "CartVo [member_idx=" + member_idx + ", product_idx=" + product_idx + ", cart_product_number="
+				+ cart_product_number + "]";
+	}
+
 	public int getCart_idx() {
 		return cart_idx;
 	}

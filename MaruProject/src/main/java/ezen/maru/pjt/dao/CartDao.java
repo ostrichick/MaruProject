@@ -27,6 +27,6 @@ public class CartDao {
 	}
 
 	public int addCart(CartVo cartVo) {
-		return sqlSession.insert(MAPPER + ".addCart", cartVo);
+		return sqlSession.update(MAPPER + ".addCart", cartVo);
 	}
 }

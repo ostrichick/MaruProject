@@ -1,6 +1,10 @@
 package ezen.maru.pjt.controller;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -55,7 +59,12 @@ public class CartController {
 	}
 
 	@PostMapping("/add_process")
-	public String cart_add(CartVo cartVo, Model model) {
+	public String cart_add(HttpServletRequest req, CartVo cartVo, Model model) {
+		HttpSession session = req.getSession();
+		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+		int member_idx = (int) optional_member_idx.get();
+		cartVo.setMember_idx(member_idx);
+		System.out.println(cartVo.toString());
 		int result = insertService.addCart(cartVo);
 		String viewPage = "redirect:/";
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것

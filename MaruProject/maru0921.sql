@@ -238,10 +238,10 @@ CREATE TABLE product_cart
 	-- 회원번호
 	member_idx number NOT NULL,
 	-- 상품번호
-	product_idx number NOT NULL UNIQUE,
+	product_idx number NOT NULL,
 	-- 상품 수량
 	cart_product_number number,
-	PRIMARY KEY (cart_idx)
+	PRIMARY KEY (cart_idx, member_idx, product_idx)
 );
 
 
