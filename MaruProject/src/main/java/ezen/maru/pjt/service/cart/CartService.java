@@ -6,7 +6,7 @@ import ezen.maru.pjt.vo.CartVo;
 
 public interface CartService {
 
-	default List<CartVo> getCartList() {
+	default List<CartVo> getCartList(int member_idx) {
 		return null;
 	}
 

@@ -44,10 +44,14 @@ public class CartController {
 	}
 
 	@GetMapping("/")
-	public String list(Model model) {
-		List<CartVo> cartList = listService.getCartList();
+	public String list(HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+		int member_idx = (int) optional_member_idx.get();
+		List<CartVo> cartList = listService.getCartList(member_idx);
+		System.out.println(cartList.toString());
 		model.addAttribute("cartList", cartList);
-		return "product/list";
+		return "cart";
 	}
 
 //////////////////////////

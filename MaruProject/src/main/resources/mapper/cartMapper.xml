@@ -3,7 +3,7 @@
 <mapper namespace="ezen.maru.pjt.cart">
   <!-- 카트테이블과 멤버테이블 조인해서 멤버아이디 일치하는 카트 목록 가져오기 -->
   <select id="getCartList" resultType="cartVo">
-    select * from cart order by cart_idx desc
+    select * from product_cart where member_idx = #{member_idx} order by cart_idx desc
   </select>
 
   <!-- ================================================= -->

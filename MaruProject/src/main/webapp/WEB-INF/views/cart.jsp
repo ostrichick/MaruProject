@@ -84,6 +84,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
             <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
           </td>
         </tr>
+        <c:forEach var="cart" items="${cartList}" varStatus="status">
 
         <tr class="table_row">
           <td class="">
@@ -96,7 +97,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
               <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
             </div>
           </td>
-          <td class="txt-left">제품명ㅇㅇㅇㅇ ㅇㅇㅇㅇㅇㅇㅇ ㅇㅇㅇㅇ</td>
+          <td class="txt-left">${cart.product_idx }</td>
           <td class="txt-right">180,000원</td>
           <td class="">
             <div class="wrap-num-product flex-w m-auto">
@@ -115,6 +116,8 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
             <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
           </td>
         </tr>
+        </c:forEach>
+        
       </table>
     </div>
 
