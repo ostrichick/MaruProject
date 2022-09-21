@@ -27,6 +27,11 @@ public class ProductDao {
 	}
 
 	public ProductVo getProduct(int product_idx) {
+		sqlSession.update(MAPPER + ".upHit", product_idx);
 		return sqlSession.selectOne(MAPPER + ".getProduct", product_idx);
+	}
+
+	public int productEdit(ProductVo productVo) {
+		return sqlSession.update(MAPPER + ".productUpdate", productVo);
 	}
 }

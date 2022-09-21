@@ -65,21 +65,36 @@ public class ProductController {
 		return "product/add";
 	}
 
-	@GetMapping("/add2")
-	public String add2() {
-		return "product/add2";
-	}
-
 	@PostMapping("/add_process")
 	public String product_add(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest request,
 			Model model) {
-
 		int result = insertService.productAdd(productVo, uploadFile, request);
-
 		String viewPage = "redirect:/product/add";
-
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
 			viewPage = "redirect:/product/list";
+		}
+		return viewPage;
+	}
+
+	@GetMapping("/edit")
+	public String edit(int product_idx, Model model) {
+		ProductVo productVo = listService.getProduct(product_idx);
+		model.addAttribute("product", productVo);
+		return "product/edit";
+	}
+
+	@PostMapping("/edit_process")
+	public String edit_process(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest request,
+			Model model) {
+		System.out.println("pidx : " + productVo.getProduct_idx());
+		System.out.println("pdet : " + productVo.getProduct_detail());
+
+		int result = updateService.productEdit(productVo, uploadFile, request);
+		System.out.println("result : " + result);
+		String viewPage = "redirect:/product/edit?product_idx=" + productVo.getProduct_idx();
+		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
+			System.out.println(productVo.getProduct_idx());
+			viewPage = "redirect:/product/detail?product_idx=" + productVo.getProduct_idx();
 		}
 		return viewPage;
 	}

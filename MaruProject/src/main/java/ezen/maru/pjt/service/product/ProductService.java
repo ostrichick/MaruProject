@@ -22,4 +22,8 @@ public interface ProductService {
 		return null;
 	}
 
+	default int productEdit(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest req) {
+		return 0;
+	}
+
 }

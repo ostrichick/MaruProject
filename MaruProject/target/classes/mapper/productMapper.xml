@@ -14,6 +14,7 @@
     #{product_name}, #{product_price}, #{product_size},
     #{product_major_category}, #{product_detail}, #{product_inventory})
   </insert>
+  
   <insert id="productAdd_file" parameterType="fileVo">
     INSERT INTO product_photo (
     product_idx, file_original, file_system, file_extension
@@ -22,33 +23,36 @@
     )
   </insert>
 
-
-
   <select id="getProduct" parameterType="int" resultType="productVo">
     select * from product where product_idx = #{product_idx}
   </select>
 
   <update id="upHit" parameterType="int">
-    UPDATE announce
+    UPDATE product
     SET
-    hit = hit + 1
+    product_hit = product_hit + 1
     WHERE
-    idx = #{idx}
+    product_idx = #{product_idx}
   </update>
 
-  <update id="noticeEditProcess" parameterType="boardVo">
-    UPDATE announce
+  <update id="productUpdate" parameterType="productVo">
+    UPDATE product
     SET
-    title = #{title},
-    content = #{content},
-    file_original = #{file_original},
-    file_system = #{file_system},
-    file_extension = #{file_extension}
+    product_name = #{product_name},
+    product_price = #{product_price},
+    product_sale = #{product_sale},
+    product_sale_percent = #{product_sale_percent},
+    product_size = #{product_size},
+    product_inventory = #{product_inventory},
+    product_major_category = #{product_major_category},
+    
+    product_detail = #{product_detail}
     WHERE
-    idx = #{idx}
+    product_idx = #{product_idx}
   </update>
-  <delete id="noticeDeleteProcess" parameterType="int">
-    delete from announce
-    where idx = #{idx}
+
+  <delete id="productDelete" parameterType="int">
+    delete from product
+    where product_idx = #{product_idx}
   </delete>
 </mapper>	

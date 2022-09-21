@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>상품 등록</title>
+<title>상품 정보 수정</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="/include/summernote-head.jsp"%>
@@ -16,7 +16,7 @@
   <!-- 상품 상세 -->
   <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
-      <form action="${pageContext.request.contextPath}/product/add_process" method="post" enctype="multipart/form-data">
+      <form action="${pageContext.request.contextPath}/product/edit_process" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-5 col-lg-6 p-b-30 m-l-auto">
             <div class="p-l-25 p-r-30 p-lr-0-lg" style="">
@@ -28,10 +28,10 @@
           <div class="col-md-6 col-lg-5 p-b-30">
             <div class="p-r-50 p-t-5 p-lr-0-lg">
               <h2 class="mtext-105 cl2 js-name-detail p-b-14">
-                <input type="text" class="form-control" name="product_name" placeholder="제품명" />
+                <input type="text" class="form-control" name="product_name" placeholder="제품명" value="${product.product_name}" />
               </h2>
               <div class="input-group">
-                <input type="number" class="form-control txt-right" name="product_price" id="price" placeholder="가격" />
+                <input type="number" class="form-control txt-right" name="product_price" id="price" placeholder="가격" value="${product.product_price}" />
                 <div class="input-group-text">₩</div>
               </div>
 
@@ -39,7 +39,7 @@
                 <div class="input-group-text">
                   <input type="checkbox" class="" name="product_sale" id="product_sale" value="Y" />
                 </div>
-                <input type="number" class="form-control txt-right" name="product_sale_percent" id="product_sale_percent" placeholder="왼쪽 할인여부 체크 후 여기에 할인율 입력" />
+                <input type="number" class="form-control txt-right" name="product_sale_percent" id="product_sale_percent" placeholder="왼쪽 할인여부 체크 후 여기에 할인율 입력" value="${product.product_sale_percent}" />
                 <div class="input-group-text">%</div>
               </div>
               (1~99 사이의 숫자만 가능하도록 정규식 추가)
@@ -47,20 +47,10 @@
                 <input type="number" class="form-control txt-right" name="sale_price" id="sale_price" placeholder="할인율이 적용 된 가격" readonly />
                 <div class="input-group-text">₩</div>
               </div>
-              <script>
-                              window.load = function() {
-                                let product_price = document.querySelector("#price");
-                                let product_sale = document.querySelector("product_sale");
-                                let product_sale_percent = document.querySelector("product_sale_percent");
-                                let sale_price = document.querySelector("sale_price");
-
-                              }
-                            </script>
-
               (입력한 가격과 할인율에 따라 할인된 가격이 계산되는 스크립트 추가, 100원단위 반올림)
               <p class="stext-102 cl3 p-t-23">
                 규격
-                <input type="text" class="form-control" name="product_size" placeholder="예시: '800x1500'" />
+                <input type="text" class="form-control" name="product_size" placeholder="예시: '800x1500'" value="${product.product_size}" />
               </p>
               <p class="stext-102 cl3 p-t-23">
                 분류
@@ -79,10 +69,11 @@
           <div class="m-lr-auto">
             <textarea class="m-t-15" id="summernote" name="product_detail"></textarea>
             <div class="text-right">
-              <button type="submit" id="btn_submit" class="btn btn-secondary m-tb-10">상품 등록</button>
+              <button type="submit" id="btn_submit" class="btn btn-secondary m-tb-10">상품 정보 수정</button>
             </div>
           </div>
         </div>
+        <input type="hidden" name="product_idx" value="${product.product_idx}"/>
       </form>
     </div>
   </section>
@@ -90,7 +81,7 @@
   <script>
       $(function() {
         $("#summernote").summernote({
-          placeholder : "내용을 작성해주세요.",
+          placeholder : "${product.product_detail}",
           tabsize : 2,
           height : 300,
           lang : "ko-KR", // 한글 설정

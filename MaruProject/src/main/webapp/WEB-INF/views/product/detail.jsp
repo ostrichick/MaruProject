@@ -64,7 +64,7 @@
             <h2 class="mtext-105 cl2 js-name-detail p-b-14">${product.product_name}</h2>
 
             <h4 class="mtext-106 cl2">₩ ${product.product_price * product.product_sale_percent/100}</h4>
-            <del>₩ ${product_price}</del>
+            <del>₩ ${product.product_price}</del>
 
             <p class="txt-right">
               <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i>

@@ -37,14 +37,13 @@ span.cart_plus>i:hover {
         <div class="flex-w flex-l-m filter-tope-group m-tb-10">
           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">전체</button>
 
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">거실</button>
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">침실</button>
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">서재</button>
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">주방</button>
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">욕실</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".livingroom">거실</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bedroom">침실</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".library">서재</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".kitchen">주방</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bathroom">욕실</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".etcproduct">기타</button>
         </div>
-
-
 
         <!-- Search product -->
         <div class="dis-none panel-search w-full p-t-10 p-b-15">
@@ -91,7 +90,7 @@ span.cart_plus>i:hover {
       </div>
 
       <div class="row isotope-grid">
-        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item livingroom">
           <!-- Block2 -->
           <div class="block2">
             <div class="block2-pic hov-img0">
@@ -111,7 +110,8 @@ span.cart_plus>i:hover {
         </div>
 
         <c:forEach var="product" items="${productList}" varStatus="status">
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
+          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.product_major_category }">
+
             <!-- Block2 -->
             <div class="block2">
               <div class="block2-pic hov-img0">
@@ -120,7 +120,7 @@ span.cart_plus>i:hover {
               </div>
               <div class="block2-txt flex-w flex-t p-t-14">
                 <div class="block2-txt-child1 flex-col-l ">
-                  <a onClick="fn_viewDetail(${product.product_idx})" href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.product_name} </a> <span class="stext-105 cl3"> ${product.product_price } </span><span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
+                  <a onClick="fn_viewDetail(${product.product_idx})" href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.product_name} </a> <span class="stext-105 cl3"><fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" /> </span><span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
                 </div>
                 <div class="block2-txt-child2 flex-r p-t-15">
                   <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>
@@ -145,6 +145,10 @@ function fn_viewDetail(idx){
   console.log(idx);
   url += idx;
   location.href = url;
+}
+
+function addCategoryClass(){
+  document.querySelectorAll("")
 }
 </script>
 

@@ -20,7 +20,7 @@ import com.google.gson.JsonObject;
 // SummerNote내장 파일업로드 기능을 지원하는 컨트롤러
 public class FileController {
 
-	@RequestMapping(value = "notice/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
+	@RequestMapping(value = "**/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
 			HttpServletRequest request) {
