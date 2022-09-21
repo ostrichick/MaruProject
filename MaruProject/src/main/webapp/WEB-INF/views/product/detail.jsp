@@ -303,12 +303,19 @@
   
   로그인 여부 -> 세션값을 가져와서 체크
     
-  1. 로그인 됨, 장바구니 클릭 
-    -> 세션에서 member_idx를 받아와 cart_product_number, product_idx를 cartVo로 담아 전송
-  2. 로그인 됨, 구매 클릭 
-    -> 장바구니로 전송하는 대신 위의 정보를 cartVo로 담아서 구매페이지로 즉시 이동
-  3. 비로그인, 장바구니 클릭 
-    -> 쿠키나 localstorage 이용하여 검증
+  1) 장바구니 추가 
+    1. 로그인 됨, 장바구니 클릭 
+      -> 세션에서 member_idx를 받아와 cart_product_number, product_idx를 cartVo로 담아 전송
+    2. 로그인 됨, 구매 클릭 
+      -> 장바구니로 전송하는 대신 위의 정보를 cartVo로 담아서 구매페이지로 즉시 이동
+    3. 비로그인, 장바구니 클릭 
+      -> 쿠키나 localstorage 이용하여 검증
+  
+  1)-2 로그인 유저는 즉시 구매 버튼을 이용해 구매페이지로 이동 가능. 
+       비로그인일 경우 회원만 가능합니다. 로그인 하시겠습니까 confirm 창 띄우기 
+    
+  2) 장바구니 추가 성공시 -> 장바구니로 이동, 계속 쇼핑하기 modal창 출력.
+  
   
   번외
   회원가입시 -> 장바구니 쿠키를 가지고 있을경우 해당 정보를 새로운 member_idx에 귀속된 회원용 장바구니로 이동
@@ -316,8 +323,15 @@
   
   
   */
-  function addCart(idx){
-    let cart_product_number = document.getElementById(product_number).value;
+  function addCart(idx){ //idx 값에는 product_idx가 담김
+    let cart_product_number = document.getElementById(product_number).value; // 담을 물건 숫자
+    
+    $.ajax({
+      type:"post",
+      url:"${MaruContextPath}/cart/add_process?product_idx=" + idx;
+      data:({})
+    })
+    
     let url = "${MaruContextPath}/product/detail?product_idx=";
     url += idx;
     location.href = url;

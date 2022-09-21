@@ -29,19 +29,19 @@
 				<input class="form-control" type="password" id="member_pw" name="member_pw" placeholder="패스워드를 입력해주세요">
 			</div>
 			<div class="flex-w m-t-30"> 
-			<button type="submit" class="btn btn-dark bg1" id="sign">
+			<button type="submit" class="btn btn-outline-secondary bg7 cl7" id="sign">
 				로그인 
 			</button>
 		</div>
 		</form>
 		<div class="m-t-20"> 
-			<button class="btn btn-dark bg1" onclick="signup()" id="sign">
+			<button class="btn btn-dark bg2 cl6" onclick="signup()" id="sign">
 				회원가입 
 			</button>
 		</div>
 		<div class="m-t-20">
-			<a href="#" class="btn bg1 btn-dark" id="sign"> 
-				아이디/비밀번호을 잊어버리셨나요?
+			<a href="#" class="btn bg2 cl6 btn-dark" id="sign"> 
+				아이디/비밀번호 찾기
 			</a>
 			</div>
 	 </div>

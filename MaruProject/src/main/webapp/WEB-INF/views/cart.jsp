@@ -1,23 +1,22 @@
-<!--===============================================================================================-->
-
 <!-- 장바구니 페이지
 
 프론트) product_idx와 cart_product_number를 이용해 카트 테이블과 상품 테이블을 조인시켜서 상품가격을 가져오고
 product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실시간으로 해당품목 가격합과 장바구니 금액 총합을 구한다  
 
 백엔드)
-    1. 보기 :
-    -> db에서 member_idx가 일치하는 회원의 cartVo를 ArrayList로 담아서 가져옴
-    -> ArrayList안의 cartVo를 하나씩 출력
-    -> 조건문을 이용해 ArrayList<cartVo>가 비어있을 경우 장바구니가 비어있습니다 메세지 출력
+    1. 쓰기 : product/detail 에서 처리
+
+    2. 보기 :
+      -> db에서 member_idx가 일치하는 회원의 cartVo를 ArrayList로 담아서 가져옴
+      -> ArrayList안의 cartVo를 하나씩 출력
+      -> 조건문을 이용해 ArrayList<cartVo>가 비어있을 경우 장바구니가 비어있습니다 메세지 출력
+    
+    3. 수정 : 
+    
+    4. 삭제 : 
     
     -->
-
-
-  
-
 <!--===============================================================================================-->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
