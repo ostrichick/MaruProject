@@ -59,11 +59,6 @@ public class HomeController {
 		return "product";
 	}
 
-//	@GetMapping("/cart")
-//	public String cart() {
-//		return "cart";
-//	}
-
 	@GetMapping("/review")
 	public String review() {
 		return "review";

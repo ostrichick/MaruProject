@@ -19,6 +19,8 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 <!--===============================================================================================-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -85,39 +87,62 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
           </td>
         </tr>
         <c:forEach var="cart" items="${cartList}" varStatus="status">
-
-        <tr class="table_row">
-          <td class="">
-            <div class="form-check">
-              <input class="form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
-            </div>
-          </td>
-          <td class="">
-            <div class="">
-              <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
-            </div>
-          </td>
-          <td class="txt-left">${cart.product_idx }</td>
-          <td class="txt-right">180,000원</td>
-          <td class="">
-            <div class="wrap-num-product flex-w m-auto">
-              <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                <i class="fs-16 zmdi zmdi-minus"></i>
+          <c:if test="${empty cartList  }">
+            <tr class="table_row">
+              <td class="">장바구니가 비어있습니다. 상품을 추가해주세요.</td>
+            </tr>
+          </c:if>
+          <tr class="table_row">
+            <td class="">
+              <div class="form-check">
+                <input class="form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
               </div>
-
-              <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
-
-              <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                <i class="fs-16 zmdi zmdi-plus"></i>
+            </td>
+            <td class="">
+              <div class="">
+                <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
               </div>
-            </div>
-          </td>
-          <td class="">
-            <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
-          </td>
-        </tr>
+            </td>
+            <td class="txt-left">
+              <a href="${MaruContextPath}/product/detail?product_idx=${cart.product_idx}">${cart.product_name }</a>
+            </td>
+
+            <td class="txt-right">
+              <c:choose>
+                <c:when test="${cart.product_sale eq 'Y' and cart.product_sale_percent gt 0 }">
+                  <del>
+                    <fmt:formatNumber value="${cart.product_price }" type="currency" currencySymbol="₩" />
+                  </del>
+                  <br>
+                  <fmt:formatNumber value="${cart.product_price - cart.product_price * cart.product_sale_percent/100}" type="currency" currencySymbol="₩" />
+                </c:when>
+
+                <c:otherwise>
+                  <!-- 할인을 안 할 경우 정상가격 표시 -->
+                  <fmt:formatNumber value="${cart.product_price }" type="currency" currencySymbol="₩" />
+                </c:otherwise>
+              </c:choose>
+            </td>
+
+            <td class="">
+              <div class="wrap-num-product flex-w m-auto">
+                <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                  <i class="fs-16 zmdi zmdi-minus"></i>
+                </div>
+
+                <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+
+                <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                  <i class="fs-16 zmdi zmdi-plus"></i>
+                </div>
+              </div>
+            </td>
+            <td class="">
+              <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
+            </td>
+          </tr>
         </c:forEach>
-        
+
       </table>
     </div>
 

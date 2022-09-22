@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
 <html lang="en">
@@ -62,9 +63,24 @@
         <div class="col-md-6 col-lg-5 p-b-30">
           <div class="p-r-50 p-t-5 p-lr-0-lg">
             <h2 class="mtext-105 cl2 js-name-detail p-b-14">${product.product_name}</h2>
-
-            <h4 class="mtext-106 cl2">₩ ${product.product_price * product.product_sale_percent/100}</h4>
-            <del>₩ ${product.product_price}</del>
+            <!-- 할인 여부가 Y이고 할인율이 0보다 클 경우, 원래 가격에 작대기를 긋고 할인 가격을 표시 -->
+            <c:choose>
+              <c:when test="${product.product_sale eq 'Y' and product.product_sale_percent gt 0 }">
+                <del>
+                  <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
+                </del>
+                <fmt:formatNumber value="${product.product_sale_percent/100 }" type="percent" />
+                <h4 class="mtext-106 cl2">
+                  <fmt:formatNumber value="${product.product_price - product.product_price * product.product_sale_percent/100}" type="currency" currencySymbol="₩" />
+                </h4>
+              </c:when>
+              <c:otherwise>
+                <!-- 할인을 안 할 경우 정상가격 표시 -->
+                <h4 class="mtext-106 cl2">
+                  <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
+                </h4>
+              </c:otherwise>
+            </c:choose>
 
             <p class="txt-right">
               <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i>

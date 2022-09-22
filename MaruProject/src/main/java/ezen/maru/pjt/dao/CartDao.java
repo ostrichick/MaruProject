@@ -19,7 +19,9 @@ public class CartDao {
 	}
 
 	public List<CartVo> getCartList(int member_idx) {
-		return sqlSession.selectList(MAPPER + ".getCartList");
+		System.out.println("DAO에서 mapper로 넘어가는 member_idx값 (1이어야 정상) : " + member_idx);
+
+		return sqlSession.selectList(MAPPER + ".getCartList", member_idx);
 	}
 
 	public int updateCart(CartVo cartVo) {

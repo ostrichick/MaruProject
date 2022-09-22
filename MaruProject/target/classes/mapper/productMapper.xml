@@ -8,13 +8,15 @@
   <!-- ================================================= -->
   <insert id="productAdd" parameterType="productVo">
     insert into product (
-    product_name, product_price, product_size,
-    product_major_category, product_detail, product_inventory
+    product_name, product_price, product_sale, product_sale_percent,
+    product_size, product_major_category,
+    product_detail, product_inventory
     ) values (
-    #{product_name}, #{product_price}, #{product_size},
-    #{product_major_category}, #{product_detail}, #{product_inventory})
+    #{product_name}, #{product_price}, #{product_sale}, #{product_sale_percent},
+    #{product_size}, #{product_major_category},
+    #{product_detail}, #{product_inventory})
   </insert>
-  
+
   <insert id="productAdd_file" parameterType="fileVo">
     INSERT INTO product_photo (
     product_idx, file_original, file_system, file_extension
@@ -45,7 +47,7 @@
     product_size = #{product_size},
     product_inventory = #{product_inventory},
     product_major_category = #{product_major_category},
-    
+
     product_detail = #{product_detail}
     WHERE
     product_idx = #{product_idx}

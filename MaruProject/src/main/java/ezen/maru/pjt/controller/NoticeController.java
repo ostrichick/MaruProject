@@ -56,12 +56,11 @@ public class NoticeController {
 	@PostMapping("/write_process")
 	public String write_process(BoardVo boardVo, RedirectAttributes redirect) {
 		int result = insertService.noticeWriteProcess(boardVo);
-
 		String viewPage = "redirect:/notice/write";
 		if (result == 1) {
 			List<BoardVo> noticeList = listService.getNoticeList();
 			redirect.addFlashAttribute("noticeList", noticeList);
-			viewPage = "redirect:/notice/list";
+			viewPage = "redirect:/notice/view?idx=" + boardVo.getIdx();
 		}
 		return viewPage;
 	}
