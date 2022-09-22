@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -102,6 +102,7 @@ $("#file").on('change',function(){
 <br>
 <br> 
 <div class="container text-center m-t-10 bor4" id="container"> 
+<form action="" method="post" id="review_write">
 	<div class="row" style="margin-top: 25px;">
 	  <div class="col-2" style="margin-top:20px;"> 
 		*별점 
@@ -144,6 +145,7 @@ $("#file").on('change',function(){
 	</div> 
 	</div>
 	</div>
+</form>
 </div>
 <div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
 <a id="re_submit" class="btn btn-dark bg1 cl0" type="submit"  style="margin-right:30px ;">등록</a> 
@@ -157,8 +159,7 @@ $("#file").on('change',function(){
 <!-- =========================================== -->
 <script type="text/javascript">
 $("#re_submit").on("click", function(e){
-	
-			location.href = "${MaruContextPath}/index";
+	location.href = "${MaruContextPath}/index";
 });
 </script>	
 <script type="text/javascript">

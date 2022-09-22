@@ -30,6 +30,13 @@ li.page-item.active>a.page-link {
 li.page-item.active>a.page-link:hover {
   background: #444;
 }
+#serch{
+	float:left; width:70%; height:140px;
+}
+#bt{
+	float:right; 
+}
+
 </style> 
 </head>
 <body class="animsition">
@@ -38,7 +45,7 @@ li.page-item.active>a.page-link:hover {
    <table class="table table-striped table-hover">
 	<thead>
     <h3>자주묻는 질문(FAQ)</h3>
-    <div class="bor10 m-t-20 " style="float:left; width:70%; height:140px;">   
+    <div class="bor10 m-t-20"id="serch">     
       	 	<p class="m-t-20 m-b-10" style="text-align: center;">검색을 이용하시면 보다 빠르게 원하시는 답변을 얻으실 수 있습니다.</p>  
       	 	<h4 class="m-l-40 m-t-5 m-r-50" style="float:left;">FAQ 검색</h4>  
     		<div class="input-group" style="width:460px;">  
@@ -46,20 +53,13 @@ li.page-item.active>a.page-link:hover {
  			 <button id="button" style="width:80px;" class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
       	 	</div>  
      </div>
-     <div class="bor10 m-t-20" style="float:right; width:30%; height:140px; text-align:center;"> 
+     <div class="bor10 m-t-20 m-b-20" style="float:right; width:30%; height:140px; text-align:center;"> 
       	 	<br>
       	 	<p>원하시는 정보를 얻지 못하셨나요?</p>
       	 	<a href="#" onclick="faq_qna()" class="btn btn-success m-t-10" id="button" >문의하기</a> 
       </div>
-      	 <br><br><br><br>
-      	 <br><br><br><br>
-      	 <h3>FAQ &gt; 전체</h3>
-      	<div style="float:right;">
-      	  <c:if test="${member_admin eq 'Y' }">  
-	        <a href="#" onclick="fq_delet()" class="btn btn-delet" id="button" >삭제</a>
-	      </c:if>
-       	   <a href="${MaruContextPath}/faq/write" onclick="write()" class="btn btn-success" id="button" >등록</a>
-    	</div>   
+      <br><br><br>   
+      <h4 class="m-t-150">FAQ &gt; 전체</h4>  
       </thead> 
       <tbody> 
        	 <tr>
@@ -91,6 +91,12 @@ li.page-item.active>a.page-link:hover {
         </c:forEach>
       </tbody>
     </table>
+      <div id="bt"> 
+      	  <c:if test="${member_admin eq 'Y' }">  
+	        <a href="#" onclick="fq_delet()" class="btn btn-delet" id="button" >삭제</a>
+	      </c:if> 
+       	   <a href="${MaruContextPath}/faq/write" onclick="write()" class="btn btn-success" id="button" >등록</a>
+     </div>   
 	<nav aria-label="Page navigation example">
 	      <ul class="pagination">
 	        <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>

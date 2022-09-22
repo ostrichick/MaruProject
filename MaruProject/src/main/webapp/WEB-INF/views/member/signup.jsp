@@ -23,7 +23,7 @@
       <div class="" id="container"> 
         <p class="form-label">아이디</p>
         <input type="text" class="form-control col-md-10 float-left member_id" id="member_id" name="member_id" placeholder="아이디를 입력해주세요"  required style="IME-MODE: disabled"/> <!-- 필수록 입력해야 합니다. --> 
-        <button type="button" class="col-2 btn cl0 bg7 float-right" >중복확인</button>
+        <button type="button" class="col-2 btn cl0 bg7 float-right" id="btnCheck">중복확인</button>
      	<img id="id_check_sucess" style="display: none;">
      	<span class="valid-feedback"></span>
       </div>
@@ -109,6 +109,9 @@
           }).open();
         }); 
    </script>   
+   <script type="text/javascript">
+
+   </script>
     <script type="text/javascript"> 
     function check_pw(){
     	 

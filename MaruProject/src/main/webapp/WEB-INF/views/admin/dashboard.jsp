@@ -149,7 +149,7 @@ tr,th ,td{
 </div>
 <br><br>
 <div class="container" id="box">
-	<a href="${pageContext.request.contextPath}/admin/" class="btn btn-success  m-l--15" id="button" >1:1문의</a>
+	<a href="${pageContext.request.contextPath}/qna/list" class="btn btn-success  m-l--15" id="button" >1:1문의</a>
 <table class="table table-bordered col-6" id="mbox">      
 		<tr class="bg1">   
 			<th>선택</th>
