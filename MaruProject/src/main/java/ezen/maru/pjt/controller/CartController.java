@@ -2,8 +2,11 @@ package ezen.maru.pjt.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
 import ezen.maru.pjt.service.cart.CartService;
 import ezen.maru.pjt.vo.CartVo;
@@ -49,9 +54,6 @@ public class CartController {
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
 		int member_idx = (int) optional_member_idx.get();
 		List<CartVo> cartList = listService.getCartList(member_idx);
-		System.out.println(cartList.toString());
-		System.out.println("cartList배열의 size() : " + cartList.size());
-		System.out.println(cartList.isEmpty());
 		model.addAttribute("cartList", cartList);
 		return "cart";
 	}
@@ -65,35 +67,68 @@ public class CartController {
 	}
 
 	@PostMapping("/add_process")
-	public String cart_add(HttpServletRequest req, CartVo cartVo, Model model) {
+	@ResponseBody
+	public String cart_add(HttpServletRequest req, HttpServletResponse res, CartVo cartVo, Model model) {
+		String returnValue = "실패";
+		HttpSession session = req.getSession();
+//		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+//		System.out.println(optional_member_idx);
+//		int member_idx = (int) optional_member_idx.get();
+
+		Object member_idx_String = session.getAttribute("member_idx");
+		Cookie cookie = WebUtils.getCookie(req, "cartCookie");
+		int member_idx = 0;
+
+		if (member_idx_String != null && cookie == null) { // 회원이고 쿠키 없을 경우
+			member_idx = (int) member_idx_String; // 세션에서 불러온 member_idx를 인트로 변환, 저장
+		} else if (member_idx_String != null && cookie != null) { // 회원이고 쿠키 있을 경우
+			// ! TODO ! 쿠키에 저장된 비로그인 장바구니를 회원으로 옮기는 로직 추가할것
+			member_idx = (int) member_idx_String;
+		} else if (session.getAttribute("member_idx") == null && cookie == null) { // 비회원 장바구니 첫클릭
+			Random random = new Random();
+			int randomDivide = 1000 + random.nextInt(10000);
+			member_idx = (int) (System.currentTimeMillis() / randomDivide);
+			// 무작위 난수 생성, 비로그인 유저용 member_idx로 사용
+			System.out.println("쿠키용으로 사용할 member_idx : " + member_idx);
+
+			Cookie cookieCart = new Cookie("member_idx", Integer.toString(member_idx));
+			cookieCart.setMaxAge(60 * 60 * 24 * 2); // 60초 * 60분 * 24시간 * 2일
+			cookieCart.setPath("/");
+			res.addCookie(cookieCart);
+
+			Cookie[] cookies = req.getCookies();
+			for (Cookie oneCookie : cookies) {
+				String cookieKey = oneCookie.getName();
+				String cookieValue = oneCookie.getValue();
+				System.out.println("cookeyKey : " + cookieKey + " , cookieValue : " + cookieValue);
+			}
+
+		}
+//		else if (session.getAttribute("member_idx") == null && cookie != null) {
+//			// ! TODO ! 비로그인이고 이미 쿠키가 있는 경우, 쿠키에서 member_idx 불러와서 진행
+//		}
+		cartVo.setMember_idx(member_idx);
+		int result = insertService.addCart(cartVo);
+
+		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
+			returnValue = "성공";
+		}
+		return returnValue;
+	}
+
+	@PostMapping("/updateCart")
+	@ResponseBody
+	public String updateCart(HttpServletRequest req, HttpServletResponse res, CartVo cartVo, Model model) {
 		HttpSession session = req.getSession();
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+		System.out.println(optional_member_idx);
 		int member_idx = (int) optional_member_idx.get();
 		cartVo.setMember_idx(member_idx);
-		System.out.println(cartVo.toString());
-		int result = insertService.addCart(cartVo);
-		String viewPage = "redirect:/";
+		int result = updateService.updateCart(cartVo);
+		String viewPage = "";
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
-			viewPage = "redirect:/";
+			viewPage = "redirect:/product/detail?product_idx=";
 		}
 		return viewPage;
 	}
-
-//	@GetMapping("/edit")
-//	public String edit(int product_idx, Model model) {
-//		ProductVo productVo = listService.getProduct(product_idx);
-//		model.addAttribute("product", productVo);
-//		return "product/edit";
-//	}
-//
-//	@PostMapping("/edit_process")
-//	public String edit_process(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest request,
-//			Model model) {
-//		int result = updateService.productEdit(productVo, uploadFile, request);
-//		String viewPage = "redirect:/product/edit?product_idx=" + productVo.getProduct_idx();
-//		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
-//			viewPage = "redirect:/product/detail?product_idx=" + productVo.getProduct_idx();
-//		}
-//		return viewPage;
-//	}
 }
