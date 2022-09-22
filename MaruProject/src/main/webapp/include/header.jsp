@@ -52,8 +52,8 @@
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart" data-notify="0">
                 <i class="zmdi zmdi-view-headline"></i>
               </div>
-
             </div>
+
           </nav>
         </div>
 
@@ -100,6 +100,7 @@
             </div>
           </li>
         </ul>
+
 
         <ul class="main-menu-m">
           <li><a href="${MaruContextPath}/index">Home</a>
@@ -154,23 +155,16 @@
             <!-- Menu desktop -->
             <div class="menu-desktop">
               <ul class="main-menu">
-                <li class="active-menu"><a href="${MaruContextPath}/index">Home</a>
-                  <ul class="sub-menu">
-                    <li><a href="${MaruContextPath}/index">Homepage 1</a></li>
-                    <li><a href="${MaruContextPath}/home-02">Homepage 2</a></li>
-                    <li><a href="${MaruContextPath}/home-03">Homepage 3</a></li>
-                  </ul></li>
-
-                <li><a href="${MaruContextPath}/product/list">제품</a></li>
-
-                <li class="label1" data-label1="hot"><a href="${MaruContextPath}/shopping-cart">장바구니</a></li>
-
-                <li><a href="${MaruContextPath}/blog">임시</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=거실">거실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=침실">침실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=서재">서재</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=주방">주방</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=욕실">욕실</a></li>
 
                 <li><a href="${MaruContextPath}/about">임시</a></li>
-
-                <li><a href="${MaruContextPath}/contact">연락처</a></li>
+                <li><a href="${MaruContextPath}/contact">오시는 길</a></li>
               </ul>
+
             </div>
 
             <!-- Icon header -->
@@ -178,14 +172,11 @@
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                 <i class="zmdi zmdi-search"></i>
               </div>
-
-              <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-                <i class="zmdi zmdi-shopping-cart"></i>
+              <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart" data-notify="0">
+                <i class="zmdi zmdi-view-headline"></i>
               </div>
-
-              <a href="${MaruContextPath}/#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0"> <i class="zmdi zmdi-favorite-outline"></i>
-              </a>
             </div>
+
           </nav>
         </div>
       </div>
