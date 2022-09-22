@@ -58,8 +58,8 @@
 	margin-top:20px;  
 }
 
-#content{
-	margin-top:50px; 
+#contit{ 
+	margin-top:70px; 
 }
 #option{ 
 	margin-left:10px;
@@ -97,12 +97,12 @@
 	</div> 
 	</div> 
 	<hr>
-	<div class="row">
-	<div class="col-2" id="content">
-		*내용 
+	<div class="row"> 
+	<div class="col-2" id="contit">   
+		*내용
 	  </div>
-	  <div class="col-9 container">
-		<textarea class="bor10 m-r-45" style="width:480px; height:150px;"></textarea>
+	  <div class="col-8 container m-t-20" id="content">   
+		<textarea class="bor10 m-r-45" name="content" style="width:480px; height:150px;"></textarea>
 	</div>
 	</div>  
 	<div class="m-t-50 m-b-50"> 

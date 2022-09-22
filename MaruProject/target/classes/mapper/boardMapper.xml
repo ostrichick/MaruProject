@@ -51,12 +51,14 @@
 
   <!-- qna -->
   <insert id="qnaWriteProcess" parameterType="boardVo">
-    INSERT INTO qnaservice (
-    content,
-    file_original, file_system, file_extension
-    ) VALUES (
-    #{content},
-    #{file_original}, #{file_system}, #{file_extension}
-    )
+    INSERT INTO qnaservice ( 
+ 	content, member_idx
+    ) VALUES ( 
+     #{content}, #{member_idx}
+    ) 
+     <selectKey resultType="int" keyProperty="idx" order="AFTER">
+      SELECT SEQ_qna_IDX.CURRVAL FROM dual 
+    </selectKey> 
   </insert>
+  
 </mapper>	

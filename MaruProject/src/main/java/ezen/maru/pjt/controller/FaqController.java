@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/faq")
 public class FaqController {
 	
+	
+	
+	
 	@GetMapping("/faq")
 	public String faq() {
 		return "/faq/list";

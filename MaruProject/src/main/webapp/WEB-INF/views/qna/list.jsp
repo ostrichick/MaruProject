@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@ li.page-item.active>a.page-link:hover {
 		</select>  
 		<thead style="background-color:#d3d3d3; text-align:center;"> 
 			<tr class="row">
-				<th class="col-6">제목</th>
+				<th class="col-6">내용</th>
 				<th class="col-2">카테고리</th>
 				<th class="col-2">아이디</th> 
 				<th class="col-2">날짜</th>   
@@ -55,10 +56,10 @@ li.page-item.active>a.page-link:hover {
 				<td class="col-6"><a href="" id="qna_admin" >내용</a></td> 
 				<td class="col-2">카테고리</td>
 				<td class="col-2">
-					${member.idx}
+					${memberinfo.member_id}
 				</td> 
 				<td class="col-2">
-					날짜 
+			      <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${board.wdate}"/> 
 				</td>    
 			</tr>
 		</tbody>
@@ -96,7 +97,7 @@ li.page-item.active>a.page-link:hover {
   </style>
   <script type="text/javascript">
   function qna_write() {
-   location.href = "${MaruContextPath}/qna_write"; 
+   location.href = "${MaruContextPath}/qna/write";  
  }
   </script>
 </html> 

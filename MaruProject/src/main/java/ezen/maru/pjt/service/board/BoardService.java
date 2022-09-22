@@ -34,7 +34,7 @@ public interface BoardService {
 	// 공지사항 끝 //
 	/////////////////
 
-	default int qnaWriteProcess(BoardVo boardVo, MultipartRequest uploadFile, HttpServletRequest req) {
+	default int qnaWriteProcess(BoardVo boardVo) {
 		return 0;
 	}
 

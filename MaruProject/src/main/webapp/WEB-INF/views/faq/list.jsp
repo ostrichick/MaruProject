@@ -103,8 +103,8 @@ tr{
       <div id="bt"> 
       	  <c:if test="${member_admin eq 'Y' }">  
 	        <a href="#" onclick="fq_delet()" class="btn btn-delet" id="button" >삭제</a>
-	      </c:if> 
        	   <a href="${MaruContextPath}/faq/write" onclick="write()" class="btn btn-success" id="button" >등록</a>
+	      </c:if> 
      </div>   
 	<nav aria-label="Page navigation example">
 	      <ul class="pagination">
