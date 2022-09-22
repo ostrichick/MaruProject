@@ -97,8 +97,7 @@ tr, th, td {
         </ul>
       </nav>
     </div>
-    <br>
-    <br>
+    <br> <br>
     <div class="container" id="box">
       <a href="${pageContext.request.contextPath}/admin/updateList" class="btn btn-success  m-l--15" id="button">상품 업데이트</a>
       <table class="table table-bordered col-5" id="mbox">
@@ -110,6 +109,7 @@ tr, th, td {
           <th>할인율 %</th>
           <th>할인된 가격</th>
           <th>상품 재고</th>
+          <th></th>
         </tr>
         <tr class="bg0">
           <td>
@@ -120,8 +120,11 @@ tr, th, td {
           </td>
           <td>123412412</td>
           <td>50</td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
-        
+
         <c:forEach var="product" items="${productList}" varStatus="status">
           <tr class="bg0">
             <td>
@@ -135,9 +138,12 @@ tr, th, td {
             <td>${product.product_sale_percent}</td>
             <td>${product.product_price - product.product_price * product.product_sale_percent/100}</td>
             <td>${product.product_inventory}</td>
+            <td>
+              <a href="${MaruContextPath}/product/delete_process?product_idx=${product.product_idx}" class="btn btn-success  m-l--15" id="button">삭제</a>
+            </td>
           </tr>
         </c:forEach>
-        
+
       </table>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -149,8 +155,7 @@ tr, th, td {
         </ul>
       </nav>
     </div>
-    <br>
-    <br>
+    <br> <br>
     <div class="container" id="box">
       <a href="${pageContext.request.contextPath}/notice/" class="btn btn-success  m-l--15" id="button">공지사항</a>
       <table class="table table-bordered col-4" id="mbox">
@@ -181,8 +186,7 @@ tr, th, td {
         </ul>
       </nav>
     </div>
-    <br>
-    <br>
+    <br> <br>
     <div class="container" id="box">
       <a href="${pageContext.request.contextPath}/qna/list" class="btn btn-success  m-l--15" id="button">1:1문의</a>
       <table class="table table-bordered col-6" id="mbox">
@@ -215,8 +219,7 @@ tr, th, td {
         </ul>
       </nav>
     </div>
-    <br>
-    <br>
+    <br> <br>
     <div class="container" id="box">
       <a href="${pageContext.request.contextPath}/admin/" class="btn btn-success  m-l--15" id="button">상품 문의</a>
       <table class="table table-bordered col-6" id="mbox">
@@ -251,8 +254,7 @@ tr, th, td {
         </ul>
       </nav>
     </div>
-    <br>
-    <br>
+    <br> <br>
   </div>
   <!-- end first container -->
   <!-- Footer -->

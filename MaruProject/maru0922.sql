@@ -214,8 +214,6 @@ CREATE TABLE product
 	product_sale_percent number DEFAULT 0,
 	-- 상품 규격 (100x200)
 	product_size varchar2(30),
-	-- 상품 재고
-	product_inventory number,
 	-- 상품 분류 (대분류)
 	product_major_category varchar2(30),
 	-- 신제품 여부
@@ -226,6 +224,12 @@ CREATE TABLE product
 	product_avgstar float DEFAULT 0 NOT NULL,
 	-- 상품 조회수
 	product_hit number DEFAULT 0 NOT NULL,
+	-- 상품 재고
+	product_inventory number,
+	-- 품절여부
+	out_of_stock_yn varchar2(3) DEFAULT 'N' NOT NULL,
+	-- 삭제 여부
+	deleted_yn varchar2(3) DEFAULT 'N' NOT NULL,
 	PRIMARY KEY (product_idx)
 );
 
@@ -583,12 +587,14 @@ COMMENT ON COLUMN product.product_price IS '상품가격';
 COMMENT ON COLUMN product.product_sale IS '할인 여부';
 COMMENT ON COLUMN product.product_sale_percent IS '상품 할인율';
 COMMENT ON COLUMN product.product_size IS '상품 규격 (100x200)';
-COMMENT ON COLUMN product.product_inventory IS '상품 재고';
 COMMENT ON COLUMN product.product_major_category IS '상품 분류 (대분류)';
 COMMENT ON COLUMN product.product_isnew IS '신제품 여부';
 COMMENT ON COLUMN product.product_detail IS '상품 상세 설명';
 COMMENT ON COLUMN product.product_avgstar IS '리뷰 평점';
 COMMENT ON COLUMN product.product_hit IS '상품 조회수';
+COMMENT ON COLUMN product.product_inventory IS '상품 재고';
+COMMENT ON COLUMN product.out_of_stock_yn IS '품절여부';
+COMMENT ON COLUMN product.deleted_yn IS '삭제 여부';
 COMMENT ON TABLE product_cart IS '장바구니';
 COMMENT ON COLUMN product_cart.cart_idx IS '장바구니 번호';
 COMMENT ON COLUMN product_cart.member_idx IS '회원번호';

@@ -1,17 +1,21 @@
 <!-- 장바구니 페이지
 
 프론트) product_idx와 cart_product_number를 이용해 카트 테이블과 상품 테이블을 조인시켜서 상품가격을 가져오고
-product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실시간으로 해당품목 가격합과 장바구니 금액 총합을 구한다  
+product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실시간으로 해당품목 가격합과 장바구니 금액 총합을 구한다 
 
 백엔드)
     1. 쓰기 : product/detail 에서 처리
 
     2. 보기 :
-      -> db에서 member_idx가 일치하는 회원의 cartVo를 ArrayList로 담아서 가져옴
-      -> ArrayList안의 cartVo를 하나씩 출력
-      -> 조건문을 이용해 ArrayList<cartVo>가 비어있을 경우 장바구니가 비어있습니다 메세지 출력
-    
-    3. 수정 : 
+      a) 로그인시 -> db로 부터 값을 불러와 출력
+        -> db에서 member_idx가 일치하는 회원의 cartVo를 List로 담아서 가져옴
+        -> List안의 CartVo를 하나씩 출력
+        -> 조건문을 이용해 List<CartVo>가 비어있을 경우 장바구니가 비어있습니다 메세지 출력
+      b) 비로그인시 -> 쿠키로부터 값을 불러와 출력
+          
+    3. 수정 :
+      a) 로그인시 -> db와 통신하여 update 쿼리로 수량 변경
+      b) 비로그인시 -> 쿠키를 갱신하여 수량 변경 
     
     4. 삭제 : 
     
@@ -54,38 +58,6 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
           <th class="">수량선택</th>
           <th class=""></th>
         </tr>
-
-        <tr class="table_row">
-          <td class="">
-            <div class="form-check">
-              <input class="input-lg form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
-            </div>
-          </td>
-          <td class="">
-            <div class="">
-              <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
-            </div>
-          </td>
-          <td class="txt-left">제품명ㅇㅇㅇㅇ ㅇㅇㅇㅇㅇ</td>
-          <td class="txt-right">1,380,000원</td>
-          <td class="">
-            <div class="wrap-num-product flex-w m-auto">
-              <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                <i class="fs-16 zmdi zmdi-minus"></i>
-              </div>
-
-              <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
-
-              <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                <i class="fs-16 zmdi zmdi-plus"></i>
-              </div>
-            </div>
-          </td>
-
-          <td class="">
-            <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
-          </td>
-        </tr>
         <c:forEach var="cart" items="${cartList}" varStatus="status">
           <c:if test="${empty cartList  }">
             <tr class="table_row">
@@ -107,7 +79,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
               <a href="${MaruContextPath}/product/detail?product_idx=${cart.product_idx}">${cart.product_name }</a>
             </td>
 
-            <td class="txt-right">
+            <td class="txt-right p-r-20">
               <c:choose>
                 <c:when test="${cart.product_sale eq 'Y' and cart.product_sale_percent gt 0 }">
                   <del>
@@ -126,15 +98,15 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 
             <td class="">
               <div class="wrap-num-product flex-w m-auto">
+
                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                   <i class="fs-16 zmdi zmdi-minus"></i>
                 </div>
-
-                <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
-
+                <input class="mtext-104 cl3 txt-center num-product" type="number" name="cart_product_number" value="${cart.cart_product_number }" oninput="updateCart(this.value,${cart.product_idx })">
                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                   <i class="fs-16 zmdi zmdi-plus"></i>
                 </div>
+
               </div>
             </td>
             <td class="">
@@ -151,6 +123,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
         <strong>[ 주문내역 ]</strong>
       </p>
       <table class="txt-right table-hover">
+      <!-- 위의 표로부터 합계 계산하여 실시간으로 금액 변하게하는 JS 함수 필요 -->
         <tr>
           <td>주문금액 :</td>
           <td>180,000원</td>
@@ -181,6 +154,29 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
       document.querySelector("#linkToMain").addEventListener("click", fn_linkToMain);
       function fn_linkToMain() {
         location.href = "${MaruContextPath}/";
+      }
+
+      let product_number = document.querySelectorAll("input.num-product");
+
+      //       product_number.addEventListener("input", updateCart)
+
+      function updateCart(cart_product_number, product_idx) {
+        console.log("oninput 작동")
+
+        $.ajax({
+          type : "post",
+          url : "${MaruContextPath}/cart/updateCart?product_idx=" + product_idx + "&cart_product_number=" + cart_product_number,
+          data : {
+            "product_idx" : product_idx,
+            "cart_product_number" : cart_product_number
+          },
+          success : function() {
+            alert("성공");
+          },
+          error : function() {
+            alert("실패");
+          },
+        })
       }
     </script>
   <!-- Footer -->

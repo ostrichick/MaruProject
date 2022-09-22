@@ -26,4 +26,8 @@ public interface ProductService {
 		return 0;
 	}
 
+	default int deleteProduct(int product_idx) {
+		return 0;
+	}
+
 }

@@ -53,7 +53,15 @@
     product_idx = #{product_idx}
   </update>
 
-  <delete id="productDelete" parameterType="int">
+  <update id="deleteProduct" parameterType="int">
+    UPDATE product
+    SET
+    deleted_yn = 'Y'
+    WHERE
+    product_idx = #{product_idx}
+  </update>
+
+  <delete id="dropProduct" parameterType="int">
     delete from product
     where product_idx = #{product_idx}
   </delete>

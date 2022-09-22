@@ -34,4 +34,8 @@ public class ProductDao {
 	public int productEdit(ProductVo productVo) {
 		return sqlSession.update(MAPPER + ".productUpdate", productVo);
 	}
+
+	public int deleteProduct(int product_idx) {
+		return sqlSession.update(MAPPER + ".deleteProduct", product_idx);
+	}
 }
