@@ -93,4 +93,17 @@ public class ProductController {
 		}
 		return viewPage;
 	}
+
+	@GetMapping("/delete_process")
+	public String delete_process(ProductVo productVo, Model model) {
+		int product_idx = productVo.getProduct_idx();
+		System.out.println(product_idx);
+
+		int result = deleteService.deleteProduct(product_idx);
+		String viewPage = "redirect:/";
+		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
+			viewPage = "redirect:/";
+		}
+		return viewPage;
+	}
 }
