@@ -52,10 +52,14 @@ li.page-item.active>a.page-link:hover {
 		</thead> 
 		<tbody style="text-align:center;">
 			<tr class="row">
-				<td class="col-6"><a href="#" id="qna_admin" >제목</a></td>
+				<td class="col-6"><a href="" id="qna_admin" >내용</a></td> 
 				<td class="col-2">카테고리</td>
-				<td class="col-2">아이디</td> 
-				<td class="col-2">날짜</td>    
+				<td class="col-2">
+					${member.idx}
+				</td> 
+				<td class="col-2">
+					날짜 
+				</td>    
 			</tr>
 		</tbody>
  </table> 

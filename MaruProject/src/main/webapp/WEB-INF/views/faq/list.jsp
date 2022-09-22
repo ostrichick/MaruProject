@@ -37,6 +37,11 @@ li.page-item.active>a.page-link:hover {
 	float:right; 
 }
 
+tr{
+	vertical-align:middle;
+	text-align:center;
+}
+
 </style> 
 </head>
 <body class="animsition">
@@ -44,8 +49,8 @@ li.page-item.active>a.page-link:hover {
   <div class="container" style="margin: 40px auto;"> 
    <table class="table table-striped table-hover">
 	<thead>
-    <h3>자주묻는 질문(FAQ)</h3>
-    <div class="bor10 m-t-20"id="serch">     
+   	 <h3>자주묻는 질문(FAQ)</h3>
+    <div class="bor10 m-t-20" id="serch">     
       	 	<p class="m-t-20 m-b-10" style="text-align: center;">검색을 이용하시면 보다 빠르게 원하시는 답변을 얻으실 수 있습니다.</p>  
       	 	<h4 class="m-l-40 m-t-5 m-r-50" style="float:left;">FAQ 검색</h4>  
     		<div class="input-group" style="width:460px;">  
@@ -59,11 +64,13 @@ li.page-item.active>a.page-link:hover {
       	 	<a href="#" onclick="faq_qna()" class="btn btn-success m-t-10" id="button" >문의하기</a> 
       </div>
       <br><br><br>   
-      <h4 class="m-t-150">FAQ &gt; 전체</h4>  
+      <h4 class="m-t-130 m-b-20">FAQ &gt; 전체</h4>  
       </thead> 
       <tbody> 
        	 <tr>
+       	 	<c:if test="${member_admin eq 'Y' }">
 	          <th>선택</th>
+			</c:if>
 	          <th>카테고리</th>
 	          <th>제목</th> 
 	          <th>조회수</th>
@@ -72,7 +79,9 @@ li.page-item.active>a.page-link:hover {
          <tbody> 
       	<c:forEach var="faq" items="${noticeList}" varStatus="status">
           <tr>
-            <td class="text-right"><input type="checkbox" value="선택" name="celect"></td>
+          	<c:if test="${member_admin eq 'Y' }"> 
+         	   <td class="text-right"><input type="checkbox" value="선택" name="celect"></td>
+            </c:if>
             <td class="text-right"> 
               <select>
               	<option>거실</option>

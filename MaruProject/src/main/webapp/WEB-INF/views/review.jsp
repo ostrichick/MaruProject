@@ -148,8 +148,8 @@ $("#file").on('change',function(){
 </form>
 </div>
 <div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<a id="re_submit" class="btn btn-dark bg1 cl0" type="submit"  style="margin-right:30px ;">등록</a> 
-<a id="re_reset" class="btn btn-dark bg1 cl0" type="reset" >취소</a>  
+<a id="re_submit" class="btn btn-dark bg1 cl0" type="submit"  style="margin-right:30px ;"><span class="cl0">등록</span></a> 
+<a id="re_reset" class="btn btn-dark bg1 cl0" type="reset" ><span class="cl0">취소</span></a>  
 </div> 
 
 
