@@ -50,6 +50,8 @@ public class CartController {
 		int member_idx = (int) optional_member_idx.get();
 		List<CartVo> cartList = listService.getCartList(member_idx);
 		System.out.println(cartList.toString());
+		System.out.println("cartList배열의 size() : " + cartList.size());
+		System.out.println(cartList.isEmpty());
 		model.addAttribute("cartList", cartList);
 		return "cart";
 	}

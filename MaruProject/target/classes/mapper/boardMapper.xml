@@ -10,13 +10,20 @@
     #{title}, #{content},
     #{file_original}, #{file_system}, #{file_extension}
     )
+    <!-- 방금 작성한 글의 idx를 셀렉트키로 받아서 boardVo객체의 속성으로 반환 -->
+    <selectKey resultType="int" keyProperty="idx" order="AFTER">
+      SELECT SEQ_announce_IDX.CURRVAL FROM dual
+    </selectKey>
   </insert>
+
   <select id="getNoticeList" resultType="boardVo">
     select * from announce order by idx desc
   </select>
+
   <select id="getNotice" parameterType="int" resultType="boardVo">
     select * from announce where idx = #{idx}
   </select>
+
   <update id="upHit" parameterType="int">
     UPDATE announce
     SET
@@ -36,6 +43,7 @@
     WHERE
     idx = #{idx}
   </update>
+
   <delete id="noticeDeleteProcess" parameterType="int">
     delete from announce
     where idx = #{idx}

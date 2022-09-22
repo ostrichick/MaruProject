@@ -1,6 +1,6 @@
 package ezen.maru.pjt.vo;
 
-public class CartVo {
+public class CartVo extends ProductVo {
 	private int cart_idx;
 	private int member_idx;
 	private int product_idx;
