@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -177,16 +178,17 @@
           </tr>
         </thead>
         <tbody>
+        <c:forEach var="qna" items="${qnaList}" varStatus="status">
           <tr>
-            <td>2022.07.08</td>
-            <td>환불</td>
+            <td><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}"/></td>
+            <td>${qna.category}</td>
             <td>
               <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false"> 그냥 환불해주세요</a>
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">${qna.content}</a>
                   </div>
-                  <div id="collapse1" class="panel-collapse collapse" role="tabpanel">
+                  <div id="collapse1" class="panel-collapse collapse" role="tabpanel"> 
                     <div class="panel-body">
                       <hr>
                       <div class="p-3" style="border: 1px solid black;">
@@ -205,6 +207,7 @@
               <p>2022.07.25</p>
             </td>
           </tr>
+         </c:forEach> 
         </tbody>
       </table>
       <nav aria-label="Page navigation example" style="margin: 0 500px;">

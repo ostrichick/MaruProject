@@ -1,5 +1,6 @@
 package ezen.maru.pjt.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
+import ezen.maru.pjt.vo.BoardVo;
 import ezen.maru.pjt.vo.MemberInfoVo;
 
 @Controller
@@ -23,7 +26,14 @@ import ezen.maru.pjt.vo.MemberInfoVo;
 public class MemberInfoController {
 
 	MemberInfoService signupService, signinService, updateService;
-
+	
+	BoardService listService2;
+	
+	@Autowired(required = false)
+	public void setListService2(@Qualifier("b_list") BoardService listService2) {
+		this.listService2 = listService2; 
+	}
+	
 	@Autowired(required = false)
 	public void setSignupService(@Qualifier("signup") MemberInfoService signupService) {
 		this.signupService = signupService;
@@ -88,6 +98,8 @@ public class MemberInfoController {
 		HttpSession session = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		MemberInfoVo memberInfoVo = updateService.getMember(member_id);
+		List<BoardVo> qnaList = listService2.getQnaList();
+		model.addAttribute("qnaList", qnaList); 
 		model.addAttribute("memberInfoVo", memberInfoVo);
 		return "member/myinfo";
 	}

@@ -96,6 +96,23 @@ public class BoardVo {
 	private String system_filename3;
 	private int member_idx;
 	private String category; 
+	private int member_id;
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public int getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
+	}
 
 	public int getBoard_idx() {
 		return board_idx;
@@ -209,11 +226,4 @@ public class BoardVo {
 		this.member_idx = member_idx;
 	}
 
-	public String getcategory() {
-		return category;
-	}
-
-	public void setcategory(String category) {
-		this.category = category;
-	}
 }

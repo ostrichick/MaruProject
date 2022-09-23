@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>관리자 메인</title>
+<title>관리자 메인</title> 
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 <style>
 #button {
@@ -14,7 +16,7 @@
 }
 
 #box {
-  height: 400px;
+  height: 600px;
   background-color: #e6e6e6;
 }
 
@@ -35,6 +37,14 @@ li.page-item.active>a.page-link {
 li.page-item.active>a.page-link:hover {
   background: #444;
 }
+
+.qna{
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden; 
+width:300px; 
+}
+
 
 #mbox {
   margin: 30px auto;
@@ -100,7 +110,7 @@ tr, th, td {
     <br> <br>
     <div class="container" id="box">
       <a href="${pageContext.request.contextPath}/admin/updateList" class="btn btn-success  m-l--15" id="button">상품 업데이트</a>
-      <table class="table table-bordered col-5" id="mbox">
+      <table class="table table-bordered col-9" id="mbox">
         <tr class="bg1">
           <th>선택</th>
           <th>상품명</th>
@@ -109,7 +119,7 @@ tr, th, td {
           <th>할인율 %</th>
           <th>할인된 가격</th>
           <th>상품 재고</th>
-          <th></th>
+          <th>상품삭제</th> 
         </tr>
         <tr class="bg0">
           <td>
@@ -188,26 +198,48 @@ tr, th, td {
     </div>
     <br> <br>
     <div class="container" id="box">
-      <a href="${pageContext.request.contextPath}/qna/list" class="btn btn-success  m-l--15" id="button">1:1문의</a>
-      <table class="table table-bordered col-6" id="mbox">
+      <a href="${pageContext.request.contextPath}/" class="btn btn-success  m-l--15" id="button">1:1문의</a>
+      <table class="table table-bordered col-8" id="mbox">   
         <tr class="bg1">
           <th>선택</th>
           <th>문의내용</th>
           <th>아이디</th>
           <th>날짜</th>
           <th>답변 여부</th>
-        </tr>
-        <tr class="bg0">
-          <td>
-            <input type="checkbox" value="선택" id="checkbox" />
-          </td>
-          <td>
-            <a href="#" class="">문의내용버튼</a>
-          </td>
-          <td>홍길동1</td>
-          <td>12312321</td>
-          <td>답변O</td>
-        </tr>
+        </tr>        
+        
+      <c:forEach var="qna" items="${qnaList}" varStatus="status">
+          <tr class="bg0">
+            <td>
+              <input type="checkbox" value="선택" id="checkbox" />
+            </td> 
+            <td>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading qna" role="tab">
+                    <a role="button" class="qna" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">${qna.content}</a>
+                  </div>
+                  <div id="collapse1" class="panel-collapse collapse" role="tabpanel">
+                    <div class="panel-body">
+                      <hr>
+                      <div class="p-3 text-break" style="width:350px; border: 1px solid black;">   
+                        <p>
+                          <strong>상세내용</strong>
+                        </p>
+                        <br>
+                        <p>${qna.content}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             </td> 
+            <td>${qna.member_id}</td>
+            <td> <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}"/></td> 
+            <td>답변여부</td> 
+          </tr>
+        </c:forEach>
+		
       </table>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
