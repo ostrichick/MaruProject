@@ -31,7 +31,7 @@ public class BoardDao {
 		return sqlSession.selectOne(MAPPER + ".getNotice", idx);
 	}
 
-	public int noticeEditProcess(BoardVo boardVo) {
+	public int noticeEditProcess(BoardVo boardVo) { 
 		return sqlSession.update(MAPPER + ".noticeEditProcess", boardVo);
 	}
 
@@ -41,8 +41,13 @@ public class BoardDao {
 	/////////////////////////////////////
 /////////////////////////////////////
 
-	public int qnaWriteProcess(BoardVo boardVo) {
+	public int qnaWriteProcess(BoardVo boardVo) { 
+		System.out.println(boardVo.getMember_idx()); 
 		return sqlSession.insert(MAPPER + ".qnaWriteProcess", boardVo);
+	}
+	
+	public List<BoardVo> getQnaList() {
+		return sqlSession.selectList(MAPPER + ".getQnaList");
 	}
 
 }

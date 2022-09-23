@@ -47,21 +47,23 @@ li.page-item.active>a.page-link:hover {
 			<tr class="row">
 				<th class="col-6">내용</th>
 				<th class="col-2">카테고리</th>
-				<th class="col-2">아이디</th> 
+				<th class="col-2">회원번호</th> 
 				<th class="col-2">날짜</th>   
 			</tr> 
 		</thead> 
 		<tbody style="text-align:center;">
+		<c:forEach var="qna" items="${qnaList}" varStatus="status">
 			<tr class="row">
-				<td class="col-6"><a href="" id="qna_admin" >내용</a></td> 
-				<td class="col-2">카테고리</td>
+				<td class="col-6"><a href="" id="qna_admin" >${qna.content}</a></td> 
+				<td class="col-2">${qna.category}</td> 
 				<td class="col-2">
-					${memberinfo.member_id}
-				</td> 
+					${qna.idx} 
+				</td>  
 				<td class="col-2">
-			      <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${board.wdate}"/> 
+				 <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}"/> 
 				</td>    
 			</tr>
+		</c:forEach>	
 		</tbody>
  </table> 
 		<a href="#" onclick="qna_write()" class="btn btn-success" id="button" >글쓰기</a>

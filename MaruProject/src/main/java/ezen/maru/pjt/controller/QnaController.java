@@ -1,10 +1,15 @@
 package ezen.maru.pjt.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,18 +53,25 @@ public class QnaController {
 	}
 	
 	@GetMapping("/list")
-	public String list() {
-		return "qna/list";
-	} 
+	public String qna(Model model) {
+		List<BoardVo> qnaList = listService.getQnaList();
+		model.addAttribute("qnaList", qnaList);
+		return "qna/list"; 
+	}
 
 	@PostMapping("/write_process")
-	public String write_process(BoardVo boardVo, RedirectAttributes redirect) {
+	public String write_process(BoardVo boardVo, HttpServletRequest req, RedirectAttributes redirect) {
 		int result = insertService.qnaWriteProcess(boardVo);
+		HttpSession session = req.getSession();
+		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+		int member_idx = (int) optional_member_idx.get();
+		boardVo.setMember_idx(member_idx);
 		String viewPage = "redirect:/qna/write";
-		if (result == 1) {
+		if (result == 1) { 
 			redirect.addFlashAttribute("qnaWriteResult", "문의가 성공적으로 등록되었습니다."); 
-			viewPage = "redirect:/qna/list?idx="+ boardVo.getIdx();
+			viewPage = "redirect:/qna/list"; 
 		} 
 		return viewPage;
 	}
+	
 }

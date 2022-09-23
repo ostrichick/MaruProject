@@ -37,5 +37,8 @@ public interface BoardService {
 	default int qnaWriteProcess(BoardVo boardVo) {
 		return 0;
 	}
+	default List<BoardVo> getQnaList() {
+		return null; 
+	}
 
 }
