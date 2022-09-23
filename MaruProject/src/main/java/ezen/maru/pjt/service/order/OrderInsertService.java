@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ezen.maru.pjt.dao.OrderDao;
 import ezen.maru.pjt.vo.OrderVo;
 
-@Service("c_insert")
+@Service("o_insert")
 public class OrderInsertService implements OrderService {
 	private OrderDao orderDao;
 
