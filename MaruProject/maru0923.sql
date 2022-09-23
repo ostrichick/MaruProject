@@ -174,15 +174,19 @@ CREATE TABLE order_log
 	-- 수령자 우편번호
 	order_postcode number,
 	-- 수령자 전화번호
-	order_phone number,
-	-- 주문 진행 상태 : 10은 배송전
-	-- 20은 배송중
-	-- 30는 배송완료
-	order_state number NOT NULL,
+	order_phone varchar2(30),
+	-- 주문 진행 상태 : 준비 중
+	-- 배송 시작
+	-- 배송 중
+	-- 배송 완료
+	-- 구매 확정
+	-- 환불
+	-- 취소
+	order_status varchar2(30) DEFAULT '준비 중' NOT NULL,
 	-- 주문 취소 여부
-	order_cancel varchar2(3) DEFAULT 'N' NOT NULL,
+	order_cancel_yn varchar2(3) DEFAULT 'N' NOT NULL,
 	-- 주문 환불 여부
-	order_refund varchar2(3) DEFAULT 'N' NOT NULL,
+	order_refund_yn varchar2(3) DEFAULT 'N' NOT NULL,
 	PRIMARY KEY (order_idx)
 );
 
@@ -565,11 +569,15 @@ COMMENT ON COLUMN order_log.order_address IS '수령자 주소1';
 COMMENT ON COLUMN order_log.order_address2 IS '수령자 주소2';
 COMMENT ON COLUMN order_log.order_postcode IS '수령자 우편번호';
 COMMENT ON COLUMN order_log.order_phone IS '수령자 전화번호';
-COMMENT ON COLUMN order_log.order_state IS '주문 진행 상태 : 10은 배송전
-20은 배송중
-30는 배송완료';
-COMMENT ON COLUMN order_log.order_cancel IS '주문 취소 여부';
-COMMENT ON COLUMN order_log.order_refund IS '주문 환불 여부';
+COMMENT ON COLUMN order_log.order_status IS '주문 진행 상태 : 준비 중
+배송 시작
+배송 중
+배송 완료
+구매 확정
+환불
+취소';
+COMMENT ON COLUMN order_log.order_cancel_yn IS '주문 취소 여부';
+COMMENT ON COLUMN order_log.order_refund_yn IS '주문 환불 여부';
 COMMENT ON TABLE order_product IS '주문 상품';
 COMMENT ON COLUMN order_product.order_idx IS '주문번호';
 COMMENT ON COLUMN order_product.product_idx IS '상품번호';

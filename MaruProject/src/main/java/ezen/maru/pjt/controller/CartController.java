@@ -106,7 +106,6 @@ public class CartController {
 //		}
 		cartVo.setMember_idx(member_idx);
 		int result = insertService.addCart(cartVo);
-
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
 			returnValue = "성공";
 		}
@@ -118,7 +117,6 @@ public class CartController {
 	public String updateCart(HttpServletRequest req, HttpServletResponse res, CartVo cartVo, Model model) {
 		HttpSession session = req.getSession();
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
-		System.out.println(optional_member_idx);
 		int member_idx = (int) optional_member_idx.get();
 		cartVo.setMember_idx(member_idx);
 		int result = updateService.updateCart(cartVo);
@@ -134,7 +132,6 @@ public class CartController {
 	public List<CartVo> deleteCart(HttpServletRequest req, HttpServletResponse res, CartVo cartVo, Model model) {
 		HttpSession session = req.getSession();
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
-		System.out.println(optional_member_idx);
 		int member_idx = (int) optional_member_idx.get();
 		cartVo.setMember_idx(member_idx);
 		int result = deleteService.deleteCart(cartVo);
