@@ -214,16 +214,25 @@
 
     /*==================================================================
     [ +/- num product ]*/
-    $('.btn-num-product-down').on('click', function(){
-        var numProduct = Number($(this).next().val());
-        if(numProduct > 0) $(this).next().val(numProduct - 1);
     
+    $('.btn-num-product-down').on('click', function(obj){
+        var numProduct = Number($(this).next().val());
+        var product_idx = Number($(this).prev().val());
+        if(numProduct > 0) $(this).next().val(numProduct - 1);
+        var obj = $(this).next();
+        numProduct = Number($(this).next().val());
+        
+        updateCart(obj, numProduct, product_idx)
     });
 
-    $('.btn-num-product-up').on('click', function(){
+    $('.btn-num-product-up').on('click', function(obj){
         var numProduct = Number($(this).prev().val());
+        var product_idx = Number($(this).prev().prev().prev().val());
         $(this).prev().val(numProduct + 1);
-       
+        var obj = $(this).prev();
+        numProduct = Number($(this).prev().val());
+        
+        updateCart(obj, numProduct, product_idx)
     });
 
     /*==================================================================

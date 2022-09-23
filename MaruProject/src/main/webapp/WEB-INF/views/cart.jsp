@@ -105,7 +105,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 
             <td class="">
               <div class="wrap-num-product flex-w m-auto">
-
+                <input type="hidden" value="${cart.product_idx }">
                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                   <i class="fs-16 zmdi zmdi-minus"></i>
                 </div>
@@ -179,7 +179,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     </div>
     <div class="mt-5 txt-center">
       <button id="linkToOrder" type="button" class="btn btn-lg bg7 cl7 btn-outline-secondary">상품 구매</button>
-      <button id="linkToMain" type="button" class="btn bg2 cl2 ml-5 btn-outline-secondary">계속 쇼핑하기</button>
+      <button id="linkToProductList" type="button" class="btn bg2 cl2 ml-5 btn-outline-secondary">계속 쇼핑하기</button>
     </div>
   </form>
   <script>
@@ -197,9 +197,9 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     location.href = url;
   }
   
-  document.querySelector("#linkToMain").addEventListener("click", fn_linkToMain);
+  document.querySelector("#linkToProductList").addEventListener("click", fn_linkToMain);
   function fn_linkToMain() {
-    location.href = "${MaruContextPath}/";
+    location.href = "${MaruContextPath}/product/list";
   }
 
   function updateCart(obj, cart_product_number, product_idx) {
@@ -213,7 +213,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
         cart_product_number: cart_product_number,
       },
       success: function () {
-        alert("성공");
+        console.log("성공");
         
         let saledPrice = $(obj).parent().parent().prev().children("input[type=hidden]").val();
         let saledXNumber = saledPrice * cart_product_number;
@@ -233,9 +233,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     let sumSaledXNumber = 0;
     $(".saledXNumber").each(function (index, item){
       sumSaledXNumber += parseInt(item.value);
-      console.log("item.value of index " + index + " is " + item.value);
     })
-    console.log("sumSaledNumber " + sumSaledXNumber);
     $(".sumPrice1").html("₩" + sumSaledXNumber.toLocaleString());
     
     let deliveryFee = 0;

@@ -46,7 +46,6 @@ public class ProductController {
 	public String list(Model model) {
 		List<ProductVo> productList = listService.getProductList();
 		model.addAttribute("productList", productList);
-		System.out.println(productList.toString());
 		return "product/list";
 	}
 
@@ -97,8 +96,6 @@ public class ProductController {
 	@GetMapping("/delete_process")
 	public String delete_process(ProductVo productVo, Model model) {
 		int product_idx = productVo.getProduct_idx();
-		System.out.println(product_idx);
-
 		int result = deleteService.deleteProduct(product_idx);
 		String viewPage = "redirect:/product/detail?product_idx=" + product_idx;
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것

@@ -116,12 +116,12 @@ span.cart_plus>i:hover {
             <!-- Block2 -->
             <div class="block2">
               <div class="block2-pic hov-img0">
-                <a onClick="fn_viewDetail(${product.product_idx})" href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <img src="https://place-hold.it/270x270" alt="IMG-PRODUCT">
+                <a href="detail?product_idx=${product.product_idx}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <img src="https://place-hold.it/270x270" alt="IMG-PRODUCT">
                 </a>
               </div>
               <div class="block2-txt flex-w flex-t p-t-14">
                 <div class="block2-txt-child1 flex-col-l ">
-                  <a onClick="fn_viewDetail(${product.product_idx})" href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.product_name} </a>
+                  <a href="detail?product_idx=${product.product_idx}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.product_name} </a>
                   <%--                   <span class="stext-105 cl3"><fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" /> </span> --%>
 
                   <c:choose>
@@ -140,15 +140,10 @@ span.cart_plus>i:hover {
                     </c:otherwise>
                   </c:choose>
 
-
-
-
-
-
                   <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
                 </div>
                 <div class="block2-txt-child2 flex-r p-t-15">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>
+                  <a onClick="fn_addCart(${product.product_idx})" href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>
 
                 </div>
               </div>
@@ -165,12 +160,28 @@ span.cart_plus>i:hover {
     </div>
   </div>
   <script>
-function fn_viewDetail(idx){
-  let url = "${MaruContextPath}/product/detail?product_idx=";
-  url += idx;
-  location.href = url;
-}
-</script>
+  function fn_addCart(idx) {
+    //idx 값에는 product_idx가 담김. 장바구니 버튼 위치 line 096
+
+    let cart_product_number = 1; // 담을 물건 숫자
+
+    $.ajax({
+      type: "post",
+      url: "${MaruContextPath}/cart/add_process?product_idx=" + idx + "&cart_product_number=" + cart_product_number,
+      data: {
+        product_idx: idx,
+        cart_product_number: cart_product_number,
+      },
+      success: function () {
+        alert("성공");
+      },
+      error: function () {
+        alert("실패");
+      },
+    });
+  }
+
+    </script>
 
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>

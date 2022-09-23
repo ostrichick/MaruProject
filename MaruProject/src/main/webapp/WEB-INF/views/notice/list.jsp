@@ -74,7 +74,6 @@ li.page-item.active>a.page-link:hover {
   <script>
 /**글쓰기*/
       function fn_write() {
-//         e.preventDefault();
         location.href = "${MaruContextPath}/notice/write";
       }
       /**글조회*/
