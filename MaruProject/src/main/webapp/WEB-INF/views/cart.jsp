@@ -54,11 +54,12 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     <div class="wrap-table-shopping-cart">
       <table class="table-shopping-cart txt-center">
         <tr class="table_head">
-          <th class="">선택</th>
+          <th class="col-1">선택</th>
           <th colspan="2" class="">상품</th>
-          <th class="">가격</th>
-          <th class="">수량선택</th>
-          <th class="">${empty cartList  }</th>
+          <th class="col-1">가격</th>
+          <th class="col-2">수량선택</th>
+          <th class="col-1">금액 합계</th>
+          <th class="col-1"></th>
         </tr>
         <c:if test="${empty cartList  }">
           <tr class="table_row">
@@ -73,29 +74,33 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
               </div>
             </td>
             <td class="">
-              <div class="">
-                <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
-              </div>
+
+              <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
+
             </td>
             <td class="txt-left">
               <a href="${MaruContextPath}/product/detail?product_idx=${cart.product_idx}">${cart.product_name }</a>
             </td>
 
             <td class="txt-right p-r-20">
+
               <c:choose>
                 <c:when test="${cart.product_sale eq 'Y' and cart.product_sale_percent gt 0 }">
                   <del>
                     <fmt:formatNumber value="${cart.product_price }" type="currency" currencySymbol="₩" />
                   </del>
                   <br>
-                  <fmt:formatNumber value="${cart.product_price - cart.product_price * cart.product_sale_percent/100}" type="currency" currencySymbol="₩" />
+                  <c:set var="saledPrice" value="${cart.product_price - cart.product_price * cart.product_sale_percent/100}" />
+                  <fmt:formatNumber value="${saledPrice}" type="currency" currencySymbol="₩" />
                 </c:when>
 
                 <c:otherwise>
                   <!-- 할인을 안 할 경우 정상가격 표시 -->
-                  <fmt:formatNumber value="${cart.product_price }" type="currency" currencySymbol="₩" />
+                  <c:set var="saledPrice" value="${cart.product_price}" />
+                  <fmt:formatNumber value="${saledPrice }" type="currency" currencySymbol="₩" />
                 </c:otherwise>
               </c:choose>
+              <input type="hidden" value="${saledPrice}" />
             </td>
 
             <td class="">
@@ -104,13 +109,19 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                   <i class="fs-16 zmdi zmdi-minus"></i>
                 </div>
-                <input class="mtext-104 cl3 txt-center num-product" type="number" name="cart_product_number" value="${cart.cart_product_number }" oninput="updateCart(this.value, ${cart.product_idx })">
+                <input class="mtext-104 cl3 txt-center num-product testinput" type="number" name="cart_product_number" value="${cart.cart_product_number }" oninput="updateCart(this, this.value, ${cart.product_idx })">
                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                   <i class="fs-16 zmdi zmdi-plus"></i>
                 </div>
 
               </div>
             </td>
+
+            <td class="txt-right p-r-20 saledPrice">
+              <fmt:formatNumber value="${saledPrice * cart.cart_product_number}" type="currency" currencySymbol="₩" />
+              <input class="saledXNumber" type="hidden" value="${saledPrice * cart.cart_product_number}">
+            </td>
+
             <td class="">
               <button type="button" class="btn bg1 cl7 btn-outline-dark" onclick="deleteCart(${cart.product_idx }, this)">삭제</button>
             </td>
@@ -125,18 +136,44 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
         <strong>[ 주문내역 ]</strong>
       </p>
       <table class="txt-right table-hover">
-        <!-- 위의 표로부터 합계 계산하여 실시간으로 금액 변하게하는 JS 함수 필요 -->
-        <tr>
-          <td>주문금액 :</td>
-          <td>180,000원</td>
+        <!-- 위의 표로부터 합계 계산하여 실시간으로 금액 변하게하는 JS 함수 필요? -->
+        <tr class="">
+          <td class="p-r-10">주문금액 :</td>
+          <td class="sumPrice1">
+            <c:set var="sumPrice" value="0" />
+            <c:forEach var="cart" items="${cartList}" varStatus="status">
+              <c:choose>
+                <c:when test="${cart.product_sale eq 'Y' and cart.product_sale_percent gt 0 }">
+                  <c:set var="sumPrice" value="${sumPrice + (cart.product_price - cart.product_price * cart.product_sale_percent/100) * cart.cart_product_number}" />
+                </c:when>
+                <c:otherwise>
+                  <c:set var="sumPrice" value="${sumPrice + cart.product_price * cart.cart_product_number}" />
+                </c:otherwise>
+              </c:choose>
+            </c:forEach>
+            <fmt:formatNumber value="${sumPrice }" type="currency" currencySymbol="₩" />
+          </td>
         </tr>
         <tr>
-          <td>배송비 :</td>
-          <td>2,500원</td>
+          <td class="p-r-10">배송비 :</td>
+          <td class="DeliveryFee">
+            <c:choose>
+              <c:when test="${sumPrice lt 50000 and sumPrice ne 0 }">
+                <c:set var="deliveryFee" value="5000" />
+                <fmt:formatNumber value="${deliveryFee }" type="currency" currencySymbol="₩" />
+              </c:when>
+              <c:otherwise>
+                <c:set var="deliveryFee" value="0" />
+                <fmt:formatNumber value="${deliveryFee }" type="currency" currencySymbol="₩" />
+              </c:otherwise>
+            </c:choose>
+          </td>
         </tr>
         <tr>
-          <td>총주문금액 :</td>
-          <td>182,500원</td>
+          <td class="p-r-10">총주문금액 :</td>
+          <td class="TotalPrice">
+            <fmt:formatNumber value="${sumPrice + deliveryFee }" type="currency" currencySymbol="₩" />
+          </td>
         </tr>
       </table>
     </div>
@@ -146,6 +183,13 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     </div>
   </form>
   <script>
+  /** 
+  장바구니 페이지에서는 수량 변경, 삭제, 구매를 할 수 있음
+  
+  수량 변경시 : 오른쪽 금액합계 부분과 아래쪽 주문내역 총금액합계 부분을 변경
+  삭제시 : 해당 <tr>행을 삭제하고 주문내역 총금액합계부분을 변경
+  */
+  
   document.querySelector("#linkToOrder").addEventListener("click", fn_linkToOrder);
   function fn_linkToOrder() {
     let url = "${MaruContextPath}/order/order?cart_idx=";
@@ -158,7 +202,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     location.href = "${MaruContextPath}/";
   }
 
-  function updateCart(cart_product_number, product_idx) {
+  function updateCart(obj, cart_product_number, product_idx) {
     console.log("oninput 작동");
 
     $.ajax({
@@ -170,7 +214,13 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
       },
       success: function () {
         alert("성공");
-        console.log(data);
+        
+        let saledPrice = $(obj).parent().parent().prev().children("input[type=hidden]").val();
+        let saledXNumber = saledPrice * cart_product_number;
+        $(obj).parent().parent().next().html("₩" + saledXNumber.toLocaleString() + 
+            "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+        
+        totalPriceCalc();
       },
       error: function () {
         alert("실패");
@@ -179,6 +229,25 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     });
   }
 
+  function totalPriceCalc () {
+    let sumSaledXNumber = 0;
+    $(".saledXNumber").each(function (index, item){
+      sumSaledXNumber += parseInt(item.value);
+      console.log("item.value of index " + index + " is " + item.value);
+    })
+    console.log("sumSaledNumber " + sumSaledXNumber);
+    $(".sumPrice1").html("₩" + sumSaledXNumber.toLocaleString());
+    
+    let deliveryFee = 0;
+    if ( sumSaledXNumber < 50000 && sumSaledXNumber != 0 ){
+      deliveryFee = 5000;
+    }
+    
+    let totalPrice = sumSaledXNumber + deliveryFee
+    $(".DeliveryFee").html("₩" + deliveryFee.toLocaleString());
+    $(".TotalPrice").html("₩" + sumSaledXNumber.toLocaleString());
+  }
+  
   function deleteCart(product_idx, obj) {
     $.ajax({
       type: "post",
@@ -195,12 +264,28 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
           $(obj).parent().parent().parent().append("<tr class='table_row'><td colspan='6' class=''>장바구니가 비었습니다.</td></tr>");
           $(obj).parent().parent().remove();  
         }
+        totalPriceCalc();
+
       },
       error: function () {
         console.log(data);
         alert("실패");
       },
     });
+  }
+  
+  function reloadCart(){
+    $.ajax({
+      url : "${MaruContextPath}/cart/reloadCart",
+      type : "post",
+      success : function(data) {
+        alert(data.id);
+        console.log(data);
+      },
+      error : function() {
+        alert("error");
+      }
+    })
   }
     </script>
   <!-- Footer -->

@@ -2,7 +2,7 @@ package ezen.maru.pjt.vo;
 
 import java.util.Date;
 
-public class OrderVo {
+public class OrderVo extends CartVo {
 	private int order_idx;
 	private int member_idx;
 	private Date order_date;
