@@ -57,7 +57,7 @@ li.page-item.active>a.page-link:hover {
 				<td class="col-6"><a href="" id="qna_admin" >${qna.content}</a></td> 
 				<td class="col-2">${qna.category}</td> 
 				<td class="col-2">
-					${qna.idx} 
+					${qna.member_idx} 
 				</td>  
 				<td class="col-2">
 				 <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}"/> 
