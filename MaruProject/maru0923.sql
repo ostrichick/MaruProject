@@ -306,6 +306,8 @@ CREATE TABLE qnaservice
 	isanswered varchar2(3) DEFAULT 'N' NOT NULL,
 	-- 원본글 번호
 	parent_idx number,
+	-- 카테고리 : 카테고리
+	category varchar2(50) NOT NULL,
 	PRIMARY KEY (idx)
 );
 
@@ -623,6 +625,7 @@ COMMENT ON COLUMN qnaservice.content IS '문의답변 내용';
 COMMENT ON COLUMN qnaservice.wdate IS '게시일';
 COMMENT ON COLUMN qnaservice.isanswered IS '답변이 있음';
 COMMENT ON COLUMN qnaservice.parent_idx IS '원본글 번호';
+COMMENT ON COLUMN qnaservice.category IS '카테고리 : 카테고리';
 COMMENT ON TABLE review_tbl IS '리뷰';
 COMMENT ON COLUMN review_tbl.idx IS '리뷰 번호';
 COMMENT ON COLUMN review_tbl.product_idx IS '상품번호';
