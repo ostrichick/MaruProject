@@ -30,7 +30,7 @@
       <br> <br>
       <div class="signInMark">
         <p class="form-label">비밀번호</p>
-        <input type="password" class="pw form-control" id="member_pw" name="member_pw" placeholder="비밀번호를 입력해주세요(6글자~16글자)" required onchange="check_pw()"/>  <!-- 필수록 입력해야 합니다. --> 
+        <input type="password" class="pw form-control" id="member_pw" name="member_pw" placeholder="비밀번호를 입력해주세요(6글자~16글자 이하[특수문자 포함])" required onchange="check_pw()"/>  <!-- 필수록 입력해야 합니다. --> 
       	<span id="pw"></span>
       </div>
       <br> 
@@ -116,7 +116,7 @@
     function check_pw(){
     	 
         var pw = document.getElementById('member_pw').value;
-        var SC = ["!","@","#","$","%"];
+        var SC = ["!","@","#","$","%","~"];
         var check_SC = 0;
 
         if(pw.length < 6 || pw.length>16){
@@ -133,7 +133,7 @@
             }
         }
         if(check_SC == 0){
-        	document.getElementById('pw').innerHTML='!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.'
+        	document.getElementById('pw').innerHTML='!,@,#,$,%,~ 의 특수문자가 들어가 있지 않습니다.'
         		document.getElementById('pw').style.color='red';
         	document.getElementById('member_pw').value='';
         }else{
