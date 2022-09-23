@@ -56,14 +56,14 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
           <th colspan="2" class="">상품</th>
           <th class="">가격</th>
           <th class="">수량선택</th>
-          <th class=""></th>
+          <th class="">${empty cartList  }</th>
         </tr>
+        <c:if test="${empty cartList  }">
+          <tr class="table_row">
+            <td colspan="6" class="">장바구니가 비어있습니다. 상품을 추가해주세요.</td>
+          </tr>
+        </c:if>
         <c:forEach var="cart" items="${cartList}" varStatus="status">
-          <c:if test="${empty cartList  }">
-            <tr class="table_row">
-              <td class="">장바구니가 비어있습니다. 상품을 추가해주세요.</td>
-            </tr>
-          </c:if>
           <tr class="table_row">
             <td class="">
               <div class="form-check">
@@ -110,7 +110,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
               </div>
             </td>
             <td class="">
-              <button type="button" class="btn bg1 cl7 btn-outline-dark">삭제</button>
+              <button type="button" class="btn bg1 cl7 btn-outline-dark" onclick="deleteCart(${cart.product_idx }, this)">삭제</button>
             </td>
           </tr>
         </c:forEach>
@@ -123,7 +123,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
         <strong>[ 주문내역 ]</strong>
       </p>
       <table class="txt-right table-hover">
-      <!-- 위의 표로부터 합계 계산하여 실시간으로 금액 변하게하는 JS 함수 필요 -->
+        <!-- 위의 표로부터 합계 계산하여 실시간으로 금액 변하게하는 JS 함수 필요 -->
         <tr>
           <td>주문금액 :</td>
           <td>180,000원</td>
@@ -144,40 +144,64 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     </div>
   </form>
   <script>
-      document.querySelector("#linkToOrder").addEventListener("click", fn_linkToOrder);
-      function fn_linkToOrder() {
-        let url = "${MaruContextPath}/order/order?cart_idx=";
-        //         url += idx; // fn_linkToOrder() 인자를 cart_idx 로 받아서 url에 더할 것
-        location.href = url;
-      }
+  document.querySelector("#linkToOrder").addEventListener("click", fn_linkToOrder);
+  function fn_linkToOrder() {
+    let url = "${MaruContextPath}/order/order?cart_idx=";
+    //         url += idx; // fn_linkToOrder() 인자를 cart_idx 로 받아서 url에 더할 것
+    location.href = url;
+  }
+  
+  document.querySelector("#linkToMain").addEventListener("click", fn_linkToMain);
+  function fn_linkToMain() {
+    location.href = "${MaruContextPath}/";
+  }
 
-      document.querySelector("#linkToMain").addEventListener("click", fn_linkToMain);
-      function fn_linkToMain() {
-        location.href = "${MaruContextPath}/";
-      }
+  let product_number = document.querySelectorAll("input.num-product");
 
-      let product_number = document.querySelectorAll("input.num-product");
+  function updateCart(cart_product_number, product_idx) {
+    console.log("oninput 작동");
 
-      //       product_number.addEventListener("input", updateCart)
+    $.ajax({
+      type: "post",
+      url: "${MaruContextPath}/cart/updateCart?product_idx=" + product_idx + "&cart_product_number=" + cart_product_number,
+      data: {
+        product_idx: product_idx,
+        cart_product_number: cart_product_number,
+      },
+      success: function () {
+        alert("성공");
+        console.log(data);
+      },
+      error: function () {
+        alert("실패");
+        console.log(data);
+      },
+    });
+  }
 
-      function updateCart(cart_product_number, product_idx) {
-        console.log("oninput 작동")
-
-        $.ajax({
-          type : "post",
-          url : "${MaruContextPath}/cart/updateCart?product_idx=" + product_idx + "&cart_product_number=" + cart_product_number,
-          data : {
-            "product_idx" : product_idx,
-            "cart_product_number" : cart_product_number
-          },
-          success : function() {
-            alert("성공");
-          },
-          error : function() {
-            alert("실패");
-          },
-        })
-      }
+  function deleteCart(product_idx, obj) {
+    $.ajax({
+      type: "post",
+      url: "${MaruContextPath}/cart/deleteCart?product_idx=" + product_idx,
+      data: {
+        product_idx: product_idx,
+      },
+      success: function () {
+        alert("성공");
+        let tr_list_length = document.querySelectorAll(".table-shopping-cart tr").length;
+        if(tr_list_length > 2){
+        $(obj).parent().parent().remove();
+        } else {
+          $(obj).parent().parent().parent().append("<tr class='table_row'><td colspan='6' class=''>장바구니가 비었습니다.</td></tr>");
+          $(obj).parent().parent().remove();  
+        }
+      },
+      error: function () {
+        console.log(data);
+        alert("실패");
+      },
+    });
+  }
     </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>

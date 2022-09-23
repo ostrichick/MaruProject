@@ -109,6 +109,7 @@ span.cart_plus>i:hover {
           </div>
         </div>
 
+
         <c:forEach var="product" items="${productList}" varStatus="status">
           <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.product_major_category }">
 
@@ -120,7 +121,31 @@ span.cart_plus>i:hover {
               </div>
               <div class="block2-txt flex-w flex-t p-t-14">
                 <div class="block2-txt-child1 flex-col-l ">
-                  <a onClick="fn_viewDetail(${product.product_idx})" href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.product_name} </a> <span class="stext-105 cl3"><fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" /> </span><span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
+                  <a onClick="fn_viewDetail(${product.product_idx})" href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.product_name} </a>
+                  <%--                   <span class="stext-105 cl3"><fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" /> </span> --%>
+
+                  <c:choose>
+                    <c:when test="${product.product_sale eq 'Y' and product.product_sale_percent gt 0 }">
+                      <del>
+                        <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
+                      </del>
+                      <fmt:formatNumber value="${product.product_sale_percent / 100 }" type="percent" />
+                      <span class="stext-105 cl3"> <fmt:formatNumber value="${product.product_price - product.product_price * product.product_sale_percent/100}" type="currency" currencySymbol="₩" />
+                      </span>
+                    </c:when>
+                    <c:otherwise>
+                      <!-- 할인을 안 할 경우 정상가격 표시 -->
+                      <span class="stext-105 cl3"> <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
+                      </span>
+                    </c:otherwise>
+                  </c:choose>
+
+
+
+
+
+
+                  <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
                 </div>
                 <div class="block2-txt-child2 flex-r p-t-15">
                   <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>
@@ -131,8 +156,8 @@ span.cart_plus>i:hover {
           </div>
         </c:forEach>
 
-      </div>
 
+      </div>
       <!-- Load more -->
       <div class="flex-c-m flex-w w-full p-t-45">
         <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"> 더 불러오기 </a>

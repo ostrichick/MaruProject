@@ -100,9 +100,9 @@ public class ProductController {
 		System.out.println(product_idx);
 
 		int result = deleteService.deleteProduct(product_idx);
-		String viewPage = "redirect:/";
+		String viewPage = "redirect:/product/detail?product_idx=" + product_idx;
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
-			viewPage = "redirect:/";
+			viewPage = "redirect:/product/list";
 		}
 		return viewPage;
 	}

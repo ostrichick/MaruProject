@@ -18,4 +18,8 @@ public interface CartService {
 		return 0;
 	}
 
+	default int deleteCart(CartVo cartVo) {
+		return 0;
+	}
+
 }
