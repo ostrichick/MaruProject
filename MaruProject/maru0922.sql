@@ -245,7 +245,7 @@ CREATE TABLE product_cart
 	product_idx number NOT NULL,
 	-- 상품 수량
 	cart_product_number number,
-	PRIMARY KEY (cart_idx, member_idx, product_idx)
+	PRIMARY KEY (cart_idx)
 );
 
 
@@ -302,12 +302,6 @@ CREATE TABLE qnaservice
 	isanswered varchar2(3) DEFAULT 'N' NOT NULL,
 	-- 원본글 번호
 	parent_idx number,
-	-- 파일 원본이름
-	file_original varchar2(90),
-	-- 파일 시스템이름
-	file_system varchar2(90),
-	-- 파일 확장자
-	file_extension varchar2(20),
 	PRIMARY KEY (idx)
 );
 
@@ -621,9 +615,6 @@ COMMENT ON COLUMN qnaservice.content IS '문의답변 내용';
 COMMENT ON COLUMN qnaservice.wdate IS '게시일';
 COMMENT ON COLUMN qnaservice.isanswered IS '답변이 있음';
 COMMENT ON COLUMN qnaservice.parent_idx IS '원본글 번호';
-COMMENT ON COLUMN qnaservice.file_original IS '파일 원본이름';
-COMMENT ON COLUMN qnaservice.file_system IS '파일 시스템이름';
-COMMENT ON COLUMN qnaservice.file_extension IS '파일 확장자';
 COMMENT ON TABLE review_tbl IS '리뷰';
 COMMENT ON COLUMN review_tbl.idx IS '리뷰 번호';
 COMMENT ON COLUMN review_tbl.product_idx IS '상품번호';
