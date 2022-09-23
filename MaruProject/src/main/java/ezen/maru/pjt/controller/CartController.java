@@ -58,6 +58,17 @@ public class CartController {
 		return "cart";
 	}
 
+	@ResponseBody
+	@PostMapping("/reloadCart")
+	public List<CartVo> reload(HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+		int member_idx = (int) optional_member_idx.get();
+		List<CartVo> cartList = listService.getCartList(member_idx);
+		model.addAttribute("cartList", cartList);
+		return cartList;
+	}
+
 	@GetMapping("/add")
 	public String add() {
 		return "cart/add";
