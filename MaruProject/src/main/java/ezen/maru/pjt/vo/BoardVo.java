@@ -95,6 +95,7 @@ public class BoardVo {
 	private String system_filename2;
 	private String system_filename3;
 	private int member_idx;
+	private String category; 
 
 	public int getBoard_idx() {
 		return board_idx;
@@ -208,4 +209,11 @@ public class BoardVo {
 		this.member_idx = member_idx;
 	}
 
+	public String getcategory() {
+		return category;
+	}
+
+	public void setcategory(String category) {
+		this.category = category;
+	}
 }

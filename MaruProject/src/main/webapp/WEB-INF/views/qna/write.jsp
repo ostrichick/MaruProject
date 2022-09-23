@@ -87,25 +87,26 @@
 		*카테고리
 		</div>
 	<div class="col-3 m-l-10" id="option">
-		<select class="form-select" aria-label="Categories">
+		<select class="form-select" name="category" id="category" aria-label="Categories">
 			<option selected>카테고리를 선택해주세요</option>
-			<option value="1">문의</option>
-			<option value="2">환불/교환 문의</option>
-			<option value="3">1:1문의</option>
-			<option value="4">상품문의</option>
+			<option value="일반문의" name="일반문의">일반문의</option>
+			<option value="환불/교환문의" name="환불/교환문의">환불/교환 문의</option>
+			<option value="1:1문의" name="1:1문의">1:1문의</option> 
+			<option value="상품문의" name="상품문의">상품문의</option> 
 		</select>
 	</div> 
 	</div> 
 	<hr>
 	<div class="row"> 
-	<div class="col-2" id="contit">   
+	<div class="col-2" id="contit"> 
 		*내용
 	  </div>
 	  <div class="col-8 container m-t-20" id="content">   
 		<textarea class="bor10 m-r-45" name="content" style="width:480px; height:150px;"></textarea>
 	</div>
 	</div>  
-	<div class="m-t-50 m-b-50"> 
+	<div class="m-t-50 m-b-50">
+	<input type="hidden" name="member_idx" value="${sessionScope.member_idx}">  
 	<button class="cl0 btn btn-dark bg1 m-r-30" id="qna_submit" type="submit"><span class="cl0">등록하기</span></button>
 	<a id="cancle" class="cl0 btn btn-dark bg1" type="submit" ><span class="cl0">취소</span></a>
 	</div> 
@@ -127,6 +128,16 @@ $("#file").on('change',function(){
 $("#cancle").on("click", function(e){ 
 	location.href = "${MaruContextPath}/index";
 });
+</script>
+<script type="text/javascript">
+function categoty(){
+    var category = $("#category > option:selected").val();
+    // $("category")의 선택한 값을 불러온다.
+
+     $("#category").val(category);
+
+    // 위에서 부른 값을 hidden값에 넣어서 DB 저장시 사용..
+ }
 </script>
 <!--=============================================================================-->
 </body>

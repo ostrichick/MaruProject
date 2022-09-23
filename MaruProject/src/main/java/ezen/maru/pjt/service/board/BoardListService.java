@@ -26,4 +26,9 @@ public class BoardListService implements BoardService {
 	public BoardVo getNotice(int idx) {
 		return boardDao.getNotice(idx);
 	}
+	
+	@Override
+	public List<BoardVo> getQnaList() { 
+		return boardDao.getQnaList();
+	}
 }

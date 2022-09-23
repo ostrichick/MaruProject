@@ -52,13 +52,13 @@
   <!-- qna -->
   <insert id="qnaWriteProcess" parameterType="boardVo">
     INSERT INTO qnaservice ( 
- 	content, member_idx
+ 	content, member_idx, category 
     ) VALUES ( 
-     #{content}, #{member_idx}
+     #{content}, #{member_idx}, #{category}
     ) 
-     <selectKey resultType="int" keyProperty="idx" order="AFTER">
-      SELECT SEQ_qna_IDX.CURRVAL FROM dual 
-    </selectKey> 
   </insert>
   
+  <select id="getQnaList" resultType="boardVo"> 
+    select * from qnaservice order by idx desc
+  </select>
 </mapper>	
