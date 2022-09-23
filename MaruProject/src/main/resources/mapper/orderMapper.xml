@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.maru.pjt.order">
+  <!-- 카트테이블과 멤버, 상품테이블 조인해서 멤버아이디 일치하는 카트 목록, 상품 이름, 가격 등 필요한것 가져오기 -->
+  <select id="getOrderList" parameterType="int" resultType="orderVo">
+    select * from product_order ct
+    INNER join product p ON ct.product_idx = p.product_idx
+    where member_idx = #{member_idx}
+    order by ct.product_idx DESC
+  </select>
+
+  <!-- merge문 : 해당 값이 있으면 update 없으면 insert -->
+  <update id="addOrder" parameterType="orderVo">
+    MERGE INTO product_order
+    USING DUAL
+    ON (
+    member_idx = #{member_idx} and product_idx = #{product_idx}
+    )
+    WHEN MATCHED THEN
+    UPDATE
+    SET order_product_number = order_product_number + #{order_product_number}
+    WHEN NOT MATCHED THEN
+    INSERT (
+    member_idx, product_idx, order_product_number) VALUES (
+    #{member_idx}, #{product_idx}, #{order_product_number}
+    )
+  </update>
+
+  <update id="updateOrder" parameterType="orderVo">
+    UPDATE product_order
+    SET
+    order_product_number = #{order_product_number}
+    WHERE
+    member_idx = #{member_idx} and product_idx = #{product_idx}
+  </update>
+
+  <delete id="deleteOrder" parameterType="int">
+    delete from product_order
+    where
+    member_idx = #{member_idx} and product_idx = #{product_idx}
+  </delete>
+</mapper>	

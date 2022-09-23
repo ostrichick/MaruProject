@@ -18,6 +18,8 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
       b) 비로그인시 -> 쿠키를 갱신하여 수량 변경 
     
     4. 삭제 : 
+      1) ajax로 해당 member_idx와 product_idx값을 DB로 보내서 해당 품목을 삭제
+      2) ajax 통신 성공시 해당 품목의 <tr>태그를 삭제
     
     -->
 <!--===============================================================================================-->
@@ -102,7 +104,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                   <i class="fs-16 zmdi zmdi-minus"></i>
                 </div>
-                <input class="mtext-104 cl3 txt-center num-product" type="number" name="cart_product_number" value="${cart.cart_product_number }" oninput="updateCart(this.value,${cart.product_idx })">
+                <input class="mtext-104 cl3 txt-center num-product" type="number" name="cart_product_number" value="${cart.cart_product_number }" oninput="updateCart(this.value, ${cart.product_idx })">
                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                   <i class="fs-16 zmdi zmdi-plus"></i>
                 </div>
@@ -155,8 +157,6 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
   function fn_linkToMain() {
     location.href = "${MaruContextPath}/";
   }
-
-  let product_number = document.querySelectorAll("input.num-product");
 
   function updateCart(cart_product_number, product_idx) {
     console.log("oninput 작동");

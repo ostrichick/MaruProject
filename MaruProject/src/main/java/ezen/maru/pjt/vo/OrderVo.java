@@ -14,7 +14,7 @@ public class OrderVo {
 	private String order_phone;
 	private String order_status;
 	private String order_cancel_yn;
-	private String order_refund_yb;
+	private String order_refund_yn;
 
 	public int getOrder_idx() {
 		return order_idx;
@@ -104,12 +104,12 @@ public class OrderVo {
 		this.order_cancel_yn = order_cancel_yn;
 	}
 
-	public String getOrder_refund_yb() {
-		return order_refund_yb;
+	public String getOrder_refund_yn() {
+		return order_refund_yn;
 	}
 
-	public void setOrder_refund_yb(String order_refund_yb) {
-		this.order_refund_yb = order_refund_yb;
+	public void setOrder_refund_yn(String order_refund_yn) {
+		this.order_refund_yn = order_refund_yn;
 	}
 
 }
