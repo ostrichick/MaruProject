@@ -1,3 +1,13 @@
+<!--
+// 페이지를 열때 장바구니,상품 페이지에서 controller로 정보를 보내면서 생성한 order_idx를 selectKey로 선택해 다시 불러옴
+ 
+//기본값으로 회원정보에서 불러와 출력하되 수정 가능하게 input 필드 제공 
+ order_name 
+ order_address
+ order_address2
+ order_passcode
+ order_phone
+  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />

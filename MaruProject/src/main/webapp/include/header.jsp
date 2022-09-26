@@ -96,7 +96,7 @@
 
           <li>
             <div class="right-top-bar flex-w h-full">
-              <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> My Account </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> EN </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> USD </a>
+              <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> 1:1 문의 </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> My Account </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> EN </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> USD </a>
             </div>
           </li>
         </ul>
@@ -218,7 +218,7 @@
 
           <li>
             <div class="right-top-bar flex-w h-full">
-              <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> My Account </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> EN </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> USD </a>
+              <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> 1:1 문의 </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> My Account </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> EN </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> USD </a>
             </div>
           </li>
         </ul>

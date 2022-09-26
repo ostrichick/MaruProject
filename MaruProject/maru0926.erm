@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2022-08-19 17:03:38</creation_date>
-			<updated_date>2022-09-26 09:34:21</updated_date>
+			<updated_date>2022-09-26 09:40:39</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -3386,7 +3386,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>77</word_id>
+					<word_id>76</word_id>
 					<id>46</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4055,7 +4055,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>21</word_id>
+					<word_id>22</word_id>
 					<id>63</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4307,7 +4307,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>22</word_id>
+					<word_id>21</word_id>
 					<id>69</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4526,7 +4526,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>76</word_id>
+					<word_id>77</word_id>
 					<id>74</id>
 					<description></description>
 					<unique_key_name></unique_key_name>

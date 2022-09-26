@@ -26,14 +26,14 @@ import ezen.maru.pjt.vo.MemberInfoVo;
 public class MemberInfoController {
 
 	MemberInfoService signupService, signinService, updateService;
-	
-	BoardService listService2;
-	
+
+	BoardService blistService;
+
 	@Autowired(required = false)
-	public void setListService2(@Qualifier("b_list") BoardService listService2) {
-		this.listService2 = listService2; 
+	public void setListService2(@Qualifier("b_list") BoardService blistService) {
+		this.blistService = blistService;
 	}
-	
+
 	@Autowired(required = false)
 	public void setSignupService(@Qualifier("signup") MemberInfoService signupService) {
 		this.signupService = signupService;
@@ -98,8 +98,8 @@ public class MemberInfoController {
 		HttpSession session = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		MemberInfoVo memberInfoVo = updateService.getMember(member_id);
-		List<BoardVo> qnaList = listService2.getQnaList();
-		model.addAttribute("qnaList", qnaList); 
+		List<BoardVo> qnaList = blistService.getQnaList();
+		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("memberInfoVo", memberInfoVo);
 		return "member/myinfo";
 	}

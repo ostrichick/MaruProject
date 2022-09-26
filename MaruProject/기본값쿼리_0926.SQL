@@ -1,7 +1,7 @@
 ﻿
 INSERT INTO MEMBER_INFO(
-member_id, member_pw, 
-member_name, member_email, member_phone, 
+member_id, member_pw,
+member_name, member_email, member_phone,
 member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (
@@ -11,8 +11,8 @@ member_admin
 'Y');
 
 INSERT INTO MEMBER_INFO(
-member_id, member_pw, 
-member_name, member_email, member_phone, 
+member_id, member_pw,
+member_name, member_email, member_phone,
 member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (

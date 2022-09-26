@@ -1,18 +1,7 @@
 package ezen.maru.pjt.service.board;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 
 import ezen.maru.pjt.dao.BoardDao;
 import ezen.maru.pjt.vo.BoardVo;
@@ -28,7 +17,7 @@ public class BoardInsertService implements BoardService {
 	@Override
 	public int qnaWriteProcess(BoardVo boardVo) {
 		return boardDao.qnaWriteProcess(boardVo);
-	}  
+	}
 
 	//////////////
 	// MARU end //

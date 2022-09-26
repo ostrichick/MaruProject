@@ -49,7 +49,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
   </div>
 
   <!-- Shoping Cart -->
-  <form class="container m-b-50" action="${pageContext.request.contextPath}/order" method="post">
+  <form class="container m-b-50" action="${pageContext.request.contextPath}/order/order" method="post">
     <h3 class="m-tb-50 m-l-50">장바구니</h3>
     <div class="wrap-table-shopping-cart">
       <table class="table-shopping-cart txt-center">
@@ -74,14 +74,11 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
               </div>
             </td>
             <td class="">
-
               <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
-
             </td>
             <td class="txt-left">
               <a href="${MaruContextPath}/product/detail?product_idx=${cart.product_idx}">${cart.product_name }</a>
             </td>
-
             <td class="txt-right p-r-20">
 
               <c:choose>
@@ -113,7 +110,6 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                   <i class="fs-16 zmdi zmdi-plus"></i>
                 </div>
-
               </div>
             </td>
 
@@ -173,15 +169,29 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
           <td class="p-r-10">총주문금액 :</td>
           <td class="TotalPrice">
             <fmt:formatNumber value="${sumPrice + deliveryFee }" type="currency" currencySymbol="₩" />
+            <input type="hidden" name="order_total_price" value="${sumPrice + deliveryFee }" />
           </td>
         </tr>
       </table>
     </div>
     <div class="mt-5 txt-center">
+      <input type="hidden" name="member_idx" value="${saledPrice}" />
       <input id="linkToOrder" type="submit" class="btn btn-lg bg7 cl7 btn-outline-secondary" value="상품 구매">
       <button id="linkToProductList" type="button" class="btn bg2 cl2 ml-5 btn-outline-secondary">계속 쇼핑하기</button>
     </div>
   </form>
+  <!-- 
+  //장바구니에서 order 테이블로 넘길 정보 
+  member_idx -> 폼으로 넘기고 컨트롤러에서 다시 검증
+  order_total_price 
+  selectKey로 order_idx 반환
+  
+  order_product 로 넘길 정보
+  위에서 반환 받은 order_idx 키,
+  product_idx (from cart_product_idx)
+  order_quantity (from cart_product_number)
+  
+  -->
   <script>
   /** 
   장바구니 페이지에서는 수량 변경, 삭제, 구매를 할 수 있음
@@ -190,12 +200,12 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
   삭제시 : 해당 <tr>행을 삭제하고 주문내역 총금액합계부분을 변경
   */
   
-  document.querySelector("#linkToOrder").addEventListener("click", fn_linkToOrder);
-  function fn_linkToOrder() {
-    let url = "${MaruContextPath}/order/order?cart_idx=";
-    //         url += idx; // fn_linkToOrder() 인자를 cart_idx 로 받아서 url에 더할 것
-    location.href = url;
-  }
+//   document.querySelector("#linkToOrder").addEventListener("click", fn_linkToOrder);
+//   function fn_linkToOrder() {
+//     let url = "${MaruContextPath}/order/order?cart_idx=";
+//     //         url += idx; // fn_linkToOrder() 인자를 cart_idx 로 받아서 url에 더할 것
+//     location.href = url;
+//   }
   
   document.querySelector("#linkToProductList").addEventListener("click", fn_linkToMain);
   function fn_linkToMain() {
@@ -243,7 +253,8 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     
     let totalPrice = sumSaledXNumber + deliveryFee
     $(".DeliveryFee").html("₩" + deliveryFee.toLocaleString());
-    $(".TotalPrice").html("₩" + sumSaledXNumber.toLocaleString());
+    $(".TotalPrice").html("₩" + totalPrice.toLocaleString());
+    $(".TotalPrice").append("<input type='hidden' name='order_total_price' value=" + totalPrice + "/>")
   }
   
   function deleteCart(product_idx, obj) {

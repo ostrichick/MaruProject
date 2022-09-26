@@ -1,18 +1,30 @@
 package ezen.maru.pjt.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.service.order.OrderService;
+import ezen.maru.pjt.vo.MemberInfoVo;
+import ezen.maru.pjt.vo.OrderProductVo;
+import ezen.maru.pjt.vo.OrderVo;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController {
 	OrderService insertService, listService, updateService, deleteService;
+	MemberInfoService mUpdateService;
 
 	@Autowired(required = false)
 	public void setListService(@Qualifier("o_list") OrderService listService) {
@@ -34,8 +46,17 @@ public class OrderController {
 		this.deleteService = deleteService;
 	}
 
-	@GetMapping("/order")
-	public String order() {
+	@PostMapping("/order")
+	public String order(@RequestBody List<OrderProductVo> orderProductList, OrderVo orderVo, HttpServletRequest req,
+			Model model) {
+		HttpSession session = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
+
+		model.addAttribute("memberInfoVo", memberInfoVo);
+		System.out.println(memberInfoVo.toString());
+		System.out.println(orderProductList.toString());
+		System.out.println(orderVo.toString());
 		return "order/order";
 	}
 

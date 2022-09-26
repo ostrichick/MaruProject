@@ -17,6 +17,15 @@ public class OrderVo extends CartVo {
 	private String order_cancel_yn;
 	private String order_refund_yn;
 
+	@Override
+	public String toString() {
+		return "OrderVo [order_idx=" + order_idx + ", member_idx=" + member_idx + ", cart_idx=" + cart_idx
+				+ ", order_date=" + order_date + ", order_total_price=" + order_total_price + ", order_name="
+				+ order_name + ", order_address=" + order_address + ", order_address2=" + order_address2
+				+ ", order_postcode=" + order_postcode + ", order_phone=" + order_phone + ", order_status="
+				+ order_status + ", order_cancel_yn=" + order_cancel_yn + ", order_refund_yn=" + order_refund_yn + "]";
+	}
+
 	public int getOrder_idx() {
 		return order_idx;
 	}

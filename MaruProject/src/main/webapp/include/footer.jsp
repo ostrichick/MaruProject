@@ -8,7 +8,7 @@
       </div>
 
       <div class="col-sm-6 col-lg-4 p-b-50">
-        <h4 class="stext-301 cl0 p-b-30">마루 가구</h4>
+        <h4 class="stext-301 cl0 p-b-30">마루가구</h4>
         <p class="stext-107 cl7 size-201">
           주소 : 전라북도 전주시 덕진구 백제대로 572 <br />사업자 등록번호 : 100-123-45678 <br />대표자 : 김마루 <br />통신판매업 신고 : 2022-통신판매업-05-23 <br />
         </p>
@@ -40,7 +40,7 @@
       <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </p>
   </div>
-  </div>
+
 </footer>
 <!-- Back to top -->
 <div class="btn-back-to-top" id="myBtn">

@@ -2,10 +2,6 @@ package ezen.maru.pjt.service.board;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.multipart.MultipartRequest;
-
 import ezen.maru.pjt.vo.BoardVo;
 
 public interface BoardService {
@@ -37,8 +33,9 @@ public interface BoardService {
 	default int qnaWriteProcess(BoardVo boardVo) {
 		return 0;
 	}
+
 	default List<BoardVo> getQnaList() {
-		return null; 
+		return null;
 	}
 
 }
