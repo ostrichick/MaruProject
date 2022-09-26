@@ -196,8 +196,10 @@ CREATE TABLE order_product
 (
 	-- 주문번호
 	order_idx number NOT NULL,
+	-- 장바구니 번호
+	cart_idx number,
 	-- 상품번호
-	product_idx number NOT NULL UNIQUE,
+	product_idx number NOT NULL,
 	-- 주문 개수
 	order_quantity number NOT NULL
 );
@@ -420,6 +422,12 @@ ALTER TABLE review_tbl
 ;
 
 
+ALTER TABLE order_product
+	ADD FOREIGN KEY (cart_idx)
+	REFERENCES product_cart (cart_idx)
+;
+
+
 
 /* Create Triggers */
 
@@ -584,6 +592,7 @@ COMMENT ON COLUMN order_log.order_cancel_yn IS '주문 취소 여부';
 COMMENT ON COLUMN order_log.order_refund_yn IS '주문 환불 여부';
 COMMENT ON TABLE order_product IS '주문 상품';
 COMMENT ON COLUMN order_product.order_idx IS '주문번호';
+COMMENT ON COLUMN order_product.cart_idx IS '장바구니 번호';
 COMMENT ON COLUMN order_product.product_idx IS '상품번호';
 COMMENT ON COLUMN order_product.order_quantity IS '주문 개수';
 COMMENT ON TABLE product IS '상품';

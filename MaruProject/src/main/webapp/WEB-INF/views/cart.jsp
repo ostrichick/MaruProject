@@ -26,6 +26,8 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -49,7 +51,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
   </div>
 
   <!-- Shoping Cart -->
-  <form class="container m-b-50" action="${pageContext.request.contextPath}/order/order" method="post">
+  <form class="container m-b-50" action="${pageContext.request.contextPath}/order/order" method="get">
     <h3 class="m-tb-50 m-l-50">장바구니</h3>
     <div class="wrap-table-shopping-cart">
       <table class="table-shopping-cart txt-center">

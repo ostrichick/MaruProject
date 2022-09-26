@@ -46,7 +46,7 @@ public class OrderController {
 		this.deleteService = deleteService;
 	}
 
-	@PostMapping("/order")
+	@GetMapping("/order")
 	public String order(@RequestBody List<OrderProductVo> orderProductList, OrderVo orderVo, HttpServletRequest req,
 			Model model) {
 		HttpSession session = req.getSession();
