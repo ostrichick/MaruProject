@@ -5,6 +5,7 @@ import java.util.Date;
 public class OrderVo extends CartVo {
 	private int order_idx;
 	private int member_idx;
+	private int cart_idx;
 	private Date order_date;
 	private int order_total_price;
 	private String order_name;
@@ -30,6 +31,14 @@ public class OrderVo extends CartVo {
 
 	public void setMember_idx(int member_idx) {
 		this.member_idx = member_idx;
+	}
+
+	public int getCart_idx() {
+		return cart_idx;
+	}
+
+	public void setCart_idx(int cart_idx) {
+		this.cart_idx = cart_idx;
 	}
 
 	public Date getOrder_date() {

@@ -6,6 +6,7 @@ public class ProductVo extends FileVo {
 	private int product_price;
 	private String product_sale; // 할인여부 Y N
 	private long product_sale_percent;
+	private int product_sale_price; // 할인 적용된 가격
 	private String product_size; // 사이즈 500x1000
 	private int product_inventory;
 	private String product_major_category;
@@ -14,32 +15,12 @@ public class ProductVo extends FileVo {
 	private long product_avgstar;
 	private int product_hit;
 
-	@Override
-	public String toString() {
-		return "ProductVo [product_name=" + product_name + ", product_idx=" + product_idx + ", product_price="
-				+ product_price + ", product_sale=" + product_sale + ", product_sale_percent=" + product_sale_percent
-				+ ", product_size=" + product_size + ", product_inventory=" + product_inventory
-				+ ", product_major_category=" + product_major_category + ", product_isnew=" + product_isnew
-				+ ", product_detail=" + product_detail + ", product_avgstar=" + product_avgstar + ", product_hit="
-				+ product_hit + ", getProduct_name()=" + getProduct_name() + ", getProduct_hit()=" + getProduct_hit()
-				+ ", getProduct_idx()=" + getProduct_idx() + ", getProduct_price()=" + getProduct_price()
-				+ ", getProduct_sale()=" + getProduct_sale() + ", getProduct_sale_percent()="
-				+ getProduct_sale_percent() + ", getProduct_size()=" + getProduct_size() + ", getProduct_inventory()="
-				+ getProduct_inventory() + ", getProduct_major_category()=" + getProduct_major_category()
-				+ ", getProduct_detail()=" + getProduct_detail() + ", getProduct_isnew()=" + getProduct_isnew()
-				+ ", getProduct_avgstar()=" + getProduct_avgstar() + ", getFile_idx()=" + getFile_idx()
-				+ ", getFile_original()=" + getFile_original() + ", getFile_system()=" + getFile_system()
-				+ ", getFile_extension()=" + getFile_extension() + ", getHit()=" + getHit() + ", getIdx()=" + getIdx()
-				+ ", getWdate()=" + getWdate() + ", getIsanswered()=" + getIsanswered() + ", getParent_idx()="
-				+ getParent_idx() + ", getBoard_idx()=" + getBoard_idx() + ", getWriter()=" + getWriter()
-				+ ", getTitle()=" + getTitle() + ", getContent()=" + getContent() + ", getPrice()=" + getPrice()
-				+ ", getAddress()=" + getAddress() + ", getReg_date()=" + getReg_date() + ", getOrigin_filename1()="
-				+ getOrigin_filename1() + ", getOrigin_filename2()=" + getOrigin_filename2()
-				+ ", getOrigin_filename3()=" + getOrigin_filename3() + ", getSystem_filename1()="
-				+ getSystem_filename1() + ", getSystem_filename2()=" + getSystem_filename2()
-				+ ", getSystem_filename3()=" + getSystem_filename3() + ", getMember_idx()=" + getMember_idx()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+	public int getProduct_sale_price() {
+		return product_sale_price;
+	}
+
+	public void setProduct_sale_price(int product_sale_price) {
+		this.product_sale_price = product_sale_price;
 	}
 
 	public String getProduct_name() {

@@ -161,6 +161,8 @@ CREATE TABLE order_log
 	order_idx number NOT NULL,
 	-- 회원번호
 	member_idx number NOT NULL,
+	-- 장바구니 번호
+	cart_idx number,
 	-- 주문날자
 	order_date date DEFAULT sysdate NOT NULL,
 	-- 주문 총 가격
@@ -216,6 +218,8 @@ CREATE TABLE product
 	product_sale varchar2(3) DEFAULT 'N' NOT NULL,
 	-- 상품 할인율
 	product_sale_percent number DEFAULT 0,
+	-- 할인 적용된 가격
+	product_sale_price number,
 	-- 상품 규격 (100x200)
 	product_size varchar2(30),
 	-- 상품 분류 (대분류)
@@ -418,6 +422,12 @@ ALTER TABLE review_tbl
 ;
 
 
+ALTER TABLE order_log
+	ADD FOREIGN KEY (cart_idx)
+	REFERENCES product_cart (cart_idx)
+;
+
+
 
 /* Create Triggers */
 
@@ -564,6 +574,7 @@ COMMENT ON COLUMN order_change_cancel_refund.order_ccr_status IS '교환 취소 
 COMMENT ON TABLE order_log IS '주문 내역';
 COMMENT ON COLUMN order_log.order_idx IS '주문번호';
 COMMENT ON COLUMN order_log.member_idx IS '회원번호';
+COMMENT ON COLUMN order_log.cart_idx IS '장바구니 번호';
 COMMENT ON COLUMN order_log.order_date IS '주문날자';
 COMMENT ON COLUMN order_log.order_total_price IS '주문 총 가격';
 COMMENT ON COLUMN order_log.order_name IS '수령자 이름';
@@ -590,6 +601,7 @@ COMMENT ON COLUMN product.product_name IS '상품명';
 COMMENT ON COLUMN product.product_price IS '상품가격';
 COMMENT ON COLUMN product.product_sale IS '할인 여부';
 COMMENT ON COLUMN product.product_sale_percent IS '상품 할인율';
+COMMENT ON COLUMN product.product_sale_price IS '할인 적용된 가격';
 COMMENT ON COLUMN product.product_size IS '상품 규격 (100x200)';
 COMMENT ON COLUMN product.product_major_category IS '상품 분류 (대분류)';
 COMMENT ON COLUMN product.product_isnew IS '신제품 여부';
