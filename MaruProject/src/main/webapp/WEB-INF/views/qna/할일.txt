@@ -8,3 +8,25 @@
 삭제 
 
 관리자 답변작성 write_answer.jsp
+
+
+
+사용자가 글 쓸때
+
+그냥 내용만 쓰면됨 member_idx 세션에서 가져옴
+
+
+관리자가 글 쓸때
+
+원본글 idx를 알아야함
+
+원본글의 isanswer = 'N'를 'Y'로 바꿔야함
+
+
+
+사용자 글 1 isanswer = N -> 하나만 출력
+
+
+사용자 글 2 isanswered = Y -> 
+
+select eriherih where parent_idx = #{parent_idx}
