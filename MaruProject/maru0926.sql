@@ -161,8 +161,6 @@ CREATE TABLE order_log
 	order_idx number NOT NULL,
 	-- 회원번호
 	member_idx number NOT NULL,
-	-- 장바구니 번호
-	cart_idx number,
 	-- 주문날자
 	order_date date DEFAULT sysdate NOT NULL,
 	-- 주문 총 가격
@@ -422,12 +420,6 @@ ALTER TABLE review_tbl
 ;
 
 
-ALTER TABLE order_log
-	ADD FOREIGN KEY (cart_idx)
-	REFERENCES product_cart (cart_idx)
-;
-
-
 
 /* Create Triggers */
 
@@ -574,7 +566,6 @@ COMMENT ON COLUMN order_change_cancel_refund.order_ccr_status IS '교환 취소 
 COMMENT ON TABLE order_log IS '주문 내역';
 COMMENT ON COLUMN order_log.order_idx IS '주문번호';
 COMMENT ON COLUMN order_log.member_idx IS '회원번호';
-COMMENT ON COLUMN order_log.cart_idx IS '장바구니 번호';
 COMMENT ON COLUMN order_log.order_date IS '주문날자';
 COMMENT ON COLUMN order_log.order_total_price IS '주문 총 가격';
 COMMENT ON COLUMN order_log.order_name IS '수령자 이름';

@@ -16,8 +16,8 @@ member_name, member_email, member_phone,
 member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (
-'asd','12',
-'관리자','admin@naver.com',01012341234,
+'as','12',
+'관리자as','admin@naver.com',01012341234,
 '대한민국','상세주소',1000,
 'Y');
 
@@ -36,7 +36,7 @@ product_size, product_major_category,
 product_detail, product_inventory
 ) values (
 '2번상품', 150000, 'Y', 40,
-'100x200', 'livingroom',
+'100x200', 'bedroom',
 '상세설명입니다', 100);
 
 insert into product (
@@ -45,7 +45,7 @@ product_size, product_major_category,
 product_detail, product_inventory
 ) values (
 '3번상품', 540000, 'Y', 20,
-'100x200', 'livingroom',
+'100x200', 'library',
 '상세설명입니다', 100);
 
 INSERT INTO announce (
