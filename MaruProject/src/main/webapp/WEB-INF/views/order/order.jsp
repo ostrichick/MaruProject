@@ -69,38 +69,38 @@
       </div>
 
 
-
-      <div class="">
-        <p class="form-label">이름</p>
-        <input type="text" class="form-control" name="order_name" value="${memberInfoVo.member_name }">
-      </div>
-      <br>
-      <div>
-        <p class="form-label">주소</p>
-        <div class="input-group">
-          <input type="text" class="form-control col-md-10 float-left" name="order_address" value="${memberInfoVo.member_addr}">
-          <button type="button" class="btn bg7 cl7 btn-outline-dark pull-right">주소찾기</button>
+      <div class="order_info">
+        <div class="">
+          <p class="form-label">이름</p>
+          <input type="text" class="form-control" name="order_name" value="${memberInfoVo.member_name }">
         </div>
-        <input type="text" class="form-control" name="order_address2" value="${memberInfoVo.member_addr2}">
-        <input type="text" class="form-control" name="order_postcode" value="${memberInfoVo.member_postcode}">
+        <br>
+        <div>
+          <p class="form-label">주소</p>
+          <div class="input-group">
+            <input type="text" class="form-control col-md-10 float-left" name="order_address" value="${memberInfoVo.member_addr}">
+            <button type="button" class="btn bg7 cl7 btn-outline-dark pull-right">주소찾기</button>
+          </div>
+          <input type="text" class="form-control" name="order_address2" value="${memberInfoVo.member_addr2}">
+          <input type="text" class="form-control" name="order_postcode" value="${memberInfoVo.member_postcode}">
+        </div>
+        <br>
+        <div class="">
+          <p class="form-label">휴대폰번호</p>
+          <input type="text" class="form-control" name="order_phone" value="${memberInfoVo.member_phone}">
+        </div>
+        <br>
+        <div class="">
+          <p class="form-label">배송요청사항</p>
+          <input type="text" class="form-control" id="delivery_request" list="request_list">
+          <datalist id="request_list">
+            <option value="문 앞"></option>
+            <option value="경비실"></option>
+            <option value="택배함"></option>
+            <option value="직접 입력"></option>
+          </datalist>
+        </div>
       </div>
-      <br>
-      <div class="">
-        <p class="form-label">휴대폰번호</p>
-        <input type="text" class="form-control" name="order_phone" value="${memberInfoVo.member_phone}">
-      </div>
-      <br>
-      <div class="">
-        <p class="form-label">배송요청사항</p>
-        <input type="text" class="form-control" id="delivery_request" list="request_list">
-        <datalist id="request_list">
-          <option value="문 앞"></option>
-          <option value="경비실"></option>
-          <option value="택배함"></option>
-          <option value="직접 입력"></option>
-        </datalist>
-      </div>
-      <br> <br>
 
       <!--       <h3 class="">결제수단</h3> -->
       <!--       <hr> -->
@@ -166,15 +166,10 @@
 
       $("#order_same_person").on("change", function() {
         //         $("form[type = post]").find()
-        $("input").each(function(index, item) {
-//           console.log(index);
-//           console.log(item);
-          console.log(item.getAttribute("readonly"));
-//            if (item.attr("readonly") == undefined) {
-//             item.val("");
-//           } 
+        $(".order_info input").each(function(index, item) {
+          item.value = "";
+          $("#order_same_person").attr("disabled");
         })
-
       })
 
       document.querySelector("#linkToPay").addEventListener("click", iamport);
