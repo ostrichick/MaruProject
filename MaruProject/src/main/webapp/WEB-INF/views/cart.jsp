@@ -72,7 +72,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
           <tr class="table_row">
             <td class="">
               <div class="form-check">
-                <input class="form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
+                <input class="form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" onchange="checkedItem(${cart.product_idx}, this)" checked>
               </div>
             </td>
             <td class="">
@@ -214,6 +214,17 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     location.href = "${MaruContextPath}/product/list";
   }
 
+  function checkedItem(product_idx, obj){
+    if(obj.checked){
+    $(obj).parent().parent().next().next().next().next().next()
+    }
+    else {
+      console.log(product_idx);
+      console.log(obj.checked);
+    }
+    totalPriceCalc();
+  }
+  
   function updateCart(obj, cart_product_number, product_idx) {
     console.log("oninput 작동");
 

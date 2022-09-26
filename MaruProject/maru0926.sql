@@ -253,6 +253,8 @@ CREATE TABLE product_cart
 	product_idx number NOT NULL,
 	-- 상품 수량
 	cart_product_number number,
+	-- 선택 여부
+	ischecked varchar2(3) DEFAULT 'Y' NOT NULL,
 	PRIMARY KEY (cart_idx)
 );
 
@@ -616,6 +618,7 @@ COMMENT ON COLUMN product_cart.cart_idx IS '장바구니 번호';
 COMMENT ON COLUMN product_cart.member_idx IS '회원번호';
 COMMENT ON COLUMN product_cart.product_idx IS '상품번호';
 COMMENT ON COLUMN product_cart.cart_product_number IS '상품 수량';
+COMMENT ON COLUMN product_cart.ischecked IS '선택 여부';
 COMMENT ON TABLE product_photo IS '제품용 사진';
 COMMENT ON COLUMN product_photo.product_idx IS '상품번호';
 COMMENT ON COLUMN product_photo.file_idx IS '사진 번호';
