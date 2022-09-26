@@ -1,7 +1,5 @@
 package ezen.maru.pjt.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,14 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.service.order.OrderService;
 import ezen.maru.pjt.vo.MemberInfoVo;
-import ezen.maru.pjt.vo.OrderProductVo;
-import ezen.maru.pjt.vo.OrderVo;
 
 @Controller
 @RequestMapping("/order")
@@ -46,17 +41,27 @@ public class OrderController {
 		this.deleteService = deleteService;
 	}
 
+	@Autowired(required = false)
+	public void setMUpdateService(@Qualifier("member_update") MemberInfoService mUpdateService) {
+		this.mUpdateService = mUpdateService;
+	}
+
 	@GetMapping("/order")
-	public String order(@RequestBody List<OrderProductVo> orderProductList, OrderVo orderVo, HttpServletRequest req,
-			Model model) {
+	public String order(String[] checkedItemList, String order_total_price, HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
+		System.out.println(member_id);
 		MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
 
 		model.addAttribute("memberInfoVo", memberInfoVo);
+		model.addAttribute("order_total_price", order_total_price);
+
 		System.out.println(memberInfoVo.toString());
-		System.out.println(orderProductList.toString());
-		System.out.println(orderVo.toString());
+		System.out.println(checkedItemList.length);
+		System.out.println(checkedItemList[0]);
+		System.out.println(checkedItemList[1]);
+		System.out.println(checkedItemList[2]);
+		System.out.println(order_total_price.toString());
 		return "order/order";
 	}
 

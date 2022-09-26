@@ -72,7 +72,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
           <tr class="table_row">
             <td class="">
               <div class="form-check">
-                <input class="form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" onchange="checkedItem(${cart.product_idx}, this)" checked>
+                <input class="form-check-input dis-inline-block" type="checkbox" name="checkedItemList" value="${cart.product_idx}" id="delete_item" onchange="checkedItem(${cart.product_idx}, this)" checked>
               </div>
             </td>
             <td class="">
@@ -216,11 +216,17 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 
   function checkedItem(product_idx, obj){
     if(obj.checked){
-    $(obj).parent().parent().next().next().next().next().next()
+      
+    let saledPrice = $(obj).parent().parent().next().next().next().children("input[type=hidden]").val();
+    let cart_product_number = $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").val();
+    let saledXNumber = saledPrice * cart_product_number;
+ 
+    $(obj).parent().parent().next().next().next().next().next().html("₩" + saledXNumber.toLocaleString() + 
+        "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>")
     }
     else {
-      console.log(product_idx);
-      console.log(obj.checked);
+      $(obj).parent().parent().next().next().next().next().next().html("₩" + "0".toLocaleString() + 
+          "<input class='saledXNumber' type='hidden' value='" + 0 + "'>")
     }
     totalPriceCalc();
   }
@@ -268,6 +274,15 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     $(".DeliveryFee").html("₩" + deliveryFee.toLocaleString());
     $(".TotalPrice").html("₩" + totalPrice.toLocaleString());
     $(".TotalPrice").append("<input type='hidden' name='order_total_price' value=" + totalPrice + "/>")
+    
+     
+    if(totalPrice == 0){ // 합계 금액이 0이면 구매버튼 비활성화
+    $("#linkToOrder").addClass("disabled");
+    $("#linkToOrder").prop("type", "button");
+    } else {
+    $("#linkToOrder").removeClass("disabled");
+    $("#linkToOrder").prop("type", "submit");
+    }
   }
   
   function deleteCart(product_idx, obj) {
