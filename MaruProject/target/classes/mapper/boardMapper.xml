@@ -51,7 +51,7 @@
 
   <!-- qna -->
   <insert id="qnaWriteProcess" parameterType="boardVo">
-    INSERT INTO qnaservice ( 
+    INSERT INTO qnaservice (  
  	content, member_idx, category 
     ) VALUES ( 
      #{content}, #{member_idx}, #{category}
@@ -59,6 +59,9 @@
   </insert>
   
   <select id="getQnaList" resultType="boardVo"> 
-    select * from qnaservice order by idx desc
+    SELECT m.MEMBER_NAME, q.CONTENT, q.WDATE, q.CATEGORY, q.ISANSWERED, q.PARENT_IDX
+	 FROM qnaservice q, MEMBER_INFO m
+    WHERE q.member_idx = m.member_idx
+    ORDER BY m.member_idx
   </select>
 </mapper>	

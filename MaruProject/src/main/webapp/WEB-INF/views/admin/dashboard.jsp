@@ -234,9 +234,9 @@ tr, th, td {
                 </div>
               </div>
              </td> 
-            <td>${qna.member_id}</td>
+            <td>${qna.member_name}</td> 
             <td> <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}"/></td> 
-            <td>답변여부</td> 
+            <td>답변</td>  
           </tr>
         </c:forEach>
 		

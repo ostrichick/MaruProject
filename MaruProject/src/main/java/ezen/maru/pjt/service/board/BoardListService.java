@@ -29,6 +29,7 @@ public class BoardListService implements BoardService {
 	
 	@Override
 	public List<BoardVo> getQnaList() { 
+		System.out.println();
 		return boardDao.getQnaList();
 	}
 }

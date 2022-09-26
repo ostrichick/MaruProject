@@ -41,8 +41,7 @@ public class BoardDao {
 	/////////////////////////////////////
 /////////////////////////////////////
 
-	public int qnaWriteProcess(BoardVo boardVo) { 
-		System.out.println(boardVo.getMember_idx()); 
+	public int qnaWriteProcess(BoardVo boardVo) {  
 		return sqlSession.insert(MAPPER + ".qnaWriteProcess", boardVo);
 	}
 	

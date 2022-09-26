@@ -97,6 +97,25 @@ public class BoardVo {
 	private int member_idx;
 	private String category; 
 	private int member_id;
+	private String member_name;
+	private String ISANSWERED;
+	
+	
+	public String getISANSWERED() {
+		return ISANSWERED;
+	}
+
+	public void setISANSWERED(String iSANSWERED) {
+		ISANSWERED = iSANSWERED;
+	}
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
 
 	public String getCategory() {
 		return category;
