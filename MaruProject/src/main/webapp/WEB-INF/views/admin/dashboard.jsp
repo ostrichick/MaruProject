@@ -57,9 +57,9 @@ td input[type="checkbox"] {
 }
 
 tr, th, td {
-  text-align: center;
-  vertical-align: middle;
+  text-align: center;  
 }
+
 </style>
 </head>
 <body class="animsition">
@@ -202,6 +202,7 @@ tr, th, td {
       <table class="table table-bordered col-8" id="mbox">   
         <tr class="bg1">
           <th>선택</th>
+          <th>문의번호</th>
           <th>문의내용</th>
           <th>아이디</th>
           <th>날짜</th>
@@ -214,10 +215,13 @@ tr, th, td {
               <input type="checkbox" value="선택" id="checkbox" />
             </td> 
             <td>
+              <p>${qna.idx}</p>
+            </td> 
+            <td>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                  <div class="panel-heading qna" role="tab">
-                    <a role="button" class="qna" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">${qna.content}</a>
+                  <div class="panel-heading qna" role="tab"> 
+                    <a role="button" class="qna" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">문의</a>
                   </div>
                   <div id="collapse1" class="panel-collapse collapse" role="tabpanel">
                     <div class="panel-body">
@@ -235,11 +239,17 @@ tr, th, td {
               </div>
              </td> 
             <td>${qna.member_name}</td> 
-            <td> <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}"/></td> 
-            <td>답변</td>  
-          </tr>
+            <td><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}"/></td> 
+            <td>
+            	<c:choose> 
+            		<c:when test="${qna.isanswered eq 'N'}">
+            		<button type="button" class="btn bg2" data-toggle="modal" data-target="#isanswered">답변</button>
+            		</c:when>
+            		<c:otherwise>YY</c:otherwise> 
+            	</c:choose>
+            </td>  
+          </tr>  
         </c:forEach>
-		
       </table>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -288,7 +298,31 @@ tr, th, td {
     </div>
     <br> <br>
   </div>
-  <!-- end first container -->
+
+<!-- Modal -->
+<form action="${pageContext.request.contextPath}/qna/qna_isanswered" method="post" id="isanswer"> 
+  <div class="modal fade" id="isanswered" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+       <div class="modal-header">
+        <h4 class="modal-title">답변 등록</h4> <!-- 사용자 지정 부분② : 타이틀 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>  
+       </div> 
+       <div class="modal-body"> 
+		 <select name="category" id="category"><option value="답변">답변</option></select>
+         <textarea rows="8" cols="45" name="content" class="bor10 m-l-50"></textarea>    
+       </div> 
+       <div class="modal-footer">
+         <button type="button" class="btn bg2" data-dismiss="modal">닫기</button>
+	     <button type="submit" class="btn bg2">등록</button>
+       </div>
+      </div>
+    </div>
+  </div>
+</form>
+ <!-- end first container -->
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>

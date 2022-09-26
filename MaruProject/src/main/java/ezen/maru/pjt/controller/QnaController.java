@@ -56,7 +56,7 @@ public class QnaController {
 	public String qna(Model model) {
 		List<BoardVo> qnaList = listService.getQnaList();
 		model.addAttribute("qnaList", qnaList);
-		return "qna/list"; 
+		return "qna/list";
 	}
 
 	@PostMapping("/write_process")
@@ -74,4 +74,16 @@ public class QnaController {
 		return viewPage;
 	}
 	
+	@PostMapping("/qna_isanswered") 
+	public String qna_isanswered(BoardVo boardVo, HttpServletRequest req, RedirectAttributes redirect) {
+		System.out.println(boardVo.getParent_idx());
+		System.out.println(boardVo.getIsanswered());
+		int result = insertService.qnaIsanswered(boardVo);
+		String viewPage = "redirect:/admin/dashboard"; 
+		if (result == 1) { 
+			redirect.addFlashAttribute("qnaIsanswered", "답변이 성공적으로 등록되었습니다.");
+			viewPage = "redirect:/admin/dashboard"; 
+		}  
+		return viewPage;
+	}
 }

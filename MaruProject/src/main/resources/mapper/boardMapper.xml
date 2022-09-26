@@ -59,9 +59,25 @@
   </insert>
   
   <select id="getQnaList" resultType="boardVo"> 
-    SELECT m.MEMBER_NAME, q.CONTENT, q.WDATE, q.CATEGORY, q.ISANSWERED, q.PARENT_IDX
+    SELECT m.MEMBER_NAME, q.CONTENT, q.WDATE, q.CATEGORY, q.ISANSWERED, q.PARENT_IDX, q.idx
 	 FROM qnaservice q, MEMBER_INFO m
     WHERE q.member_idx = m.member_idx
     ORDER BY m.member_idx
   </select>
+  
+  <!--
+  <insert id="qnaIsanswered" parameterType="boardVo">
+    INSERT INTO qnaservice (  
+ 	content, member_idx,category , parent_idx, isanswered, idx
+    ) VALUES ( 
+     #{content}, #{member_idx}, #{category} , #{parent_idx}, 'Y', ${idx}
+    ) 
+  </insert> -->
+  
+  <update id="qnaIsanswered" parameterType="String">
+   UPDATE (SELECT q.ISANSWERED , q.content, q.parent_idx
+	 FROM qnaservice q, MEMBER_INFO m
+    WHERE q.member_idx = m.member_idx 
+    ORDER BY m.member_idx) SET ISANSWERED = 'Y', parent_idx = ${idx}
+  </update>
 </mapper>	

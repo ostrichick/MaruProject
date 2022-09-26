@@ -45,6 +45,12 @@ public class BoardDao {
 		return sqlSession.insert(MAPPER + ".qnaWriteProcess", boardVo);
 	}
 	
+	public int qnaIsanswered(BoardVo boardVo) {  
+		System.out.println(boardVo.getIsanswered());
+		System.out.println(boardVo.getParent_idx()); 
+		return sqlSession.insert(MAPPER + ".qnaIsanswered", boardVo);
+	}
+	
 	public List<BoardVo> getQnaList() {
 		return sqlSession.selectList(MAPPER + ".getQnaList");
 	}

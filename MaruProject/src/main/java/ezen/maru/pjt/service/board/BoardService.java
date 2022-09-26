@@ -38,4 +38,8 @@ public interface BoardService {
 		return null;
 	}
 
+	default int qnaIsanswered(BoardVo boardVo) {
+		return 0;
+	}
+
 }

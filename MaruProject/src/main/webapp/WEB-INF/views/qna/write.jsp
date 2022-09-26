@@ -81,7 +81,7 @@
 <br><br><br>
 <br><br>
 <div class="container text-center bor10 m-t-10" id="cont">
-	<form action="write_process" method="post" id="review_write">
+	<form action="write_process" method="post" id="qna_write">
 	<div class="row m-t-25">
 	  <div class="col-2">
 		*카테고리

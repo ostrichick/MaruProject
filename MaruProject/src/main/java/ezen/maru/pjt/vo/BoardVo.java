@@ -95,19 +95,10 @@ public class BoardVo {
 	private String system_filename2;
 	private String system_filename3;
 	private int member_idx;
-	private String category; 
+	private String category;
 	private int member_id;
 	private String member_name;
-	private String ISANSWERED;
 	
-	
-	public String getISANSWERED() {
-		return ISANSWERED;
-	}
-
-	public void setISANSWERED(String iSANSWERED) {
-		ISANSWERED = iSANSWERED;
-	}
 
 	public String getMember_name() {
 		return member_name;
