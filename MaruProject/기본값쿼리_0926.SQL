@@ -6,8 +6,8 @@ member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (
 'admin12','1234',
-'관리자1','admin1@naver.com',11111111111,
-'대한민국','상세주소',1000,
+'관리자1','admin1@naver.com',01043214321,
+'서울특별시 광진구','어린이대공원길 329-3',29381,
 'Y');
 
 INSERT INTO MEMBER_INFO(
@@ -17,8 +17,8 @@ member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (
 'as','12',
-'관리자as','admin@naver.com',01012341234,
-'대한민국','상세주소',1000,
+'관리자as','admin@maru.com',01012341234,
+'전북 전주시 덕진구','백제대로 494',54938,
 'Y');
 
 insert into product (

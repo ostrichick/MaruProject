@@ -15,37 +15,37 @@
   <section class="container m-lr-auto m-tb-50">
     <h3 class="m-all-20">결제 완료</h3>
     <hr />
-    <p class="bg7 cl7 txt-center col-md-5 p-3 fs-20 m-lr-auto rounded">구매가 정상적으로 완료되었습니다.</p>
+    <p class="bg7 cl7 txt-center col-6 p-3 fs-20 m-lr-auto rounded">구매가 정상적으로 완료되었습니다.</p>
     <br>
     <!--  -->
-    <table class="table col-6 m-lr-auto">
+    <table class="table col-6 m-lr-auto txt-center">
       <tr class="table_head">
-        <th class="col-2">주문번호</th>
-        <th class="col-2">총결제금액</th>
-        <th class="col-2">결제방법</th>
+        <th class="col-4">주문번호</th>
+        <th class="col-4">총결제금액</th>
+        <th class="col-4">결제방법</th>
       </tr>
 
       <tr class="table_row">
-        <td class="col-1">654684</td>
-        <td class="col-2">180,000원</td>
-        <td class="col-2">신용카드(일시불)</td>
+        <td class="imp_uid">주문번호</td>
+        <td class="paid_amount">총결제금액</td>
+        <td class="pay_method">결제방법</td>
       </tr>
 
     </table>
 
     <div class="txt-center m-tb-20">
-      <a href="#" type="button" class="btn bg7 cl7">구매내역확인</a>
-      <a href="#" type="button" class="btn bg7 cl7 ml-5">쇼핑계속하기</a>
+      <a href="#" type="button" class="btn bg7 cl7">구매내역확인</a> <a href="#" type="button" class="btn bg7 cl7 ml-5">쇼핑계속하기</a>
     </div>
   </section>
-
-
-
-
-
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
-  <%@include file="/include/detail.jsp"%>
   <%@include file="/include/script.jsp"%>
+  <script>
+      let rsp = '${rsp}';
+      let JSONrsp = JSON.parse(rsp);
+      $(".imp_uid").html(JSONrsp.imp_uid);
+      $(".paid_amount").html(JSONrsp.paid_amount + "원");
+      $(".pay_method").html(JSONrsp.card_name);
+    </script>
 </body>
 </html>

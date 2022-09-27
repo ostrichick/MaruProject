@@ -51,7 +51,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
   </div>
 
   <!-- Shoping Cart -->
-  <form class="container m-b-50" action="${pageContext.request.contextPath}/order/order" method="get">
+  <form class="container m-b-50" action="${pageContext.request.contextPath}/order/order" method="post">
     <h3 class="m-tb-50 m-l-50">장바구니</h3>
     <div class="wrap-table-shopping-cart">
       <table class="table-shopping-cart txt-center">

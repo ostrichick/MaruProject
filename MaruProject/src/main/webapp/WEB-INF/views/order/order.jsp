@@ -26,7 +26,7 @@
   <section class="container row m-lr-auto m-tb-150">
 
     <!-- DB로부터 주문자 정보와 주소를 불러와서 input 태그 기본값으로 집어넣을 것 -->
-    <form action="${MaruContextPath}/order/order_process" method="post" class="col-md-6 m-auto bg2 cl2 p-5">
+    <form action="${MaruContextPath}/order/order_complete" method="post" class="col-md-6 m-auto bg2 cl2 p-5">
       <h3 class="">주문자정보</h3>
       <hr>
       <div class="">
@@ -102,45 +102,13 @@
         </div>
       </div>
 
-      <!--       <h3 class="">결제수단</h3> -->
-      <!--       <hr> -->
-      <!--       버튼을 클릭하여 결제수단을 선택하고, 결제수단이 변경되면 하단에 보여지는 입력폼이 달라짐 -->
-
-      <!--       <div class="btn-group" role="group" aria-label="Basic radio toggle button group m-tb-10"> -->
-      <!--         <input type="radio" class="btn-check m-b-7" name="btnradio" id="btnradio1" autocomplete="off" checked> -->
-      <!--         <label class=" col-4" for="btnradio1">신용카드</label> -->
-
-      <!--         <input type="radio" class="btn-check m-b-7" name="btnradio" id="btnradio2" autocomplete="off"> -->
-      <!--         <label class=" col-4" for="btnradio2">계좌이체</label> -->
-
-      <!--         <input type="radio" class="btn-check m-b-7" name="btnradio" id="btnradio3" autocomplete="off"> -->
-      <!--         <label class=" col-4" for="btnradio3">간편결제</label> -->
-      <!--       </div> -->
-
-      <!--       신용카드버튼을 눌렀을때의 입력폼 -->
-      <!--       <div class="input-group m-tb-20"> -->
-      <!--         <span class="input-group-text"> 카드 선택 </span> -->
-      <!--         <select class="form-select" id="order_card"> -->
-      <!--           <option value="삼성" selected>삼성카드</option> -->
-      <!--           <option value="현대">현대카드</option> -->
-      <!--           <option value="신한">신한카드</option> -->
-      <!--           <option value="...">...</option> -->
-      <!--         </select> -->
-      <!--       </div> -->
-      <!--       <br> -->
-
       <p>
         결제 예정 금액: <span id="order_total_price">${order_total_price }</span>
       </p>
-      <!--       <div class="bg-secondary text-white m-5 rounded p-all-10"> -->
-      <!--         <strong> 구매동의 및 결제대행 서비스 이용약관 등에 동의하십니까?</strong><br> -->
-      <!--         <div class="form-check m-3"> -->
-      <!--           <input class="form-check-input" type="checkbox" value="" id="agree"> -->
-      <!--           <label class="form-check-label" for="agree"> 모두 동의 </label> -->
-      <!--         </div> -->
-      <!--       </div> -->
+
 
       <div class="text-center mt-3">
+        <input type="hidden" name="JSONparse" id="JSONparse" value="" />
         <a href="#" id="linkToPay" type="submit" class="btn bg7 cl7 btn-outline-dark">결제하기</a> <a href="${MaruContextPath}" id="linkToMain" type="button" class="btn bg7 cl7 btn-outline-dark">계속 쇼핑하기</a>
       </div>
     </form>
@@ -149,6 +117,7 @@
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
   <script>
+      const ORDERTOTALPRICE = parseInt("${order_total_price}");
       let order_total_price = parseInt("${order_total_price}");
       $("#order_total_price").html("₩" + order_total_price.toLocaleString('en').split(".")[0]);
 
@@ -158,14 +127,11 @@
       let member_combined_address = "${memberInfoVo.member_addr}" + " " + "${memberInfoVo.member_addr}";
       let member_postcode = "${memberInfoVo.member_postcode}";
 
-      let phone_2ndpart = member_phone.substr(3, 4)
-      let phone_3rdpart = member_phone.substr(7)
-
-      $("#phone_2").val(phone_2ndpart);
-      $("#phone_3").val(phone_3rdpart);
+      let member_phone2 = member_phone.substr(3, 4);
+      $("#phone_2").val(member_phone2);
+      $("#phone_3").val(member_phone.substr(7));
 
       $("#order_same_person").on("change", function() {
-        //         $("form[type = post]").find()
         $(".order_info input").each(function(index, item) {
           item.value = "";
           $("#order_same_person").attr("disabled");
@@ -181,27 +147,93 @@
           pay_method : 'card',
           merchant_uid : 'merchant_' + new Date().getTime(),
           name : '테스트용 장바구니1', //결제창에서 보여질 이름. 
-          amount : 123,//order_total_price, //실제 결제되는 가격
+          amount : order_total_price / 1000,
           buyer_email : member_email,
           buyer_name : member_name,
           buyer_tel : member_phone,
           buyer_addr : member_combined_address,
           buyer_postcode : member_postcode
         }, function(rsp) {
-          console.log(rsp);
           if (rsp.success) {
-            var msg = '결제가 완료되었습니다.';
-            msg += '고유ID : ' + rsp.imp_uid;
-            msg += '상점 거래ID : ' + rsp.merchant_uid;
-            msg += '결제 금액 : ' + rsp.paid_amount;
-            msg += '카드 승인번호 : ' + rsp.apply_num;
-            $("form[method=post]").submit();
-          } else {
-            var msg = '결제에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
+            $.ajax({
+              url : "${MaruContextPath}/order/order_process",
+              type : 'POST',
+              dataType : 'json',
+              contentType : 'application/json',
+              data : JSON.stringify({
+                success : rsp.success,
+                imp_uid : rsp.imp_uid,
+                order_total_price : ORDERTOTALPRICE / 1000,
+                paid_amount : rsp.paid_amount,
+                apply_num : rsp.apply_num,
+                card_name : rsp.card_name,
+                card_number : rsp.card_number
+              //기타 필요한 데이터가 있으면 추가 전달
+              }),
+              success : function(data) {
+                console.log(rsp);
+                console.log(data);
+                if (data.money_validate) {
+                  //                   $("#JSONparse").val(JSON.parse(data));
+                  $("#JSONparse").val(JSON.stringify(data));
+                  console.log(data.imp_uid);
+                  $("form[method=post]").submit();
+                } else {
+                  alert("금액이 일치하지 않습니다.")
+                }
+              },
+              error : function(request, status, error) {
+                console.log(request);
+                console.log(status);
+                console.log(error);
+                console.log("실패");
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+                alert(msg);
+              },
+            })
           }
-          alert(msg);
         });
+      }
+
+      function ajaxtest() {
+        $.ajax({
+          url : "${MaruContextPath}/order/order_process",
+          type : 'POST',
+          dataType : 'json',
+          contentType : 'application/json',
+          data : JSON.stringify({
+            "success" : "ture",
+            "imp_uid" : "123123",
+            "paid_amount" : "231253원",
+            "apply_num" : "NUM1234",
+            "card_name" : "삼성",
+            "card_number" : "40003000"
+          }),
+          success : function(data, response) {
+            console.log("data " + data);
+            console.log(data)
+            console.log("data.message " + data.message);
+
+            console.log("response " + response);
+            console.log(response)
+            console.log("response.message " + response.message);
+            if (data.money_validate) {
+              $("form[method=post]").submit();
+            } else {
+              alert("금액이 일치하지 않습니다.")
+            }
+          },
+          error : function(request, status, error) {
+            console.log(request);
+            console.log(status);
+            console.log(error);
+            alert("실패");
+          },
+          complete : function() {
+            console.log("ajax 호출 완료 시 실행");
+          }
+        })
       }
     </script>
 </body>
