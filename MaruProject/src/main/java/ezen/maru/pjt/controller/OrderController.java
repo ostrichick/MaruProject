@@ -1,6 +1,7 @@
 package ezen.maru.pjt.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -55,29 +56,12 @@ public class OrderController {
 	public String order(String[] checkedItemList, String order_total_price, HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-//		System.out.println(member_id);
 		MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
 
 		model.addAttribute("memberInfoVo", memberInfoVo);
 		model.addAttribute("order_total_price", order_total_price);
-		model.addAttribute("checkedItemList", checkedItemList);
-
-//		System.out.println(memberInfoVo.toString());
-//		System.out.println(checkedItemList.length);
-//		System.out.println(checkedItemList[0]);
-//		System.out.println(checkedItemList[1]);
-//		System.out.println(checkedItemList[2]);
-//		System.out.println(order_total_price.toString());
+		session.setAttribute("checkedItemList", checkedItemList);
 		return "order/order";
-	}
-
-	@PostMapping("/order_complete")
-	public String order_complete(OrderVo orderVo, String JSONparse, Model model) {
-		System.out.println("orderVO.toString() : " + orderVo.toString());
-		System.out.println("JSONparse : " + JSONparse);
-		model.addAttribute("rsp", JSONparse);
-		model.addAttribute("message", "메세지");
-		return "order/order_complete";
 	}
 
 	@RequestMapping("/order_process")
@@ -90,8 +74,24 @@ public class OrderController {
 		} else {
 			rsp.put("message", "금액이 일치하지 않음");
 		}
-		System.out.println("rsp : " + rsp);
 		return rsp;
+	}
+
+	@PostMapping("/order_complete")
+	public String order_complete(HttpServletRequest req, OrderVo orderVo, String JSONparse, Model model) {
+		HttpSession session = req.getSession();
+		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+		int member_idx = (int) optional_member_idx.get();
+		orderVo.setMember_idx(member_idx);
+
+		String[] checkedItemList = (String[]) session.getAttribute("checkedItemList");
+		session.removeAttribute("checkedItemList");
+
+		int result = insertService.addOrder(orderVo, checkedItemList);
+		if (result == 1) {
+			model.addAttribute("rsp", JSONparse);
+		}
+		return "order/order_complete";
 	}
 
 	@GetMapping("/order_detail")

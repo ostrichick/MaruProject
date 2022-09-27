@@ -16,7 +16,7 @@ public class OrderInsertService implements OrderService {
 	}
 
 	@Override
-	public int addOrder(OrderVo orderVo) {
-		return orderDao.addOrder(orderVo);
+	public int addOrder(OrderVo orderVo, String[] checkedItemList) {
+		return orderDao.addOrder(orderVo, checkedItemList);
 	}
 }

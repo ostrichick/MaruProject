@@ -26,7 +26,8 @@ public class OrderDao {
 		return sqlSession.update(MAPPER + ".updateOrder", orderVo);
 	}
 
-	public int addOrder(OrderVo orderVo) {
+	public int addOrder(OrderVo orderVo, String[] checkedItemList) {
+		sqlSession.delete("ezen.maru.pjt.cart" + ".deleteItems", checkedItemList);
 		return sqlSession.update(MAPPER + ".addOrder", orderVo);
 	}
 

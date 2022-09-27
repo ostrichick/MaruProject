@@ -72,7 +72,8 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
           <tr class="table_row">
             <td class="">
               <div class="form-check">
-                <input class="form-check-input dis-inline-block" type="checkbox" name="checkedItemList" value="${cart.product_idx}" id="delete_item" onchange="checkedItem(${cart.product_idx}, this)" checked>
+                <input class="d-none" type="checkbox" name="checkedItemList" value="${cart.cart_idx}" id="cart_idx" checked>
+                <input class="form-check-input dis-inline-block" type="checkbox" name="product_idx_list" value="${cart.product_idx}" id="delete_item" onchange="checkedItem(${cart.product_idx}, this)" checked>
               </div>
             </td>
             <td class="">
@@ -134,7 +135,6 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
         <strong>[ 주문내역 ]</strong>
       </p>
       <table class="txt-right table-hover">
-        <!-- 위의 표로부터 합계 계산하여 실시간으로 금액 변하게하는 JS 함수 필요? -->
         <tr class="">
           <td class="p-r-10">주문금액 :</td>
           <td class="sumPrice1">
@@ -214,26 +214,39 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     location.href = "${MaruContextPath}/product/list";
   }
 
-  function checkedItem(product_idx, obj){
-    if(obj.checked){
-      
-    let saledPrice = $(obj).parent().parent().next().next().next().children("input[type=hidden]").val();
-    let cart_product_number = $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").val();
-    let saledXNumber = saledPrice * cart_product_number;
- 
-    $(obj).parent().parent().next().next().next().next().next().html("₩" + saledXNumber.toLocaleString() + 
-        "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>")
-    }
-    else {
-      $(obj).parent().parent().next().next().next().next().next().html("₩" + "0".toLocaleString() + 
-          "<input class='saledXNumber' type='hidden' value='" + 0 + "'>")
+  function checkedItem(product_idx, obj) {
+    if (obj.checked) {
+      let saledPrice = $(obj).parent().parent().next().next().next().children("input[type=hidden]").val();
+      let cart_product_number = $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").val();
+      let saledXNumber = saledPrice * cart_product_number;
+      $(obj)
+        .parent()
+        .parent()
+        .next()
+        .next()
+        .next()
+        .next()
+        .next()
+        .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+      $(obj).prev().prop('checked', true);
+      $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", true);
+    } else {
+      $(obj)
+        .parent()
+        .parent()
+        .next()
+        .next()
+        .next()
+        .next()
+        .next()
+        .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + 0 + "'>");
+       $(obj).prev().prop('checked', false);
+       $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", false);
     }
     totalPriceCalc();
   }
   
   function updateCart(obj, cart_product_number, product_idx) {
-    console.log("oninput 작동");
-
     $.ajax({
       type: "post",
       url: "${MaruContextPath}/cart/updateCart?product_idx=" + product_idx + "&cart_product_number=" + cart_product_number,
@@ -243,12 +256,15 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
       },
       success: function () {
         console.log("성공");
-        
+
         let saledPrice = $(obj).parent().parent().prev().children("input[type=hidden]").val();
         let saledXNumber = saledPrice * cart_product_number;
-        $(obj).parent().parent().next().html("₩" + saledXNumber.toLocaleString() + 
-            "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
-        
+        $(obj)
+          .parent()
+          .parent()
+          .next()
+          .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+
         totalPriceCalc();
       },
       error: function () {
@@ -258,30 +274,30 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     });
   }
 
-  function totalPriceCalc () {
+  function totalPriceCalc() {
     let sumSaledXNumber = 0;
-    $(".saledXNumber").each(function (index, item){
+    $(".saledXNumber").each(function (index, item) {
       sumSaledXNumber += parseInt(item.value);
-    })
+    });
     $(".sumPrice1").html("₩" + sumSaledXNumber.toLocaleString());
-    
+
     let deliveryFee = 0;
-    if ( sumSaledXNumber < 50000 && sumSaledXNumber != 0 ){
+    if (sumSaledXNumber < 50000 && sumSaledXNumber != 0) {
       deliveryFee = 5000;
     }
-    
-    let totalPrice = sumSaledXNumber + deliveryFee
+
+    let totalPrice = sumSaledXNumber + deliveryFee;
     $(".DeliveryFee").html("₩" + deliveryFee.toLocaleString());
     $(".TotalPrice").html("₩" + totalPrice.toLocaleString());
-    $(".TotalPrice").append("<input type='hidden' name='order_total_price' value=" + totalPrice + "/>")
-    
-     
-    if(totalPrice == 0){ // 합계 금액이 0이면 구매버튼 비활성화
-    $("#linkToOrder").addClass("disabled");
-    $("#linkToOrder").prop("type", "button");
+    $(".TotalPrice").append("<input type='hidden' name='order_total_price' value=" + totalPrice + "/>");
+
+    if (totalPrice == 0) {
+      // 합계 금액이 0이면 구매버튼 비활성화
+      $("#linkToOrder").addClass("disabled");
+      $("#linkToOrder").prop("type", "button");
     } else {
-    $("#linkToOrder").removeClass("disabled");
-    $("#linkToOrder").prop("type", "submit");
+      $("#linkToOrder").removeClass("disabled");
+      $("#linkToOrder").prop("type", "submit");
     }
   }
   
@@ -295,14 +311,13 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
       success: function () {
         alert("성공");
         let tr_list_length = document.querySelectorAll(".table-shopping-cart tr").length;
-        if(tr_list_length > 2){
-        $(obj).parent().parent().remove();
+        if (tr_list_length > 2) {
+          $(obj).parent().parent().remove();
         } else {
           $(obj).parent().parent().parent().append("<tr class='table_row'><td colspan='6' class=''>장바구니가 비었습니다.</td></tr>");
-          $(obj).parent().parent().remove();  
+          $(obj).parent().parent().remove();
         }
         totalPriceCalc();
-
       },
       error: function () {
         console.log(data);
@@ -311,18 +326,18 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
     });
   }
   
-  function reloadCart(){
+  function reloadCart() {
     $.ajax({
-      url : "${MaruContextPath}/cart/reloadCart",
-      type : "post",
-      success : function(data) {
+      url: "${MaruContextPath}/cart/reloadCart",
+      type: "post",
+      success: function (data) {
         alert(data.id);
         console.log(data);
       },
-      error : function() {
+      error: function () {
         alert("error");
-      }
-    })
+      },
+    });
   }
     </script>
   <!-- Footer -->

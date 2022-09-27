@@ -102,8 +102,8 @@
         </div>
       </div>
 
-      <p>
-        결제 예정 금액: <span id="order_total_price">${order_total_price }</span>
+      <p class="m-tb-20 fs-22">
+        결제 예정 금액 : <span id="order_total_price">${order_total_price }</span>
       </p>
 
 
@@ -124,7 +124,9 @@
       let member_name = "${memberInfoVo.member_name}";
       let member_email = "${memberInfoVo.member_email}";
       let member_phone = "${memberInfoVo.member_phone}";
-      let member_combined_address = "${memberInfoVo.member_addr}" + " " + "${memberInfoVo.member_addr}";
+      let member_addr = "${memberInfoVo.member_addr}"
+      let member_addr2 = "${memberInfoVo.member_addr2}"
+      let member_combined_address = "${memberInfoVo.member_addr}" + " " + "${memberInfoVo.member_addr2}";
       let member_postcode = "${memberInfoVo.member_postcode}";
 
       let member_phone2 = member_phone.substr(3, 4);
@@ -132,10 +134,18 @@
       $("#phone_3").val(member_phone.substr(7));
 
       $("#order_same_person").on("change", function() {
-        $(".order_info input").each(function(index, item) {
-          item.value = "";
-          $("#order_same_person").attr("disabled");
-        })
+        if ($("#order_same_person").is(":checked")) {
+          $(".order_info input[name=order_name]").val(member_name);
+          $(".order_info input[name=order_email]").val(member_email);
+          $(".order_info input[name=order_phone]").val(member_phone);
+          $(".order_info input[name=order_address]").val(member_addr);
+          $(".order_info input[name=order_address2]").val(member_addr2);
+          $(".order_info input[name=order_postcode]").val(member_postcode);
+        } else {
+          $(".order_info input").each(function(index, item) {
+            item.value = "";
+          })
+        }
       })
 
       document.querySelector("#linkToPay").addEventListener("click", iamport);

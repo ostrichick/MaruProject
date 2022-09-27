@@ -39,4 +39,13 @@
     where
     member_idx = #{member_idx} and product_idx = #{product_idx}
   </delete>
+
+
+  <delete id="deleteItems" parameterType="list">
+    delete from product_cart
+    where
+    <foreach collection="array" item="arr" separator="or" index="index">
+      cart_idx = #{arr}
+    </foreach>
+  </delete>
 </mapper>	

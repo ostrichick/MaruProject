@@ -10,7 +10,7 @@ public interface OrderService {
 		return null;
 	}
 
-	default int addOrder(OrderVo orderVo) {
+	default int addOrder(OrderVo orderVo, String[] checkedItemList) {
 		return 0;
 	}
 

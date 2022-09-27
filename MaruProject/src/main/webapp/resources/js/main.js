@@ -218,7 +218,7 @@
     $('.btn-num-product-down').on('click', function(obj){
         var numProduct = Number($(this).next().val());
         var product_idx = Number($(this).prev().val());
-        if(numProduct > 0) $(this).next().val(numProduct - 1);
+        if(numProduct > 1) $(this).next().val(numProduct - 1);
         var obj = $(this).next();
         numProduct = Number($(this).next().val());
         
