@@ -73,7 +73,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
             <td class="">
               <div class="form-check">
                 <input class="d-none" type="checkbox" name="checkedItemList" value="${cart.cart_idx}" id="cart_idx" checked>
-                <input class="form-check-input dis-inline-block" type="checkbox" name="product_idx_list" value="${cart.product_idx}" id="delete_item" onchange="checkedItem(${cart.product_idx}, this)" checked>
+                <input class="form-check-input dis-inline-block" type="checkbox" name="product_idx_list" value="${cart.product_idx}" onchange="checkedItem(${cart.product_idx}, this)" checked>
               </div>
             </td>
             <td class="">
@@ -229,7 +229,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
         .next()
         .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
       $(obj).prev().prop('checked', true);
-      $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", true);
+      $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", false);
     } else {
       $(obj)
         .parent()
@@ -241,7 +241,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
         .next()
         .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + 0 + "'>");
        $(obj).prev().prop('checked', false);
-       $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", false);
+       $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", true);
     }
     totalPriceCalc();
   }
