@@ -5,11 +5,14 @@ public class CartVo extends ProductVo {
 	private int member_idx;
 	private int product_idx;
 	private int cart_product_number;
+	private String ischecked;
 
-	@Override
-	public String toString() {
-		return "CartVo [member_idx=" + member_idx + ", product_idx=" + product_idx + ", cart_product_number="
-				+ cart_product_number + "]";
+	public String getIschecked() {
+		return ischecked;
+	}
+
+	public void setIschecked(String ischecked) {
+		this.ischecked = ischecked;
 	}
 
 	public int getCart_idx() {
