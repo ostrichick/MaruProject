@@ -14,6 +14,7 @@
     </selectKey>
   </insert>
 
+  <!-- 오라클은 insert all 쓰고 mysql은 separator=","로 나누는 foreach 반복문 사용함 -->
   <insert id="addOrderProduct" parameterType="java.util.List">
     <foreach collection="list" item="item" index="index" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL">
       into order_product (

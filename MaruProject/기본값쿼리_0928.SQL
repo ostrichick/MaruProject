@@ -6,7 +6,7 @@ member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (
 'admin12','1234',
-'관리자1','admin1@naver.com',01043214321,
+'관리자1','admin1@naver.com','01043214321',
 '서울특별시 광진구','어린이대공원길 329-3',29381,
 'Y');
 
@@ -17,7 +17,7 @@ member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (
 'as','12',
-'관리자as','admin@maru.com',01012341234,
+'김길동','admin@maru.com','01012341234',
 '전북 전주시 덕진구','백제대로 494',54938,
 'Y');
 
@@ -26,7 +26,7 @@ product_name, product_price, product_sale, product_sale_percent,
 product_size, product_major_category,
 product_detail, product_inventory
 ) values (
-'1번상품', 50000, 'Y', 30,
+'1번상품', 10000, 'Y', 10,
 '100x200', 'livingroom',
 '상세설명입니다', 100);
 
@@ -35,7 +35,7 @@ product_name, product_price, product_sale, product_sale_percent,
 product_size, product_major_category,
 product_detail, product_inventory
 ) values (
-'2번상품', 150000, 'Y', 40,
+'2번상품', 20000, 'Y', 20,
 '100x200', 'bedroom',
 '상세설명입니다', 100);
 
@@ -44,7 +44,7 @@ product_name, product_price, product_sale, product_sale_percent,
 product_size, product_major_category,
 product_detail, product_inventory
 ) values (
-'3번상품', 540000, 'Y', 20,
+'3번상품', 30000, 'Y', 30,
 '100x200', 'library',
 '상세설명입니다', 100);
 

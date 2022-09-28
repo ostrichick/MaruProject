@@ -328,7 +328,7 @@ CREATE TABLE review_tbl
 	-- 회원번호
 	member_idx number NOT NULL,
 	-- 리뷰 내용
-	content varchar2(999),
+	content varchar2(1500),
 	-- 리뷰 별점
 	star number NOT NULL,
 	-- 리뷰 작성일
