@@ -2,6 +2,7 @@ package ezen.maru.pjt.service.order;
 
 import java.util.List;
 
+import ezen.maru.pjt.vo.OrderProductVo;
 import ezen.maru.pjt.vo.OrderVo;
 
 public interface OrderService {
@@ -10,7 +11,7 @@ public interface OrderService {
 		return null;
 	}
 
-	default int addOrder(OrderVo orderVo, String[] checkedItemList) {
+	default int addOrder(OrderVo orderVo, String[] checkedItemList, List<OrderProductVo> orderProductList) {
 		return 0;
 	}
 

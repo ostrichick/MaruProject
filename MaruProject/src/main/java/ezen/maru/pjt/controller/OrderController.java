@@ -1,5 +1,7 @@
 package ezen.maru.pjt.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.service.order.OrderService;
 import ezen.maru.pjt.vo.MemberInfoVo;
+import ezen.maru.pjt.vo.OrderProductVo;
 import ezen.maru.pjt.vo.OrderVo;
 
 @Controller
@@ -53,14 +56,26 @@ public class OrderController {
 	}
 
 	@PostMapping("/order")
-	public String order(String[] checkedItemList, String order_total_price, HttpServletRequest req, Model model) {
+	public String order(String[] checkedItemList, String[] cart_product_number, String[] product_idx_list,
+			String order_total_price, HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
 
+		List<OrderProductVo> orderProductList = new ArrayList<OrderProductVo>();
+		if (product_idx_list.length == cart_product_number.length) {
+			for (int i = 0; i < checkedItemList.length; i++) {
+				OrderProductVo orderProductVo = new OrderProductVo();
+				orderProductVo.setProduct_idx(Integer.parseInt(product_idx_list[i]));
+				orderProductVo.setOrder_quantity(Integer.parseInt(cart_product_number[i]));
+				orderProductList.add(orderProductVo);
+			}
+		}
+
 		model.addAttribute("memberInfoVo", memberInfoVo);
 		model.addAttribute("order_total_price", order_total_price);
 		session.setAttribute("checkedItemList", checkedItemList);
+		session.setAttribute("orderProductList", orderProductList);
 		return "order/order";
 	}
 
@@ -77,19 +92,28 @@ public class OrderController {
 		return rsp;
 	}
 
+	@SuppressWarnings("unchecked")
 	@PostMapping("/order_complete")
-	public String order_complete(HttpServletRequest req, OrderVo orderVo, String JSONparse, Model model) {
+	public String order_complete(HttpServletRequest req, OrderVo orderVo, String rsp, Model model) {
 		HttpSession session = req.getSession();
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
 		int member_idx = (int) optional_member_idx.get();
 		orderVo.setMember_idx(member_idx);
 
 		String[] checkedItemList = (String[]) session.getAttribute("checkedItemList");
-		session.removeAttribute("checkedItemList");
-
-		int result = insertService.addOrder(orderVo, checkedItemList);
-		if (result == 1) {
-			model.addAttribute("rsp", JSONparse);
+		Object orderProductList_obj = (Object) session.getAttribute("orderProductList");
+		List<OrderProductVo> orderProductList = null;
+		if (orderProductList_obj != null) {
+			orderProductList = (ArrayList<OrderProductVo>) orderProductList_obj;
+		}
+//		System.out.println("orderProductList in Controller : " + orderProductList);
+		int result = insertService.addOrder(orderVo, checkedItemList, orderProductList);
+		System.out.println("result is : " + result);
+		model.addAttribute("rsp", rsp);
+		System.out.println("rsp is : " + rsp);
+		if (result > 0) {
+			session.removeAttribute("checkedItemList");
+			session.removeAttribute("orderProductList");
 		}
 		return "order/order_complete";
 	}

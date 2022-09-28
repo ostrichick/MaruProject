@@ -216,26 +216,30 @@
     [ +/- num product ]*/
     
     $('.btn-num-product-down').on('click', function(obj){
-    if($(obj).parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked")){
+    
+      if($(obj.target).parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked") || $(obj.target).parent().parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked")){
+      /* 장바구니 왼쪽 선택에 체크박스가 쳐져있을 경우에만 작동하게하는 조건 */
+      
         var numProduct = Number($(this).next().val());
         var product_idx = Number($(this).prev().val());
         if(numProduct > 1) $(this).next().val(numProduct - 1);
         var obj = $(this).next();
         numProduct = Number($(this).next().val());
-        
-        updateCart(obj, numProduct, product_idx)}
+        updateCart(obj, numProduct, product_idx);
+      }
     });
 
     $('.btn-num-product-up').on('click', function(obj){
-        if($(obj).parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked")){
-
+    
+      if($(obj.target).parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked") || $(obj.target).parent().parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked")){
+      
         var numProduct = Number($(this).prev().val());
         var product_idx = Number($(this).prev().prev().prev().val());
         $(this).prev().val(numProduct + 1);
         var obj = $(this).prev();
         numProduct = Number($(this).prev().val());
-        
-        updateCart(obj, numProduct, product_idx)}
+        updateCart(obj, numProduct, product_idx);
+      }
     });
 
     /*==================================================================

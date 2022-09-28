@@ -41,6 +41,7 @@
   </delete>
 
 
+  <!-- 구매 완료시 장바구니 목록에서 구매완료 상품을 지우는 쿼리 -->
   <delete id="deleteItems" parameterType="list">
     delete from product_cart
     where

@@ -16,6 +16,8 @@
     <typeAlias alias="productVo" type="ezen.maru.pjt.vo.ProductVo" />
     <typeAlias alias="cartVo" type="ezen.maru.pjt.vo.CartVo" />
     <typeAlias alias="orderVo" type="ezen.maru.pjt.vo.OrderVo" />
+    <typeAlias alias="orderProductVo" type="ezen.maru.pjt.vo.OrderProductVo" />
+    
 
   </typeAliases>
 </configuration>	

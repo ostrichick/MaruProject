@@ -108,7 +108,7 @@
 
 
       <div class="text-center mt-3">
-        <input type="hidden" name="JSONparse" id="JSONparse" value="" />
+        <input type="hidden" name="rsp" id="rsp" value="" />
         <a href="#" id="linkToPay" type="submit" class="btn bg7 cl7 btn-outline-dark">결제하기</a> <a href="${MaruContextPath}" id="linkToMain" type="button" class="btn bg7 cl7 btn-outline-dark">계속 쇼핑하기</a>
       </div>
     </form>
@@ -184,8 +184,7 @@
                 console.log(rsp);
                 console.log(data);
                 if (data.money_validate) {
-                  //                   $("#JSONparse").val(JSON.parse(data));
-                  $("#JSONparse").val(JSON.stringify(data));
+                  $("#rsp").val(JSON.stringify(data));
                   console.log(data.imp_uid);
                   $("form[method=post]").submit();
                 } else {

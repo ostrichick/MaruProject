@@ -4,7 +4,6 @@
   <select id="getProductList" resultType="productVo">
     select * from product where deleted_yn = 'N' order by product_idx desc
   </select>
-
   <!-- ================================================= -->
   <insert id="productAdd" parameterType="productVo">
     insert into product (

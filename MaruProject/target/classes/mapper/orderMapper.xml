@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ezen.maru.pjt.order">
-
-  <update id="addOrder" parameterType="orderVo">
+  <insert id="addOrder" parameterType="orderVo">
     INSERT INTO order_log(
     order_total_price, member_idx,
     order_name, order_address, order_address2, order_postcode, order_phone
@@ -10,13 +9,49 @@
     #{order_total_price}, #{member_idx},
     #{order_name}, #{order_address}, #{order_address2}, #{order_postcode}, #{order_phone}
     )
-    <selectKey resultType="int" keyProperty="order_idx" order="BEFORE">
+    <selectKey resultType="int" keyProperty="order_idx" order="AFTER">
       SELECT SEQ_ORDER_LOG_ORDER_IDX.CURRVAL FROM dual
     </selectKey>
-    INSERT INTO order_product(
-    order_idx, product_idx, product_number
+  </insert>
+
+  <insert id="addOrderProduct" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL">
+      into order_product (
+      order_idx, product_idx, order_quantity
+      ) values (
+      #{item.order_idx}, #{item.product_idx}, #{item.order_quantity}
+      )
+    </foreach>
+  </insert>
+
+  <!-- <insert id="addOrderProduct" parameterType="orderProductVo"> -->
+  <!-- INSERT INTO order_product ( -->
+  <!-- order_idx, product_idx, order_quantity -->
+  <!-- ) VALUES -->
+  <!-- <foreach collection="list" item="orderProduct" index="index" separator=","> -->
+  <!-- ( -->
+  <!-- #{orderProduct.order_idx}, #{orderProduct.product_idx}, #{orderProduct.order_quantity} -->
+  <!-- ) -->
+  <!-- </foreach> -->
+  <!-- </insert> -->
+
+  <insert id="addOrderProductOne" parameterType="orderProductVo">
+    INSERT INTO order_product (
+    order_idx, product_idx, order_quantity
+    ) VALUES (
+    #{order_idx}, #{product_idx}, #{order_quantity}
     )
-  </update>
+  </insert>
+
+  <!-- <update id="addOrderProduct" parameterType="orderVo"> -->
+  <!-- INSERT INTO order_product( -->
+  <!-- order_idx, product_idx, product_number -->
+  <!-- ) VALUES -->
+  <!-- <foreach collection="list" item="orderProduct" index="index" open="(" close=")" separator=","> -->
+  <!-- #{orderProduct.order_idx}, #{orderProduct.product_idx}, #{orderProduct.order_quantity} -->
+  <!-- </foreach> -->
+  <!-- </update> -->
+
 
   <!-- <select id="getOrderList" parameterType="int" resultType="orderVo"> -->
   <!-- select * from product_order ct -->
@@ -38,4 +73,4 @@
   <!-- where -->
   <!-- member_idx = #{member_idx} and product_idx = #{product_idx} -->
   <!-- </delete> -->
-</mapper>	
+</mapper> 
