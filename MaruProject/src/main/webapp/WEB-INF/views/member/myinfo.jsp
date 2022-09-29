@@ -208,7 +208,7 @@
               <p>2022.07.25</p>
             </td>
             <td>
-            	<button onClick='qDelete()' class="qDelete btn bg2">삭제</button> 
+              <button type="button" class="qEdit btn bg2" data-toggle="modal" data-target="#qEdit">수정</button>
             </td>
           </tr>
          </c:forEach> 
@@ -228,6 +228,33 @@
     </div>
     <!-- 문의내역 끝 -->
     <hr style="visibility: hidden; margin-bottom: 150px;">
+    
+    <!-- Modal -->
+<form action="${pageContext.request.contextPath}/qna/Edit" method="post" id="edit"> 
+  <div class="modal fade" id="edit" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
+    <div class="modal-dialog">
+      <!-- Modal content--> 
+      <div class="modal-content">
+       <div class="modal-header">
+        <h4 class="modal-title">문의 수정</h4> <!-- 사용자 지정 부분② : 타이틀 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+       </div>  
+       <div class="modal-body">
+		<c:forEach var="qna" items="${qnaList}" varStatus="status">
+		 <input type="hidden" name="idx" id="idx" value="${qna.idx}"/>
+		 <input type="hidden" name="member_idx" value="${sessionScope.member_idx}"> 
+		 </c:forEach> 
+		 <input type="hidden" name="isanswered" id="isanswered" value="N"/>  
+         <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50"></textarea>  
+       </div>  
+       <div class="modal-footer">
+         <button type="button" class="btn bg2" data-dismiss="modal">닫기</button>
+	     <button type="submit" class="qna-button btn bg2">등록</button> 
+       </div>
+      </div> 
+    </div> 
+  </div>
+</form>
   </section>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
@@ -239,12 +266,7 @@
       })
     </script>
   <script type="text/javascript">
-  	function qDelete() {
-      	let url = "${MaruContextPath}/qna/delete?idx=";
-      	let idx = "${boardVo.idx}"
-      	url += idx;
-      	location.href = url;
-    	}
+
   </script>
 </body>
 </html>

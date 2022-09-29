@@ -179,6 +179,9 @@ tr, th, td {
         </tr>        
         
       <c:forEach var="qna" items="${qnaList}" varStatus="status">
+      	<tr>
+      	
+      	</tr>
           <tr class="bg0">
             <td>
               <input type="checkbox" value="선택" id="checkbox" />
@@ -191,9 +194,9 @@ tr, th, td {
                 <div class="panel panel-default">
                   <div class="panel-heading qna" role="tab">
                   	<p class="d-none">${qna.idx}</p> 
-                    <a role="button" class="qna" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">문의</a>
+                    <a role="button" class="qna" data-toggle="collapse" data-parent="#accordion" href="#con${qna.idx}" aria-expanded="false">문의</a>
                   </div>
-                  <div id="collapse1" class="panel-collapse collapse" role="tabpanel">
+                  <div id="con${qna.idx}" class="panel-collapse collapse" role="tabpanel">
                     <div class="panel-body">
                       <hr>
                       <div class="p-3 text-break" style="width:350px; border: 1px solid black;"> 
@@ -281,9 +284,7 @@ tr, th, td {
 		 <input type="hidden" name="idx" id="idx" value="${qna.idx}"/> 
 		 <input type="hidden" name="parent_idx" id="parent_idx" value="${qna.parent_idx}"/>
 		 <input type="hidden" name="member_idx" value="${sessionScope.member_idx}"> 
-		 <select class="d-none" name="category" id="category">
-		 	<option selected class="d-none" value="답변"></option>
-		 </select>
+		  <input type="hidden" name="category" id="category" value="답변"/>
 		 </c:forEach> 
 		 <input type="hidden" name="isanswered" id="isanswered" value="Y"/>  
          <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50">--답변--
@@ -294,7 +295,7 @@ tr, th, td {
 	     <button type="submit" class="qna-button btn bg2">등록</button> 
        </div>
       </div> 
-    </div>
+    </div> 
   </div>
 </form>
 

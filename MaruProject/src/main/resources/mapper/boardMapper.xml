@@ -76,6 +76,10 @@
    ) VALUES (
     #{content}, #{parent_idx}, #{isanswered}, #{category}, #{member_idx}
    )
+   <!-- 원본글 qna_idx = #{parent_idx}
+   	update qnaservice set
+   		
+   	where idx = #{parent_idx} -->
   </insert> 
    
   <delete id="qnaDeleteprocess" parameterType="int">

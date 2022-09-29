@@ -51,17 +51,12 @@ public class QnaController {
 	public String write() {
 		return "qna/write";
 	}
+	
 	@GetMapping("/edit")
 	public String edit() {
 		return "qna/edit";
 	}
-	
-	@GetMapping("/list")
-	public String qna(Model model) {
-		List<BoardVo> qnaList = listService.getQnaList();
-		model.addAttribute("qnaList", qnaList);
-		return "qna/list";
-	}
+
 
 	@PostMapping("/write_process")
 	public String write_process(BoardVo boardVo, HttpServletRequest req, RedirectAttributes redirect) {
@@ -73,13 +68,14 @@ public class QnaController {
 		String viewPage = "redirect:/qna/write";
 		if (result == 1) { 
 			redirect.addFlashAttribute("qnaWriteResult", "문의가 성공적으로 등록되었습니다."); 
-			viewPage = "redirect:/qna/list"; 
+			viewPage = "redirect:/member/myinfo"; 
 		} 
-		return viewPage;
-	}
+		return viewPage; 
+	} 
 	
 	@PostMapping("/qnaisanswered") 
 	public String qnaisanswered(BoardVo boardVo, HttpServletRequest req, RedirectAttributes redirect) {
+		System.out.println(boardVo.toString());
 		int result = insertService.qnaIsanswered(boardVo);
 		HttpSession session = req.getSession();
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
