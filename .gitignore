@@ -3,3 +3,4 @@ MaruProject/target/m2e-wtp/web-resources/META-INF/maven/ezen.maru/pjt/pom.proper
 *.class
 *.MF
 MaruProject/target/m2e-wtp/web-resources/META-INF/maven/ezen.maru/pjt/pom.properties
+*.pptx
