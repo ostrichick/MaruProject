@@ -187,9 +187,9 @@
               <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">${qna.content}</a>
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#con${qna.idx}" aria-expanded="false">${qna.content}</a>
                   </div>
-                  <div id="collapse1" class="panel-collapse collapse" role="tabpanel"> 
+                  <div id="con${qna.idx}" class="panel-collapse collapse" role="tabpanel"> 
                     <div class="panel-body">
                       <hr>
                       <div class="p-3" style="border: 1px solid black;">
@@ -231,7 +231,7 @@
     
     <!-- Modal -->
 <form action="${pageContext.request.contextPath}/qna/Edit" method="post" id="edit"> 
-  <div class="modal fade" id="edit" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
+  <div class="modal fade" id="qEdit" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
     <div class="modal-dialog">
       <!-- Modal content--> 
       <div class="modal-content">
@@ -245,7 +245,7 @@
 		 <input type="hidden" name="member_idx" value="${sessionScope.member_idx}"> 
 		 </c:forEach> 
 		 <input type="hidden" name="isanswered" id="isanswered" value="N"/>  
-         <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50"></textarea>  
+         <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50"></textarea>   
        </div>  
        <div class="modal-footer">
          <button type="button" class="btn bg2" data-dismiss="modal">닫기</button>
