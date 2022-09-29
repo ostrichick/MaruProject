@@ -106,7 +106,6 @@
         결제 예정 금액 : <span id="order_total_price">${order_total_price }</span>
       </p>
 
-
       <div class="text-center mt-3">
         <input type="hidden" name="rsp" id="rsp" value="" />
         <a href="#" id="linkToPay" type="submit" class="btn bg7 cl7 btn-outline-dark">결제하기</a> <a href="${MaruContextPath}" id="linkToMain" type="button" class="btn bg7 cl7 btn-outline-dark">계속 쇼핑하기</a>

@@ -216,29 +216,36 @@
     [ +/- num product ]*/
     
     $('.btn-num-product-down').on('click', function(obj){
-    
-      if($(obj.target).parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked") || $(obj.target).parent().parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked")){
-      /* 장바구니 왼쪽 선택에 체크박스가 쳐져있을 경우에만 작동하게하는 조건 */
+    /* 장바구니 왼쪽 선택에 체크박스가 쳐져있을 경우에만 작동하게하는 조건 */
+    let cartChecked = $(obj.target).parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked") || $(obj.target).parent().parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked");
+    /* 부모의부모나 부모의부모의부모가 size-204 클래스를 가지고있는 경우 (상품 상세페이지) */
+    let isDetailPage = $(obj.target).parent().parent().hasClass("size-204") || $(obj.target).parent().parent().parent().hasClass("size-204")
       
+      if(cartChecked || isDetailPage){
         var numProduct = Number($(this).next().val());
         var product_idx = Number($(this).prev().val());
         if(numProduct > 1) $(this).next().val(numProduct - 1);
         var obj = $(this).next();
         numProduct = Number($(this).next().val());
+        if(cartChecked){
         updateCart(obj, numProduct, product_idx);
+        }
       }
     });
 
     $('.btn-num-product-up').on('click', function(obj){
-    
-      if($(obj.target).parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked") || $(obj.target).parent().parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked")){
+      let cartChecked = $(obj.target).parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked") || $(obj.target).parent().parent().parent().prev().prev().prev().prev().children().children("input.form-check-input").is(":checked");
+      let isDetailPage = $(obj.target).parent().parent().hasClass("size-204") || $(obj.target).parent().parent().parent().hasClass("size-204")     
       
+      if(cartChecked || isDetailPage){
         var numProduct = Number($(this).prev().val());
         var product_idx = Number($(this).prev().prev().prev().val());
         $(this).prev().val(numProduct + 1);
         var obj = $(this).prev();
         numProduct = Number($(this).prev().val());
+        if(cartChecked){
         updateCart(obj, numProduct, product_idx);
+        }
       }
     });
 

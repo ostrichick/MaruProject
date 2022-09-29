@@ -28,14 +28,17 @@ public class OrderDao {
 	}
 
 	public int addOrder(OrderVo orderVo, String[] checkedItemList, List<OrderProductVo> orderProductList) {
+		System.out.println(orderVo);
 		sqlSession.update(MAPPER + ".addOrder", orderVo);
 		int order_idx = orderVo.getOrder_idx();
 		for (OrderProductVo orderProductVo : orderProductList) {
 			orderProductVo.setOrder_idx(order_idx);
 		}
 //		System.out.println("orderProductList in DAO : " + orderProductList);
-		sqlSession.update(MAPPER + ".addOrderProduct", orderProductList);
-		return sqlSession.delete("ezen.maru.pjt.cart" + ".deleteItems", checkedItemList);
+		if (checkedItemList.length > 0) {
+			sqlSession.delete("ezen.maru.pjt.cart" + ".deleteItems", checkedItemList);
+		}
+		return sqlSession.update(MAPPER + ".addOrderProduct", orderProductList);
 	}
 
 	public int deleteOrder(OrderVo orderVo) {

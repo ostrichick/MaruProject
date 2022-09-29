@@ -1,6 +1,7 @@
 package ezen.maru.pjt.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
@@ -55,16 +57,24 @@ public class OrderController {
 		this.mUpdateService = mUpdateService;
 	}
 
+	// checkedItemList = 장바구니 목록에서 선택된 아이템들의 cart_idx
+	// cart_product_number = 장바구니 각각 아이템의 구매 갯수
+	// product_idx_list = 장바구니 목록 아이템들의 product_idx
 	@PostMapping("/order")
-	public String order(String[] checkedItemList, String[] cart_product_number, String[] product_idx_list,
-			String order_total_price, HttpServletRequest req, Model model) {
+	public String order(@RequestParam(required = false) String[] checkedItemList, String[] cart_product_number,
+			String[] product_idx_list, String order_total_price, HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
 
+		System.out.println(checkedItemList);
+		System.out.println(Arrays.toString(cart_product_number));
+		System.out.println(Arrays.toString(product_idx_list));
+		System.out.println(order_total_price);
+
 		List<OrderProductVo> orderProductList = new ArrayList<OrderProductVo>();
 		if (product_idx_list.length == cart_product_number.length) {
-			for (int i = 0; i < checkedItemList.length; i++) {
+			for (int i = 0; i < product_idx_list.length; i++) {
 				OrderProductVo orderProductVo = new OrderProductVo();
 				orderProductVo.setProduct_idx(Integer.parseInt(product_idx_list[i]));
 				orderProductVo.setOrder_quantity(Integer.parseInt(cart_product_number[i]));
@@ -76,6 +86,7 @@ public class OrderController {
 		model.addAttribute("order_total_price", order_total_price);
 		session.setAttribute("checkedItemList", checkedItemList);
 		session.setAttribute("orderProductList", orderProductList);
+		// 세션에 List<OrderProductVo> 전송하려면 직렬화가 권장됨. 가능하다면 다른방법 찾을 것
 		return "order/order";
 	}
 

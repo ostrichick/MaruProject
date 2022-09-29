@@ -27,8 +27,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-
+<c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -51,12 +50,13 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
   </div>
 
   <!-- Shoping Cart -->
-  <form class="container m-b-50" action="${pageContext.request.contextPath}/order/order" method="post">
+  <form class="container m-b-50" action="${MaruContextPath}/order/order" method="post">
     <h3 class="m-tb-50 m-l-50">장바구니</h3>
     <div class="wrap-table-shopping-cart">
       <table class="table-shopping-cart txt-center">
         <tr class="table_head">
-          <th class="col-1">선택</th>
+          <th class="col-1">전체선택<br> <input class="form-check form-check-inline m-r-0" type="checkbox" id="checkboxSelectAll" checked />
+          </th>
           <th colspan="2" class="">상품</th>
           <th class="col-1">가격</th>
           <th class="col-2">수량선택</th>
@@ -76,7 +76,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
                 <input class="form-check-input dis-inline-block" type="checkbox" name="product_idx_list" value="${cart.product_idx}" onchange="checkedItem(${cart.product_idx}, this)" checked>
               </div>
             </td>
-            <td class="">
+            <td class="col-3">
               <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
             </td>
             <td class="txt-left">
@@ -194,6 +194,9 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
   order_quantity (from cart_product_number)
   
   -->
+  <!-- Footer -->
+  <%@include file="/include/footer.jsp"%>
+  <%@include file="/include/script.jsp"%>
   <script>
   /** 
   장바구니 페이지에서는 수량 변경, 삭제, 구매를 할 수 있음
@@ -208,140 +211,190 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 //     //         url += idx; // fn_linkToOrder() 인자를 cart_idx 로 받아서 url에 더할 것
 //     location.href = url;
 //   }
-  
-  document.querySelector("#linkToProductList").addEventListener("click", fn_linkToMain);
-  function fn_linkToMain() {
-    location.href = "${MaruContextPath}/product/list";
-  }
 
-  function checkedItem(product_idx, obj) {
-    if (obj.checked) {
-      let saledPrice = $(obj).parent().parent().next().next().next().children("input[type=hidden]").val();
-      let cart_product_number = $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").val();
-      let saledXNumber = saledPrice * cart_product_number;
-      $(obj)
-        .parent()
-        .parent()
-        .next()
-        .next()
-        .next()
-        .next()
-        .next()
-        .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
-      $(obj).prev().prop('checked', true);
-      $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", false);
-    } else {
-      $(obj)
-        .parent()
-        .parent()
-        .next()
-        .next()
-        .next()
-        .next()
-        .next()
-        .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + 0 + "'>");
-       $(obj).prev().prop('checked', false);
-       $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", true);
-    }
-    totalPriceCalc();
-  }
-  
-  function updateCart(obj, cart_product_number, product_idx) {
-    $.ajax({
-      type: "post",
-      url: "${MaruContextPath}/cart/updateCart?product_idx=" + product_idx + "&cart_product_number=" + cart_product_number,
-      data: {
-        product_idx: product_idx,
-        cart_product_number: cart_product_number,
-      },
-      success: function () {
-        console.log("성공");
+      /* 전체선택 박스를 누르고 해제할 때 마다 모든 체크박스 선택 및 해제 */
+      $("#checkboxSelectAll").on("change", function () {
+        let isChecked = $("#checkboxSelectAll").is(":checked");
+        if (isChecked){
+          $(".table-shopping-cart input[type=checkbox]").each(function(index, item){
+            $(item).prop("checked", true);
+          })
+        }else{
+          $(".table-shopping-cart input[type=checkbox]").each(function(index, item){
+            $(item).prop("checked", false);
+          })
+        }
+        saledXNumberUpdate();
+      });
 
-        let saledPrice = $(obj).parent().parent().prev().children("input[type=hidden]").val();
-        let saledXNumber = saledPrice * cart_product_number;
-        $(obj)
-          .parent()
-          .parent()
-          .next()
-          .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+      document.querySelector("#linkToProductList").addEventListener("click", fn_linkToMain);
+      function fn_linkToMain() {
+        location.href = "${MaruContextPath}/product/list";
+      }
 
-        totalPriceCalc();
-      },
-      error: function () {
-        alert("실패");
-        console.log(data);
-      },
-    });
-  }
-
-  function totalPriceCalc() {
-    let sumSaledXNumber = 0;
-    $(".saledXNumber").each(function (index, item) {
-      sumSaledXNumber += parseInt(item.value);
-    });
-    $(".sumPrice1").html("₩" + sumSaledXNumber.toLocaleString());
-
-    let deliveryFee = 0;
-    if (sumSaledXNumber < 50000 && sumSaledXNumber != 0) {
-      deliveryFee = 5000;
-    }
-
-    let totalPrice = sumSaledXNumber + deliveryFee;
-    $(".DeliveryFee").html("₩" + deliveryFee.toLocaleString());
-    $(".TotalPrice").html("₩" + totalPrice.toLocaleString());
-    $(".TotalPrice").append("<input type='hidden' name='order_total_price' value=" + totalPrice + "/>");
-
-    if (totalPrice == 0) {
-      // 합계 금액이 0이면 구매버튼 비활성화
-      $("#linkToOrder").addClass("disabled");
-      $("#linkToOrder").prop("type", "button");
-    } else {
-      $("#linkToOrder").removeClass("disabled");
-      $("#linkToOrder").prop("type", "submit");
-    }
-  }
-  
-  function deleteCart(product_idx, obj) {
-    $.ajax({
-      type: "post",
-      url: "${MaruContextPath}/cart/deleteCart?product_idx=" + product_idx,
-      data: {
-        product_idx: product_idx,
-      },
-      success: function () {
-        alert("성공");
-        let tr_list_length = document.querySelectorAll(".table-shopping-cart tr").length;
-        if (tr_list_length > 2) {
-          $(obj).parent().parent().remove();
+      /* 왼쪽 개별 체크박스를 선택해제할때마다 금액 합계 재계산 */
+      function checkedItem(product_idx, obj) {
+        if (obj.checked) {
+          let saledPrice = $(obj).parent().parent().next().next().next().children("input[type=hidden]").val();
+          let cart_product_number = $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").val();
+          let saledXNumber = saledPrice * cart_product_number;
+          $(obj)
+            .parent()
+            .parent()
+            .next()
+            .next()
+            .next()
+            .next()
+            .next()
+            .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+          $(obj).prev().prop("checked", true);
+          $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", false);
         } else {
-          $(obj).parent().parent().parent().append("<tr class='table_row'><td colspan='6' class=''>장바구니가 비었습니다.</td></tr>");
-          $(obj).parent().parent().remove();
+          $(obj)
+            .parent()
+            .parent()
+            .next()
+            .next()
+            .next()
+            .next()
+            .next()
+            .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + 0 + "'>");
+          $(obj).prev().prop("checked", false);
+          $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", true);
         }
         totalPriceCalc();
-      },
-      error: function () {
-        console.log(data);
-        alert("실패");
-      },
-    });
-  }
-  
-  function reloadCart() {
-    $.ajax({
-      url: "${MaruContextPath}/cart/reloadCart",
-      type: "post",
-      success: function (data) {
-        alert(data.id);
-        console.log(data);
-      },
-      error: function () {
-        alert("error");
-      },
-    });
-  }
+      }
+            
+      /* 우측에 할인된금액x갯수 결과를 갱신하는 함수 */
+      function saledXNumberUpdate(){
+        $("input[name=product_idx_list]").each(function(index, obj){
+        if (obj.checked) {
+          let saledPrice = $(obj).parent().parent().next().next().next().children("input[type=hidden]").val();
+          let cart_product_number = $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").val();
+          let saledXNumber = saledPrice * cart_product_number;
+          $(obj)
+            .parent()
+            .parent()
+            .next()
+            .next()
+            .next()
+            .next()
+            .next()
+            .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+          $(obj).prev().prop("checked", true);
+          $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", false);
+        } else {
+          $(obj)
+            .parent()
+            .parent()
+            .next()
+            .next()
+            .next()
+            .next()
+            .next()
+            .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + 0 + "'>");
+          $(obj).prev().prop("checked", false);
+          $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", true);
+        }
+       });
+       totalPriceCalc();
+      }
+      
+      /* 숫자를 변경할때마다 변경된 물품 갯수를 DB에 갱신 */
+      function updateCart(obj, cart_product_number, product_idx) {
+        $.ajax({
+          type: "post",
+          url: "${MaruContextPath}/cart/updateCart?product_idx=" + product_idx + "&cart_product_number=" + cart_product_number,
+          data: {
+            product_idx: product_idx,
+            cart_product_number: cart_product_number,
+          },
+          success: function () {
+            console.log("성공");
+            let saledPrice = $(obj).parent().parent().prev().children("input[type=hidden]").val();
+            let saledXNumber = saledPrice * cart_product_number;
+            $(obj)
+              .parent()
+              .parent()
+              .next()
+              .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+            totalPriceCalc();
+          },
+          error: function () {
+            alert("실패");
+          },
+        });
+      }
+ 
+      /* 총금액 합계 부분을 갱신하는 함수 */
+      function totalPriceCalc() {
+        let sumSaledXNumber = 0;
+        $(".saledXNumber").each(function (index, item) {
+          sumSaledXNumber += parseInt(item.value);
+        });
+        $(".sumPrice1").html("₩" + sumSaledXNumber.toLocaleString());
+
+        let deliveryFee = 0;
+        if (sumSaledXNumber < 50000 && sumSaledXNumber != 0) {
+          deliveryFee = 5000;
+        }
+
+        let totalPrice = sumSaledXNumber + deliveryFee;
+        $(".DeliveryFee").html("₩" + deliveryFee.toLocaleString());
+        $(".TotalPrice").html("₩" + totalPrice.toLocaleString());
+        $(".TotalPrice").append("<input type='hidden' name='order_total_price' value=" + totalPrice + "/>");
+
+        if (totalPrice == 0) {
+          // 합계 금액이 0이면 구매버튼 비활성화
+          $("#linkToOrder").addClass("disabled");
+          $("#linkToOrder").prop("type", "button");
+        } else {
+          $("#linkToOrder").removeClass("disabled");
+          $("#linkToOrder").prop("type", "submit");
+        }
+      }
+
+      /* 삭제버튼을 누르면 해당 장바구니항목 DB에서 삭제하고 성공시 화면에서도 삭제 */
+      function deleteCart(product_idx, obj) {
+        $.ajax({
+          type: "post",
+          url: "${MaruContextPath}/cart/deleteCart?product_idx=" + product_idx,
+          data: {
+            product_idx: product_idx,
+          },
+          success: function () {
+            alert("성공");
+            let tr_list_length = document.querySelectorAll(".table-shopping-cart tr").length;
+            if (tr_list_length > 2) {
+              $(obj).parent().parent().remove();
+            } else {
+              $(obj).parent().parent().parent().append("<tr class='table_row'><td colspan='6' class=''>장바구니가 비었습니다.</td></tr>");
+              $(obj).parent().parent().remove();
+            }
+            totalPriceCalc();
+          },
+          error: function () {
+            console.log(data);
+            alert("실패");
+          },
+        });
+      }
+
+      /* 장바구니 화면 새로고침 */
+//       function reloadCart() {
+//         $.ajax({
+//           url: "${MaruContextPath}/cart/reloadCart",
+//           type: "post",
+//           success: function (data) {
+//             alert(data.id);
+//             console.log(data);
+//           },
+//           error: function () {
+//             alert("error");
+//           },
+//         });
+//       }
     </script>
-  <!-- Footer -->
-  <%@include file="/include/footer.jsp"%>
-  <%@include file="/include/script.jsp"%>
+
 </body>
 </html>

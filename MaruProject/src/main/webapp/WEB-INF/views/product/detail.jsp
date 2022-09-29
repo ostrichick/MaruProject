@@ -3,9 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<title>상품 상세보기</title>
+<title>${product.product_name}-상품상세보기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${MaruContextPath}/resources/images/icons/favicon.png" />
@@ -21,7 +21,6 @@
       </a> <span class="stext-109 cl4"> ${product.product_name} </span>
     </div>
   </div>
-
 
   <!-- 상품 상세 -->
   <section class="sec-product-detail bg0 p-t-65 p-b-60">
@@ -87,34 +86,37 @@
               </span>
             </p>
 
-            <p class="stext-102 cl3 p-t-23">${product_size}</p>
+            <p class="stext-102 cl3 p-t-23">규격 : ${product.product_size}</p>
             <p class="stext-102 cl3 p-t-23">
               제주/도서산간 제외 <strong>전국 배송 가능</strong><br>수도권 <strong>무료배송</strong>/그 외 지역 유료배송(하단 배송기준 참고)
             </p>
             <!--  -->
             <div class="p-t-33">
 
-
               <div class="flex-w p-b-10">
-                <div class="size-204 flex-w flex-m respon6-next">
-                  <div class="wrap-num-product flex-w m-l-15 m-tb-10">
-                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                      <i class="fs-16 zmdi zmdi-minus"></i>
+                <form action="${MaruContextPath}/order/order" method="post">
+                  <div class="size-204 flex-w flex-m respon6-next">
+
+                    <div class="wrap-num-product flex-w m-l-15 m-tb-10">
+                      <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                        <i class="fs-16 zmdi zmdi-minus"></i>
+                      </div>
+
+                      <input class="mtext-104 cl3 txt-center num-product" id="cart_product_number" type="number" name="cart_product_number" value="1">
+
+                      <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                        <i class="fs-16 zmdi zmdi-plus"></i>
+                      </div>
                     </div>
-
-                    <input class="mtext-104 cl3 txt-center num-product" id="cart_product_number" type="number" name="cart_product_number" value="1">
-
-                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                      <i class="fs-16 zmdi zmdi-plus"></i>
+                    <span class="total_price_print m-lr-auto">${product.product_price }</span>
+                    <input type="hidden" name="order_total_price" value="${product.product_price }">
+                    <div class="btn-group" role="group">
+                      <a href="#" onClick="fn_addCart(${product.product_idx})" class="flex-c-m stext-101 cl0 size-107 bg1 hov-btn1 m-lr-15 trans-04 js-addcart-detail">장바구니</a>
+                      <input type="hidden" name="product_idx_list" value="${product.product_idx }" />
+                      <button class="flex-c-m stext-101 cl0 size-107 bg1  hov-btn1 m-lr-15 trans-04 buy_button">즉시구매</button>
                     </div>
                   </div>
-
-                  <div class="btn-group" role="group" aria-label="Basic example">
-                    <button onClick="fn_addCart(${product.product_idx})" class="flex-c-m stext-101 cl0 size-107 bg1  hov-btn1 m-lr-15 trans-04 js-addcart-detail">장바구니</button>
-                    <button class="flex-c-m stext-101 cl0 size-107 bg1  hov-btn1 m-lr-15 trans-04 js-addcart-detail">즉시구매</button>
-                  </div>
-
-                </div>
+                </form>
               </div>
             </div>
 
@@ -219,7 +221,6 @@
                     </div>
                     <div class="flex-w flex-t p-b-68">
 
-
                       <div class="size-290">
                         <div class="flex-w flex-sb-m p-b-17">
                           <span class="mtext-107 cl2 p-r-20"> 김삼식2 </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i>
@@ -229,7 +230,6 @@
                         <p class="stext-102 cl6">2222222222 리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰</p>
                       </div>
                     </div>
-
 
                   </div>
                 </div>
@@ -266,7 +266,6 @@
                       </form>
                     </div>
                   </div>
-
 
                   <table class="table table-striped table-hover">
                     <thead>
@@ -310,7 +309,6 @@
         <!-- 전체 탭 끝 -->
 
       </div>
-
     </div>
     <!-- 제품 상세 컨테이너 -->
   </section>
@@ -353,11 +351,13 @@
       success : addCartSuccess,
       error : addCartFail,
      })
-   }
+  }
+  
   function addCartSuccess(){
     //장바구니로 이동 혹은 계속 쇼핑하기 여부 modal 창으로 출력
-    alert("성공");
+    console.log("성공");
   }
+  
   function addCartFail(){
     alert("오류가 발생했습니다. 다시 시도해주세요.");
   }
@@ -366,5 +366,10 @@
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/detail.jsp"%>
   <%@include file="/include/script.jsp"%>
+  <script>
+    $("body").on("click keyup", function(){
+      console.log("클릭, 키업");
+      })
+  </script>
 </body>
 </html>

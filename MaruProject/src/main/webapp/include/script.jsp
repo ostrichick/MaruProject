@@ -67,7 +67,7 @@
     var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
     $(this).on('click', function() {
-      swal(nameProduct, "가 장바구니에 추가되었습니다!", "success");
+      swal(nameProduct, "장바구니에 추가되었습니다!", "success");
 
       $(this).addClass('js-addedwish-detail');
       $(this).off('click');
@@ -77,9 +77,9 @@
   /*---------------------------------------------*/
 
   $('.js-addcart-detail').each(function() {
-    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+    var nameProduct = $(this).parent().parent().parent().parent().parent().parent().find('.js-name-detail').html();
     $(this).on('click', function() {
-      swal(nameProduct, "가 장바구니에 추가되었습니다!", "success");
+      swal(nameProduct, "장바구니에 추가되었습니다!", "success");
     });
   });
 </script>
