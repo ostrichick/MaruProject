@@ -34,7 +34,7 @@ public class OrderDao {
 		for (OrderProductVo orderProductVo : orderProductList) {
 			orderProductVo.setOrder_idx(order_idx);
 		}
-//		System.out.println("orderProductList in DAO : " + orderProductList);
+		System.out.println("orderProductList in DAO : " + orderProductList);
 		if (checkedItemList.length > 0) {
 			sqlSession.delete("ezen.maru.pjt.cart" + ".deleteItems", checkedItemList);
 		}

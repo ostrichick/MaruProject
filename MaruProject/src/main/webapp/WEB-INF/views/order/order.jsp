@@ -203,46 +203,6 @@
           }
         });
       }
-
-      function ajaxtest() {
-        $.ajax({
-          url : "${MaruContextPath}/order/order_process",
-          type : 'POST',
-          dataType : 'json',
-          contentType : 'application/json',
-          data : JSON.stringify({
-            "success" : "ture",
-            "imp_uid" : "123123",
-            "paid_amount" : "231253원",
-            "apply_num" : "NUM1234",
-            "card_name" : "삼성",
-            "card_number" : "40003000"
-          }),
-          success : function(data, response) {
-            console.log("data " + data);
-            console.log(data)
-            console.log("data.message " + data.message);
-
-            console.log("response " + response);
-            console.log(response)
-            console.log("response.message " + response.message);
-            if (data.money_validate) {
-              $("form[method=post]").submit();
-            } else {
-              alert("금액이 일치하지 않습니다.")
-            }
-          },
-          error : function(request, status, error) {
-            console.log(request);
-            console.log(status);
-            console.log(error);
-            alert("실패");
-          },
-          complete : function() {
-            console.log("ajax 호출 완료 시 실행");
-          }
-        })
-      }
     </script>
 </body>
 </html>
