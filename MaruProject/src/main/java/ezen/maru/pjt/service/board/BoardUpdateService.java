@@ -19,6 +19,8 @@ public class BoardUpdateService implements BoardService {
 	public int noticeEditProcess(BoardVo boardVo) {
 		return boardDao.noticeEditProcess(boardVo);
 	}
+	
+	
 
 //	@Override
 //	public int noticeEditProcess(BoardVo boardVo, MultipartRequest uploadFile, HttpServletRequest req) {

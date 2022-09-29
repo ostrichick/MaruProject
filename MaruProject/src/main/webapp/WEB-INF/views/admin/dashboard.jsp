@@ -199,7 +199,7 @@ tr, th, td {
     <br> <br>
     <div class="container" id="box">
       <a href="${pageContext.request.contextPath}/" class="btn btn-success  m-l--15" id="button">1:1문의</a>
-      <table class="table table-bordered col-8" id="mbox">   
+      <table class="table table-bordered col-9" id="mbox">    
         <tr class="bg1">
           <th>선택</th>
           <th>문의번호</th>
@@ -220,7 +220,8 @@ tr, th, td {
             <td>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                  <div class="panel-heading qna" role="tab"> 
+                  <div class="panel-heading qna" role="tab">
+                  	<p class="d-none">${qna.idx}</p> 
                     <a role="button" class="qna" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">문의</a>
                   </div>
                   <div id="collapse1" class="panel-collapse collapse" role="tabpanel">
@@ -243,7 +244,7 @@ tr, th, td {
             <td>
             	<c:choose> 
             		<c:when test="${qna.isanswered eq 'N'}">
-            		<button type="button" class="btn bg2" data-toggle="modal" data-target="#isanswered">답변</button>
+            		<button type="button" class="qIdx btn bg2" data-toggle="modal" data-target="#isanswer">답변</button>
             		</c:when>
             		<c:otherwise>YY</c:otherwise> 
             	</c:choose>
@@ -300,31 +301,51 @@ tr, th, td {
   </div>
 
 <!-- Modal -->
-<form action="${pageContext.request.contextPath}/qna/qna_isanswered" method="post" id="isanswer"> 
-  <div class="modal fade" id="isanswered" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
+<form action="${pageContext.request.contextPath}/qna/qnaisanswered" method="post" id="answer"> 
+  <div class="modal fade" id="isanswer" role="dialog"> <!-- 사용자 지정 부분① : id명 -->
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
+      <!-- Modal content--> 
       <div class="modal-content">
        <div class="modal-header">
         <h4 class="modal-title">답변 등록</h4> <!-- 사용자 지정 부분② : 타이틀 -->
-        <button type="button" class="close" data-dismiss="modal">×</button>  
-       </div> 
-       <div class="modal-body"> 
-		 <select name="category" id="category"><option value="답변">답변</option></select>
-         <textarea rows="8" cols="45" name="content" class="bor10 m-l-50"></textarea>    
-       </div> 
+        <button type="button" class="close" data-dismiss="modal">×</button>
+       </div>  
+       <div class="modal-body">
+		<c:forEach var="qna" items="${qnaList}" varStatus="status">
+		 <input type="hidden" name="idx" id="idx" value="${qna.idx}"/> 
+		 <input type="hidden" name="parent_idx" id="parent_idx" value="${qna.parent_idx}"/>
+		 <input type="hidden" name="member_idx" value="${sessionScope.member_idx}"> 
+		 <select class="d-none" name="category" id="category">
+		 	<option selected class="d-none" value="답변"></option>
+		 </select>
+		 </c:forEach> 
+		 <input type="hidden" name="isanswered" id="isanswered" value="Y"/>  
+         <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50">--답변--
+		 </textarea>  
+       </div>  
        <div class="modal-footer">
          <button type="button" class="btn bg2" data-dismiss="modal">닫기</button>
-	     <button type="submit" class="btn bg2">등록</button>
+	     <button type="submit" class="qna-button btn bg2">등록</button> 
        </div>
-      </div>
+      </div> 
     </div>
   </div>
 </form>
+
  <!-- end first container -->
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
+ <!-- script -->
+ <script type="text/javascript">
+ function categoty(){
+	    var category = $("#category = option:selected").val();
+	    // $("category")의 선택한 값을 불러온다.
+
+	     $("#category").val(category);
+
+	    // 위에서 부른 값을 hidden값에 넣어서 DB 저장시 사용..
+	 }
+ </script>
 </body>
 </html>

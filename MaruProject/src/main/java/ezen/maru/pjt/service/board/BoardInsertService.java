@@ -18,7 +18,6 @@ public class BoardInsertService implements BoardService {
 	public int qnaWriteProcess(BoardVo boardVo) {
 		return boardDao.qnaWriteProcess(boardVo);
 	}
-	
 	@Override
 	public int qnaIsanswered(BoardVo boardVo) {
 		return boardDao.qnaIsanswered(boardVo);

@@ -89,10 +89,10 @@
 	<div class="col-3 m-l-10" id="option">
 		<select class="form-select" name="category" id="category" aria-label="Categories">
 			<option selected>카테고리를 선택해주세요</option>
-			<option value="일반문의" name="일반문의">일반문의</option>
-			<option value="환불/교환문의" name="환불/교환문의">환불/교환 문의</option>
-			<option value="1:1문의" name="1:1문의">1:1문의</option> 
-			<option value="상품문의" name="상품문의">상품문의</option> 
+			<option value="일반문의">일반문의</option>
+			<option value="환불/교환문의">환불/교환 문의</option>
+			<option value="1:1문의">1:1문의</option>  
+			<option value="상품문의">상품문의</option> 
 		</select>
 	</div> 
 	</div> 

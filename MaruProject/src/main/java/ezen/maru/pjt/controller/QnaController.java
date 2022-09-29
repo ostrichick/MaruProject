@@ -51,6 +51,10 @@ public class QnaController {
 	public String write() {
 		return "qna/write";
 	}
+	@GetMapping("/edit")
+	public String edit() {
+		return "qna/edit";
+	}
 	
 	@GetMapping("/list")
 	public String qna(Model model) {
@@ -74,16 +78,31 @@ public class QnaController {
 		return viewPage;
 	}
 	
-	@PostMapping("/qna_isanswered") 
-	public String qna_isanswered(BoardVo boardVo, HttpServletRequest req, RedirectAttributes redirect) {
-		System.out.println(boardVo.getParent_idx());
-		System.out.println(boardVo.getIsanswered());
+	@PostMapping("/qnaisanswered") 
+	public String qnaisanswered(BoardVo boardVo, HttpServletRequest req, RedirectAttributes redirect) {
 		int result = insertService.qnaIsanswered(boardVo);
+		HttpSession session = req.getSession();
+		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+		int member_idx = (int) optional_member_idx.get();
+		boardVo.setMember_idx(member_idx);
 		String viewPage = "redirect:/admin/dashboard"; 
 		if (result == 1) { 
 			redirect.addFlashAttribute("qnaIsanswered", "답변이 성공적으로 등록되었습니다.");
 			viewPage = "redirect:/admin/dashboard"; 
 		}  
+		return viewPage;
+	}
+	
+	@GetMapping("/delete")
+	public String delete(Model model, int idx, RedirectAttributes redirect) {
+		int result = deleteService.deleteQna(idx);
+		String viewPage = "/member/memberinfo?idx=" + idx;
+		if (result == 1) {
+			redirect.addFlashAttribute("deleteResult", "성공적으로 삭제되었습니다");
+			List<BoardVo> qnaList = listService.getQnaList();
+			redirect.addFlashAttribute("qnaList", qnaList);
+			viewPage = "redirect:/member/memberinfo";
+		}
 		return viewPage;
 	}
 }

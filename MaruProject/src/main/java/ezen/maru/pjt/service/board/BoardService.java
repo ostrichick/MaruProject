@@ -41,5 +41,9 @@ public interface BoardService {
 	default int qnaIsanswered(BoardVo boardVo) {
 		return 0;
 	}
+	
+	default int deleteQna(int idx) {
+		return 0;
+	}
 
 }

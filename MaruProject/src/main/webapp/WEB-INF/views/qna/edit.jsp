@@ -4,83 +4,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body class="animsition">
-  <%@include file="/include/header.jsp"%> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
+<title>문의 수정</title>
+<style> 
+#cont{
+	width:700px;
+}
 
-<br><br><br><br><br><br>
-<div class="container" >
-<h3 class="col-3" style="float:left ;">1대1문의수정</h3>
-<div style="border-left:100;"></div>
-	<div style="float:left;">
-	FAQ에서 해결하지 못한 질문이 있으시면 1:1문의에 등록해주시면 친절히 답변해드립니다.<br>
-	평균 답변 시간:2~3일
-	</div> 
-</div>
-<br>
-<br>
-<div class="container text-center" style="border-style:solid; margin-top:10px;">
-	<div class="row" style="margin-top: 25px;">
-	  <div class="col-2">
-		*카테고리
-		</div>
-	<div class="col-2">
-		<select class="form-select" aria-label="Categories">
-			<option selected>상품의 카테고리를 선택해주세요</option>
-			<option value="1">거실</option>
-			<option value="2">침실</option>
-			<option value="3">드레스룸</option>
-			<option value="4">서재</option>
-			<option value="5">주방</option>
-			<option value="6">욕실</option> 
-		</select>
-	</div>
-	</div>
-	<hr>
-	<div class="row">
-	<div class="col-2">
-		*내용
-	  </div>
-	  <div class="col-8">
-		<textarea style="border-style:solid; width:400px; height:150px;">
-				
-		</textarea>
-	</div>
-	</div>
-	<hr>
-	<div class="row">
-	<div class="col-2">
-		파일첨부
-	 </div>
-	<div class="col-8" style="margin-bottom:30px;">
-	<div class="filebox">
-		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
-		<label for="file">파일찾기</label> 
-		<input type="file" id="file">
-	</div>
-	</div>
-	</div>
-</div>
-<div style="margin-left:40%; margin-top:50px; margin-bottom:50px;">
-<input id="button" class="btn btn-primary" type="submit" value="수정" style="margin-right:30px ;">
-<input id="button" class="btn btn-primary" type="reset" value="취소">
-</div>
-  
+#filename{
+	margin-bottom:.5rem;
+}
 
- <!-- Footer -->
-  <%@include file="/include/footer.jsp"%>
-  <%@include file="/include/script.jsp"%>
-  <!--=====================================================================================================-->
-<style>
+.filebox{
+	width:500px;  
+}
+#fileb{ 
+	margin-right:70px; 
+	margin-top:5px; 
+}
 .filebox .upload-name {
-    display: inline-block;
+    display: inline-block; 
     height: 40px;
     padding: 0 10px;
     vertical-align: middle;
-    border: 1px solid #dddddd;
-    width: 78%;
-    color: #999999;
+    border: 1px solid #dddddd; 
+    width: 380px;
+    color: #999999; 
 }
 .filebox label {
     display: inline-block;
@@ -90,7 +40,6 @@
     background-color: #999999;
     cursor: pointer;
     height: 40px;
-    margin-left: 10px;
 }
 .filebox input[type="file"] {
     position: absolute;
@@ -99,23 +48,97 @@
     padding: 0;
     overflow: hidden;
     border: 0;
+    margin-top:20px;  
 }
-#button {
-	    color: #fff; 
-    background-color: #6c757d;
-    border-color: #6c757d;
-   
+#category{
+	margin-left:100px;
+}
+
+#pile{
+	margin-top:20px;  
+}
+
+#contit{ 
+	margin-top:70px; 
+}
+#option{ 
+	margin-left:10px;
 }
 </style> 
+</head>
+<body class="animsition">
+  <%@include file="/include/header.jsp"%> 
+
+<br><br><br>
+<div class="container" >
+<h3 class="col-2 m-t-20" style="float:left; margin-left:19%;">1대1문의</h3> 
+	<div style="float:left; margin-left:30px;">
+	FAQ에서 해결하지 못한 질문이 있으시면<br>
+	1:1문의에 등록해주시면 친절히 답변해드립니다.<br>
+	평균 답변 시간:2~3일
+	</div>
+</div>
+<br><br><br>
+<br><br>
+<div class="container text-center bor10 m-t-10" id="cont">
+	<form action="write_process" method="post" id="qna_write">
+	<div class="row m-t-25">
+	  <div class="col-2">
+		*카테고리
+		</div>
+	<div class="col-3 m-l-10" id="option">
+		<select class="form-select" name="category" id="category" aria-label="Categories">
+			<option selected>카테고리를 선택해주세요</option>
+			<option value="일반문의" name="일반문의">일반문의</option>
+			<option value="환불/교환문의" name="환불/교환문의">환불/교환 문의</option>
+			<option value="1:1문의" name="1:1문의">1:1문의</option> 
+			<option value="상품문의" name="상품문의">상품문의</option> 
+		</select>
+	</div> 
+	</div> 
+	<hr>
+	<div class="row"> 
+	<div class="col-2" id="contit"> 
+		*내용
+	  </div>
+	  <div class="col-8 container m-t-20" id="content">   
+		<textarea class="bor10 m-r-45" name="content" style="width:480px; height:150px;"></textarea>
+	</div>
+	</div>  
+	<div class="m-t-50 m-b-50">
+	<input type="hidden" name="member_idx" value="${sessionScope.member_idx}">  
+	<button class="cl0 btn btn-dark bg1 m-r-30" id="qna_submit" type="submit"><span class="cl0">등록하기</span></button>
+	<a id="cancle" class="cl0 btn btn-dark bg1" type="submit" ><span class="cl0">취소</span></a>
+	</div> 
+	</form>
+	</div>  
+   <br><br><br> 
+ <!-- Footer -->
+  <%@include file="/include/footer.jsp"%> 
+  <%@include file="/include/script.jsp"%> 
+  <!--=====================================================================================================-->
+
 <script>
 $("#file").on('change',function(){
   var fileName = $("#file").val();
   $(".upload-name").val(fileName);
 });
-
-
 </script>
+<script type="text/javascript"> 
+$("#cancle").on("click", function(e){ 
+	location.href = "${MaruContextPath}/index";
+});
+</script>
+<script type="text/javascript">
+function categoty(){
+    var category = $("#category > option:selected").val();
+    // $("category")의 선택한 값을 불러온다.
 
+     $("#category").val(category);
+
+    // 위에서 부른 값을 hidden값에 넣어서 DB 저장시 사용..
+ }
+</script>
 <!--=============================================================================-->
 </body>
 </html>

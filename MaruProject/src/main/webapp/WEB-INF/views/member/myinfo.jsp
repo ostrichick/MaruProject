@@ -175,6 +175,7 @@
             <th>카테고리분류</th>
             <th>내용</th>
             <th>답변일자</th>
+            <th>삭제</th>
           </tr>
         </thead>
         <tbody>
@@ -206,6 +207,9 @@
             <td>
               <p>2022.07.25</p>
             </td>
+            <td>
+            	<button onClick='qDelete()' class="qDelete btn bg2">삭제</button> 
+            </td>
           </tr>
          </c:forEach> 
         </tbody>
@@ -234,5 +238,13 @@
         location.href = "${MaruContextPath}/member/myinfo_edit";
       })
     </script>
+  <script type="text/javascript">
+  	function qDelete() {
+      	let url = "${MaruContextPath}/qna/delete?idx=";
+      	let idx = "${boardVo.idx}"
+      	url += idx;
+      	location.href = url;
+    	}
+  </script>
 </body>
 </html>
