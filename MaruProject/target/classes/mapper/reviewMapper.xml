@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.maru.pjt.Review">
+<insert id="">
+@Insert("INSERT INTO review_tbl (product_idx,member_idx, content, star, file_origin, file_system, file_extension) 
+	VALUES (#{product_idx}, #{member_idx}, #{content}, #{star}, #{file_origin}), #{file_system}, #{file_extension}")
+void create(Review review);
+</insert>
+
+
+</mapper>

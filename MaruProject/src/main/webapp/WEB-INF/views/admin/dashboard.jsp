@@ -167,37 +167,6 @@ tr, th, td {
     </div>
     <br> <br>
     <div class="container" id="box">
-      <a href="${pageContext.request.contextPath}/notice/" class="btn btn-success  m-l--15" id="button">공지사항</a>
-      <table class="table table-bordered col-4" id="mbox">
-        <tr class="bg1">
-          <th>선택</th>
-          <th>공지사항</th>
-          <th>날짜</th>
-          <th>조회수</th>
-        </tr>
-        <tr class="bg0">
-          <td>
-            <input type="checkbox" value="선택" id="checkbox" />
-          </td>
-          <td>
-            <a href="#" class="">공지사항123</a>
-          </td>
-          <td>14553445</td>
-          <td>999</td>
-        </tr>
-      </table>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">다음</a></li>
-        </ul>
-      </nav>
-    </div>
-    <br> <br>
-    <div class="container" id="box">
       <a href="${pageContext.request.contextPath}/" class="btn btn-success  m-l--15" id="button">1:1문의</a>
       <table class="table table-bordered col-9" id="mbox">    
         <tr class="bg1">
@@ -227,15 +196,12 @@ tr, th, td {
                   <div id="collapse1" class="panel-collapse collapse" role="tabpanel">
                     <div class="panel-body">
                       <hr>
-                      <div class="p-3 text-break" style="width:350px; border: 1px solid black;">   
-                        <p>
-                          <strong>상세내용</strong>
-                        </p>
+                      <div class="p-3 text-break" style="width:350px; border: 1px solid black;"> 
                         <br>
                         <p>${qna.content}</p>
                       </div>
                     </div>
-                  </div>
+                  </div> 
                 </div>
               </div>
              </td> 
