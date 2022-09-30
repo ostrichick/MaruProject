@@ -103,8 +103,11 @@
       </div>
 
       <p class="m-tb-20 fs-22">
-        결제 예정 금액 : <span id="order_total_price">${order_total_price }</span>
+        결제 예정 금액 : <span id="order_total_price">${order_total_price}</span><br />
       </p>
+      <hr />
+      <input type="checkbox" id="testPrice" />
+      테스트용 금액 적용 (실제금액 나누기 100)
 
       <div class="text-center mt-3">
         <input type="hidden" name="rsp" id="rsp" value="" />
@@ -156,13 +159,15 @@
           pay_method : 'card',
           merchant_uid : 'merchant_' + new Date().getTime(),
           name : '테스트용 장바구니1', //결제창에서 보여질 이름. 
-          amount : order_total_price / 1000,
+          amount : order_total_price,
           buyer_email : member_email,
           buyer_name : member_name,
           buyer_tel : member_phone,
           buyer_addr : member_combined_address,
           buyer_postcode : member_postcode
         }, function(rsp) {
+          console.log(rsp);
+          console.log(rsp.success);
           if (rsp.success) {
             $.ajax({
               url : "${MaruContextPath}/order/order_process",
@@ -172,7 +177,7 @@
               data : JSON.stringify({
                 success : rsp.success,
                 imp_uid : rsp.imp_uid,
-                order_total_price : ORDERTOTALPRICE / 1000,
+                order_total_price : ORDERTOTALPRICE / 100,
                 paid_amount : rsp.paid_amount,
                 apply_num : rsp.apply_num,
                 card_name : rsp.card_name,
@@ -203,6 +208,16 @@
           }
         });
       }
+
+      $("#testPrice").on("change", function() {
+        if ($("#testPrice").is(":checked")) {
+          order_total_price = order_total_price / 100;
+          $("#order_total_price").html("₩" + order_total_price.toLocaleString('en').split(".")[0]);
+        } else {
+          order_total_price = ORDERTOTALPRICE;
+          $("#order_total_price").html("₩" + order_total_price.toLocaleString('en').split(".")[0]);
+        }
+      })
     </script>
 </body>
 </html>

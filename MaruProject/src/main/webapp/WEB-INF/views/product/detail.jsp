@@ -72,12 +72,14 @@
                 <h4 class="mtext-106 cl2">
                   <fmt:formatNumber value="${product.product_price - product.product_price * product.product_sale_percent/100}" type="currency" currencySymbol="₩" />
                 </h4>
+                <c:set var="SaledPrice" value="${product.product_price - product.product_price * product.product_sale_percent/100}" scope="request" />
               </c:when>
               <c:otherwise>
                 <!-- 할인을 안 할 경우 정상가격 표시 -->
                 <h4 class="mtext-106 cl2">
                   <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
                 </h4>
+                <c:set var="SaledPrice" value="${product.product_price}" scope="request" />
               </c:otherwise>
             </c:choose>
 
@@ -108,8 +110,9 @@
                         <i class="fs-16 zmdi zmdi-plus"></i>
                       </div>
                     </div>
-                    <span class="total_price_print m-lr-auto">${product.product_price }</span>
-                    <input type="hidden" name="order_total_price" value="${product.product_price }">
+                    <span class="total_price_print m-lr-auto"> <fmt:formatNumber value="${SaledPrice}" type="currency" currencySymbol="₩" />
+                    </span>
+                    <input type="hidden" name="order_total_price" value="${SaledPrice}">
                     <div class="btn-group" role="group">
                       <a href="#" onClick="fn_addCart(${product.product_idx})" class="flex-c-m stext-101 cl0 size-107 bg1 hov-btn1 m-lr-15 trans-04 js-addcart-detail">장바구니</a>
                       <input type="hidden" name="product_idx_list" value="${product.product_idx }" />
@@ -367,9 +370,16 @@
   <%@include file="/include/detail.jsp"%>
   <%@include file="/include/script.jsp"%>
   <script>
-    $("body").on("click keyup", function(){
+  let SaledPrice = "${SaledPrice}"
+      $("body").on("click keyup", function(){
       console.log("클릭, 키업");
+      let cart_product_number = $("#cart_product_number").val();
+      let total_price = SaledPrice * cart_product_number;
+      $("input[name=order_total_price]").val(SaledPrice * cart_product_number);
+      $("span.total_price_print").html("₩" + total_price.toLocaleString('en').split(".")[0]);
       })
+      
+
   </script>
 </body>
 </html>
