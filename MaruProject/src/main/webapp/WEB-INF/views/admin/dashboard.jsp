@@ -213,7 +213,7 @@ tr, th, td {
             <td>
             	<c:choose> 
             		<c:when test="${qna.isanswered eq 'N'}">
-            		<button type="button" class="qIdx btn bg2" data-toggle="modal" data-target="#isanswer">답변</button>
+            		<button type="button" class="qIdx btn bg2" data-toggle="modal" data-target="#isanswer" onclick="answer(this)">답변</button>
             		</c:when>
             		<c:otherwise>YY</c:otherwise> 
             	</c:choose>
@@ -280,12 +280,12 @@ tr, th, td {
         <button type="button" class="close" data-dismiss="modal">×</button>
        </div>  
        <div class="modal-body">
-		<c:forEach var="qna" items="${qnaList}" varStatus="status">
-		 <input type="hidden" name="idx" id="idx" value="${qna.idx}"/> 
-		 <input type="hidden" name="parent_idx" id="parent_idx" value="${qna.parent_idx}"/>
-		 <input type="hidden" name="member_idx" value="${sessionScope.member_idx}"> 
-		  <input type="hidden" name="category" id="category" value="답변"/>
-		 </c:forEach> 
+		<%-- <c:forEach var="qna" items="${qnaList}" varStatus="status"> --%>
+		 <input type="text" name="idx" id="idx" value="${qna.idx}"/>
+		 <input type="text" name="parent_idx" id="parent_idx" value="${qna.parent_idx}"/>
+		 <input type="text" name="member_idx" value="${sessionScope.member_idx}"> 
+		 <%-- </c:forEach> --%>
+		 <input type="text" name="category" id="category" value="답변"/>
 		 <input type="hidden" name="isanswered" id="isanswered" value="Y"/>  
          <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50">--답변--
 		 </textarea>  
@@ -313,6 +313,13 @@ tr, th, td {
 
 	    // 위에서 부른 값을 hidden값에 넣어서 DB 저장시 사용..
 	 }
+ </script>
+ <script type="text/javascript">
+ 	function answer(obj){
+ 		let idx = $("button.qIdx").parent().prev().prev().prev().prev().children("p").val()
+ 		
+ 		
+ 	}
  </script>
 </body>
 </html>
