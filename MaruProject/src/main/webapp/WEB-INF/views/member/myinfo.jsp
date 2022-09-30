@@ -39,6 +39,23 @@
 .star-rating label:hover, .star-rating label:hover ~ label {
   -webkit-text-fill-color: red;
 }
+.pagination {
+  justify-content: center;
+}
+
+a.page-link {
+  color: #666;
+}
+
+li.page-item.active>a.page-link {
+  background: #666;
+  color: #eee;
+  border-color: #333;
+}
+
+li.page-item.active>a.page-link:hover {
+  background: #444;
+}
 </style>
 </head>
 <body class="animsition">
