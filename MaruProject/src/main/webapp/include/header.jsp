@@ -299,7 +299,6 @@
        </li>
       </c:if>
         
-=======
         <c:choose>
           <c:when test="${not empty sessionScope.member_id }">
             <li class="m-tb-20 bg7 p-t-10 txt-center cl7">${member_name }님, 환영합니다.
