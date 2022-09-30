@@ -301,6 +301,16 @@
             </li>
           </c:otherwise>
         </c:choose>
+       
+      <c:if test="${sessionScope.member_admin eq 'Y' }">
+       <li class="m-tb-20 bg7 p-t-10 txt-center cl7">관리자 전용
+       	<ul class="bg6 menu-subcategory">
+			<li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/admin/dashboard" class="flex-c-m trans-04 p-lr-25 cl2"> 관리자페이지</a></li>
+        	<li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/product/add" class="flex-c-m trans-04 p-lr-25 cl2"> 상품등록</a></li>
+       	</ul>
+       </li>
+      </c:if>
+        
 
         <li class="m-tb-20 p-tb-10 bg7"><a href="${MaruContextPath}/member/myinfo" class="flex-c-m trans-04 p-lr-25 cl7">마이페이지</a></li>
         <li class="m-tb-20 p-tb-10 bg7 cl7"><a href="${MaruContextPath}/cart/" class="flex-c-m trans-04 p-lr-25  cl7" data-label1="hot">장바구니</a></li>
@@ -311,14 +321,6 @@
             <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/qna/write" class="flex-c-m trans-04 p-lr-25 cl2">1:1 문의</a></li>
           </ul>
         </li>
-        <c:if test="${sessionScope.member_admin eq 'Y' }">
-          <li class="m-tb-20 bg7 p-t-10 txt-center cl7">관리자 전용
-            <ul class="bg6 menu-subcategory">
-              <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/admin/dashboard" class="flex-c-m trans-04 p-lr-25 cl2">관리자페이지</a></li>
-              <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/product/add" class="flex-c-m trans-04 p-lr-25 cl2">상품등록</a></li>
-            </ul>
-          </li>
-        </c:if>
       </ul>
 
     </div>
