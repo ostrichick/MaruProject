@@ -23,7 +23,9 @@
       <!-- Header desktop -->
       <div class="container-menu-desktop">
         <!-- Topbar -->
-        <%@include file="/include/topbar.jsp"%>
+
+        <%--         <%@include file="/include/topbar.jsp"%> --%>
+
         <div class="wrap-menu-desktop how-shadow1">
           <nav class="limiter-menu-desktop container">
             <!-- Logo desktop -->
@@ -145,7 +147,9 @@
       <!-- Header desktop -->
       <div class="container-menu-desktop">
         <!-- Topbar -->
-        <%@include file="/include/topbar.jsp"%>
+
+        <%--         <%@include file="/include/topbar.jsp"%> --%>
+
         <div class="wrap-menu-desktop">
           <nav class="limiter-menu-desktop container">
             <!-- Logo desktop -->
