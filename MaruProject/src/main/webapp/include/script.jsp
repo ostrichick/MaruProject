@@ -56,7 +56,7 @@
   $('.js-addwish-b2').each(function() {
     var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
     $(this).on('click', function() {
-      swal(nameProduct, "가 장바구니에 추가되었습니다!", "success");
+      swal(nameProduct, "장바구니에 추가되었습니다!", "success");
 
       $(this).addClass('js-addedwish-b2');
       $(this).off('click');

@@ -67,7 +67,7 @@ public class OrderController {
 		String member_id = (String) session.getAttribute("member_id");
 		MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
 
-		System.out.println("Controller checkedItemList : " + checkedItemList);
+		System.out.println("Controller checkedItemList : " + Arrays.toString(checkedItemList));
 		System.out.println("Controller cart_product_number : " + Arrays.toString(cart_product_number));
 		System.out.println("Controller product_idx_list : " + Arrays.toString(product_idx_list));
 		System.out.println("Controller order_total_price : " + order_total_price);
@@ -101,6 +101,7 @@ public class OrderController {
 		} else {
 			rsp.put("message", "금액이 일치하지 않음");
 		}
+
 		return rsp;
 	}
 
