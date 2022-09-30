@@ -45,5 +45,9 @@ public interface BoardService {
 	default int deleteQna(int idx) {
 		return 0;
 	}
+	
+	default int qnaEditProcess(BoardVo boardVo) {
+		return 0;
+	}
 
 }

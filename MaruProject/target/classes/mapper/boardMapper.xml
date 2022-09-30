@@ -81,6 +81,14 @@
    		
    	where idx = #{parent_idx} -->
   </insert> 
+  
+  <update id="qnaEditProcess">
+  	update qnaservice
+  	set
+  	content = #{content},
+  	isanswered = #{isanswered}
+  	where idx = #{idx}
+  </update>
    
   <delete id="qnaDeleteprocess" parameterType="int">
     delete from qnaservice

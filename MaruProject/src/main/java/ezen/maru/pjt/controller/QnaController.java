@@ -52,9 +52,19 @@ public class QnaController {
 		return "qna/write";
 	}
 	
-	@GetMapping("/edit")
-	public String edit() {
-		return "qna/edit";
+	
+	@PostMapping("/Edit")
+	public String Esdit(BoardVo boardVo, RedirectAttributes redirect) {
+		int result = updateService.qnaEditProcess(boardVo);
+		int idx = boardVo.getIdx();
+		String viewPage = "redirect:/member/myinfo";
+		System.out.println("result: " + result);
+		if (result == 1) {
+			List<BoardVo> qnaList = listService.getQnaList();
+			redirect.addFlashAttribute("qnaList", qnaList);
+			viewPage = "redirect:/member/myinfo?idx=" + idx;
+		}
+		return viewPage;
 	}
 
 

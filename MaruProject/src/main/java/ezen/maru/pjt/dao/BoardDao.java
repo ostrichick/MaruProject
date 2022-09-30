@@ -56,5 +56,9 @@ public class BoardDao {
 	public int deleteQna(int idx) {
 		return sqlSession.update(MAPPER + ".qnaDeleteprocess", idx); 
 	}
+	
+	public int qnaEditProcess(BoardVo boardVo) { 
+		return sqlSession.update(MAPPER + ".qnaEditProcess", boardVo);
+	}
 
 }

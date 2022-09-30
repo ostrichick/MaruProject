@@ -20,6 +20,11 @@ public class BoardUpdateService implements BoardService {
 		return boardDao.noticeEditProcess(boardVo);
 	}
 	
+	@Override
+	public int qnaEditProcess(BoardVo boardVo) {
+		return boardDao.qnaEditProcess(boardVo);
+	}
+	
 	
 
 //	@Override

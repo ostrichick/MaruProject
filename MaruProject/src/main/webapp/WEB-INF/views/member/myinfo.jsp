@@ -241,15 +241,14 @@
        </div>  
        <div class="modal-body">
 		<c:forEach var="qna" items="${qnaList}" varStatus="status">
-		 <input type="hidden" name="idx" id="idx" value="${qna.idx}"/>
-		 <input type="hidden" name="member_idx" value="${sessionScope.member_idx}"> 
+		 <input type="hidden" name="idx" id="idx" value="${qna.idx}"/> 
 		 </c:forEach> 
 		 <input type="hidden" name="isanswered" id="isanswered" value="N"/>  
-         <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50"></textarea>   
+         <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50" placeholder="기존에있던 내용은 사라지고 새로등록됩니다."></textarea>   
        </div>  
        <div class="modal-footer">
          <button type="button" class="btn bg2" data-dismiss="modal">닫기</button>
-	     <button type="submit" class="qna-button btn bg2">등록</button> 
+	     <button type="submit" class="qna-button btn bg2">수정</button> 
        </div>
       </div> 
     </div> 
