@@ -1,7 +1,6 @@
 package ezen.maru.pjt.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -67,15 +66,14 @@ public class OrderController {
 		String member_id = (String) session.getAttribute("member_id");
 		MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
 
-		System.out.println("Controller checkedItemList : " + Arrays.toString(checkedItemList));
-		System.out.println("Controller cart_product_number : " + Arrays.toString(cart_product_number));
-		System.out.println("Controller product_idx_list : " + Arrays.toString(product_idx_list));
-		System.out.println("Controller order_total_price : " + order_total_price);
+//		System.out.println("Controller checkedItemList : " + Arrays.toString(checkedItemList));
+//		System.out.println("Controller cart_product_number : " + Arrays.toString(cart_product_number));
+//		System.out.println("Controller product_idx_list : " + Arrays.toString(product_idx_list));
+//		System.out.println("Controller order_total_price : " + order_total_price);
 
 		List<OrderProductVo> orderProductList = new ArrayList<OrderProductVo>();
 		if (product_idx_list.length == cart_product_number.length) {
 			for (int i = 0; i < product_idx_list.length; i++) {
-				System.out.println("for문 진입");
 				OrderProductVo orderProductVo = new OrderProductVo();
 				orderProductVo.setProduct_idx(Integer.parseInt(product_idx_list[i]));
 				orderProductVo.setOrder_quantity(Integer.parseInt(cart_product_number[i]));
