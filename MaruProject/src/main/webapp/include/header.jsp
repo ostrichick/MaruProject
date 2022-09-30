@@ -283,12 +283,7 @@
 
     <div class="wrap-menu-category w-full txt-center">
       <ul class="">
-        <li class="m-tb-20 bg7 p-t-10 txt-center cl7">로그인/회원가입
-          <ul class="bg6 menu-subcategory">
-            <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/member/signin" class="flex-c-m trans-04 p-lr-25 cl2">로그인</a></li>
-            <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/member/signup" class="flex-c-m trans-04 p-lr-25 cl2">회원가입</a></li>
-          </ul>
-        </li>
+       
         <c:if test="${sessionScope.member_admin eq 'Y' }">
        <li class="m-tb-20 bg7 p-t-10 txt-center cl7">관리자 전용
        	<ul class="bg6 menu-subcategory">
