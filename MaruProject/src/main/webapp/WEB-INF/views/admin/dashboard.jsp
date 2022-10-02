@@ -316,9 +316,10 @@ tr, th, td {
  </script>
  <script type="text/javascript">
  	function answer(obj){
- 		let idx = $("button.qIdx").parent().prev().prev().prev().prev().children("p").val()
+ 		let idx = $("button.qIdx").parent().prev().prev().prev().prev().children("p").val();
+ 		let button = $("button.qIdx");
  		
- 		
+ 		let idx = let button;
  	}
  </script>
 </body>
