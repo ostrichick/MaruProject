@@ -1,6 +1,6 @@
 package ezen.maru.pjt.vo;
 
-public class FileVo extends BoardVo {
+public class FileVo {
 
 	private int product_idx;
 	private int file_idx;

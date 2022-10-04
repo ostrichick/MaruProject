@@ -74,19 +74,19 @@ public class FileService implements AdminService {
 				e.printStackTrace();
 			}
 
-			switch (i) {
-			case 0:
-				fileVo.setOrigin_filename1(origin_filename);
-				fileVo.setSystem_filename1(system_filename);
-				break;
-			case 1:
-				fileVo.setOrigin_filename2(origin_filename);
-				fileVo.setSystem_filename2(system_filename);
-				break;
-			case 2:
-				fileVo.setOrigin_filename3(origin_filename);
-				fileVo.setSystem_filename3(system_filename);
-			}
+//			switch (i) {
+//			case 0:
+//				fileVo.setOrigin_filename1(origin_filename);
+//				fileVo.setSystem_filename1(system_filename);
+//				break;
+//			case 1:
+//				fileVo.setOrigin_filename2(origin_filename);
+//				fileVo.setSystem_filename2(system_filename);
+//				break;
+//			case 2:
+//				fileVo.setOrigin_filename3(origin_filename);
+//				fileVo.setSystem_filename3(system_filename);
+//			}
 
 		}
 

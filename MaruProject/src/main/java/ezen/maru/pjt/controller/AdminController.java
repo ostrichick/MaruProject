@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.product.ProductService;
@@ -31,8 +32,9 @@ public class AdminController {
 	}
 
 	@GetMapping("/dashboard")
-	public String dashboard(Model model) {
-		List<ProductVo> productList = listService.getProductList(null);
+	public String dashboard(@RequestParam(required = false, defaultValue = "%%") String product_major_category,
+			Model model) {
+		List<ProductVo> productList = listService.getProductList(product_major_category);
 		List<BoardVo> qnaList = listService2.getQnaList();
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("productList", productList);

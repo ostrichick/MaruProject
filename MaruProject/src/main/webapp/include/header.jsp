@@ -71,10 +71,20 @@
                           case 'etcproduct':
                             document.querySelector("ul.main-menu>li:nth-child(6)").classList.toggle('active-menu');
                             break;
-                          default:
-                          case 'bathroom':
+                          /* case 'contact':
                             document.querySelector("ul.main-menu>li:nth-child(7)").classList.toggle('active-menu');
+                            break; */
+                          default:
                             break;
+                          }
+
+                          function getLastPath() {
+                            var rLastPath = /\/([a-zA-Z0-9._]+)(?:\?.*)?$/;
+                            return rLastPath.test(url) && RegExp.$1;
+                          }
+
+                          if (getLastPath() === "contact") {
+                            document.querySelector("ul.main-menu>li:nth-child(7)").classList.toggle('active-menu');
                           }
                         </script>
             <!-- Icon header -->

@@ -5,7 +5,7 @@
     select * from product p
     left outer join product_photo pp
     on p.product_idx = pp.product_idx
-    where deleted_yn = 'N' and product_major_category = #{product_major_category}
+    where deleted_yn = 'N' and product_major_category like #{product_major_category}
     order by p.product_idx DESC
   </select>
   <!-- ================================================= -->

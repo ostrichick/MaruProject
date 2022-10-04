@@ -19,6 +19,7 @@ public class ProductDao {
 	}
 
 	public List<ProductVo> getProductList(String product_major_category) {
+		System.out.println(product_major_category);
 		return sqlSession.selectList(MAPPER + ".getProductList", product_major_category);
 	}
 

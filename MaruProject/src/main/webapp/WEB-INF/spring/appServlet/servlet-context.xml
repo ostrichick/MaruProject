@@ -36,6 +36,4 @@
     <!-- <beans:bean id="loginInterceptor" class="ezen.maru.pjt.interceptor.LoginInterceptor" /> -->
     <!-- </interceptor> -->
   </interceptors>
-
-
 </beans:beans>

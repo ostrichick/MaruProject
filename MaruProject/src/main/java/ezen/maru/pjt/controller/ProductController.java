@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartRequest;
 
 import ezen.maru.pjt.service.product.ProductService;
@@ -43,9 +44,10 @@ public class ProductController {
 	}
 
 	@GetMapping("/list")
-	public String list(String category, Model model) {
+	public String list(@RequestParam(required = false, defaultValue = "%%") String category, Model model) {
 		String product_major_category = category;
 		List<ProductVo> productList = listService.getProductList(product_major_category);
+		System.out.println(productList.toString());
 		model.addAttribute("productList", productList);
 		return "product/list";
 	}

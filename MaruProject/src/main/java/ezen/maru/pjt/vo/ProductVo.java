@@ -15,6 +15,16 @@ public class ProductVo extends FileVo {
 	private long product_avgstar;
 	private int product_hit;
 
+	@Override
+	public String toString() {
+		return "ProductVo [product_name=" + product_name + ", product_idx=" + product_idx + ", product_price="
+				+ product_price + ", product_sale=" + product_sale + ", product_sale_percent=" + product_sale_percent
+				+ ", product_sale_price=" + product_sale_price + ", product_size=" + product_size
+				+ ", product_inventory=" + product_inventory + ", product_major_category=" + product_major_category
+				+ ", product_isnew=" + product_isnew + ", product_detail=" + product_detail + ", product_avgstar="
+				+ product_avgstar + ", product_hit=" + product_hit + "]";
+	}
+
 	public int getProduct_sale_price() {
 		return product_sale_price;
 	}
