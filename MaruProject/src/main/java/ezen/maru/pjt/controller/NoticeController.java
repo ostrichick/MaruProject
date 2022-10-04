@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
+
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.vo.BoardVo;
 
@@ -55,6 +57,14 @@ public class NoticeController {
 
 	@PostMapping("/write_process")
 	public String write_process(BoardVo boardVo, RedirectAttributes redirect) {
+
+		// 필터링 된 파라미터 역치환 후 필터 작동 제대로 하는지 테스트
+		String title = boardVo.getTitle();
+		String cTitle = XssPreventer.unescape(title);
+		System.out.println(boardVo.getTitle());
+		System.out.println(cTitle);
+		System.out.println(boardVo.getTitle().equals(cTitle));
+
 		int result = insertService.noticeWriteProcess(boardVo);
 		String viewPage = "redirect:/notice/write";
 		if (result == 1) {
