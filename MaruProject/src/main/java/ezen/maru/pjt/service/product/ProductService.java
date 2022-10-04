@@ -10,7 +10,7 @@ import ezen.maru.pjt.vo.ProductVo;
 
 public interface ProductService {
 
-	default List<ProductVo> getProductList() {
+	default List<ProductVo> getProductList(String product_major_category) {
 		return null;
 	}
 

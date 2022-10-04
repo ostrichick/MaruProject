@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>${product.product_name}-상품상세보기</title>
+<title>${product.product_name}&nbsp;-&nbsp;상품상세보기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${MaruContextPath}/resources/images/icons/favicon.png" />
@@ -17,8 +17,28 @@
   <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
       <a href="${MaruContextPath}/" class="stext-109 cl8 hov-cl1 trans-04"> 전체 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-      </a> <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> ${product.product_major_category} <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-      </a> <span class="stext-109 cl4"> ${product.product_name} </span>
+      </a>
+      <c:choose>
+        <c:when test="${product.product_major_category eq 'livingroom'}">
+          <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> 거실 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i></a>
+        </c:when>
+        <c:when test="${product.product_major_category eq 'bedroom'}">
+          <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> 침실 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i></a>
+        </c:when>
+        <c:when test="${product.product_major_category eq 'library'}">
+          <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> 서재 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i></a>
+        </c:when>
+        <c:when test="${product.product_major_category eq 'kitchen'}">
+          <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> 주방 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i></a>
+        </c:when>
+        <c:when test="${product.product_major_category eq 'bathroom'}">
+          <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> 욕실 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i></a>
+        </c:when>
+        <c:otherwise>
+          <a href="${MaruContextPath}/product/list" class="stext-109 cl8 hov-cl1 trans-04"> 기타 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i></a>
+        </c:otherwise>
+      </c:choose>
+      <span class="stext-109 cl4"> ${product.product_name} </span>
     </div>
   </div>
 
@@ -34,9 +54,9 @@
               <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
               <div class="slick3 gallery-lb">
-                <div class="item-slick3" data-thumb="${pageContext.request.contextPath}/resources/images/product-detail-01.jpg">
+                <div class="item-slick3" data-thumb="${MaruContextPath}/resources/upload/s_${product.file_original}">
                   <div class="wrap-pic-w pos-relative">
-                    <img src="${pageContext.request.contextPath}/resources/images/product-detail-01.jpg" alt="IMG-PRODUCT"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${pageContext.request.contextPath}/resources/images/product-detail-01.jpg"> <i class="fa fa-expand"></i>
+                    <img src="${MaruContextPath}/resources/upload/s_${product.file_original}" alt="IMG-PRODUCT"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${MaruContextPath}/resources/upload/s_${product.file_original}"> <i class="fa fa-expand"></i>
                     </a>
                   </div>
                 </div>

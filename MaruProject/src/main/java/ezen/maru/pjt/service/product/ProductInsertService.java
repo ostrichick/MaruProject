@@ -64,6 +64,7 @@ public class ProductInsertService implements ProductService {
 		productVo.setFile_original(origin_filename);
 		productVo.setFile_system(system_filename);
 		productVo.setFile_extension(extension);
+
 		return productDao.productAdd(productVo);
 	}
 }

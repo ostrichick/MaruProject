@@ -43,8 +43,9 @@ public class ProductController {
 	}
 
 	@GetMapping("/list")
-	public String list(Model model) {
-		List<ProductVo> productList = listService.getProductList();
+	public String list(String category, Model model) {
+		String product_major_category = category;
+		List<ProductVo> productList = listService.getProductList(product_major_category);
 		model.addAttribute("productList", productList);
 		return "product/list";
 	}
@@ -68,6 +69,7 @@ public class ProductController {
 	public String product_add(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest request,
 			Model model) {
 		int result = insertService.productAdd(productVo, uploadFile, request);
+		System.out.println(productVo.toString());
 		String viewPage = "redirect:/product/add";
 		if (result == 1) {// 정상적으로 입력된 경우, 해당 상품 페이지로 이동할 것
 			viewPage = "redirect:/product/list";

@@ -18,12 +18,15 @@ public class ProductDao {
 		this.sqlSession = sqlSession;
 	}
 
-	public List<ProductVo> getProductList() {
-		return sqlSession.selectList(MAPPER + ".getProductList");
+	public List<ProductVo> getProductList(String product_major_category) {
+		return sqlSession.selectList(MAPPER + ".getProductList", product_major_category);
 	}
 
 	public int productAdd(ProductVo productVo) {
-		return sqlSession.insert(MAPPER + ".productAdd", productVo);
+		System.out.println(productVo.getProduct_idx());
+		sqlSession.insert(MAPPER + ".productAdd", productVo);
+		System.out.println(productVo.getProduct_idx());
+		return sqlSession.insert(MAPPER + ".productAdd_file", productVo);
 	}
 
 	public ProductVo getProduct(int product_idx) {

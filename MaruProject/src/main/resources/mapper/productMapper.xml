@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ezen.maru.pjt.product">
   <select id="getProductList" resultType="productVo">
-    select * from product where deleted_yn = 'N' order by product_idx desc
+    select * from product p
+    left outer join product_photo pp
+    on p.product_idx = pp.product_idx
+    where deleted_yn = 'N' and product_major_category = #{product_major_category}
+    order by p.product_idx DESC
   </select>
   <!-- ================================================= -->
   <insert id="productAdd" parameterType="productVo">
@@ -14,6 +18,9 @@
     #{product_name}, #{product_price}, #{product_sale}, #{product_sale_percent},
     #{product_size}, #{product_major_category},
     #{product_detail}, #{product_inventory})
+    <selectKey resultType="int" keyProperty="product_idx" order="AFTER">
+      SELECT SEQ_product_product_IDX.CURRVAL FROM dual
+    </selectKey>
   </insert>
 
   <insert id="productAdd_file" parameterType="fileVo">
@@ -25,7 +32,10 @@
   </insert>
 
   <select id="getProduct" parameterType="int" resultType="productVo">
-    select * from product where product_idx = #{product_idx}
+    select * from product p
+    INNER JOIN product_photo pp
+    on p.product_idx = pp.product_idx
+    where p.product_idx = #{product_idx}
   </select>
 
   <update id="upHit" parameterType="int">

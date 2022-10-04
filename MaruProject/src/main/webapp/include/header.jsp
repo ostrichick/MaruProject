@@ -35,11 +35,12 @@
             <!-- Menu desktop -->
             <div class="menu-desktop">
               <ul class="main-menu">
-                <li><a href="${MaruContextPath}/product/list?category=거실">거실</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=침실">침실</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=서재">서재</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=주방">주방</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=욕실">욕실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=livingroom">거실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=bedroom">침실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=library">서재</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=kitchen">주방</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=bathroom">욕실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=etcproduct">기타</a></li>
 
                 <%--                 <li><a href="${MaruContextPath}/about">임시</a></li> --%>
                 <li><a href="${MaruContextPath}/contact">오시는 길</a></li>
@@ -159,11 +160,12 @@
             <!-- Menu desktop -->
             <div class="menu-desktop">
               <ul class="main-menu">
-                <li><a href="${MaruContextPath}/product/list?category=거실">거실</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=침실">침실</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=서재">서재</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=주방">주방</a></li>
-                <li><a href="${MaruContextPath}/product/list?category=욕실">욕실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=livingroom">거실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=bedroom">침실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=library">서재</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=kitchen">주방</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=bathroom">욕실</a></li>
+                <li><a href="${MaruContextPath}/product/list?category=etcproduct">기타</a></li>
 
                 <%--                 <li><a href="${MaruContextPath}/about">임시</a></li> --%>
                 <li><a href="${MaruContextPath}/contact">오시는 길</a></li>

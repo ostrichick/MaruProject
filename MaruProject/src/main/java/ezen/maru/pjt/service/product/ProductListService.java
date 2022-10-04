@@ -18,8 +18,8 @@ public class ProductListService implements ProductService {
 	}
 
 	@Override
-	public List<ProductVo> getProductList() {
-		return productDao.getProductList();
+	public List<ProductVo> getProductList(String product_major_category) {
+		return productDao.getProductList(product_major_category);
 	}
 
 	@Override
