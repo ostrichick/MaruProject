@@ -4,7 +4,7 @@
 <%@include file="/include/style.jsp"%>
 <style>
 .main-menu>li>a {
-  font-size: 135%;
+  font-size: 120%;
 }
 
 .menu-subcategory>li:hover {
@@ -35,6 +35,7 @@
             <!-- Menu desktop -->
             <div class="menu-desktop">
               <ul class="main-menu">
+
                 <li><a href="${MaruContextPath}/product/list?category=livingroom">거실</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=bedroom">침실</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=library">서재</a></li>
@@ -46,7 +47,36 @@
                 <li><a href="${MaruContextPath}/contact">오시는 길</a></li>
               </ul>
             </div>
+            <script>
+                          const url = new URL(location);
+                          const urlParams = url.searchParams;
+                          const category = urlParams.get('category');
 
+                          switch (category) {
+                          case 'livingroom':
+                            document.querySelector("ul.main-menu>li:nth-child(1)").classList.toggle('active-menu');
+                            break;
+                          case 'bedroom':
+                            document.querySelector("ul.main-menu>li:nth-child(2)").classList.toggle('active-menu');
+                            break;
+                          case 'library':
+                            document.querySelector("ul.main-menu>li:nth-child(3)").classList.toggle('active-menu');
+                            break;
+                          case 'kitchen':
+                            document.querySelector("ul.main-menu>li:nth-child(4)").classList.toggle('active-menu');
+                            break;
+                          case 'bathroom':
+                            document.querySelector("ul.main-menu>li:nth-child(5)").classList.toggle('active-menu');
+                            break;
+                          case 'etcproduct':
+                            document.querySelector("ul.main-menu>li:nth-child(6)").classList.toggle('active-menu');
+                            break;
+                          default:
+                          case 'bathroom':
+                            document.querySelector("ul.main-menu>li:nth-child(7)").classList.toggle('active-menu');
+                            break;
+                          }
+                        </script>
             <!-- Icon header -->
             <div class="wrap-icon-header flex-w flex-r-m">
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
@@ -287,7 +317,7 @@
       <ul class="">
         <c:choose>
           <c:when test="${not empty sessionScope.member_id }">
-            <li class="m-tb-20 bg7 p-t-10 txt-center cl7">${member_name }님, 환영합니다.
+            <li class="m-tb-20 bg7 p-t-10 txt-center cl7">${member_name }님,환영합니다.
               <ul class="bg6 menu-subcategory">
                 <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/member/myinfo" class="flex-c-m trans-04 p-lr-25 cl2">내 정보</a></li>
                 <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/member/signout" class="flex-c-m trans-04 p-lr-25 cl2">로그아웃</a></li>
@@ -303,16 +333,16 @@
             </li>
           </c:otherwise>
         </c:choose>
-       
-      <c:if test="${sessionScope.member_admin eq 'Y' }">
-       <li class="m-tb-20 bg7 p-t-10 txt-center cl7">관리자 전용
-       	<ul class="bg6 menu-subcategory">
-			<li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/admin/dashboard" class="flex-c-m trans-04 p-lr-25 cl2"> 관리자페이지</a></li>
-        	<li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/product/add" class="flex-c-m trans-04 p-lr-25 cl2"> 상품등록</a></li>
-       	</ul>
-       </li>
-      </c:if>
-        
+
+        <c:if test="${sessionScope.member_admin eq 'Y' }">
+          <li class="m-tb-20 bg7 p-t-10 txt-center cl7">관리자 전용
+            <ul class="bg6 menu-subcategory">
+              <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/admin/dashboard" class="flex-c-m trans-04 p-lr-25 cl2"> 관리자페이지</a></li>
+              <li class="m-tb-5 p-tb-10 txt-center bg6"><a href="${MaruContextPath}/product/add" class="flex-c-m trans-04 p-lr-25 cl2"> 상품등록</a></li>
+            </ul>
+          </li>
+        </c:if>
+
 
         <li class="m-tb-20 p-tb-10 bg7"><a href="${MaruContextPath}/member/myinfo" class="flex-c-m trans-04 p-lr-25 cl7">마이페이지</a></li>
         <li class="m-tb-20 p-tb-10 bg7 cl7"><a href="${MaruContextPath}/cart/" class="flex-c-m trans-04 p-lr-25  cl7" data-label1="hot">장바구니</a></li>

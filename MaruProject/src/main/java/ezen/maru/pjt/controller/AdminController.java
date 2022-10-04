@@ -24,18 +24,18 @@ public class AdminController {
 	public void setListService(@Qualifier("p_list") ProductService listService) {
 		this.listService = listService;
 	}
-	
+
 	@Autowired(required = false)
 	public void setListService2(@Qualifier("b_list") BoardService listService2) {
-		this.listService2 = listService2; 
+		this.listService2 = listService2;
 	}
 
 	@GetMapping("/dashboard")
 	public String dashboard(Model model) {
-		List<ProductVo> productList = listService.getProductList();
+		List<ProductVo> productList = listService.getProductList(null);
 		List<BoardVo> qnaList = listService2.getQnaList();
-		model.addAttribute("qnaList", qnaList); 
-		model.addAttribute("productList", productList); 
+		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("productList", productList);
 		return "admin/dashboard";
 	}
 
