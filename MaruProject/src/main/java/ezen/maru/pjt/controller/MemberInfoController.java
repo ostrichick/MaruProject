@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ezen.maru.pjt.common.SHA256Util;
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.vo.BoardVo;
@@ -56,6 +57,9 @@ public class MemberInfoController {
 
 	@PostMapping("/signup_process") // 회원가입 처리 요청
 	public String signup_process(MemberInfoVo memberInfoVo, Model model, HttpServletRequest req) {
+		String salt = SHA256Util.generateSalt();
+		memberInfoVo.setSalt(salt);
+
 		int result = signupService.signup(memberInfoVo);
 		String viewPage = "member/signup";
 		if (result == 1) {

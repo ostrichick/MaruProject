@@ -16,6 +16,7 @@ public class MemberInfoVo {
 	private Date mamber_last_visit;
 	private int member_grade;
 	private String member_admin;
+	private String salt;
 	private String deleted_yn;
 
 	@Override
@@ -24,8 +25,24 @@ public class MemberInfoVo {
 				+ ", member_name=" + member_name + ", member_email=" + member_email + ", member_phone=" + member_phone
 				+ ", member_addr=" + member_addr + ", member_addr2=" + member_addr2 + ", member_postcode="
 				+ member_postcode + ", member_date=" + member_date + ", mamber_last_visit=" + mamber_last_visit
-				+ ", member_grade=" + member_grade + ", member_admin=" + member_admin + ", deleted_yn=" + deleted_yn
-				+ "]";
+				+ ", member_grade=" + member_grade + ", member_admin=" + member_admin + ", salt=" + salt
+				+ ", deleted_yn=" + deleted_yn + ", getSalt()=" + getSalt() + ", getMember_idx()=" + getMember_idx()
+				+ ", getMember_id()=" + getMember_id() + ", getMember_pw()=" + getMember_pw() + ", getMember_name()="
+				+ getMember_name() + ", getMember_email()=" + getMember_email() + ", getMember_phone()="
+				+ getMember_phone() + ", getMember_addr()=" + getMember_addr() + ", getMember_addr2()="
+				+ getMember_addr2() + ", getMember_postcode()=" + getMember_postcode() + ", getMember_date()="
+				+ getMember_date() + ", getMamber_last_visit()=" + getMamber_last_visit() + ", getMember_grade()="
+				+ getMember_grade() + ", getMember_admin()=" + getMember_admin() + ", getDeleted_yn()="
+				+ getDeleted_yn() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	public int getMember_idx() {

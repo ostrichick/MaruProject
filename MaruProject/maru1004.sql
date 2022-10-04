@@ -112,7 +112,7 @@ CREATE TABLE member_info
 	-- 아이디
 	member_id varchar2(30) NOT NULL UNIQUE,
 	-- 패스워드
-	member_pw varchar2(50) NOT NULL,
+	member_pw varchar2(500) NOT NULL,
 	-- 이름
 	member_name varchar2(30) NOT NULL,
 	-- 이메일
@@ -135,6 +135,8 @@ CREATE TABLE member_info
 	member_admin varchar2(3) DEFAULT 'N' NOT NULL,
 	-- 탈퇴여부
 	deleted_yn varchar2(3) DEFAULT 'N' NOT NULL,
+	-- salt
+	salt varchar2(100),
 	PRIMARY KEY (member_idx)
 );
 
@@ -568,6 +570,7 @@ COMMENT ON COLUMN member_info.mamber_last_visit IS '마지막 방문일';
 COMMENT ON COLUMN member_info.member_grade IS '회원 등급';
 COMMENT ON COLUMN member_info.member_admin IS '관리자여부';
 COMMENT ON COLUMN member_info.deleted_yn IS '탈퇴여부';
+COMMENT ON COLUMN member_info.salt IS 'salt';
 COMMENT ON TABLE order_change_cancel_refund IS '주문 교환 취소 환불';
 COMMENT ON COLUMN order_change_cancel_refund.order_idx IS '주문번호';
 COMMENT ON COLUMN order_change_cancel_refund.order_type IS '교환 취소 환불 여부';
