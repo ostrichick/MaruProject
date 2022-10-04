@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezen.maru.pjt.common.PagingUtil;
@@ -43,10 +44,23 @@ public class NoticeController {
 	}
 
 	@GetMapping("/list")
-	public String notice(Model model) {
-		PagingUtil pagingUtil = new PagingUtil();
+	public String notice(PagingUtil pagingUtil, Model model,
+			@RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+		int total = listService.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "5";
+		}
+		pagingUtil = new PagingUtil(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 
 		List<BoardVo> noticeList = listService.getNoticeList(pagingUtil);
+		model.addAttribute("paging", pagingUtil);
+		System.out.println(pagingUtil.toString());
 		model.addAttribute("noticeList", noticeList);
 		return "notice/list";
 	}

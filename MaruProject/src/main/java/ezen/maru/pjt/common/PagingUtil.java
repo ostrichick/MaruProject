@@ -16,6 +16,13 @@ public class PagingUtil {
 	public PagingUtil() {
 	}
 
+	@Override
+	public String toString() {
+		return "PagingUtil [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total="
+				+ total + ", perPage=" + perPage + ", lastPage=" + lastPage + ", cntPage=" + cntPage + ", start="
+				+ start + ", end=" + end + "]";
+	}
+
 	public PagingUtil(int nowPage, int total, int perPage) {
 		setNowPage(nowPage);
 		setTotal(total);

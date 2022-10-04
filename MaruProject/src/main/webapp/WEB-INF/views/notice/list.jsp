@@ -60,6 +60,28 @@ li.page-item.active>a.page-link:hover {
     <c:if test="${member_admin eq 'Y' }">
       <a href='#' onClick='fn_write()' class="btn btn-secondary pull-right">글쓰기</a>
     </c:if>
+    
+    
+    <div style="display: block; text-align: center;">
+      <c:if test="${paging.startPage != 1 }">
+        <a href="/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+      </c:if>
+      <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+        <c:choose>
+          <c:when test="${p == paging.nowPage }">
+            <b>${p }</b>
+          </c:when>
+          <c:when test="${p != paging.nowPage }">
+            <a href="/boardList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+          </c:when>
+        </c:choose>
+      </c:forEach>
+      <c:if test="${paging.endPage != paging.lastPage}">
+        <a href="/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+      </c:if>
+    </div>
+    
+    
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
