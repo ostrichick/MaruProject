@@ -43,7 +43,10 @@
     member_idx = #{member_idx}
   </update>
 
-
+  <select id="getMemberList" resultType="memberInfoVo">
+    select * from member_info
+    order by member_admin, deleted_yn
+  </select>
 
   <!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- -->
 

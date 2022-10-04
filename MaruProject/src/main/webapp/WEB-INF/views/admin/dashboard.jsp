@@ -78,20 +78,22 @@ li.page-item.active>a.page-link:hover {
           <th>가입일</th>
           <th>탈퇴여부</th>
         </tr>
-        <tr class="bg0">
-          <td>
-            <input type="checkbox" value="선택" id="checkbox" />
-          </td>
-          <td>
-            <a href="#" class="">sdifas</a>
-          </td>
-          <td>홍길동</td>
-          <td>12341221</td>
-          <td>전라북도 전주시</td>
-          <td>인후동 00도로 125-21번지</td>
-          <td>20221211</td>
-          <td>탈퇴</td>
-        </tr>
+        <c:forEach var="member" items="${memberList}" varStatus="status">
+          <tr class="bg0">
+            <td>
+              <input type="checkbox" value="선택" id="checkbox" />
+            </td>
+            <td>
+              <a href="#" class="">${member.member_id }</a>
+            </td>
+            <td>${member.member_name}</td>
+            <td>${member.member_phone}</td>
+            <td>${member.member_addr}</td>
+            <td>${member.member_addr2}</td>
+            <td>${member.member_date}</td>
+            <td>${member.deleted_yn}</td>
+          </tr>
+        </c:forEach>
       </table>
       <br>
       <nav aria-label="Page navigation example">

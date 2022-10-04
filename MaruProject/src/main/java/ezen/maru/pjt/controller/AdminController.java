@@ -11,33 +11,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.maru.pjt.service.board.BoardService;
+import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.service.product.ProductService;
 import ezen.maru.pjt.vo.BoardVo;
+import ezen.maru.pjt.vo.MemberInfoVo;
 import ezen.maru.pjt.vo.ProductVo;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	ProductService listService;
-	BoardService listService2;
+	ProductService p_listService;
+	BoardService b_listService;
+	MemberInfoService m_listService;
 
 	@Autowired(required = false)
-	public void setListService(@Qualifier("p_list") ProductService listService) {
-		this.listService = listService;
+	public void setPListService(@Qualifier("p_list") ProductService p_listService) {
+		this.p_listService = p_listService;
 	}
 
 	@Autowired(required = false)
-	public void setListService2(@Qualifier("b_list") BoardService listService2) {
-		this.listService2 = listService2;
+	public void setBListService(@Qualifier("b_list") BoardService b_listService) {
+		this.b_listService = b_listService;
+	}
+
+	@Autowired(required = false)
+	public void setBListService(@Qualifier("m_list") MemberInfoService m_listService) {
+		this.m_listService = m_listService;
 	}
 
 	@GetMapping("/dashboard")
 	public String dashboard(@RequestParam(required = false, defaultValue = "%%") String product_major_category,
 			Model model) {
-		List<ProductVo> productList = listService.getProductList(product_major_category);
-		List<BoardVo> qnaList = listService2.getQnaList();
+
+		List<ProductVo> productList = p_listService.getProductList(product_major_category);
+		List<BoardVo> qnaList = b_listService.getQnaList();
+		List<MemberInfoVo> memberList = m_listService.getMemberInfoList();
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("productList", productList);
+		model.addAttribute("memberList", memberList);
+		System.out.println("멤버리스트? " + memberList.toString());
 		return "admin/dashboard";
 	}
 

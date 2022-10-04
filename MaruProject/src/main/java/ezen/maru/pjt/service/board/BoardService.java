@@ -2,11 +2,16 @@ package ezen.maru.pjt.service.board;
 
 import java.util.List;
 
+import ezen.maru.pjt.common.PagingUtil;
 import ezen.maru.pjt.vo.BoardVo;
 
 public interface BoardService {
 
-	default List<BoardVo> getNoticeList() {
+	default public int countBoard() {
+		return 0;
+	};
+
+	default List<BoardVo> getNoticeList(PagingUtil pagingUtil) {
 		return null;
 	}
 
@@ -41,11 +46,11 @@ public interface BoardService {
 	default int qnaIsanswered(BoardVo boardVo) {
 		return 0;
 	}
-	
+
 	default int deleteQna(int idx) {
 		return 0;
 	}
-	
+
 	default int qnaEditProcess(BoardVo boardVo) {
 		return 0;
 	}

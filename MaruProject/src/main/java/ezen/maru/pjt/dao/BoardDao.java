@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ezen.maru.pjt.common.PagingUtil;
 import ezen.maru.pjt.vo.BoardVo;
 
 @Repository
@@ -18,8 +19,12 @@ public class BoardDao {
 		this.sqlSession = sqlSession;
 	}
 
-	public List<BoardVo> getNoticeList() {
-		return sqlSession.selectList(MAPPER + ".getNoticeList");
+	public int countBoard() {
+		return sqlSession.selectOne(MAPPER + ".countBoard");
+	}
+
+	public List<BoardVo> getNoticeList(PagingUtil pagingUtil) {
+		return sqlSession.selectList(MAPPER + ".getNoticeList", pagingUtil);
 	}
 
 	public int noticeWriteProcess(BoardVo boardVo) {
@@ -31,7 +36,7 @@ public class BoardDao {
 		return sqlSession.selectOne(MAPPER + ".getNotice", idx);
 	}
 
-	public int noticeEditProcess(BoardVo boardVo) { 
+	public int noticeEditProcess(BoardVo boardVo) {
 		return sqlSession.update(MAPPER + ".noticeEditProcess", boardVo);
 	}
 
@@ -41,24 +46,23 @@ public class BoardDao {
 	/////////////////////////////////////
 /////////////////////////////////////
 
-	public int qnaWriteProcess(BoardVo boardVo) {  
+	public int qnaWriteProcess(BoardVo boardVo) {
 		return sqlSession.insert(MAPPER + ".qnaWriteProcess", boardVo);
 	}
-	
+
 	public int qnaIsanswered(BoardVo boardVo) {
-		return sqlSession.insert(MAPPER + ".qnaIsanswered", boardVo); 
+		return sqlSession.insert(MAPPER + ".qnaIsanswered", boardVo);
 	}
-	
+
 	public List<BoardVo> getQnaList() {
 		return sqlSession.selectList(MAPPER + ".getQnaList");
 	}
 
 	public int deleteQna(int idx) {
-		return sqlSession.update(MAPPER + ".qnaDeleteprocess", idx); 
-	}
-	
-	public int qnaEditProcess(BoardVo boardVo) { 
-		return sqlSession.update(MAPPER + ".qnaEditProcess", boardVo);
+		return sqlSession.update(MAPPER + ".qnaDeleteprocess", idx);
 	}
 
+	public int qnaEditProcess(BoardVo boardVo) {
+		return sqlSession.update(MAPPER + ".qnaEditProcess", boardVo);
+	}
 }

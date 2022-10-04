@@ -1,5 +1,7 @@
 package ezen.maru.pjt.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,6 +37,10 @@ public class MemberInfoDao {
 
 	public int delete(MemberInfoVo memberInfoVo) {
 		return sqlSession.update(MAPPER + ".deactiveMember", memberInfoVo);
+	}
+
+	public List<MemberInfoVo> getMemberInfoList() {
+		return sqlSession.selectList(MAPPER + ".getMemberList");
 	}
 
 }

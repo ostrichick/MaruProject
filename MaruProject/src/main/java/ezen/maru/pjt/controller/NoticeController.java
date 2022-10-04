@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ezen.maru.pjt.common.PagingUtil;
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.vo.BoardVo;
 
@@ -43,7 +44,9 @@ public class NoticeController {
 
 	@GetMapping("/list")
 	public String notice(Model model) {
-		List<BoardVo> noticeList = listService.getNoticeList();
+		PagingUtil pagingUtil = new PagingUtil();
+
+		List<BoardVo> noticeList = listService.getNoticeList(pagingUtil);
 		model.addAttribute("noticeList", noticeList);
 		return "notice/list";
 	}
@@ -58,8 +61,9 @@ public class NoticeController {
 		int result = insertService.noticeWriteProcess(boardVo);
 		String viewPage = "redirect:/notice/write";
 		if (result == 1) {
-			List<BoardVo> noticeList = listService.getNoticeList();
-			redirect.addFlashAttribute("noticeList", noticeList);
+//			PagingUtil pagingUtil = new PagingUtil();
+//			List<BoardVo> noticeList = listService.getNoticeList(pagingUtil);
+//			redirect.addFlashAttribute("noticeList", noticeList);
 			viewPage = "redirect:/notice/view?idx=" + boardVo.getIdx();
 		}
 		return viewPage;
@@ -86,8 +90,9 @@ public class NoticeController {
 		String viewPage = "redirect:/notice/list";
 		System.out.println("result: " + result);
 		if (result == 1) {
-			List<BoardVo> noticeList = listService.getNoticeList();
-			redirect.addFlashAttribute("noticeList", noticeList);
+//			PagingUtil pagingUtil = new PagingUtil();
+//			List<BoardVo> noticeList = listService.getNoticeList(pagingUtil);
+//			redirect.addFlashAttribute("noticeList", noticeList);
 			viewPage = "redirect:/notice/view?idx=" + idx;
 		}
 		return viewPage;
@@ -99,8 +104,8 @@ public class NoticeController {
 		String viewPage = "/notice/list?idx=" + idx;
 		if (result == 1) {
 			redirect.addFlashAttribute("deleteResult", "성공적으로 삭제되었습니다");
-			List<BoardVo> noticeList = listService.getNoticeList();
-			redirect.addFlashAttribute("noticeList", noticeList);
+//			List<BoardVo> noticeList = listService.getNoticeList();
+//			redirect.addFlashAttribute("noticeList", noticeList);
 			viewPage = "redirect:/notice/list";
 		}
 		return viewPage;

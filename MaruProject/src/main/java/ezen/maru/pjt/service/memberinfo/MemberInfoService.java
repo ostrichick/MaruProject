@@ -1,5 +1,7 @@
 package ezen.maru.pjt.service.memberinfo;
 
+import java.util.List;
+
 import ezen.maru.pjt.vo.MemberInfoVo;
 
 public interface MemberInfoService {
@@ -22,5 +24,9 @@ public interface MemberInfoService {
 
 	default int delete(MemberInfoVo memberInfoVo) {
 		return 0;
+	}
+
+	default List<MemberInfoVo> getMemberInfoList() {
+		return null;
 	}
 }

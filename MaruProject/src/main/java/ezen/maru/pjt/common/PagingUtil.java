@@ -7,9 +7,11 @@ public class PagingUtil {
 	private int total; // 총 게시글 갯수
 	private int perPage; // 한 페이지당 게시글 갯수
 	private int lastPage; // 최종 페이지 번호
+	private int cntPage = 10; // 한 페이지당 보여질 페이지 갯수
+
+	// 아래 두 개는 쿼리에 사용
 	private int start; // 현재 페이지의 게시글 시작 번호
 	private int end; // 현재 페이지의 게시글 끝 번호
-	private int cntPage = 10; // 한 페이지당 보여질 페이지 갯수
 
 	public PagingUtil() {
 	}
