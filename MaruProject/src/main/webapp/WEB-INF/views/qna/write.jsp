@@ -37,8 +37,11 @@
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
-  <!--=====================================================================================================-->
-
-  <!--=============================================================================-->
+  <script>
+      const mailSendResult = "${mailSendResult}"
+      if (mailSendResult !== '') {
+        alert(mailSendResult);
+      }
+    </script>
 </body>
 </html>

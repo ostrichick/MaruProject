@@ -33,7 +33,7 @@
 
   <select id="getProduct" parameterType="int" resultType="productVo">
     select * from product p
-    INNER JOIN product_photo pp
+    left outer JOIN product_photo pp
     on p.product_idx = pp.product_idx
     where p.product_idx = #{product_idx}
   </select>

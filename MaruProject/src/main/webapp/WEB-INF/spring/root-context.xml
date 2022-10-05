@@ -47,7 +47,7 @@
     <property name="host" value="smtp.gmail.com" />
     <property name="port" value="587" />
     <property name="username" value="maru.portfolio@gmail.com" /> <!-- 자신의 이메일 아이디 -->
-    <property name="password" value="qweqwe123!" /> <!-- 자신의 비밀번호 -->
+    <property name="password" value="gbanvzqaeurntmqi" /> <!-- 자신의 비밀번호 -->
     <!-- 보안연결 TLS과 관련된 설정 -->
     <property name="javaMailProperties">
       <props>
