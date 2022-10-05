@@ -359,8 +359,8 @@
         <li class="m-tb-20 p-t-10 bg7 cl7">고객센터
           <ul class="bg6 menu-subcategory">
             <li class="m-tb-5 p-tb-10 bg6"><a href="${MaruContextPath}/notice/list" class="flex-c-m trans-04 p-lr-25 cl2">공지사항</a></li>
-            <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/faq" class="flex-c-m trans-04 p-lr-25 cl2">자주 묻는 질문</a></li>
-            <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/qna/write" class="flex-c-m trans-04 p-lr-25 cl2">1:1 문의</a></li>
+            <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/faq" class="flex-c-m trans-04 p-lr-25 cl2">자주 묻는 질문(FAQ)</a></li>
+            <li class="m-tb-5 p-tb-10 bg6 cl2"><a href="${MaruContextPath}/qna/write" class="flex-c-m trans-04 p-lr-25 cl2">이메일 문의</a></li>
           </ul>
         </li>
       </ul>

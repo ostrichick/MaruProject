@@ -1,144 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
-<title>1:1문의</title>
-<style> 
-#cont{
-	width:700px;
-}
-
-#filename{
-	margin-bottom:.5rem;
-}
-
-.filebox{
-	width:500px;  
-}
-#fileb{ 
-	margin-right:70px; 
-	margin-top:5px; 
-}
-.filebox .upload-name {
-    display: inline-block; 
-    height: 40px;
-    padding: 0 10px;
-    vertical-align: middle;
-    border: 1px solid #dddddd; 
-    width: 380px;
-    color: #999999; 
-}
-.filebox label {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    vertical-align: middle;
-    background-color: #999999;
-    cursor: pointer;
-    height: 40px;
-}
-.filebox input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
-    margin-top:20px;  
-}
-#category{
-	margin-left:100px;
-}
-
-#pile{
-	margin-top:20px;  
-}
-
-#contit{ 
-	margin-top:70px; 
-}
-#option{ 
-	margin-left:10px;
-}
-</style> 
+<title>이메일 문의</title>
+<style>
+</style>
 </head>
 <body class="animsition">
-  <%@include file="/include/header.jsp"%> 
-
-<br><br><br>
-<div class="container" >
-<h3 class="col-2 m-t-20" style="float:left; margin-left:19%;">1대1문의</h3> 
-	<div style="float:left; margin-left:30px;">
-	FAQ에서 해결하지 못한 질문이 있으시면<br>
-	1:1문의에 등록해주시면 친절히 답변해드립니다.<br>
-	평균 답변 시간:2~3일
-	</div>
-</div>
-<br><br><br>
-<br><br>
-<div class="container text-center bor10 m-t-10" id="cont">
-	<form action="write_process" method="post" id="qna_write">
-	<div class="row m-t-25">
-	  <div class="col-2">
-		*카테고리
-		</div>
-	<div class="col-3 m-l-10" id="option">
-		<select class="form-select" name="category" id="category" aria-label="Categories">
-			<option selected>카테고리를 선택해주세요</option>
-			<option value="일반문의">일반문의</option>
-			<option value="환불/교환문의">환불/교환 문의</option>
-			<option value="1:1문의">1:1문의</option>  
-			<option value="상품문의">상품문의</option> 
-		</select>
-	</div> 
-	</div> 
-	<hr>
-	<div class="row"> 
-	<div class="col-2" id="contit"> 
-		*내용
-	  </div>
-	  <div class="col-8 container m-t-20" id="content">   
-		<textarea class="bor10 m-r-45" name="content" style="width:480px; height:150px;"></textarea>
-	</div>
-	</div>  
-	<div class="m-t-50 m-b-50">
-	<input type="hidden" name="member_idx" value="${sessionScope.member_idx}">  
-	<button class="cl0 btn btn-dark bg1 m-r-30" id="qna_submit" type="submit"><span class="cl0">등록하기</span></button>
-	<a id="cancle" class="cl0 btn btn-dark bg1" type="submit" ><span class="cl0">취소</span></a>
-	</div> 
-	</form>
-	</div>  
-   <br><br><br> 
- <!-- Footer -->
-  <%@include file="/include/footer.jsp"%> 
-  <%@include file="/include/script.jsp"%> 
+  <%@include file="/include/header.jsp"%>
+  <div class="container col-6">
+    <h3 class="m-tb-20">이메일 문의</h3>
+    <div class="">
+      자주 묻는 질문란에서 해결하지 못한 의문이 있으신가요?<br> 이메일문의를 남겨주시면 친절히 답변해드리겠습니다.<br> 평균 답변 시간:2~3일
+    </div>
+  </div>
+  <div class="container bor7 m-t-20 m-b-100 p-all-50 bg2 col-6">
+    <form action="send" method="post" class="">
+      <div class="mb-3">
+        <label class="form-label">이메일 주소</label>
+        <input type="email" class="form-control" name="member_email" placeholder="답변 받을 이메일 주소를 입력해주세요." value="${member_email }">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea class="form-control" name="content" rows="3"></textarea>
+      </div>
+      <div class="m-t-30 txt-center">
+        <input type="hidden" name="member_idx" value="${sessionScope.member_idx}">
+        <button class="cl0 btn btn-dark bg1 m-r-30" id="qna_submit" type="submit">전송하기</button>
+        <a href="${MaruContextPath}/" class="btn bg2 cl2 btn-outline-dark" type="button" id="cancel">취소</a>
+      </div>
+    </form>
+  </div>
+  <!-- Footer -->
+  <%@include file="/include/footer.jsp"%>
+  <%@include file="/include/script.jsp"%>
   <!--=====================================================================================================-->
 
-<script>
-$("#file").on('change',function(){
-  var fileName = $("#file").val();
-  $(".upload-name").val(fileName);
-});
-</script>
-<script type="text/javascript"> 
-$("#cancle").on("click", function(e){ 
-	location.href = "${MaruContextPath}/index";
-});
-</script>
-<script type="text/javascript">
-function categoty(){
-    var category = $("#category > option:selected").val();
-    // $("category")의 선택한 값을 불러온다.
-
-     $("#category").val(category);
-
-    // 위에서 부른 값을 hidden값에 넣어서 DB 저장시 사용..
- }
-</script>
-<!--=============================================================================-->
+  <!--=============================================================================-->
 </body>
 </html>

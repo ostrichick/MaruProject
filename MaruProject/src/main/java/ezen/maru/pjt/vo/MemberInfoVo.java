@@ -26,15 +26,7 @@ public class MemberInfoVo {
 				+ ", member_addr=" + member_addr + ", member_addr2=" + member_addr2 + ", member_postcode="
 				+ member_postcode + ", member_date=" + member_date + ", mamber_last_visit=" + mamber_last_visit
 				+ ", member_grade=" + member_grade + ", member_admin=" + member_admin + ", salt=" + salt
-				+ ", deleted_yn=" + deleted_yn + ", getSalt()=" + getSalt() + ", getMember_idx()=" + getMember_idx()
-				+ ", getMember_id()=" + getMember_id() + ", getMember_pw()=" + getMember_pw() + ", getMember_name()="
-				+ getMember_name() + ", getMember_email()=" + getMember_email() + ", getMember_phone()="
-				+ getMember_phone() + ", getMember_addr()=" + getMember_addr() + ", getMember_addr2()="
-				+ getMember_addr2() + ", getMember_postcode()=" + getMember_postcode() + ", getMember_date()="
-				+ getMember_date() + ", getMamber_last_visit()=" + getMamber_last_visit() + ", getMember_grade()="
-				+ getMember_grade() + ", getMember_admin()=" + getMember_admin() + ", getDeleted_yn()="
-				+ getDeleted_yn() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ ", deleted_yn=" + deleted_yn + "]";
 	}
 
 	public String getSalt() {

@@ -178,17 +178,7 @@
       <artifactId>ojdbc7</artifactId>
       <version>12.1.0.2</version>
     </dependency>
-    <!-- 마크다운을 html로 파싱 -->
-    <!-- <dependency> -->
-    <!-- <groupId>org.commonmark</groupId> -->
-    <!-- <artifactId>commonmark</artifactId> -->
-    <!-- <version>0.18.0</version> -->
-    <!-- </dependency> -->
-    <!-- 타임리프 -->
-    <!-- <dependency> -->
-    <!-- <groupId>org.springframework.boot</groupId> -->
-    <!-- <artifactId>spring-boot-starter-thymeleaf</artifactId> -->
-    <!-- </dependency> -->
+
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
@@ -207,17 +197,32 @@
       <artifactId>commons-lang3</artifactId>
       <version>3.12.0</version>
     </dependency>
-
     <dependency>
       <groupId>com.github.iamport</groupId>
       <artifactId>iamport-rest-client-java</artifactId>
       <version>0.2.22</version>
     </dependency>
-
     <dependency>
       <groupId>com.navercorp.lucy</groupId>
       <artifactId>lucy-xss-servlet</artifactId>
       <version>2.0.0</version>
+    </dependency>
+
+    <!-- 이메일 발송 관련 라이브러리 -->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>${org.springframework-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-email</artifactId>
+      <version>1.5</version>
     </dependency>
 
   </dependencies>

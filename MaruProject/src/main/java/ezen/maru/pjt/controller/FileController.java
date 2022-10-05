@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonObject;
 
 @Controller
-// SummerNote내장 파일업로드 기능을 지원하는 컨트롤러
+// SummerNote에 내장된 파일업로드 기능을 지원하는 컨트롤러
 public class FileController {
 
 	@RequestMapping(value = "**/uploadSummernoteImageFile", produces = "application/json; charset=utf8")

@@ -153,6 +153,7 @@ public class MemberInfoController {
 		HttpSession session = req.getSession();
 		session.setAttribute("member_id", memberInfoVo.getMember_id());
 		session.setAttribute("member_name", memberInfoVo.getMember_name());
+		session.setAttribute("member_email", memberInfoVo.getMember_email());
 		session.setAttribute("member_grade", memberInfoVo.getMember_grade());
 		session.setAttribute("member_admin", memberInfoVo.getMember_admin());
 		session.setAttribute("member_idx", memberInfoVo.getMember_idx());

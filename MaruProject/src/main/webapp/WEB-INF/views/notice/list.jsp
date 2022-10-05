@@ -97,7 +97,6 @@ li.page-item.active>a.page-link:hover {
 </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
-  <%@include file="/include/detail.jsp"%>
   <%@include file="/include/script.jsp"%>
 </body>
 </html>

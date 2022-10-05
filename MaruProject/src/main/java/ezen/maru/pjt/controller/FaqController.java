@@ -2,15 +2,13 @@ package ezen.maru.pjt.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/faq")
 public class FaqController {
-	
-	
-	
-	
+
 	@GetMapping("/faq")
 	public String faq() {
 		return "/faq/list";
@@ -24,6 +22,11 @@ public class FaqController {
 	@GetMapping("/edit")
 	public String edit() {
 		return "/faq/edit";
+	}
+
+	@PostMapping("/delete")
+	public String delete() {
+		return "/faq/list";
 	}
 
 }
