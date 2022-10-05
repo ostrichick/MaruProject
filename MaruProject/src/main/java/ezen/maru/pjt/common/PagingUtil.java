@@ -23,7 +23,7 @@ public class PagingUtil {
 				+ start + ", end=" + end + "]";
 	}
 
-	public PagingUtil(int nowPage, int total, int perPage) {
+	public PagingUtil(int total, int nowPage, int perPage) {
 		setNowPage(nowPage);
 		setTotal(total);
 		setPerPage(perPage);

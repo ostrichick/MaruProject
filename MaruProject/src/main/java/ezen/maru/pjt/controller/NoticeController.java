@@ -46,21 +46,19 @@ public class NoticeController {
 	@GetMapping("/list")
 	public String notice(PagingUtil pagingUtil, Model model,
 			@RequestParam(value = "nowPage", required = false) String nowPage,
-			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+			@RequestParam(value = "perPage", required = false) String perPage) {
 		int total = listService.countBoard();
-		if (nowPage == null && cntPerPage == null) {
+		if (nowPage == null && perPage == null) {
 			nowPage = "1";
-			cntPerPage = "5";
+			perPage = "10";
 		} else if (nowPage == null) {
 			nowPage = "1";
-		} else if (cntPerPage == null) {
-			cntPerPage = "5";
+		} else if (perPage == null) {
+			perPage = "10";
 		}
-		pagingUtil = new PagingUtil(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-
+		pagingUtil = new PagingUtil(total, Integer.parseInt(nowPage), Integer.parseInt(perPage));
 		List<BoardVo> noticeList = listService.getNoticeList(pagingUtil);
 		model.addAttribute("paging", pagingUtil);
-		System.out.println(pagingUtil.toString());
 		model.addAttribute("noticeList", noticeList);
 		return "notice/list";
 	}
