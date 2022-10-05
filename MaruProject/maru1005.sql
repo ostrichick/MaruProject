@@ -2,6 +2,7 @@
 /* Drop Triggers */
 
 DROP TRIGGER TRI_announce_idx;
+DROP TRIGGER TRI_announce_reply_reply_idx;
 DROP TRIGGER TRI_delivery_info_delivery_idx;
 DROP TRIGGER TRI_member_info_member_idx;
 DROP TRIGGER TRI_order_log_order_idx;
@@ -16,14 +17,13 @@ DROP TRIGGER TRI_review_tbl_idx;
 
 /* Drop Tables */
 
+DROP TABLE announce_reply CASCADE CONSTRAINTS;
 DROP TABLE announce CASCADE CONSTRAINTS;
 DROP TABLE delivery_info CASCADE CONSTRAINTS;
-DROP TABLE order_change_cancel_refund CASCADE CONSTRAINTS;
 DROP TABLE order_product CASCADE CONSTRAINTS;
 DROP TABLE order_log CASCADE CONSTRAINTS;
 DROP TABLE product_cart CASCADE CONSTRAINTS;
 DROP TABLE product_qna CASCADE CONSTRAINTS;
-DROP TABLE qnaservice CASCADE CONSTRAINTS;
 DROP TABLE review_tbl CASCADE CONSTRAINTS;
 DROP TABLE member_info CASCADE CONSTRAINTS;
 DROP TABLE product_photo CASCADE CONSTRAINTS;
@@ -34,6 +34,7 @@ DROP TABLE product CASCADE CONSTRAINTS;
 /* Drop Sequences */
 
 DROP SEQUENCE SEQ_announce_idx;
+DROP SEQUENCE SEQ_announce_reply_reply_idx;
 DROP SEQUENCE SEQ_delivery_info_delivery_idx;
 DROP SEQUENCE SEQ_member_info_member_idx;
 DROP SEQUENCE SEQ_order_log_order_idx;
@@ -49,7 +50,8 @@ DROP SEQUENCE SEQ_review_tbl_idx;
 
 /* Create Sequences */
 
-CREATE SEQUENCE SEQ_announce_idx INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_announce_idx INCREMENT BY 1 START WITH 1 nocache;
+CREATE SEQUENCE SEQ_announce_reply_reply_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_delivery_info_delivery_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_member_info_member_idx INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_order_log_order_idx INCREMENT BY 1 START WITH 1;
@@ -84,6 +86,23 @@ CREATE TABLE announce
 	-- 조회수
 	hit number DEFAULT 0,
 	PRIMARY KEY (idx)
+);
+
+
+-- 공지사항 댓글
+CREATE TABLE announce_reply
+(
+	-- 댓글 번호
+	reply_idx number NOT NULL,
+	-- 공지사항 번호
+	idx number NOT NULL,
+	-- 회원번호
+	member_idx number NOT NULL,
+	-- 댓글 내용
+	reply_content varchar2(1500),
+	-- 댓글 작성일
+	reply_date date DEFAULT sysdate NOT NULL,
+	PRIMARY KEY (reply_idx)
 );
 
 
@@ -141,21 +160,6 @@ CREATE TABLE member_info
 );
 
 
--- 주문 교환 취소 환불
-CREATE TABLE order_change_cancel_refund
-(
-	-- 주문번호
-	order_idx number NOT NULL,
-	-- 교환 취소 환불 여부
-	order_type varchar2(6) NOT NULL,
-	-- 환불 금액
-	order_refund_money number,
-	-- 교환 취소 환불 진행상황
-	order_ccr_status varchar2(30),
-	PRIMARY KEY (order_idx)
-);
-
-
 -- 주문 내역
 CREATE TABLE order_log
 (
@@ -189,6 +193,10 @@ CREATE TABLE order_log
 	order_cancel_yn varchar2(3) DEFAULT 'N' NOT NULL,
 	-- 주문 환불 여부
 	order_refund_yn varchar2(3) DEFAULT 'N' NOT NULL,
+	-- 환불 금액
+	order_refund_money number,
+	-- 환불 진행 상태
+	order_refund_status varchar2(30),
 	PRIMARY KEY (order_idx)
 );
 
@@ -299,27 +307,6 @@ CREATE TABLE product_qna
 );
 
 
--- 일대일문의
-CREATE TABLE qnaservice
-(
-	-- 일대일 문의번호
-	idx number NOT NULL,
-	-- 회원번호
-	member_idx number NOT NULL,
-	-- 문의답변 내용
-	content varchar2(1500) NOT NULL,
-	-- 게시일
-	wdate date DEFAULT sysdate NOT NULL,
-	-- 답변이 있음
-	isanswered varchar2(3) DEFAULT 'N' NOT NULL,
-	-- 원본글 번호
-	parent_idx number,
-	-- 카테고리 : 카테고리
-	category varchar2(50) NOT NULL,
-	PRIMARY KEY (idx)
-);
-
-
 -- 리뷰
 CREATE TABLE review_tbl
 (
@@ -348,6 +335,18 @@ CREATE TABLE review_tbl
 
 /* Create Foreign Keys */
 
+ALTER TABLE announce_reply
+	ADD FOREIGN KEY (idx)
+	REFERENCES announce (idx)
+;
+
+
+ALTER TABLE announce_reply
+	ADD FOREIGN KEY (member_idx)
+	REFERENCES member_info (member_idx)
+;
+
+
 ALTER TABLE order_log
 	ADD FOREIGN KEY (member_idx)
 	REFERENCES member_info (member_idx)
@@ -366,12 +365,6 @@ ALTER TABLE product_qna
 ;
 
 
-ALTER TABLE qnaservice
-	ADD FOREIGN KEY (member_idx)
-	REFERENCES member_info (member_idx)
-;
-
-
 ALTER TABLE review_tbl
 	ADD FOREIGN KEY (member_idx)
 	REFERENCES member_info (member_idx)
@@ -379,12 +372,6 @@ ALTER TABLE review_tbl
 
 
 ALTER TABLE delivery_info
-	ADD FOREIGN KEY (order_idx)
-	REFERENCES order_log (order_idx)
-;
-
-
-ALTER TABLE order_change_cancel_refund
 	ADD FOREIGN KEY (order_idx)
 	REFERENCES order_log (order_idx)
 ;
@@ -440,6 +427,16 @@ FOR EACH ROW
 BEGIN
 	SELECT SEQ_announce_idx.nextval
 	INTO :new.idx
+	FROM dual;
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER TRI_announce_reply_reply_idx BEFORE INSERT ON announce_reply
+FOR EACH ROW
+BEGIN
+	SELECT SEQ_announce_reply_reply_idx.nextval
+	INTO :new.reply_idx
 	FROM dual;
 END;
 
@@ -549,6 +546,12 @@ COMMENT ON COLUMN announce.file_original IS '파일 원본 이름';
 COMMENT ON COLUMN announce.file_system IS '파일 시스템이름';
 COMMENT ON COLUMN announce.file_extension IS '파일 확장자';
 COMMENT ON COLUMN announce.hit IS '조회수';
+COMMENT ON TABLE announce_reply IS '공지사항 댓글';
+COMMENT ON COLUMN announce_reply.reply_idx IS '댓글 번호';
+COMMENT ON COLUMN announce_reply.idx IS '공지사항 번호';
+COMMENT ON COLUMN announce_reply.member_idx IS '회원번호';
+COMMENT ON COLUMN announce_reply.reply_content IS '댓글 내용';
+COMMENT ON COLUMN announce_reply.reply_date IS '댓글 작성일';
 COMMENT ON TABLE delivery_info IS '배송 정보';
 COMMENT ON COLUMN delivery_info.delivery_idx IS '시스템 배송 번호';
 COMMENT ON COLUMN delivery_info.delivery_code IS '택배사 송장 번호';
@@ -571,11 +574,6 @@ COMMENT ON COLUMN member_info.member_grade IS '회원 등급';
 COMMENT ON COLUMN member_info.member_admin IS '관리자여부';
 COMMENT ON COLUMN member_info.deleted_yn IS '탈퇴여부';
 COMMENT ON COLUMN member_info.salt IS 'salt';
-COMMENT ON TABLE order_change_cancel_refund IS '주문 교환 취소 환불';
-COMMENT ON COLUMN order_change_cancel_refund.order_idx IS '주문번호';
-COMMENT ON COLUMN order_change_cancel_refund.order_type IS '교환 취소 환불 여부';
-COMMENT ON COLUMN order_change_cancel_refund.order_refund_money IS '환불 금액';
-COMMENT ON COLUMN order_change_cancel_refund.order_ccr_status IS '교환 취소 환불 진행상황';
 COMMENT ON TABLE order_log IS '주문 내역';
 COMMENT ON COLUMN order_log.order_idx IS '주문번호';
 COMMENT ON COLUMN order_log.member_idx IS '회원번호';
@@ -595,6 +593,8 @@ COMMENT ON COLUMN order_log.order_status IS '주문 진행 상태 : 준비 중
 취소';
 COMMENT ON COLUMN order_log.order_cancel_yn IS '주문 취소 여부';
 COMMENT ON COLUMN order_log.order_refund_yn IS '주문 환불 여부';
+COMMENT ON COLUMN order_log.order_refund_money IS '환불 금액';
+COMMENT ON COLUMN order_log.order_refund_status IS '환불 진행 상태';
 COMMENT ON TABLE order_product IS '주문 상품';
 COMMENT ON COLUMN order_product.order_idx IS '주문번호';
 COMMENT ON COLUMN order_product.cart_idx IS '장바구니 번호';
@@ -636,14 +636,6 @@ COMMENT ON COLUMN product_qna.content IS '질문답변 내용';
 COMMENT ON COLUMN product_qna.wdate IS '게시일';
 COMMENT ON COLUMN product_qna.isanswered IS '답변이 있음';
 COMMENT ON COLUMN product_qna.parent_idx IS '원본글 번호';
-COMMENT ON TABLE qnaservice IS '일대일문의';
-COMMENT ON COLUMN qnaservice.idx IS '일대일 문의번호';
-COMMENT ON COLUMN qnaservice.member_idx IS '회원번호';
-COMMENT ON COLUMN qnaservice.content IS '문의답변 내용';
-COMMENT ON COLUMN qnaservice.wdate IS '게시일';
-COMMENT ON COLUMN qnaservice.isanswered IS '답변이 있음';
-COMMENT ON COLUMN qnaservice.parent_idx IS '원본글 번호';
-COMMENT ON COLUMN qnaservice.category IS '카테고리 : 카테고리';
 COMMENT ON TABLE review_tbl IS '리뷰';
 COMMENT ON COLUMN review_tbl.idx IS '리뷰 번호';
 COMMENT ON COLUMN review_tbl.product_idx IS '상품번호';
