@@ -32,8 +32,9 @@ li.page-item.active>a.page-link:hover {
   <%@include file="/include/header.jsp"%>
   <section class="container m-t-50">
 
-    <h2>관리자 페이지</h2>
-    <br>
+    <h2 class="m-tb-50">관리자 페이지</h2>
+
+    <!-- 회원 요약 -->
     <div class="container w-full txt-center bg6 p-all-30 m-b-50">
       <a href="${pageContext.request.contextPath}/admin/memberList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">회원관리</a>
       <table class="table table-bordered table-hover table-stripped">
@@ -77,6 +78,8 @@ li.page-item.active>a.page-link:hover {
         </ul>
       </nav>
     </div>
+
+    <!-- 상품 요약 -->
     <div class="container w-full txt-center bg6 p-all-30 m-b-50">
       <a href="${pageContext.request.contextPath}/admin/updateList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">상품 업데이트</a>
       <table class="table table-bordered table-hover table-stripped">
@@ -122,72 +125,8 @@ li.page-item.active>a.page-link:hover {
         </ul>
       </nav>
     </div>
-    <div class="container w-full txt-center bg6 p-all-30 m-b-50">
-      <a href="${pageContext.request.contextPath}/" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">1:1문의</a>
-      <table class="table table-bordered table-hover table-stripped">
-        <thead>
-          <tr class="bg1">
-            <th>선택</th>
-            <th>문의번호</th>
-            <th>문의내용</th>
-            <th>아이디</th>
-            <th>날짜</th>
-            <th>답변 여부</th>
-          </tr>
-        </thead>
-        <c:forEach var="qna" items="${qnaList}" varStatus="status">
-          <tr class="bg0">
-            <td>
-              <input type="checkbox" value="선택" />
-            </td>
-            <td>
-              <p>${qna.idx}</p>
-            </td>
-            <td>
-              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                  <div class="panel-heading qna" role="tab">
-                    <p class="d-none">${qna.idx}</p>
-                    <a role="button" class="qna" data-toggle="collapse" data-parent="#accordion" href="#con${qna.idx}" aria-expanded="false">문의</a>
-                  </div>
-                  <div id="con${qna.idx}" class="panel-collapse collapse" role="tabpanel">
-                    <div class="panel-body">
-                      <hr>
-                      <div class="p-3 text-break" style="width: 350px; border: 1px solid black;">
-                        <br>
-                        <p>${qna.content}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>${qna.member_name}</td>
-            <td>
-              <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}" />
-            </td>
-            <td>
-              <c:choose>
-                <c:when test="${qna.isanswered eq 'N'}">
-                  <button type="button" class="qIdx btn bg2" data-toggle="modal" data-target="#isanswer" onclick="answer(this)">답변</button>
-                </c:when>
-                <c:otherwise>YY</c:otherwise>
-              </c:choose>
-            </td>
-          </tr>
-        </c:forEach>
-      </table>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">다음</a></li>
-        </ul>
-      </nav>
-    </div>
 
+    <!-- 상품 문의 요약 -->
     <div class="container w-full txt-center bg6 p-all-30 m-b-50">
       <a href="${pageContext.request.contextPath}/admin/" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">상품 문의</a>
       <table class="table table-bordered table-hover table-stripped">

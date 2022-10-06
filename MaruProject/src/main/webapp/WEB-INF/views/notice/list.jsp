@@ -47,7 +47,7 @@ li.page-item.active>a.page-link:hover {
           <tr>
             <td class="text-right cl3">${notice.idx}</td>
             <td class="">
-              <a class="cl5" href='#' onClick='fn_view(${notice.idx})'>${notice.title}</a>
+              <a class="cl5" href='${MaruContextPath}/notice/view?idx=${notice.idx}'>${notice.title}</a>
             </td>
             <td class="text-center cl3">
               <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${notice.wdate}" />
@@ -84,7 +84,7 @@ li.page-item.active>a.page-link:hover {
     </nav>
   </div>
   <script>
-/**글쓰기*/
+      /**글쓰기*/
       function fn_write() {
         location.href = "${MaruContextPath}/notice/write";
       }
@@ -94,7 +94,7 @@ li.page-item.active>a.page-link:hover {
         url += idx;
         location.href = url;
       }
-</script>
+    </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>

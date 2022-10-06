@@ -18,8 +18,8 @@
         <table class="table table-bordered">
           <thead>
             <tr class="table-active">
-              <th scope="col" style="width: 60%"><h3>${boardVo.title}</h3></th>
-              <th scope="col" style="width: 40%" class="text-right"><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${boardVo.wdate}" /><br />조회 : ${boardVo.hit}</th>
+              <th scope="col" class="col-6"><h3>${boardVo.title}</h3></th>
+              <th scope="col" class="col-6 text-right"><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${boardVo.wdate}" /><br />조회 : ${boardVo.hit}</th>
             </tr>
           </thead>
           <tbody>
@@ -27,11 +27,11 @@
               <td colspan="2">
                 <pre>${boardVo.content}</pre>
                 <br>
-                <c:if test="${not empty boardVo.file_original}">
+                <%-- <c:if test="${not empty boardVo.file_original}">
                   <img src="${pageContext.request.contextPath}/resources/upload/s_${boardVo.file_original}" style="width: 300px; height: 200px;" />
                   <img src="${pageContext.request.contextPath}/resources/upload/${boardVo.file_original}" />
                   <img src="${pageContext.request.contextPath}/resources/upload/${boardVo.file_system}" />
-                </c:if>
+                </c:if> --%>
               </td>
             </tr>
           </tbody>
