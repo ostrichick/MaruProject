@@ -47,7 +47,8 @@
 <!--===============================================================================================-->
 <script src="${pageContext.request.contextPath}/resources/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-<script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script> --%>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   $('.js-addwish-b2, .js-addwish-detail').on('click', function(e) {
     e.preventDefault();
@@ -56,7 +57,7 @@
   $('.js-addwish-b2').each(function() {
     var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
     $(this).on('click', function() {
-      swal(nameProduct, "장바구니에 추가되었습니다!", "success");
+      Swal.fire(nameProduct, "장바구니에 추가되었습니다!", "success");
 
       $(this).addClass('js-addedwish-b2');
       $(this).off('click');
@@ -67,7 +68,7 @@
     var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
     $(this).on('click', function() {
-      swal(nameProduct, "장바구니에 추가되었습니다!", "success");
+      Swal.fire(nameProduct, "장바구니에 추가되었습니다!", "success");
 
       $(this).addClass('js-addedwish-detail');
       $(this).off('click');
@@ -79,7 +80,7 @@
   $('.js-addcart-detail').each(function() {
     var nameProduct = $(this).parent().parent().parent().parent().parent().parent().find('.js-name-detail').html();
     $(this).on('click', function() {
-      swal(nameProduct, "장바구니에 추가되었습니다!", "success");
+      Swal.fire(nameProduct, "장바구니에 추가되었습니다!", "success");
     });
   });
 </script>

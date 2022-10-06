@@ -2,6 +2,7 @@ package ezen.maru.pjt.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,10 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezen.maru.pjt.common.SHA256Util;
 import ezen.maru.pjt.service.board.BoardService;
+import ezen.maru.pjt.service.certification.CertificationService;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.vo.BoardVo;
 import ezen.maru.pjt.vo.MemberInfoVo;
@@ -29,6 +32,8 @@ public class MemberInfoController {
 	MemberInfoService signupService, signinService, updateService;
 
 	BoardService blistService;
+
+	CertificationService certificationService;
 
 	@Autowired(required = false)
 	public void setListService2(@Qualifier("b_list") BoardService blistService) {
@@ -50,9 +55,30 @@ public class MemberInfoController {
 		this.updateService = updateService;
 	}
 
+	@Autowired(required = false)
+	public void setCertificationService(@Qualifier("cert_sms") CertificationService certificationService) {
+		this.certificationService = certificationService;
+	}
+
 	@GetMapping("/signup") // 회원가입 페이지 요청
 	public String member_signup() {
 		return "member/signup";
+	}
+
+	@GetMapping("/check/sendSMS")
+	public @ResponseBody String sendSMS(String phoneNumber) {
+
+		Random rand = new Random();
+		String numStr = "";
+		for (int i = 0; i < 4; i++) {
+			String ran = Integer.toString(rand.nextInt(10));
+			numStr += ran;
+		}
+
+		System.out.println("수신자 번호 : " + phoneNumber);
+		System.out.println("인증번호 : " + numStr);
+		certificationService.certifiedPhoneNumber(phoneNumber, numStr);
+		return numStr;
 	}
 
 	@PostMapping("/signup_process") // 회원가입 처리 요청
