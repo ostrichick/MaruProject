@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.maru.pjt.reply">
+  <!-- notice -->
+  <insert id="addReply" parameterType="replyVo">
+    INSERT INTO announce_reply (
+    idx, reply_content,
+    ) VALUES (
+    #{idx}, #{reply_content},
+    )
+  </insert>
+
+  <select id="getReplyList" resultType="replyVo">
+    SELECT * from announce_reply
+  </select>
+
+  <update id="updateReply" parameterType="replyVo">
+    UPDATE announce_reply
+    SET
+    reply_content = #{reply_content},
+    WHERE
+    reply_idx = #{reply_idx}
+  </update>
+
+  <delete id="deleteReply" parameterType="int">
+    delete from announce_reply
+    where reply_idx = #{reply_idx}
+  </delete>
+</mapper>	

@@ -63,12 +63,6 @@ body {
             <tr>
               <td colspan="2">
                 <pre>${boardVo.content}</pre>
-                <br>
-                <%-- <c:if test="${not empty boardVo.file_original}">
-                  <img src="${pageContext.request.contextPath}/resources/upload/s_${boardVo.file_original}" style="width: 300px; height: 200px;" />
-                  <img src="${pageContext.request.contextPath}/resources/upload/${boardVo.file_original}" />
-                  <img src="${pageContext.request.contextPath}/resources/upload/${boardVo.file_system}" />
-                </c:if> --%>
               </td>
             </tr>
           </tbody>
@@ -76,10 +70,11 @@ body {
 
         <div class="coment-bottom bg-white p-2 px-4">
           <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-             <input type="text" class="form-control mr-3" placeholder="댓글을 작성해주세요.">
+            <input type="text" class="form-control mr-3" placeholder="댓글을 작성해주세요.">
             <button class="btn btn-primary" type="button">Comment</button>
           </div>
           <div class="commented-section mt-2">
+
             <div class="d-flex flex-row align-items-center commented-user">
               <h5 class="mr-2">보더콜리</h5>
               <span class="dot mb-1"></span><span class="mb-1 ml-2">2022.10.06</span>
@@ -95,6 +90,24 @@ body {
                 </h6>
               </div>
             </div>
+
+
+            <div class="d-flex flex-row align-items-center commented-user">
+              <h5 class="mr-2">{reply.member_id}</h5>
+              <span class="dot mb-1"></span><span class="mb-1 ml-2">{reply.reply_date} </span> <span class="dot ml-2 mr-2"></span><span>수정</span><span class="dot ml-2 mr-2"></span><span>삭제</span>
+            </div>
+            <div class="comment-text-sm">
+              <span>{reply.reply_content} </span>
+            </div>
+            <div class="reply-section">
+              <div class="d-flex flex-row align-items-center voting-icons txt-right">
+                <!-- 추후에 추천 기능 추가할 시 주석 해제할 것 -->
+                <!-- <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span> -->
+                <h6 class="ml-2 mt-1 txt-right pull-right "></h6>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
