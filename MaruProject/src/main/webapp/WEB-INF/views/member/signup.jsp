@@ -10,7 +10,7 @@
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
   <!-- 시작 -->
-  <div class="container col-10">
+  <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12">
     <h3 class="m-tb-50 m-l-30">회원가입</h3>
 
     <form name="joinform" class="needs-validation bg2 text-black p-5 bor10 m-b-50" novalidate action="${pageContext.request.contextPath}/member/signup_process" method="post">
@@ -19,8 +19,7 @@
       </p>
       <div class="input-group mb-3">
         <input type="text" class="form-control col-9" id="member_id" name="member_id" placeholder="아이디를 입력해주세요" required>
-        <input class="btn btn-outline-secondary cl0 bg7 col-3" type="button" id="duplicateCheck" value="중복확인">
-        <div class="valid-feedback">성공적으로 입력됐습니다.</div>
+        <input class="btn btn-outline-secondary cl0 bg7 col-3" type="button" id="duplicateCheck" value="중복확인" onclick="fn_idDuplicateChk()">
       </div>
 
       <div class="m-tb-20 signInMark">
@@ -30,7 +29,7 @@
       </div>
 
       <div class="m-tb-20 signInMark">
-        <p class="form-label">비밀번호확인</p>
+        <p class="form-label">비밀번호 확인</p>
         <input type="password" class="pw form-control" id="member_pw2" name="member_pw2" placeholder="비밀번호 확인" required onchange="check_pw()" />
         <span id="check"></span>
       </div>
@@ -52,7 +51,7 @@
         <label for="inputCertifiedNumber">인증번호</label>
       </p>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" id="inputCertifiedNumber" placeholder="인증번호를 입력해주세요">
+        <input type="text" class="form-control" id="inputCertifiedNumber" placeholder="인증번호를 입력해주세요" required>
         <input type="button" class="col-3 btn cl0 bg7" id="checkBtn" value="인증번호 확인">
       </div>
 
@@ -90,35 +89,26 @@
 
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
-  document.getElementById("member_addr_btn").addEventListener("click", function () {
-    //주소입력칸을 클릭하면
-    //카카오 지도 발생
-    new daum.Postcode({
-      oncomplete: function (data) {
-        //선택시 입력값 세팅
-        document.getElementById("member_addr").value = data.address; // 주소 넣기
-        document.getElementById("member_postcode").value = data.zonecode; // 우편번호 넣기
-        document.querySelector("input[name=member_addr2]").focus(); //상세입력 포커싱
-      },
-    }).open();
-  });
-
-  document.getElementById("member_addr").addEventListener("click", function () {
-    //주소입력칸을 클릭하면
-    //카카오 지도 발생
-    new daum.Postcode({
-      oncomplete: function (data) {
-        //선택시 입력값 세팅
-        document.getElementById("member_addr").value = data.address; // 주소 넣기
-        document.getElementById("member_postcode").value = data.zonecode; // 우편번호 넣기
-        document.querySelector("input[name=member_addr2]").focus(); //상세입력 포커싱
-      },
-    }).open();
-  });
-</script>
+      // 카카오 지도 API
+      document.getElementById("member_addr_btn").addEventListener("click", kakaoAddress)
+      document.getElementById("member_addr").addEventListener("click", kakaoAddress);
+      document.getElementById("member_postcode").addEventListener("click", kakaoAddress);
+      function kakaoAddress() {
+        //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+          oncomplete : function(data) {
+            //선택시 입력값 세팅
+            document.getElementById("member_addr").value = data.address; // 주소 넣기
+            document.getElementById("member_postcode").value = data.zonecode; // 우편번호 넣기
+            document.querySelector("input[name=member_addr2]").focus(); //상세입력 포커싱
+          },
+        }).open();
+      }
+    </script>
 
 
-  <script>
+  <!-- <script>
   function check_pw() {
     var pw = document.getElementById("member_pw").value;
     var SC = ["!", "@", "#", "$", "%", "~"];
@@ -156,69 +146,94 @@
     }
   }
 </script>
-
+-->
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
   <script>
-  $("#sendPhoneNumber").click(function () {
-    let phoneNumber = $("#member_phone").val();
-    Swal.fire("인증번호 발송 완료!");
-    $.ajax({
-      type: "GET",
-      url: "check/sendSMS",
-      data: {
-        phoneNumber: phoneNumber,
-      },
-      success: function (res) {
-        $("#checkBtn").click(function () {
-          if ($.trim(res) == $("#inputCertifiedNumber").val()) {
-            Swal.fire("인증성공!", "휴대폰 인증이 정상적으로 완료되었습니다.", "success");
-            $("#member_phone").attr("readonly", true);
-//             $.ajax({
-//               type: "GET",
-//               url: "update/phone",
-//               data: {
-//                 phoneNumber: $("#inputPhoneNumber").val(),
-//               },
-//             });
-//             document.location.href = "/home";
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "인증오류",
-              text: "인증번호가 올바르지 않습니다!",
-              /* footer: '<a onClick="window.location.reload()">다시 인증하기</a>', */
+      // 휴대폰 인증
+      $("#sendPhoneNumber").click(function() {
+        let phoneNumber = $("#member_phone").val();
+        Swal.fire("인증번호 발송 완료!");
+        $.ajax({
+          type : "GET",
+          url : "check/sendSMS",
+          data : {
+            phoneNumber : phoneNumber,
+          },
+          success : function(res) {
+            $("#checkBtn").click(function() {
+              if ($.trim(res) == $("#inputCertifiedNumber").val()) {
+                Swal.fire("인증성공!", "휴대폰 인증이 정상적으로 완료되었습니다.", "success");
+                $("#member_phone").attr("readonly", true);
+                //             $.ajax({
+                //               type: "GET",
+                //               url: "update/phone",
+                //               data: {
+                //                 phoneNumber: $("#inputPhoneNumber").val(),
+                //               },
+                //             });
+                //             document.location.href = "/home";
+              } else {
+                Swal.fire({
+                  icon : "error",
+                  title : "인증오류",
+                  text : "인증번호가 올바르지 않습니다!",
+                /* footer: '<a onClick="window.location.reload()">다시 인증하기</a>', */
+                });
+              }
             });
-          }
+          },
         });
-      },
-    });
-  });
-</script>
+      });
+    </script>
   <script>
-  function submitForm() {
-    "use strict";
+      // 아이디 중복확인
+      function fn_idDuplicateChk() {
+        if ($("#member_id").val() !== "" || $("#member_id").val() === undefined) {
+          $.ajax({
+            url : "check/idDuplicate",
+            type : "post",
+            dataType : "json",
+            data : {
+              "member_id" : $("#member_id").val()
+            },
+            success : function(data) {
+              if (data == 1) {
+                Swal.fire("중복된 아이디입니다.");
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll(".needs-validation");
+              } else if (data == 0) {
+                $("#member_id").attr("value", "Y");
+                Swal.fire("사용가능한 아이디입니다.");
+              }
+            }
+          })
+        }
+      }
+    </script>
+  <script>
+      // Form 유효성 확인
+      function submitForm() {
+        "use strict";
 
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms).forEach(function (form) {
-      form.addEventListener(
-        "submit",
-        function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add("was-validated");
-        },
-        false
-      );
-    });
-  });
-</script>
+        $("input").each(function(index, item) {
+          $(item).val($(item).val().trim())
+        })
 
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function(form) {
+          form.addEventListener("submit", function(event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          }, false);
+        });
+      }
+    </script>
 </body>
 </html>

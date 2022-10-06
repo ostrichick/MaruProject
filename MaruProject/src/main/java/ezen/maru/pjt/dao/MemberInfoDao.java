@@ -43,4 +43,8 @@ public class MemberInfoDao {
 		return sqlSession.selectList(MAPPER + ".getMemberList");
 	}
 
+	public int idDuplicateCheck(String member_id) {
+		return sqlSession.selectOne(MAPPER + ".idDuplicateCheck", member_id);
+	}
+
 }

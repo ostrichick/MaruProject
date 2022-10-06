@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ezen.maru.pjt.memberInfo">
+
+  <!-- 회원 가입 -->
   <insert id="signup" parameterType="memberInfoVo">
     INSERT INTO MEMBER_INFO(
     member_id, member_pw, member_name, member_email, member_phone, member_addr,
@@ -11,6 +13,7 @@
     #{member_addr2}, #{member_postcode})
   </insert>
 
+  <!-- 로그인 -->
   <select id="signin" parameterType="memberInfoVo" resultType="memberInfoVo">
     select * from member_info
     where member_id = #{member_id}
@@ -18,10 +21,12 @@
     and deleted_yn = 'N'
   </select>
 
+  <!-- 회원정보 수정 페이지 출력 -->
   <select id="getMember" parameterType="string" resultType="memberInfoVo">
     select * from member_info where member_id = #{member_id}
   </select>
 
+  <!-- 회원정보 수정 실행 -->
   <update id="updateMember" parameterType="memberInfoVo">
     UPDATE MEMBER_INFO
     SET
@@ -35,6 +40,7 @@
     member_idx = #{member_idx}
   </update>
 
+  <!-- 회원 비활성화 -->
   <update id="deactiveMember" parameterType="memberInfoVo">
     UPDATE MEMBER_INFO
     SET
@@ -46,6 +52,12 @@
   <select id="getMemberList" resultType="memberInfoVo">
     select * from member_info
     order by member_admin, deleted_yn
+  </select>
+
+  <!-- 아이디 중복 체크 -->
+  <select id="idDuplicateCheck" resultType="int">
+    select count(*) from member_info 
+    where member_id = #{member_id}
   </select>
 
   <!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- -->

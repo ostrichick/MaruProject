@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,7 +30,7 @@ import ezen.maru.pjt.vo.MemberInfoVo;
 // 회원가입, 로그인, 정보수정, 탈퇴 등 회원 관리기능 컨트롤러
 public class MemberInfoController {
 
-	MemberInfoService signupService, signinService, updateService;
+	MemberInfoService signupService, signinService, updateService, selectService;
 
 	BoardService blistService;
 
@@ -48,6 +49,11 @@ public class MemberInfoController {
 	@Autowired(required = false)
 	public void setSigninService(@Qualifier("signin") MemberInfoService signinService) {
 		this.signinService = signinService;
+	}
+
+	@Autowired(required = false)
+	public void setSelectService(@Qualifier("m_select") MemberInfoService selectService) {
+		this.selectService = selectService;
 	}
 
 	@Autowired(required = false)
@@ -79,6 +85,14 @@ public class MemberInfoController {
 		System.out.println("인증번호 : " + numStr);
 		certificationService.certifiedPhoneNumber(phoneNumber, numStr);
 		return numStr;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/check/idDuplicate", method = RequestMethod.POST)
+	public int idChk(String member_id) throws Exception {
+		int result = selectService.idDuplicateCheck(member_id);
+		System.out.println("DuplicateCheck result is : " + result);
+		return result;
 	}
 
 	@PostMapping("/signup_process") // 회원가입 처리 요청

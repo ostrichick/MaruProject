@@ -9,7 +9,7 @@ import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service("cert_sms")
-public class CertificationSMS implements CertificationService {
+public class CertificationSMSService implements CertificationService {
 
 	public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 		String api_key = "NCS1UI7YZGFFVQS4";
@@ -30,4 +30,5 @@ public class CertificationSMS implements CertificationService {
 			System.out.println(e.getCode());
 		}
 	}
+
 }

@@ -29,4 +29,9 @@ public interface MemberInfoService {
 	default List<MemberInfoVo> getMemberInfoList() {
 		return null;
 	}
+
+	default int idDuplicateCheck(String member_id) {
+		return 0;
+	}
+
 }
