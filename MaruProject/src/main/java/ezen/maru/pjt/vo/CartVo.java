@@ -1,10 +1,12 @@
 package ezen.maru.pjt.vo;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
+@ToString
 public class CartVo extends ProductVo {
 	private int cart_idx;
 	private int member_idx;

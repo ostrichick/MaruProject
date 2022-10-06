@@ -2,11 +2,13 @@ package ezen.maru.pjt.vo;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
+@ToString
 public class OrderVo extends CartVo {
 	private int order_idx;
 	private int member_idx;

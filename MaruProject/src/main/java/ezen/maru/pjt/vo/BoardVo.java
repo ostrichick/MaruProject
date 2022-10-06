@@ -2,9 +2,13 @@ package ezen.maru.pjt.vo;
 
 import java.util.Date;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 public class BoardVo {
 	private int idx;
 	private int member_idx;
