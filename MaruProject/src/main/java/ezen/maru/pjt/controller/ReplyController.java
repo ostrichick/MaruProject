@@ -9,11 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezen.maru.pjt.service.reply.ReplyService;
 import ezen.maru.pjt.vo.ReplyVo;
@@ -45,41 +44,45 @@ public class ReplyController {
 		this.deleteService = deleteService;
 	}
 
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	@ResponseBody
-	public List<ReplyVo> reply(ReplyVo replyVo) {
-		System.out.println("replyVo in Controller : " + replyVo);
+	public List<ReplyVo> getReplyList(ReplyVo replyVo) {
+//		System.out.println("replyVo in Controller : " + replyVo);
 		List<ReplyVo> replyList = listService.getReplyList(replyVo);
-		System.out.println("replyList in Controller : " + replyList);
+//		System.out.println("replyList in Controller : " + replyList);
 		return replyList;
 	}
 
 	@PostMapping("/write")
 	@ResponseBody
-	public List<ReplyVo> writeReply(HttpServletRequest req, ReplyVo replyVo, RedirectAttributes redirect) {
+	public void writeReply(HttpServletRequest req, ReplyVo replyVo) {
 		HttpSession session = req.getSession();
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
 		int member_idx = (int) optional_member_idx.get();
 		replyVo.setMember_idx(member_idx);
-		System.out.println("replyVo in Controller : " + replyVo);
 		insertService.writeReply(replyVo);
-		List<ReplyVo> replyList = listService.getReplyList(replyVo);
-		return replyList;
+		updateService.countReply(replyVo);
 	}
 
-	@RequestMapping("/edit")
+	@PostMapping("/edit")
 	@ResponseBody
-	public List<ReplyVo> editReply(ReplyVo replyVo, RedirectAttributes redirect) {
+	public void editReply(HttpServletRequest req, ReplyVo replyVo) {
+		HttpSession session = req.getSession();
+		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+		int member_idx = (int) optional_member_idx.get();
+		replyVo.setMember_idx(member_idx);
 		updateService.editReply(replyVo);
-		List<ReplyVo> replyList = listService.getReplyList(replyVo);
-		return replyList;
 	}
 
-	@RequestMapping("/delete")
+	@PostMapping("/remove")
 	@ResponseBody
-	public List<ReplyVo> removeReply(Model model, ReplyVo replyVo) {
+	public void removeReply(HttpServletRequest req, ReplyVo replyVo) {
+		HttpSession session = req.getSession();
+		System.out.println("replyVo in Controller : " + replyVo);
+		Optional<Object> optional_member_id = Optional.ofNullable(session.getAttribute("member_id"));
+		String member_id = (String) optional_member_id.get();
+		replyVo.setMember_id(member_id);
 		deleteService.removeReply(replyVo);
-		List<ReplyVo> replyList = listService.getReplyList(replyVo);
-		return replyList;
+		updateService.countReply(replyVo);
 	}
 }

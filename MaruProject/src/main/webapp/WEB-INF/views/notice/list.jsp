@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <title>공지사항</title>
 <meta charset="UTF-8">
@@ -47,7 +47,7 @@ li.page-item.active>a.page-link:hover {
           <tr>
             <td class="text-right cl3">${notice.idx}</td>
             <td class="">
-              <a class="cl5" href='${MaruContextPath}/notice/view?idx=${notice.idx}'>${notice.title}</a>
+              <a class="cl5" href='${MaruContextPath}/notice/view?idx=${notice.idx}'>${notice.title} <span>[${notice.reply_count}]</span></a>
             </td>
             <td class="text-center cl3">
               <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${notice.wdate}" />

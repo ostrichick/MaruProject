@@ -11,9 +11,13 @@
   </insert>
 
   <select id="getReplyList" resultType="replyVo">
-    SELECT * FROM announce_reply 
-    WHERE idx = #{idx} and deleted_yn = 'N'
-    order by reply_idx
+    SELECT to_char(reply_date,'YYYY-MM-DD HH24:MI:SS') as reply_date,
+    reply_idx, r.member_idx, reply_content, m.member_name
+    FROM announce_reply r
+    INNER JOIN member_info m
+    ON r.member_idx = m.member_idx
+    WHERE r.idx = #{idx} and r.deleted_yn = 'N'
+    order by r.reply_idx desc
   </select>
 
   <update id="editReply" parameterType="replyVo">
@@ -29,7 +33,15 @@
     SET
     deleted_yn = 'Y'
     WHERE
-    reply_idx = #{reply_idx} and member_idx = #{member_idx}
+    reply_idx = #{reply_idx}
   </delete>
+
+  <update id="countReply" parameterType="replyVo">
+    UPDATE ANNOUNCE a
+    SET
+    a.reply_count = (SELECT COUNT(*) FROM announce_reply r WHERE idx = #{idx})
+    WHERE
+    idx = #{idx}
+  </update>
 
 </mapper>	

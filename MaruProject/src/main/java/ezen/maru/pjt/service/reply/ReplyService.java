@@ -6,7 +6,7 @@ import ezen.maru.pjt.vo.ReplyVo;
 
 public interface ReplyService {
 
-	default public int countReply() {
+	default public int countReply(ReplyVo replyVo) {
 		return 0;
 	}
 
@@ -25,4 +25,5 @@ public interface ReplyService {
 	default int removeReply(ReplyVo replyVo) {
 		return 0;
 	}
+
 }

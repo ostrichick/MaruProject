@@ -18,11 +18,6 @@ public class ReplyListService implements ReplyService {
 	}
 
 	@Override
-	public int countReply() {
-		return replyDao.countReply();
-	}
-
-	@Override
 	public List<ReplyVo> getReplyList(ReplyVo replyVo) {
 		return replyDao.getReplyList(replyVo);
 	}

@@ -19,4 +19,10 @@ public class ReplyUpdateService implements ReplyService {
 	public int editReply(ReplyVo replyVo) {
 		return replyDao.editReply(replyVo);
 	}
+
+	@Override
+	public int countReply(ReplyVo replyVo) {
+		return replyDao.countReply(replyVo);
+	}
+
 }

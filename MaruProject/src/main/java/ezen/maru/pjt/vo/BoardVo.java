@@ -24,4 +24,5 @@ public class BoardVo {
 	private String file_system;
 	private String file_extension;
 	private int hit;
+	private int reply_count;
 }
