@@ -8,7 +8,7 @@
   </settings>
   <!-- VO객체에 대한 별칭 설정 -->
   <typeAliases>
-    
+
     <typeAlias alias="fileVo" type="ezen.maru.pjt.vo.FileVo" />
     <typeAlias alias="boardVo" type="ezen.maru.pjt.vo.BoardVo" />
     <!-- -->
@@ -17,7 +17,8 @@
     <typeAlias alias="cartVo" type="ezen.maru.pjt.vo.CartVo" />
     <typeAlias alias="orderVo" type="ezen.maru.pjt.vo.OrderVo" />
     <typeAlias alias="orderProductVo" type="ezen.maru.pjt.vo.OrderProductVo" />
-    
+    <typeAlias alias="replyVo" type="ezen.maru.pjt.vo.ReplyVo" />
+
 
   </typeAliases>
 </configuration>	

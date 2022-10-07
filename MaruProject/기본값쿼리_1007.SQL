@@ -63,3 +63,21 @@ file_original, file_system, file_extension
 '공지 제목2', '공지 내용2',
 3, 3, 'jpg'
 );
+
+INSERT INTO announce_reply (
+    idx, member_idx, reply_content
+    ) VALUES (
+    1, 1, '첫번재 리플!!!!'
+    )
+    
+    INSERT INTO announce_reply (
+    idx, member_idx, reply_content
+    ) VALUES (
+    1, 1, '두번재 리플!!!!'
+    )
+    
+    INSERT INTO announce_reply (
+    idx, member_idx, reply_content
+    ) VALUES (
+    2, 1, '2번 글의 첫번재 리플!!!! '
+    )
