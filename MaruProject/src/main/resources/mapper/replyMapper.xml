@@ -29,11 +29,11 @@
   </update>
 
   <delete id="removeReply" parameterType="replyVo">
-    UPDATE announce_reply
-    SET
-    deleted_yn = 'Y'
-    WHERE
-    reply_idx = #{reply_idx}
+  UPDATE announce_reply
+  SET
+  deleted_yn = 'Y'
+  WHERE
+  reply_idx = #{reply_idx}
   </delete>
 
   <update id="countReply" parameterType="replyVo">

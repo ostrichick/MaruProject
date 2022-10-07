@@ -281,8 +281,7 @@ body {
         console.log(obj);
         let reply_idx = $(obj).parent().next().val();
         let member_idx = $(obj).parent().next().next().val();
-        console.log(reply_idx);
-        console.log(member_idx);
+
         $.ajax({
           type : 'post',
           url : 'reply/remove?reply_idx=' + reply_idx,
