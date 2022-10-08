@@ -127,11 +127,15 @@ body {
               <div class="comment-text-sm">
                 <span>{reply.reply_content} </span>
 
-                <!-- 수정 누를시 아래 인풋을 출력시키고 수정버튼 비활성화 -->
-                <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                  <input type="text" class="form-control mr-3" name="reply_content" id="reply_content" placeholder="댓글을 작성해주세요.">
-                  <button class="btn btn-outline-secondary col-xs-4 col-lg-1 col-md-2 col-sm-3" type="button" onclick="editReplyProcess()">수정</button>
+                <div class="editor_parent">
+                  <!-- 수정 누를시 아래 인풋을 출력시키고 수정버튼 비활성화 -->
+                  <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                    <input type="text" class="form-control mr-3" name="reply_content" id="reply_content" placeholder="댓글을 작성해주세요.">
+                    <button class="btn btn-outline-secondary col-xs-4 col-lg-1 col-md-2 col-sm-3" type="button" onclick="editReplyProcess()">수정</button>
+                  </div>
+
                 </div>
+
 
               </div>
               <div class="reply-section">
@@ -208,23 +212,23 @@ body {
 
               if (session_member_idx == parseInt($(item).find("member_idx").text())) {
                 /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
-                comment_section += '<span><a href="javascript:void(0)" onclick="openEditor(this)">수정</a></span> <span class="dot ml-2 mr-2"></span><span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" value="';
+                comment_section += '<span><a href="javascript:void(0)" onclick="openEditor(this)">수정</a></span> <span class="dot ml-2 mr-2"></span><span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
                 comment_section += $(item).find("reply_idx").text();
-                comment_section += '"><input type="hidden" value="';
+                comment_section += '"><input type="hidden" name="member_idx" value="';
                 comment_section += $(item).find("member_idx").text();
                 comment_section += '">'
                 /** 이 위로 member_idx 일치 유저만 출력*/
               } else if (session_member_admin == 'Y') {
                 /** 관리자인 경우엔 삭제버튼만 출력 */
-                comment_section += '<span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" value="';
+                comment_section += '<span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
                 comment_section += $(item).find("reply_idx").text();
-                comment_section += '"><input type="hidden" value="';
+                comment_section += '"><input type="hidden" name="member_idx" value="';
                 comment_section += $(item).find("member_idx").text();
                 comment_section += '">'
               }
               comment_section += '</div><div class="comment-text-sm"><span>';
               comment_section += $(item).find("reply_content").text();
-              comment_section += '</span></div><div class="reply-section"><div class="d-flex flex-row align-items-center voting-icons txt-right"><h6 class="ml-2 mt-1 txt-right pull-right "></h6></div></div></section>';
+              comment_section += '</span><div class="editor_parent"></div><div class="reply-section"><div class="d-flex flex-row align-items-center voting-icons txt-right"><h6 class="ml-2 mt-1 txt-right pull-right "></h6></div></div></section>';
               $("div#comment_parent").append(comment_section);
             })
             console.log("불러오기 성공");
@@ -251,7 +255,10 @@ body {
               getReplyList();
             },
             error : function(request, status, error) {
-              alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+              alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+              console.log(status);
+              console.log(request);
+              console.log(error);
             },
           })
         }
@@ -259,24 +266,42 @@ body {
 
       function openEditor(obj) {
         console.log(obj);
-        let reply_idx = $(obj).parent().next().val();
-        let member_idx = $(obj).parent().next().next().val();
-        let parentof_editor = $(obj).parent().parent().next();
-
-        console.log(reply_idx);
-        console.log(member_idx);
-        console.log(parentof_editor);
+        let reply_idx = $(obj).parent().parent().find("input[name=reply_idx]").val();
+        let member_idx = $(obj).parent().parent().find("input[name=member_idx]").val();
+        let parentof_editor = $(obj).parent().parent().next().find("div.editor_parent");
 
         let editor = "";
         editor += '<div class="d-flex flex-row add-comment-section mt-4 mb-4"><input type="text" class="form-control mr-3" name="reply_content" id="reply_content" placeholder="댓글을 수정합니다."><button class="btn btn-outline-secondary col-xs-4 col-lg-1 col-md-2 col-sm-3" type="button" onclick="editReplyProcess(';
-        editor += reply_idx + ',' + member_idx;
+        editor += reply_idx + ',' + member_idx + ', this';
         editor += ')">수정</button></div>';
 
-        console.log(editor);
         $(parentof_editor).append(editor);
 
       }
+      function editReplyProcess(reply_idx, member_idx, obj) {
+        let reply_content = $(obj).prev().val();
 
+        $.ajax({
+          type : 'post',
+          url : 'reply/edit?reply_idx=' + reply_idx,
+          data : {
+            member_idx : member_idx,
+            reply_content : reply_content,
+          },
+          success : function(result) {
+            console.log(result);
+            console.log("수정 성공");
+            getReplyList();
+
+          },
+          error : function(request, status, error) {
+            alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+            console.log(status);
+            console.log(request);
+            console.log(error);
+          },
+        })
+      }
       function removeReply(obj) {
         console.log(obj);
         let reply_idx = $(obj).parent().next().val();
@@ -294,7 +319,10 @@ body {
             getReplyList();
           },
           error : function(request, status, error) {
-            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+            console.log(status);
+            console.log(request);
+            console.log(error);
           },
         })
       }

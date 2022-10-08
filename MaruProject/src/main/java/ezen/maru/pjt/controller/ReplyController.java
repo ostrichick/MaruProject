@@ -71,6 +71,7 @@ public class ReplyController {
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
 		int member_idx = (int) optional_member_idx.get();
 		replyVo.setMember_idx(member_idx);
+		System.out.println(replyVo);
 		updateService.editReply(replyVo);
 	}
 

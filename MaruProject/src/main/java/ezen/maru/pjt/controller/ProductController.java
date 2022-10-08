@@ -47,7 +47,6 @@ public class ProductController {
 	public String list(@RequestParam(required = false, defaultValue = "%%") String category, Model model) {
 		String product_major_category = category;
 		List<ProductVo> productList = listService.getProductList(product_major_category);
-		System.out.println(productList.toString());
 		model.addAttribute("productList", productList);
 		return "product/list";
 	}
