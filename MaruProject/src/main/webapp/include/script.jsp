@@ -54,15 +54,15 @@
     e.preventDefault();
   });
 
-  $('.js-addwish-b2').each(function() {
-    var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-    $(this).on('click', function() {
-      Swal.fire(nameProduct, "장바구니에 추가되었습니다!", "success");
+//   $('.js-addwish-b2').each(function() {
+//     var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+//     $(this).on('click', function() {
+//       Swal.fire(nameProduct, "장바구니에 추가되었습니다!", "success");
 
-      $(this).addClass('js-addedwish-b2');
-      $(this).off('click');
-    });
-  });
+//       $(this).addClass('js-addedwish-b2');
+//       $(this).off('click');
+//     });
+//   });
 
   $('.js-addwish-detail').each(function() {
     var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();

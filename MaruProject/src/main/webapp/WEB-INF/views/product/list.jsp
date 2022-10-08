@@ -36,16 +36,16 @@ span.cart_plus>i:hover {
             <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i> <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i> 검색
           </div>
         </div>
-        
-<!--         <div class="flex-w flex-l-m filter-tope-group m-tb-10"> -->
-<!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">전체</button> -->
-<!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".livingroom">거실</button> -->
-<!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bedroom">침실</button> -->
-<!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".library">서재</button> -->
-<!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".kitchen">주방</button> -->
-<!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bathroom">욕실</button> -->
-<!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".etcproduct">기타</button> -->
-<!--         </div> -->
+
+        <!--         <div class="flex-w flex-l-m filter-tope-group m-tb-10"> -->
+        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">전체</button> -->
+        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".livingroom">거실</button> -->
+        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bedroom">침실</button> -->
+        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".library">서재</button> -->
+        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".kitchen">주방</button> -->
+        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bathroom">욕실</button> -->
+        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".etcproduct">기타</button> -->
+        <!--         </div> -->
 
         <!-- Search product -->
         <div class="dis-none panel-search w-full p-t-10 p-b-15">
@@ -99,7 +99,7 @@ span.cart_plus>i:hover {
             <!-- Block2 -->
             <div class="block2">
               <div class="block2-pic hov-img0">
-                <a href="detail?product_idx=${product.product_idx}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> <c:choose>
+                <a href="detail?product_idx=${product.product_idx}" class="stext-104 cl4 hov-cl1 trans-04 p-b-6"> <c:choose>
                     <c:when test="${empty product.file_original}">
                       <img src="https://place-hold.it/270x270" alt="IMG-PRODUCT">
                     </c:when>
@@ -134,7 +134,7 @@ span.cart_plus>i:hover {
                   <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
                 </div>
                 <div class="block2-txt-child2 flex-r p-t-15">
-                  <a onClick="fn_addCart(${product.product_idx})" href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>
+                  <a onClick="fn_addCart(${product.product_idx}, '${product.product_name}')" href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>
 
                 </div>
               </div>
@@ -151,11 +151,11 @@ span.cart_plus>i:hover {
     </div>
   </div>
   <script>
-  function fn_addCart(idx) {
+  function fn_addCart(idx, product_name) {
     //idx 값에는 product_idx가 담김. 장바구니 버튼 위치 line 096
 
     let cart_product_number = 1; // 담을 물건 숫자
-
+        
     $.ajax({
       type: "post",
       url: "${MaruContextPath}/cart/add_process?product_idx=" + idx + "&cart_product_number=" + cart_product_number,
@@ -164,15 +164,15 @@ span.cart_plus>i:hover {
         cart_product_number: cart_product_number,
       },
       success: function () {
-        console.log("성공");
+        Swal.fire(product_name, "장바구니에 추가되었습니다!", "success");
       },
       error: function () {
         alert("실패");
       },
     });
   }
+</script>
 
-    </script>
 
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>

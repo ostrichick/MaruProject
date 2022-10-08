@@ -12,7 +12,7 @@
     )
     <!-- 방금 작성한 글의 idx를 셀렉트키로 받아서 boardVo객체의 속성으로 반환 -->
     <selectKey resultType="int" keyProperty="idx" order="AFTER">
-      SELECT SEQ_announce_IDX.CURRVAL FROM dual
+      SELECT LAST_INSERT_ID() 
     </selectKey>
   </insert>
 
@@ -21,14 +21,12 @@
   </select>
 
   <select id="getNoticeList" resultType="boardVo">
-    SELECT c.* FROM (
-    SELECT a.*, ROWNUM r
+    SELECT a.*
     from (
     select * from announce b
     ORDER BY b.idx DESC
-    )
-    a WHERE ROWNUM &lt;= #{end}
-    ) c WHERE c.r &gt;= #{start}
+    ) a
+    limit 0, #{end}
   </select>
 
   <select id="getNotice" parameterType="int" resultType="boardVo">

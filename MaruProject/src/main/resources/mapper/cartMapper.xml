@@ -10,22 +10,16 @@
   </select>
 
   <!-- merge문 : 해당 값이 있으면 update 없으면 insert -->
+  <!-- 오라클 용 <update id="addCart" parameterType="cartVo"> MERGE INTO product_cart USING DUAL ON ( member_idx = #{member_idx} and product_idx = #{product_idx} ) WHEN MATCHED THEN UPDATE SET cart_product_number = cart_product_number + #{cart_product_number} WHEN NOT MATCHED THEN INSERT ( member_idx, product_idx, cart_product_number) VALUES ( #{member_idx}, #{product_idx}, #{cart_product_number} ) </update> -->
   <update id="addCart" parameterType="cartVo">
-    MERGE INTO product_cart
-    USING DUAL
-    ON (
-    member_idx = #{member_idx} and product_idx = #{product_idx}
-    )
-    WHEN MATCHED THEN
-    UPDATE
-    SET cart_product_number = cart_product_number + #{cart_product_number}
-    WHEN NOT MATCHED THEN
-    INSERT (
-    member_idx, product_idx, cart_product_number) VALUES (
+    INSERT INTO product_cart (
+    member_idx, product_idx, cart_product_number
+    ) VALUES (
     #{member_idx}, #{product_idx}, #{cart_product_number}
-    )
+    ) ON DUPLICATE KEY
+    UPDATE cart_product_number = cart_product_number + #{cart_product_number}
   </update>
-
+  
   <update id="updateCart" parameterType="cartVo">
     UPDATE product_cart
     SET

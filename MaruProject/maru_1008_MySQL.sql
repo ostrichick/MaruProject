@@ -1,0 +1,407 @@
+SET SESSION FOREIGN_KEY_CHECKS=0;
+
+/* Drop Tables */
+
+DROP TABLE IF EXISTS ANNOUNCE_REPLY;
+DROP TABLE IF EXISTS ANNOUNCE;
+DROP TABLE IF EXISTS DELIVERY_INFO;
+DROP TABLE IF EXISTS ORDER_PRODUCT;
+DROP TABLE IF EXISTS ORDER_LOG;
+DROP TABLE IF EXISTS PRODUCT_CART;
+DROP TABLE IF EXISTS PRODUCT_QNA;
+DROP TABLE IF EXISTS REVIEW_TBL;
+DROP TABLE IF EXISTS MEMBER_INFO;
+DROP TABLE IF EXISTS PRODUCT_PHOTO;
+DROP TABLE IF EXISTS PRODUCT;
+
+
+
+
+/* Create Tables */
+
+-- 공지사항 게시판
+CREATE TABLE ANNOUNCE
+(
+	-- 공지사항 번호
+	IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '공지사항 번호',
+	-- 공지사항 제목
+	TITLE varchar(90) NOT NULL COMMENT '공지사항 제목',
+	-- 공지사항 내용
+	CONTENT varchar(1500) NOT NULL COMMENT '공지사항 내용',
+	-- 공지 게시일
+	WDATE datetime DEFAULT now() NOT NULL COMMENT '공지 게시일',
+	-- 파일 원본 이름
+	FILE_ORIGINAL varchar(90) COMMENT '파일 원본 이름',
+	-- 파일 시스템이름
+	FILE_SYSTEM varchar(90) COMMENT '파일 시스템이름',
+	-- 파일 확장자
+	FILE_EXTENSION varchar(10) COMMENT '파일 확장자',
+	-- 조회수
+	HIT int unsigned DEFAULT 0 COMMENT '조회수',
+	-- 삭제 여부
+	DELETED_YN varchar(3) DEFAULT 'N' NOT NULL COMMENT '삭제 여부',
+	REPLY_COUNT int unsigned DEFAULT 0  NOT NULL,
+	CONSTRAINT SYS_C0010729 PRIMARY KEY (IDX)
+) COMMENT = '공지사항 게시판';
+
+
+-- 공지사항 댓글
+CREATE TABLE ANNOUNCE_REPLY
+(
+	-- 댓글 번호
+	REPLY_IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '댓글 번호',
+	-- 공지사항 번호
+	IDX int unsigned NOT NULL COMMENT '공지사항 번호',
+	-- 회원번호
+	MEMBER_IDX int unsigned NOT NULL COMMENT '회원번호',
+	-- 댓글 내용
+	REPLY_CONTENT varchar(1500) COMMENT '댓글 내용',
+	-- 댓글 작성일
+	REPLY_DATE datetime DEFAULT now() NOT NULL COMMENT '댓글 작성일',
+	-- 삭제 여부
+	DELETED_YN varchar(3) DEFAULT 'N' NOT NULL COMMENT '삭제 여부',
+	CONSTRAINT SYS_C0010735 PRIMARY KEY (REPLY_IDX)
+) COMMENT = '공지사항 댓글';
+
+
+-- 배송 정보
+CREATE TABLE DELIVERY_INFO
+(
+	-- 시스템 배송 번호
+	DELIVERY_IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '시스템 배송 번호',
+	-- 택배사 송장 번호
+	DELIVERY_CODE varchar(50) COMMENT '택배사 송장 번호',
+	-- 주문번호
+	ORDER_IDX int unsigned NOT NULL COMMENT '주문번호',
+	-- 배송 예정일
+	DELIVERY_DUEDATE datetime DEFAULT (CURRENT_DATE + INTERVAL 3 day) COMMENT '배송 예정일',
+	-- 배송 상태
+	DELIVERY_STATUS varchar(60) COMMENT '배송 상태',
+	CONSTRAINT SYS_C0010738 PRIMARY KEY (DELIVERY_IDX)
+) COMMENT = '배송 정보';
+
+
+-- 회원관리
+CREATE TABLE MEMBER_INFO
+(
+	-- 회원번호
+	MEMBER_IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '회원번호',
+	-- 아이디
+	MEMBER_ID varchar(30) NOT NULL COMMENT '아이디',
+	-- 패스워드
+	MEMBER_PW varchar(500) NOT NULL COMMENT '패스워드',
+	-- 이름
+	MEMBER_NAME varchar(30) NOT NULL COMMENT '이름',
+	-- 이메일
+	MEMBER_EMAIL varchar(100) NOT NULL COMMENT '이메일',
+	-- 전화번호
+	MEMBER_PHONE varchar(12) NOT NULL COMMENT '전화번호',
+	-- 회원주소
+	MEMBER_ADDR varchar(255) NOT NULL COMMENT '회원주소',
+	-- 상세주소
+	MEMBER_ADDR2 varchar(255) NOT NULL COMMENT '상세주소',
+	-- 우편번호
+	MEMBER_POSTCODE smallint unsigned NOT NULL COMMENT '우편번호',
+	-- 가입일
+	MEMBER_DATE datetime DEFAULT now() COMMENT '가입일',
+	-- 마지막 방문일
+	MAMBER_LAST_VISIT datetime DEFAULT now() COMMENT '마지막 방문일',
+	-- 회원 등급
+	MEMBER_GRADE varchar(3) DEFAULT '0' NOT NULL COMMENT '회원 등급',
+	-- 관리자여부
+	MEMBER_ADMIN varchar(3) DEFAULT 'N' NOT NULL COMMENT '관리자여부',
+	-- 탈퇴여부
+	DELETED_YN varchar(3) DEFAULT 'N' NOT NULL COMMENT '탈퇴여부',
+	-- salt
+	SALT varchar(100) COMMENT 'salt',
+	CONSTRAINT SYS_C0010751 PRIMARY KEY (MEMBER_IDX),
+	UNIQUE (MEMBER_ID)
+) COMMENT = '회원관리';
+
+
+-- 주문 내역
+CREATE TABLE ORDER_LOG
+(
+	-- 주문번호
+	ORDER_IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '주문번호',
+	-- 회원번호
+	MEMBER_IDX int unsigned NOT NULL COMMENT '회원번호',
+	-- 주문날자
+	ORDER_DATE datetime DEFAULT now() NOT NULL COMMENT '주문날자',
+	-- 주문 총 가격
+	ORDER_TOTAL_PRICE int unsigned NOT NULL COMMENT '주문 총 가격',
+	-- 수령자 이름
+	ORDER_NAME varchar(20) COMMENT '수령자 이름',
+	-- 수령자 주소1
+	ORDER_ADDRESS varchar(90) COMMENT '수령자 주소1',
+	-- 수령자 주소2
+	ORDER_ADDRESS2 varchar(90) COMMENT '수령자 주소2',
+	-- 수령자 우편번호
+	ORDER_POSTCODE smallint unsigned COMMENT '수령자 우편번호',
+	-- 수령자 전화번호
+	ORDER_PHONE varchar(30) COMMENT '수령자 전화번호',
+	-- 주문 진행 상태 : 준비 중
+	-- 배송 시작
+	-- 배송 중
+	-- 배송 완료
+	-- 구매 확정
+	-- 환불
+	-- 취소
+	ORDER_STATUS varchar(30) DEFAULT '준비 중' NOT NULL COMMENT '주문 진행 상태 : 준비 중
+배송 시작
+배송 중
+배송 완료
+구매 확정
+환불
+취소',
+	-- 주문 취소 여부
+	ORDER_CANCEL_YN varchar(3) DEFAULT 'N' NOT NULL COMMENT '주문 취소 여부',
+	-- 주문 환불 여부
+	ORDER_REFUND_YN varchar(3) DEFAULT 'N' NOT NULL COMMENT '주문 환불 여부',
+	-- 환불 금액
+	ORDER_REFUND_MONEY int unsigned COMMENT '환불 금액',
+	-- 환불 진행 상태
+	ORDER_REFUND_STATUS varchar(30) COMMENT '환불 진행 상태',
+	CONSTRAINT SYS_C0010760 PRIMARY KEY (ORDER_IDX)
+) COMMENT = '주문 내역';
+
+
+-- 주문 상품
+CREATE TABLE ORDER_PRODUCT
+(
+	-- 주문번호
+	ORDER_IDX int unsigned NOT NULL COMMENT '주문번호',
+	-- 상품번호
+	PRODUCT_IDX int unsigned NOT NULL COMMENT '상품번호',
+	-- 주문 개수
+	ORDER_QUANTITY int unsigned NOT NULL COMMENT '주문 개수'
+) COMMENT = '주문 상품';
+
+
+-- 상품
+CREATE TABLE PRODUCT
+(
+	-- 상품번호
+	PRODUCT_IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '상품번호',
+	-- 상품명
+	PRODUCT_NAME varchar(90) NOT NULL COMMENT '상품명',
+	-- 상품가격
+	PRODUCT_PRICE int unsigned NOT NULL COMMENT '상품가격',
+	-- 할인 여부
+	PRODUCT_SALE varchar(3) DEFAULT 'N' NOT NULL COMMENT '할인 여부',
+	-- 상품 할인율
+	PRODUCT_SALE_PERCENT smallint unsigned DEFAULT 0 COMMENT '상품 할인율',
+	-- 할인 적용된 가격
+	PRODUCT_SALE_PRICE int unsigned COMMENT '할인 적용된 가격',
+	-- 상품 규격 (100x200)
+	PRODUCT_SIZE varchar(30) COMMENT '상품 규격 (100x200)',
+	-- 상품 분류 (대분류)
+	PRODUCT_MAJOR_CATEGORY varchar(30) COMMENT '상품 분류 (대분류)',
+	-- 신제품 여부
+	PRODUCT_ISNEW varchar(3) DEFAULT 'N' NOT NULL COMMENT '신제품 여부',
+	-- 상품 상세 설명
+	PRODUCT_DETAIL varchar(4000) NOT NULL COMMENT '상품 상세 설명',
+	-- 리뷰 평점
+	PRODUCT_AVGSTAR float DEFAULT 0  NOT NULL COMMENT '리뷰 평점',
+	-- 상품 조회수
+	PRODUCT_HIT int unsigned DEFAULT 0  NOT NULL COMMENT '상품 조회수',
+	-- 상품 재고
+	PRODUCT_INVENTORY int unsigned COMMENT '상품 재고',
+	-- 품절여부
+	OUT_OF_STOCK_YN varchar(3) DEFAULT 'N' NOT NULL COMMENT '품절여부',
+	-- 삭제 여부
+	DELETED_YN varchar(3) DEFAULT 'N' NOT NULL COMMENT '삭제 여부',
+	CONSTRAINT SYS_C0010774 PRIMARY KEY (PRODUCT_IDX)
+) COMMENT = '상품';
+
+
+-- 장바구니
+CREATE TABLE PRODUCT_CART
+(
+	-- 장바구니 번호
+	CART_IDX int unsigned NOT NULL COMMENT '장바구니 번호',
+	-- 상품번호
+	PRODUCT_IDX int unsigned NOT NULL COMMENT '상품번호',
+	-- 회원번호
+	MEMBER_IDX int unsigned NOT NULL COMMENT '회원번호',
+	-- 상품 수량
+	CART_PRODUCT_NUMBER int unsigned COMMENT '상품 수량',
+	-- ischecked
+	ISCHECKED varchar(3) DEFAULT 'Y' NOT NULL COMMENT 'ischecked',
+	CONSTRAINT SYS_C0010779 PRIMARY KEY (PRODUCT_IDX, MEMBER_IDX),
+	UNIQUE (CART_IDX)
+) COMMENT = '장바구니';
+
+
+-- 제품용 사진
+CREATE TABLE PRODUCT_PHOTO
+(
+	-- 상품번호
+	PRODUCT_IDX int unsigned NOT NULL COMMENT '상품번호',
+	-- 사진 번호
+	FILE_IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '사진 번호',
+	-- 파일 원본이름
+	FILE_ORIGINAL varchar(90) COMMENT '파일 원본이름',
+	-- 파일 시스템이름
+	FILE_SYSTEM varchar(90) COMMENT '파일 시스템이름',
+	-- 파일 확장자
+	FILE_EXTENSION varchar(9) COMMENT '파일 확장자',
+	CONSTRAINT SYS_C0010782 PRIMARY KEY (FILE_IDX)
+) COMMENT = '제품용 사진';
+
+
+-- 상품문의
+CREATE TABLE PRODUCT_QNA
+(
+	-- 상품문의 번호
+	IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '상품문의 번호',
+	-- 상품번호
+	PRODUCT_IDX int unsigned NOT NULL COMMENT '상품번호',
+	-- 회원번호
+	MEMBER_IDX int unsigned NOT NULL COMMENT '회원번호',
+	-- 질문답변 내용
+	CONTENT varchar(1500) NOT NULL COMMENT '질문답변 내용',
+	-- 게시일
+	WDATE datetime DEFAULT now() NOT NULL COMMENT '게시일',
+	-- 답변이 있음
+	ISANSWERED varchar(3) DEFAULT 'N' NOT NULL COMMENT '답변이 있음',
+	-- 원본글 번호
+	PARENT_IDX int unsigned COMMENT '원본글 번호',
+	CONSTRAINT SYS_C0010789 PRIMARY KEY (IDX)
+) COMMENT = '상품문의';
+
+
+-- 리뷰
+CREATE TABLE REVIEW_TBL
+(
+	-- 리뷰 번호
+	IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '리뷰 번호',
+	-- 상품번호
+	PRODUCT_IDX int unsigned NOT NULL COMMENT '상품번호',
+	-- 회원번호
+	MEMBER_IDX int unsigned NOT NULL COMMENT '회원번호',
+	-- 리뷰 내용
+	CONTENT varchar(1500) COMMENT '리뷰 내용',
+	-- 리뷰 별점
+	STAR double unsigned NOT NULL COMMENT '리뷰 별점',
+	-- 리뷰 작성일
+	WDATE datetime DEFAULT now() NOT NULL COMMENT '리뷰 작성일',
+	-- 리뷰 사진 원본이름
+	FILE_ORIGINAL varchar(90) COMMENT '리뷰 사진 원본이름',
+	-- 리뷰 사진 시스템 이름
+	FILE_SYSTEM varchar(90) COMMENT '리뷰 사진 시스템 이름',
+	-- 리뷰 사진 확장자
+	FILE_EXTENSION varchar(10) COMMENT '리뷰 사진 확장자',
+	CONSTRAINT SYS_C0010795 PRIMARY KEY (IDX),
+	UNIQUE (PRODUCT_IDX)
+) COMMENT = '리뷰';
+
+
+
+/* Create Foreign Keys */
+
+ALTER TABLE ANNOUNCE_REPLY
+	ADD CONSTRAINT SYS_C0010797 FOREIGN KEY (IDX)
+	REFERENCES ANNOUNCE (IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE ANNOUNCE_REPLY
+	ADD CONSTRAINT SYS_C0010798 FOREIGN KEY (MEMBER_IDX)
+	REFERENCES MEMBER_INFO (MEMBER_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE ORDER_LOG
+	ADD CONSTRAINT SYS_C0010799 FOREIGN KEY (MEMBER_IDX)
+	REFERENCES MEMBER_INFO (MEMBER_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE PRODUCT_CART
+	ADD CONSTRAINT SYS_C0010800 FOREIGN KEY (MEMBER_IDX)
+	REFERENCES MEMBER_INFO (MEMBER_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE PRODUCT_QNA
+	ADD CONSTRAINT SYS_C0010801 FOREIGN KEY (MEMBER_IDX)
+	REFERENCES MEMBER_INFO (MEMBER_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE REVIEW_TBL
+	ADD CONSTRAINT SYS_C0010802 FOREIGN KEY (MEMBER_IDX)
+	REFERENCES MEMBER_INFO (MEMBER_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE DELIVERY_INFO
+	ADD CONSTRAINT SYS_C0010803 FOREIGN KEY (ORDER_IDX)
+	REFERENCES ORDER_LOG (ORDER_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE ORDER_PRODUCT
+	ADD CONSTRAINT SYS_C0010804 FOREIGN KEY (ORDER_IDX)
+	REFERENCES ORDER_LOG (ORDER_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE ORDER_PRODUCT
+	ADD CONSTRAINT SYS_C0010805 FOREIGN KEY (PRODUCT_IDX)
+	REFERENCES PRODUCT (PRODUCT_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE PRODUCT_CART
+	ADD CONSTRAINT SYS_C0010806 FOREIGN KEY (PRODUCT_IDX)
+	REFERENCES PRODUCT (PRODUCT_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE PRODUCT_PHOTO
+	ADD CONSTRAINT SYS_C0010807 FOREIGN KEY (PRODUCT_IDX)
+	REFERENCES PRODUCT (PRODUCT_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE PRODUCT_QNA
+	ADD CONSTRAINT SYS_C0010808 FOREIGN KEY (PRODUCT_IDX)
+	REFERENCES PRODUCT (PRODUCT_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE REVIEW_TBL
+	ADD CONSTRAINT SYS_C0010809 FOREIGN KEY (PRODUCT_IDX)
+	REFERENCES PRODUCT (PRODUCT_IDX)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
+;
+
+
+
