@@ -18,9 +18,5 @@ public class BoardDeleteService implements BoardService {
 	public int deleteNotice(int idx) {
 		return boardDao.deleteNotice(idx);
 	}
-	
-	@Override
-	public int deleteQna(int idx) {
-		return boardDao.deleteQna(idx);
-	}
+
 }

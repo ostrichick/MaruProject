@@ -8,30 +8,16 @@ import ezen.maru.pjt.vo.BoardVo;
 
 @Service("b_insert")
 public class BoardInsertService implements BoardService {
-
-	@Override
-	public int noticeWriteProcess(BoardVo boardVo) {
-		return boardDao.noticeWriteProcess(boardVo);
-	}
-
-	@Override
-	public int qnaWriteProcess(BoardVo boardVo) {
-		return boardDao.qnaWriteProcess(boardVo);
-	}
-	@Override
-	public int qnaIsanswered(BoardVo boardVo) {
-		return boardDao.qnaIsanswered(boardVo);
-	}
-
-	//////////////
-	// MARU end //
-	//////////////
-
 	private BoardDao boardDao;
 
 	@Autowired(required = false)
 	public BoardInsertService(BoardDao boardDao) {
 		this.boardDao = boardDao;
+	}
+
+	@Override
+	public int noticeWriteProcess(BoardVo boardVo) {
+		return boardDao.noticeWriteProcess(boardVo);
 	}
 
 //	@Override

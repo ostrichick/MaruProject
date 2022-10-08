@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.service.product.ProductService;
-import ezen.maru.pjt.vo.BoardVo;
 import ezen.maru.pjt.vo.MemberInfoVo;
 import ezen.maru.pjt.vo.ProductVo;
 
@@ -44,9 +43,7 @@ public class AdminController {
 			Model model) {
 
 		List<ProductVo> productList = p_listService.getProductList(product_major_category);
-		List<BoardVo> qnaList = b_listService.getQnaList();
 		List<MemberInfoVo> memberList = m_listService.getMemberInfoList();
-		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("productList", productList);
 		model.addAttribute("memberList", memberList);
 		System.out.println("멤버리스트? " + memberList.toString());

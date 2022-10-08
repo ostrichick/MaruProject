@@ -1,6 +1,5 @@
 package ezen.maru.pjt.controller;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -22,7 +21,6 @@ import ezen.maru.pjt.common.SHA256Util;
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.certification.CertificationService;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
-import ezen.maru.pjt.vo.BoardVo;
 import ezen.maru.pjt.vo.MemberInfoVo;
 
 @Controller
@@ -142,8 +140,6 @@ public class MemberInfoController {
 		HttpSession session = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		MemberInfoVo memberInfoVo = updateService.getMember(member_id);
-		List<BoardVo> qnaList = blistService.getQnaList();
-		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("memberInfoVo", memberInfoVo);
 		return "member/myinfo";
 	}

@@ -60,46 +60,4 @@
     where idx = #{idx}
   </delete>
 
-  <!-- qna -->
-  <insert id="qnaWriteProcess" parameterType="boardVo">
-    INSERT INTO qnaservice (
-    content, member_idx, category
-    ) VALUES (
-    #{content}, #{member_idx}, #{category}
-    )
-  </insert>
-
-  <select id="getQnaList" resultType="boardVo">
-    SELECT m.MEMBER_NAME, q.CONTENT, q.WDATE, q.CATEGORY, q.ISANSWERED, q.PARENT_IDX, q.idx
-    FROM qnaservice q, MEMBER_INFO m
-    WHERE q.member_idx = m.member_idx
-    ORDER BY member_admin
-  </select>
-
-  <select id="isAnsered" resultType="boardVo">
-    select content from qnaservice
-    where parent_idx = #{parent_idx}
-  </select>
-
-  <insert id="qnaIsanswered" parameterType="boardVo">
-    INSERT INTO qnaservice(
-    content, parent_idx, isanswered, category, member_idx
-    ) VALUES (
-    #{content}, #{parent_idx}, #{isanswered}, #{category}, #{member_idx}
-    )
-    <!-- 원본글 qna_idx = #{parent_idx} update qnaservice set where idx = #{parent_idx} -->
-  </insert>
-
-  <update id="qnaEditProcess">
-    update qnaservice
-    set
-    content = #{content},
-    isanswered = #{isanswered}
-    where idx = #{idx}
-  </update>
-
-  <delete id="qnaDeleteprocess" parameterType="int">
-    delete from qnaservice
-    where IDX = #{IDX}
-  </delete>
 </mapper>	

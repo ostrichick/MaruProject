@@ -43,26 +43,5 @@ public class BoardDao {
 	public int deleteNotice(int idx) {
 		return sqlSession.update(MAPPER + ".noticeDeleteProcess", idx);
 	}
-	/////////////////////////////////////
-/////////////////////////////////////
 
-	public int qnaWriteProcess(BoardVo boardVo) {
-		return sqlSession.insert(MAPPER + ".qnaWriteProcess", boardVo);
-	}
-
-	public int qnaIsanswered(BoardVo boardVo) {
-		return sqlSession.insert(MAPPER + ".qnaIsanswered", boardVo);
-	}
-
-	public List<BoardVo> getQnaList() {
-		return sqlSession.selectList(MAPPER + ".getQnaList");
-	}
-
-	public int deleteQna(int idx) {
-		return sqlSession.update(MAPPER + ".qnaDeleteprocess", idx);
-	}
-
-	public int qnaEditProcess(BoardVo boardVo) {
-		return sqlSession.update(MAPPER + ".qnaEditProcess", boardVo);
-	}
 }

@@ -31,28 +31,4 @@ public interface BoardService {
 		return null;
 	}
 
-	///////////////////
-	// 공지사항 끝 //
-	/////////////////
-
-	default int qnaWriteProcess(BoardVo boardVo) {
-		return 0;
-	}
-
-	default List<BoardVo> getQnaList() {
-		return null;
-	}
-
-	default int qnaIsanswered(BoardVo boardVo) {
-		return 0;
-	}
-
-	default int deleteQna(int idx) {
-		return 0;
-	}
-
-	default int qnaEditProcess(BoardVo boardVo) {
-		return 0;
-	}
-
 }
