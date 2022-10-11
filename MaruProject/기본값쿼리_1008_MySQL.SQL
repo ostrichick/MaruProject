@@ -1,29 +1,43 @@
 ﻿
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 INSERT INTO MEMBER_INFO(
 member_id, member_pw,
 member_name, member_email, member_phone,
 member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (
-'admin12','1234',
+'admin12','$2a$10$XjpsQrN/s6xxcqqnCmuamORgEuBSbt75sI.c/E06V7a9D3/1GxYsW',
 '관리자1','admin1@naver.com','01043214321',
 '서울특별시 광진구','어린이대공원길 329-3',29381,
 'Y');
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 INSERT INTO MEMBER_INFO(
 member_id, member_pw,
 member_name, member_email, member_phone,
 member_addr, member_addr2, member_postcode,
 member_admin
 ) VALUES (
-'as','12',
+'as','$2a$10$8m.wE81/SRp/wJ9kIZfOX.EjMg8RJ.wuyewIcY2biNxzrjfomHrvK',
 '김길동','admin@maru.com','01012341234',
 '전북 전주시 덕진구','백제대로 494',54938,
 'Y');
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+    
+
+
+INSERT INTO MEMBER_INFO(
+member_id, member_pw,
+member_name, member_email, member_phone,
+member_addr, member_addr2, member_postcode,
+member_admin
+) VALUES (
+'zxczxc','$2a$10$27adhDVoDeqDgaN7rtoEs.1m18tLZbpDB0AyK.n.8PvCyjNrPjcBe',
+'일반인','person@maru.com','01033334444',
+'전북 전주시 완산구','풍남로 3',54913,
+'N');
+
+
 insert into product (
 product_name, product_price, product_sale, product_sale_percent,
 product_size, product_major_category,
@@ -33,7 +47,7 @@ product_detail, product_inventory
 '100x200', 'livingroom',
 '상세설명입니다', 100);
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 insert into product (
 product_name, product_price, product_sale, product_sale_percent,
 product_size, product_major_category,
@@ -43,7 +57,7 @@ product_detail, product_inventory
 '100x200', 'bedroom',
 '상세설명입니다', 100);
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 insert into product (
 product_name, product_price, product_sale, product_sale_percent,
 product_size, product_major_category,
@@ -53,7 +67,7 @@ product_detail, product_inventory
 '100x200', 'library',
 '상세설명입니다', 100);
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 INSERT INTO announce (
 title, content,
 file_original, file_system, file_extension
@@ -62,7 +76,7 @@ file_original, file_system, file_extension
 3, 3, 'jpg'
 );
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 INSERT INTO announce (
 title, content,
 file_original, file_system, file_extension
@@ -71,21 +85,21 @@ file_original, file_system, file_extension
 3, 3, 'jpg'
 );
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 INSERT INTO announce_reply (
 idx, member_idx, reply_content
 ) VALUES (
 1, 1, '첫번재 리플!!!!'
 )
 
-    -- SQLINES LICENSE FOR EVALUATION USE ONLY
+    
 INSERT INTO announce_reply (
 idx, member_idx, reply_content
 ) VALUES (
 1, 1, '두번재 리플!!!!'
 )
 
-    -- SQLINES LICENSE FOR EVALUATION USE ONLY
+    
 INSERT INTO announce_reply (
 idx, member_idx, reply_content
 ) VALUES (

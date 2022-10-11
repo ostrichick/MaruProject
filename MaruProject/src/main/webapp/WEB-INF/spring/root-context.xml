@@ -16,19 +16,19 @@
 
   <!-- MySQL 연결을 위한 DriverManagerDataSource 빈 등록 -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-  <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-  <property name="url" value="jdbc:mysql://jjezen.cafe24.com:3307/maru?characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;allowMultiQueries=true" />
-  <property name="username" value="maru" />
-  <property name="password" value="maru1234!!" />
+    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+    <property name="url" value="jdbc:mysql://jjezen.cafe24.com:3307/maru?characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;allowMultiQueries=true" />
+    <property name="username" value="maru" />
+    <property name="password" value="maru1234!!" />
   </bean>
 
   <!-- Root Context: defines shared resources visible to all other web components -->
-<!--   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!--     <property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" /> -->
-<!--     <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
-<!--     <property name="username" value="c##dev" /> -->
-<!--     <property name="password" value="1234" /> -->
-<!--   </bean> -->
+  <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+  <!-- <property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" /> -->
+  <!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
+  <!-- <property name="username" value="c##dev" /> -->
+  <!-- <property name="password" value="1234" /> -->
+  <!-- </bean> -->
 
   <!-- mybatis 연동을 위한 SqlSessionFactoryBean, SqlSessionTemplate 빈 등록 -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -59,4 +59,46 @@
       </props>
     </property>
   </bean>
+  
+  <!-- 오류페이지 -->
+  <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <property name="defaultErrorView" value="/error/error" />
+    <property name="defaultStatusCode" value="200" />
+    <property name="exceptionAttribute" value="exception" />
+    <property name="excludedExceptions" value="ezen.maru.pjt.exception.UncheckException" />
+    <property name="exceptionMappings">
+      <props>
+        <prop key="ezen.maru.pjt.exception.DatabaseException">
+          error/error_database
+        </prop>
+        <prop key="ezen.maru.pjt.exception.SecurityException">
+          error/error_security
+        </prop>
+        <prop key="ezen.maru.pjt.exception.BusinessException">
+          error/error_business
+        </prop>
+        <prop key="ezen.maru.pjt.exception.AjaxException">
+          error/error_ajax
+        </prop>
+      </props>
+    </property>
+    <property name="statusCodes">
+      <props>
+        <prop key="common/err/error_database">
+          500
+        </prop>
+        <prop key="common/err/error_security">
+          403
+        </prop>
+        <prop key="common/err/error_business">
+          500
+        </prop>
+        <prop key="common/err/error_ajax">
+          200
+        </prop>
+      </props>
+    </property>
+  </bean>
+  
+  
 </beans>

@@ -280,27 +280,28 @@ body {
       }
       function editReplyProcess(reply_idx, member_idx, obj) {
         let reply_content = $(obj).prev().val();
+        if ($(obj).prev().val() != "") {
+          $.ajax({
+            type : 'post',
+            url : 'reply/edit?reply_idx=' + reply_idx,
+            data : {
+              member_idx : member_idx,
+              reply_content : reply_content,
+            },
+            success : function(result) {
+              console.log(result);
+              console.log("수정 성공");
+              getReplyList();
 
-        $.ajax({
-          type : 'post',
-          url : 'reply/edit?reply_idx=' + reply_idx,
-          data : {
-            member_idx : member_idx,
-            reply_content : reply_content,
-          },
-          success : function(result) {
-            console.log(result);
-            console.log("수정 성공");
-            getReplyList();
-
-          },
-          error : function(request, status, error) {
-            alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
-            console.log(status);
-            console.log(request);
-            console.log(error);
-          },
-        })
+            },
+            error : function(request, status, error) {
+              alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+              console.log(status);
+              console.log(request);
+              console.log(error);
+            },
+          })
+        }
       }
       function removeReply(obj) {
         console.log(obj);

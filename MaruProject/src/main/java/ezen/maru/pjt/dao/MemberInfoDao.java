@@ -47,4 +47,8 @@ public class MemberInfoDao {
 		return sqlSession.selectOne(MAPPER + ".idDuplicateCheck", member_id);
 	}
 
+	public MemberInfoVo getCryptedMemberPw(MemberInfoVo memberInfoVo) {
+		return sqlSession.selectOne(MAPPER + ".getCryptedMemberPw", memberInfoVo);
+	}
+
 }

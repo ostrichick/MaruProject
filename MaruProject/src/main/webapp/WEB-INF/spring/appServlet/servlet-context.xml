@@ -21,19 +21,27 @@
   <interceptors>
     <interceptor>
       <mapping path="/admin/**" />
-      <mapping path="/notice/write" />
-      <mapping path="/notice/edit" />
-      <mapping path="/notice/delete" />
+
+      <mapping path="/notice/**" />
+      <exclude-mapping path="/notice/list" />
+      <exclude-mapping path="/notice/view" />
+      <exclude-mapping path="/notice/reply/**" />
+
       <beans:bean id="adminInterceptor" class="ezen.maru.pjt.interceptor.AdminInterceptor" />
     </interceptor>
-    <!-- <interceptor> -->
-    <!-- <mapping path="/**/*.do" /> -->
-    <!-- <exclude-mapping path="/home.do" /> -->
-    <!-- <exclude-mapping path="/member_join.do" /> -->
-    <!-- <exclude-mapping path="/join_process.do" /> -->
-    <!-- <exclude-mapping path="/member_login.do" /> -->
-    <!-- <exclude-mapping path="/login_process.do" /> -->
-    <!-- <beans:bean id="loginInterceptor" class="ezen.maru.pjt.interceptor.LoginInterceptor" /> -->
-    <!-- </interceptor> -->
+    <interceptor>
+      <!-- <mapping path="/**/*" /> -->
+      <mapping path="/order/**" />
+      <mapping path="/cart/**" />
+      <mapping path="/product/**" />
+      <mapping path="/member/myinfo" />
+      <mapping path="/member/myinfo_edit" />
+      <mapping path="/member/updatemyinfo" />
+      <mapping path="/member/deleteprocess" />
+      <exclude-mapping path="/product/list" />
+      <exclude-mapping path="/product/detail" />
+
+      <beans:bean id="loginInterceptor" class="ezen.maru.pjt.interceptor.LoginInterceptor" />
+    </interceptor>
   </interceptors>
 </beans:beans>

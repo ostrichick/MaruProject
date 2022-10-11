@@ -19,14 +19,29 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping("/index2")
-	public String index2do() {
-		return "index2";
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
+	}
+
+	@GetMapping("/error")
+	public String error() {
+		return "error/error";
+	}
+
+	@GetMapping("/product")
+	public String product() {
+		return "product";
 	}
 
 	@GetMapping("/about")
 	public String about() {
 		return "about";
+	}
+
+	@GetMapping("/index2")
+	public String index2do() {
+		return "index2";
 	}
 
 	@GetMapping("/blog")
@@ -37,26 +52,6 @@ public class HomeController {
 	@GetMapping("/blog-detail")
 	public String blog_detail() {
 		return "blog-detail";
-	}
-
-	@GetMapping("/contact")
-	public String contact() {
-		return "contact";
-	}
-
-	@GetMapping("/home-02")
-	public String home_02() {
-		return "home-02";
-	}
-
-	@GetMapping("/home-03")
-	public String home_03() {
-		return "home-03";
-	}
-
-	@GetMapping("/product")
-	public String product() {
-		return "product";
 	}
 
 	@GetMapping("/review")

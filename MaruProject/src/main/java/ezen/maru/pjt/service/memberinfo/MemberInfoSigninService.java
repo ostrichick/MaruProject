@@ -19,4 +19,9 @@ public class MemberInfoSigninService implements MemberInfoService {
 	public MemberInfoVo signin(MemberInfoVo memberInfoVo) {
 		return memberInfoDao.signin(memberInfoVo);
 	}
+
+	@Override
+	public MemberInfoVo getCryptedMemberPw(MemberInfoVo memberInfoVo) {
+		return memberInfoDao.getCryptedMemberPw(memberInfoVo);
+	}
 }

@@ -79,7 +79,7 @@ public class ReplyController {
 	@ResponseBody
 	public void removeReply(HttpServletRequest req, ReplyVo replyVo) {
 		HttpSession session = req.getSession();
-		System.out.println("replyVo in Controller : " + replyVo);
+//		System.out.println("replyVo in Controller : " + replyVo);
 		Optional<Object> optional_member_id = Optional.ofNullable(session.getAttribute("member_id"));
 		String member_id = (String) optional_member_id.get();
 		replyVo.setMember_id(member_id);

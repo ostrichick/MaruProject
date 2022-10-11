@@ -12,7 +12,6 @@
   <!-- 시작 -->
   <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12">
     <h3 class="m-tb-50 m-l-30">회원가입</h3>
-
     <form name="joinform" class="needs-validation bg2 text-black p-5 bor10 m-b-50" novalidate action="${pageContext.request.contextPath}/member/signup_process" method="post">
       <p>
         <label for="member_id"> 아이디 </label>

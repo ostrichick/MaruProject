@@ -34,4 +34,8 @@ public interface MemberInfoService {
 		return 0;
 	}
 
+	default MemberInfoVo getCryptedMemberPw(MemberInfoVo memberInfoVo) {
+		return null;
+	}
+
 }

@@ -38,7 +38,7 @@ public class ReplyDao {
 	}
 
 	public int removeReply(ReplyVo replyVo) {
-		System.out.println("replyVo in DAO: " + replyVo);
+//		System.out.println("replyVo in DAO: " + replyVo);
 		return sqlSession.update(MAPPER + ".removeReply", replyVo);
 	}
 

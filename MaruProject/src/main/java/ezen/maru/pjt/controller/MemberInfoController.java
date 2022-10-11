@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ezen.maru.pjt.common.SHA256Util;
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.certification.CertificationService;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
@@ -33,6 +33,9 @@ public class MemberInfoController {
 	BoardService blistService;
 
 	CertificationService certificationService;
+
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired(required = false)
 	public void setListService2(@Qualifier("b_list") BoardService blistService) {
@@ -69,9 +72,8 @@ public class MemberInfoController {
 		return "member/signup";
 	}
 
-	@GetMapping("/check/sendSMS")
+	@GetMapping("/check/sendSMS") // 무작위 4자리 숫자를 만들어서 전송
 	public @ResponseBody String sendSMS(String phoneNumber) {
-
 		Random rand = new Random();
 		String numStr = "";
 		for (int i = 0; i < 4; i++) {
@@ -87,7 +89,7 @@ public class MemberInfoController {
 
 	@ResponseBody
 	@RequestMapping(value = "/check/idDuplicate", method = RequestMethod.POST)
-	public int idChk(String member_id) throws Exception {
+	public int idDuplicateCheck(String member_id) throws Exception {
 		int result = selectService.idDuplicateCheck(member_id);
 		System.out.println("DuplicateCheck result is : " + result);
 		return result;
@@ -95,34 +97,52 @@ public class MemberInfoController {
 
 	@PostMapping("/signup_process") // 회원가입 처리 요청
 	public String signup_process(MemberInfoVo memberInfoVo, Model model, HttpServletRequest req) {
-		String salt = SHA256Util.generateSalt();
-		memberInfoVo.setSalt(salt);
-
-		int result = signupService.signup(memberInfoVo);
+		int id_result = selectService.idDuplicateCheck(memberInfoVo.getMember_id());
+		System.out.println("id_result : " + id_result);
 		String viewPage = "member/signup";
-		if (result == 1) {
-			viewPage = "redirect:/";
-			userSessionUpdate(memberInfoVo, req);
+		if (id_result != 1) { // 아이디 중복을 다시 체크하고 중복이 아니면 진행
+			String input_member_pw = memberInfoVo.getMember_pw();
+			String member_pw = bCryptPasswordEncoder.encode(input_member_pw);
+			// form에서 받아온 비밀번호를 암호화해여 vo객체에 저장
+			memberInfoVo.setMember_pw(member_pw);
+			int result = signupService.signup(memberInfoVo);
+
+			if (result == 1) {
+				viewPage = "redirect:/";
+				userSessionUpdate(memberInfoVo, req);
+			}
 		}
 		return viewPage;
 	}
 
 	@GetMapping("/signin") // 로그인 페이지
-	public String member_signin(HttpServletRequest req) {
+	public String signin(HttpServletRequest req) {
 		String referrer = req.getHeader("Referer");
 		req.getSession().setAttribute("prevPage", referrer);
 		return "member/signin";
 	}
 
+	@GetMapping("/find") // 아이디 비밀번호 찾기 선택 페이지
+	public String find(HttpServletRequest req) {
+
+		return "member/find";
+	}
+
 	@PostMapping("/signin_process") // 로그인 요청
-	public String signin_process(String member_id, String member_pw, HttpServletRequest req) {
-		MemberInfoVo memberInfoVoParam = new MemberInfoVo();
-		memberInfoVoParam.setMember_id(member_id);
-		memberInfoVoParam.setMember_pw(member_pw);
+	public String signin_process(MemberInfoVo memberInfoVo, HttpServletRequest req) throws Exception {
 		String viewPage = "member/signin";
-		MemberInfoVo memberInfoVo = signinService.signin(memberInfoVoParam);
-		if (memberInfoVo != null) {
-			userSessionUpdate(memberInfoVo, req);
+
+		System.out.println(bCryptPasswordEncoder.encode("1234"));
+
+		MemberInfoVo memberInfoVoFromDB = signinService.getCryptedMemberPw(memberInfoVo);
+		boolean pwMatchResult = false;
+		if (memberInfoVoFromDB.getMember_pw() != null) {
+			String getCryptedMemberPw = memberInfoVoFromDB.getMember_pw();
+			pwMatchResult = bCryptPasswordEncoder.matches(memberInfoVo.getMember_pw(), getCryptedMemberPw);
+		}
+		// 입력받은 값과 암호화된 값을 matches로 비교
+		if (pwMatchResult) {
+			userSessionUpdate(memberInfoVoFromDB, req);
 			viewPage = "redirect:/";
 		}
 		return viewPage;
