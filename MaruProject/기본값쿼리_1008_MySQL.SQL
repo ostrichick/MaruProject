@@ -108,4 +108,28 @@ idx, member_idx, reply_content
 
 ALTER TABLe product_cart MODIFY cart_idx INT NOT NULL AUTO_INCREMENT;
 
+INSERT INTO product_qna (
+product_idx, member_idx, content
+) VALUES (
+1, 1, '첫번재문의'
+)
+
+INSERT INTO product_qna (
+product_idx, member_idx, content
+) VALUES (
+1, 1, '두번재문의'
+)
+
+INSERT INTO product_qna (
+product_idx, member_idx, content, parent_idx
+) VALUES (
+1, 2, '첫번째답변', 1
+)
+
+UPDATE product_qna
+SET
+isAnswered = 'Y'
+WHERE
+idx = 1
+
 commit;

@@ -18,11 +18,12 @@ public class BoardVo {
 	private String content;
 	private Date wdate;
 	private String category;
-	private String isanswered;
+	private String isAnswered;
 	private int parent_idx;
 	private String file_original;
 	private String file_system;
 	private String file_extension;
 	private int hit;
 	private int reply_count;
+	private String deleted_yn;
 }

@@ -15,4 +15,5 @@ public class ReplyVo {
 	private String member_name;
 	private String reply_content;
 	private String reply_date;
+	private String deleted_yn;
 }

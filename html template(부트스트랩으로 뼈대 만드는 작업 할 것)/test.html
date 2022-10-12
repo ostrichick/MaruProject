@@ -1,0 +1,117 @@
+<script>
+  let SaledPrice = "${SaledPrice}";
+  $("body").on("click keyup", function () {
+    console.log("클릭, 키업");
+    let cart_product_number = $("#cart_product_number").val();
+    let total_price = SaledPrice * cart_product_number;
+    $("input[name=order_total_price]").val(SaledPrice * cart_product_number);
+    $("span.total_price_print").html("₩" + total_price.toLocaleString("en").split(".")[0]);
+  });
+</script>
+<script>
+  let product_idx = "${product.product_idx}";
+  function getQnaList() {
+    $.ajax({
+      type: "GET",
+      url: "qna/list?product_idx=" + product_idx,
+      data: product_idx,
+      dataType: "JSON", // json으로 지정 안하면 xml로 받아옴
+      success: function (result) {
+        console.log(result);
+        var items = $(result).find("item");
+        $("tbody#qna_parent").empty();
+        $(items).each(function (index, item) {
+          let comment_section = "";
+          let reply_date = parseInt($(item).find("reply_date").text());
+          //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
+          //let reply_date_format = new Date(reply_date).toISOString().slice(0, 19).replace('T', ' ');
+
+          comment_section += $(item).find("member_name").text();
+          comment_section += '</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">';
+          comment_section += $(item).find("reply_date").text();
+          //comment_section += reply_date_format;
+          comment_section += '</span> <span class="dot ml-2 mr-2"></span>';
+
+          if (session_member_idx == parseInt($(item).find("member_idx").text())) {
+            /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
+            comment_section +=
+              '<span><a href="javascript:void(0)" onclick="openEditor(this)">수정</a></span> <span class="dot ml-2 mr-2"></span><span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
+            comment_section += $(item).find("reply_idx").text();
+            comment_section += '"><input type="hidden" name="member_idx" value="';
+            comment_section += $(item).find("member_idx").text();
+            comment_section += '">';
+            /** 이 위로 member_idx 일치 유저만 출력*/
+          } else if (session_member_admin == "Y") {
+            /** 관리자인 경우엔 삭제버튼만 출력 */
+            comment_section += '<span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
+            comment_section += $(item).find("reply_idx").text();
+            comment_section += '"><input type="hidden" name="member_idx" value="';
+            comment_section += $(item).find("member_idx").text();
+            comment_section += '">';
+          }
+          comment_section += '</div><div class="comment-text-sm"><span>';
+          comment_section += $(item).find("reply_content").text();
+          comment_section +=
+            '</span><div class="editor_parent"></div><div class="reply-section"><div class="d-flex flex-row align-items-center voting-icons txt-right"><h6 class="ml-2 mt-1 txt-right pull-right "></h6></div></div></section>';
+          $("div#comment_parent").append(comment_section);
+        });
+        console.log("불러오기 성공");
+      },
+      error: function (request, status, error) {
+        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+      },
+    });
+  }
+  getQnaList();
+  function getReplyList() {
+    $.ajax({
+      type: "GET",
+      url: "reply/list?idx=" + idx,
+      data: idx,
+      //dataType:"json", // json으로 지정 안하면 xml로 받아옴
+      success: function (result) {
+        var items = $(result).find("item");
+        $("div#comment_parent").empty();
+        $(items).each(function (index, item) {
+          let comment_section = '<section class="comment m-tb-10"><div class="d-flex flex-row align-items-center commented-user"><h5 class="mr-2">';
+          let reply_date = parseInt($(item).find("reply_date").text());
+          //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
+          //let reply_date_format = new Date(reply_date).toISOString().slice(0, 19).replace('T', ' ');
+
+          comment_section += $(item).find("member_name").text();
+          comment_section += '</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">';
+          comment_section += $(item).find("reply_date").text();
+          //comment_section += reply_date_format;
+          comment_section += '</span> <span class="dot ml-2 mr-2"></span>';
+
+          if (session_member_idx == parseInt($(item).find("member_idx").text())) {
+            /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
+            comment_section +=
+              '<span><a href="javascript:void(0)" onclick="openEditor(this)">수정</a></span> <span class="dot ml-2 mr-2"></span><span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
+            comment_section += $(item).find("reply_idx").text();
+            comment_section += '"><input type="hidden" name="member_idx" value="';
+            comment_section += $(item).find("member_idx").text();
+            comment_section += '">';
+            /** 이 위로 member_idx 일치 유저만 출력*/
+          } else if (session_member_admin == "Y") {
+            /** 관리자인 경우엔 삭제버튼만 출력 */
+            comment_section += '<span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
+            comment_section += $(item).find("reply_idx").text();
+            comment_section += '"><input type="hidden" name="member_idx" value="';
+            comment_section += $(item).find("member_idx").text();
+            comment_section += '">';
+          }
+          comment_section += '</div><div class="comment-text-sm"><span>';
+          comment_section += $(item).find("reply_content").text();
+          comment_section +=
+            '</span><div class="editor_parent"></div><div class="reply-section"><div class="d-flex flex-row align-items-center voting-icons txt-right"><h6 class="ml-2 mt-1 txt-right pull-right "></h6></div></div></section>';
+          $("div#comment_parent").append(comment_section);
+        });
+        console.log("불러오기 성공");
+      },
+      error: function (request, status, error) {
+        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+      },
+    });
+  }
+</script>

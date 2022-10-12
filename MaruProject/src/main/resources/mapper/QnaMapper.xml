@@ -4,21 +4,37 @@
 
   <insert id="writeQna" parameterType="qnaVo">
     INSERT INTO product_qna (
-    idx, member_idx, content
+    product_idx, member_idx, content
     ) VALUES (
-    #{idx}, #{member_idx}, #{content}
+    #{product_idx}, #{member_idx}, #{content}
+    )
+  </insert>
+
+  <update id="markAnswered" parameterType="qnaVo">
+    UPDATE product_qna
+    SET
+    isAnswered = 'Y'
+    WHERE
+    idx = #{parent_idx}
+  </update>
+
+  <insert id="writeAnswer" parameterType="qnaVo">
+    INSERT INTO product_qna (
+    product_idx, member_idx, content, parent_idx
+    ) VALUES (
+    #{product_idx}, #{member_idx}, #{content}, #{parent_idx}
     )
   </insert>
 
   <!-- SELECT DATE_FORMAT(qna_date,'%Y%m%d%H%i') as qna_date, -->
   <select id="getQnaList" resultType="qnaVo">
-    SELECT qna_date,
-    idx, r.member_idx, content, m.member_name
-    FROM product_qna r
+    SELECT *
+    FROM product_qna q
     INNER JOIN member_info m
-    ON r.member_idx = m.member_idx
-    WHERE r.idx = #{idx} and r.deleted_yn = 'N'
-    order by r.idx desc
+    ON q.member_idx = m.member_idx
+    WHERE q.product_idx = #{product_idx}
+    and q.deleted_yn = 'N' and parent_idx is null
+    order by q.idx desc
   </select>
 
   <update id="editQna" parameterType="qnaVo">
@@ -37,10 +53,11 @@
     idx = #{idx}
   </delete>
 
+  <!-- 리뷰 갯수 세는 용도로 수정 후 qnamapper에서 삭제할것 -->
   <update id="countQna" parameterType="qnaVo">
-    UPDATE ANNOUNCE a
+    UPDATE product p
     SET
-    a.qna_count = (SELECT COUNT(*) FROM product_qna pq WHERE idx = #{idx})
+    p.qna_count = (SELECT COUNT(*) FROM product_qna q WHERE product_idx = #{product_idx})
     WHERE
     idx = #{idx}
   </update>

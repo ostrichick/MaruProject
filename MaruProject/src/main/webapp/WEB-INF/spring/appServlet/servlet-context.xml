@@ -21,26 +21,26 @@
   <interceptors>
     <interceptor>
       <mapping path="/admin/**" />
-
       <mapping path="/notice/**" />
+      <mapping path="/product/add" />
+      <mapping path="/product/edit" />
+      <mapping path="/product/delete" />
       <exclude-mapping path="/notice/list" />
       <exclude-mapping path="/notice/view" />
       <exclude-mapping path="/notice/reply/**" />
-
       <beans:bean id="adminInterceptor" class="ezen.maru.pjt.interceptor.AdminInterceptor" />
     </interceptor>
+
     <interceptor>
-      <!-- <mapping path="/**/*" /> -->
       <mapping path="/order/**" />
       <mapping path="/cart/**" />
-      <mapping path="/product/**" />
       <mapping path="/member/myinfo" />
       <mapping path="/member/myinfo_edit" />
       <mapping path="/member/updatemyinfo" />
       <mapping path="/member/deleteprocess" />
-      <exclude-mapping path="/product/list" />
-      <exclude-mapping path="/product/detail" />
-
+      <mapping path="/product/qna/write" />
+      <mapping path="/product/qna/edit" />
+      <!-- <exclude-mapping path="/product/qna/**" /> -->
       <beans:bean id="loginInterceptor" class="ezen.maru.pjt.interceptor.LoginInterceptor" />
     </interceptor>
   </interceptors>

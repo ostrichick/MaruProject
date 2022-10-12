@@ -19,4 +19,5 @@ public class QnaVo {
 	private Date wdate;
 	private String isAnswered;
 	private int parent_idx;
+	private String deleted_yn;
 }

@@ -281,9 +281,11 @@
                             <textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
                           </div>
                           <div class="modal-footer">
-                          <input type="hidden" />
+                            <input type="hidden" value="${product.product_idx }" />
+                            <input type="hidden" value="${sessionScope.member_idx }" />
                             <a type="button" class="btn bg6 btn-outline-secondary" data-dismiss="modal">취소</a>
-                            <button type="button" class="btn bg7 cl7 btn-outline-dark">등록</button>
+                            <input type="button" class="btn bg7 cl7 btn-outline-dark" value="등록">
+
                             <!-- 등록버튼 누르면 문의 등록시키고 ajax로 새로 목록 불러올 것 -->
                           </div>
                         </form>
@@ -298,25 +300,26 @@
                         <th class="text-center cl3 col-2">날짜</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
+                    <tbody class="qna_parent">
+                      <tr class="qna_question ${product_qna.idx }">
                         <td class="">
                           <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content1" aria-expanded="false" aria-controls="answer_content">상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 </a>
                         </td>
                         <td class="text-center cl3">2022.09.01 11:23</td>
                       </tr>
-                      <tr>
+                      <tr class="qna_answer">
                         <td colspan="2">
                           <div id="answer_content1" class="collapse">얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요</div>
                         </td>
                       </tr>
-                      <tr>
+
+                      <tr class="qna_question ${product_qna.idx }">
                         <td class="">
                           <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content2" aria-expanded="false" aria-controls="answer_content">혼자 조립 설치하기 쉽나요 </a>
                         </td>
                         <td class="text-center cl3">2022.09.01 11:23</td>
                       </tr>
-                      <tr>
+                      <tr class="qna_answer">
                         <td colspan="2">
                           <div id="answer_content2" class="collapse">그럼요</div>
                         </td>
@@ -377,30 +380,81 @@
      })
   }
   
-  function addCartSuccess(){
-    //장바구니로 이동 혹은 계속 쇼핑하기 여부 modal 창으로 출력
+  function addCartSuccess(){    //장바구니로 이동 혹은 계속 쇼핑하기 여부 modal 창으로 출력
     console.log("성공");
   }
   
-  function addCartFail(){
-    alert("오류가 발생했습니다. 다시 시도해주세요.");
+  function addCartFail(){    alert("오류가 발생했습니다. 다시 시도해주세요.");
   }
   </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
-  <%@include file="/include/detail.jsp"%>
   <%@include file="/include/script.jsp"%>
   <script>
-  let SaledPrice = "${SaledPrice}"
-      $("body").on("click keyup", function(){
-      console.log("클릭, 키업");
-      let cart_product_number = $("#cart_product_number").val();
-      let total_price = SaledPrice * cart_product_number;
-      $("input[name=order_total_price]").val(SaledPrice * cart_product_number);
-      $("span.total_price_print").html("₩" + total_price.toLocaleString('en').split(".")[0]);
-      })
-      
+  let SaledPrice = "${SaledPrice}";
+  $("body").on("click keyup", function () {
+    console.log("클릭, 키업");
+    let cart_product_number = $("#cart_product_number").val();    let total_price = SaledPrice * cart_product_number;
+    $("input[name=order_total_price]").val(SaledPrice * cart_product_number);
+    $("span.total_price_print").html("₩" + total_price.toLocaleString("en").split(".")[0]);
+  });
+</script>
+  <script>
+  let product_idx = "${product.product_idx}";
+  function getQnaList() {
+    $.ajax({
+      type: "GET",
+      url: "qna/list?product_idx=" + product_idx,
+      data: product_idx,
+      dataType: "JSON", 
+      success: function (result) {
+        console.log(result);
+        var items = $(result).find("item");
+        $("tbody#qna_parent").empty();
+        $(items).each(function (index, item) {
+          let comment_section = "";
+          let reply_date = parseInt($(item).find("reply_date").text());
+          //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
+          //let reply_date_format = new Date(reply_date).toISOString().slice(0, 19).replace('T', ' ');
 
-  </script>
+          comment_section += $(item).find("member_name").text();
+          comment_section += '</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">';
+          comment_section += $(item).find("reply_date").text();
+          //comment_section += reply_date_format;
+          comment_section += '</span> <span class="dot ml-2 mr-2"></span>';
+
+          if (session_member_idx == parseInt($(item).find("member_idx").text())) {
+            /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
+            comment_section +=
+              '<span><a href="javascript:void(0)" onclick="openEditor(this)">수정</a></span> <span class="dot ml-2 mr-2"></span><span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
+            comment_section += $(item).find("reply_idx").text();
+            comment_section += '"><input type="hidden" name="member_idx" value="';
+            comment_section += $(item).find("member_idx").text();
+            comment_section += '">';
+            /** 이 위로 member_idx 일치 유저만 출력*/
+          } else if (session_member_admin == "Y") {
+            /** 관리자인 경우엔 삭제버튼만 출력 */
+            comment_section += '<span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
+            comment_section += $(item).find("reply_idx").text();
+            comment_section += '"><input type="hidden" name="member_idx" value="';
+            comment_section += $(item).find("member_idx").text();
+            comment_section += '">';
+          }
+          comment_section += '</div><div class="comment-text-sm"><span>';
+          comment_section += $(item).find("reply_content").text();
+          comment_section +=
+            '</span><div class="editor_parent"></div><div class="reply-section"><div class="d-flex flex-row align-items-center voting-icons txt-right"><h6 class="ml-2 mt-1 txt-right pull-right "></h6></div></div></section>';
+          $("div#comment_parent").append(comment_section);
+        });
+        console.log("불러오기 성공");
+      },
+      error: function (request, status, error) {
+        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+      },
+    });
+  }  getQnaList();
+  
+</script>
+
 </body>
 </html>

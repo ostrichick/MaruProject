@@ -14,9 +14,10 @@ public class ReviewVo {
 	private int product_idx;
 	private int member_idx;
 	private String content;
-	private int star;
+	private long star;
 	private Date wdate;
 	private String file_original;
 	private String file_system;
 	private String file_extension;
+	private String deleted_yn;
 }
