@@ -132,13 +132,17 @@ public class MemberInfoController {
 	public String signin_process(MemberInfoVo memberInfoVo, HttpServletRequest req) throws Exception {
 		String viewPage = "member/signin";
 
-//		System.out.println(bCryptPasswordEncoder.encode("1234"));
+		System.out.println(bCryptPasswordEncoder.encode("123"));
 
 		MemberInfoVo memberInfoVoFromDB = signinService.getCryptedMemberPw(memberInfoVo);
 		boolean pwMatchResult = false;
 		if (memberInfoVoFromDB.getMember_pw() != null) {
 			String getCryptedMemberPw = memberInfoVoFromDB.getMember_pw();
+//			System.out.println(bCryptPasswordEncoder.encode(memberInfoVo.getMember_pw()));
 			pwMatchResult = bCryptPasswordEncoder.matches(memberInfoVo.getMember_pw(), getCryptedMemberPw);
+//			System.out.println(memberInfoVo.getMember_pw());
+//			System.out.println(getCryptedMemberPw);
+//			System.out.println(pwMatchResult);
 		}
 		// 입력받은 값과 암호화된 값을 matches로 비교
 		if (pwMatchResult) {

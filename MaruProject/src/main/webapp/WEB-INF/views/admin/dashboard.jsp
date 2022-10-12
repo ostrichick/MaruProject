@@ -43,7 +43,7 @@ li.page-item.active>a.page-link:hover {
             <th>선택</th>
             <th>아이디</th>
             <th>이름</th>
-            <th>번호</th>
+            <th>전화번호</th>
             <th>주소</th>
             <th>상세주소</th>
             <th>가입일</th>
@@ -67,7 +67,6 @@ li.page-item.active>a.page-link:hover {
           </tr>
         </c:forEach>
       </table>
-      <br>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>

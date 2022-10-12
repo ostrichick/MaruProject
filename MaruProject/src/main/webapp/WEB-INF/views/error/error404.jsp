@@ -13,8 +13,8 @@
   <%@include file="/include/header.jsp"%>
   <!-- Title page -->
   <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('${pageContext.request.contextPath}/resources/images/bg-01.jpg');">
-    <h2 class="ltext-105 cl0 txt-center">404 NOT FOUND</h2>
-    <span>${errorMessage }<%
+    <h2 class="ltext-105 cl0 txt-center">404 NOT FOUND - 페이지를 찾을 수 없습니다.</h2>
+    <span>${errorMessage }${error }${code}${msg}<%
     response.setStatus(404);
     %>
     </span>

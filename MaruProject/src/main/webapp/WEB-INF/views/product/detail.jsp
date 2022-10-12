@@ -270,23 +270,24 @@
                   <!-- Modal -->
                   <div class="modal fade" id="product_qna_write" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                      <form action="" method="post">
-                        <div class="modal-content">
+                      <div class="modal-content">
+                        <form action="" method="post">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">문의 작성하기</h5>
                             <a type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
                             </a>
                           </div>
                           <div class="modal-body">
-                            <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
                           </div>
                           <div class="modal-footer">
+                          <input type="hidden" />
                             <a type="button" class="btn bg6 btn-outline-secondary" data-dismiss="modal">취소</a>
                             <button type="button" class="btn bg7 cl7 btn-outline-dark">등록</button>
                             <!-- 등록버튼 누르면 문의 등록시키고 ajax로 새로 목록 불러올 것 -->
                           </div>
-                        </div>
-                      </form>
+                        </form>
+                      </div>
                     </div>
                   </div>
 

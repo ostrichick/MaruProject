@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.maru.pjt.qna">
+
+  <insert id="writeQna" parameterType="qnaVo">
+    INSERT INTO product_qna (
+    idx, member_idx, content
+    ) VALUES (
+    #{idx}, #{member_idx}, #{content}
+    )
+  </insert>
+
+  <!-- SELECT DATE_FORMAT(qna_date,'%Y%m%d%H%i') as qna_date, -->
+  <select id="getQnaList" resultType="qnaVo">
+    SELECT qna_date,
+    idx, r.member_idx, content, m.member_name
+    FROM product_qna r
+    INNER JOIN member_info m
+    ON r.member_idx = m.member_idx
+    WHERE r.idx = #{idx} and r.deleted_yn = 'N'
+    order by r.idx desc
+  </select>
+
+  <update id="editQna" parameterType="qnaVo">
+    UPDATE product_qna
+    SET
+    content = #{content}
+    WHERE
+    idx = #{idx} and member_idx = #{member_idx}
+  </update>
+
+  <delete id="removeQna" parameterType="qnaVo">
+    UPDATE product_qna
+    SET
+    deleted_yn = 'Y'
+    WHERE
+    idx = #{idx}
+  </delete>
+
+  <update id="countQna" parameterType="qnaVo">
+    UPDATE ANNOUNCE a
+    SET
+    a.qna_count = (SELECT COUNT(*) FROM product_qna pq WHERE idx = #{idx})
+    WHERE
+    idx = #{idx}
+  </update>
+
+</mapper>	
