@@ -21,4 +21,10 @@ public class QnaListService implements QnaService {
 	public List<QnaVo> getQnaList(QnaVo qnaVo) {
 		return qnaDao.getQnaList(qnaVo);
 	}
+
+	@Override
+	public List<QnaVo> getAnswerList(QnaVo qnaVo) {
+		return qnaDao.getAnswerList(qnaVo);
+	}
+
 }

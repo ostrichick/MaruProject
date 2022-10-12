@@ -26,4 +26,8 @@ public interface QnaService {
 		return 0;
 	}
 
+	default List<QnaVo> getAnswerList(QnaVo qnaVo) {
+		return null;
+	}
+
 }

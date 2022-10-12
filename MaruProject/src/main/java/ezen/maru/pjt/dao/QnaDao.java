@@ -28,6 +28,10 @@ public class QnaDao {
 		return sqlSession.selectList(MAPPER + ".getQnaList", qnaVo);
 	}
 
+	public List<QnaVo> getAnswerList(QnaVo qnaVo) {
+		return sqlSession.selectList(MAPPER + ".getAnswerList", qnaVo);
+	}
+
 	public int writeQna(QnaVo qnaVo) {
 //		System.out.println("qnaVo in DAO : " + qnaVo);
 		return sqlSession.insert(MAPPER + ".writeQna", qnaVo);

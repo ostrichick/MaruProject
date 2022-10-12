@@ -301,16 +301,19 @@
                       </tr>
                     </thead>
                     <tbody class="qna_parent">
-                      <tr class="qna_question ${product_qna.idx }">
+                      <!-- 지워질 더미 -->
+                      <tr class="qna_question ${product_question.idx }">
                         <td class="">
-                          <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content1" aria-expanded="false" aria-controls="answer_content">상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 </a>
+                          <a class="cl6" href="#" data-toggle="collapse" data-target="qna${product_question.idx }" aria-expanded="false" aria-controls="answer_content">상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 </a>
                         </td>
-                        <td class="text-center cl3">2022.09.01 11:23</td>
+                        <td class="text-center cl3">${product_question.wdate }</td>
                       </tr>
+
                       <tr class="qna_answer">
-                        <td colspan="2">
-                          <div id="answer_content1" class="collapse">얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요 얼마 안 걸려요</div>
+                        <td>
+                          <div id="qna${product_answer.parent_idx }" class="collapse">${product_answer.content }얼마안걸려요</div>
                         </td>
+                        <td class="text-center cl3">${product_answer.wdate }</td>
                       </tr>
 
                       <tr class="qna_question ${product_qna.idx }">
@@ -325,6 +328,42 @@
                         </td>
                       </tr>
                     </tbody>
+                    <!-- 지워질 더미 -->
+
+                    <!-- 화면 테스트용 더미 -->
+                    <!-- Ajax로 출력할 로직
+                    1. 먼저 question list를 불러와서 출력
+                    2. answer list를 불러옴
+                    3. answer item의 parent_idx를 조회해서 answeritem.parent_idx = question.idx 이면 .question.idx의 동생자리에 출력
+                    
+                     -->
+                    <tr class="qna_question question${product_question.idx }">
+                      <td class="">
+                        <a class="cl6" href="#" data-toggle="collapse" data-target="#parent${product_question.idx }" aria-expanded="false" aria-controls="answer_content">상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 </a>
+                      </td>
+                      <td class="text-center cl3">${product_question.wdate }</td>
+                    </tr>
+
+                    <tr class="qna_answer">
+                      <td>
+                        <div id="parent${product_answer.parent_idx }" class="collapse">${product_answer.content }얼마안걸려요</div>
+                      </td>
+                      <td class="text-center cl3">${product_answer.wdate }</td>
+                    </tr>
+
+                    <tr class="qna_question ${product_qna.idx }">
+                      <td class="">
+                        <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content2" aria-expanded="false" aria-controls="answer_content">혼자 조립 설치하기 쉽나요 </a>
+                      </td>
+                      <td class="text-center cl3">2022.09.01 11:23</td>
+                    </tr>
+
+                    <tr class="qna_answer">
+                      <td colspan="2">
+                        <div id="answer_content2" class="collapse">그럼요</div>
+                      </td>
+                    </tr>
+
                   </table>
                 </div>
               </div>
@@ -382,6 +421,7 @@
   
   function addCartSuccess(){    //장바구니로 이동 혹은 계속 쇼핑하기 여부 modal 창으로 출력
     console.log("성공");
+    
   }
   
   function addCartFail(){    alert("오류가 발생했습니다. 다시 시도해주세요.");
@@ -401,50 +441,48 @@
 </script>
   <script>
   let product_idx = "${product.product_idx}";
-  function getQnaList() {
+  let session_member_idx = "${sessionScope.member_idx}"
+  let session_member_admin = "${sessionScope.member_admin}"
+  function getQuestionList() {
     $.ajax({
       type: "GET",
       url: "qna/list?product_idx=" + product_idx,
       data: product_idx,
       dataType: "JSON", 
       success: function (result) {
-        console.log(result);
-        var items = $(result).find("item");
-        $("tbody#qna_parent").empty();
-        $(items).each(function (index, item) {
-          let comment_section = "";
-          let reply_date = parseInt($(item).find("reply_date").text());
+        
+        $("tbody.qna_parent").empty();
+        $(result).each(function (index, item) {
+          
+          let qna_section = "";
+          let wdate_unix = item.wdate;
+          
           //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
-          //let reply_date_format = new Date(reply_date).toISOString().slice(0, 19).replace('T', ' ');
-
-          comment_section += $(item).find("member_name").text();
-          comment_section += '</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">';
-          comment_section += $(item).find("reply_date").text();
-          //comment_section += reply_date_format;
-          comment_section += '</span> <span class="dot ml-2 mr-2"></span>';
-
-          if (session_member_idx == parseInt($(item).find("member_idx").text())) {
+          let wdate = new Date(wdate_unix).toISOString().slice(0, 19).replace('T', ' ');
+          
+          
+          qna_section += '<tr class="qna_question question';
+          qna_section += item.idx;
+          qna_section += '"><td class=""><a class="cl6" href="#" data-toggle="collapse" data-target="#parent';
+          qna_section += item.idx;
+          qna_section += '" aria-expanded="false" aria-controls="answer_content">';
+          qna_section += item.content;
+          qna_section += '</a></td><td class="text-center cl3">';
+          qna_section += wdate;
+          qna_section += '</td></tr>';
+          console.log(qna_section);
+          if (session_member_idx == item.member_idx) {
             /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
-            comment_section +=
-              '<span><a href="javascript:void(0)" onclick="openEditor(this)">수정</a></span> <span class="dot ml-2 mr-2"></span><span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
-            comment_section += $(item).find("reply_idx").text();
-            comment_section += '"><input type="hidden" name="member_idx" value="';
-            comment_section += $(item).find("member_idx").text();
-            comment_section += '">';
+            
             /** 이 위로 member_idx 일치 유저만 출력*/
           } else if (session_member_admin == "Y") {
             /** 관리자인 경우엔 삭제버튼만 출력 */
-            comment_section += '<span><a href="javascript:void(0)" onclick="removeReply(this)">삭제</a></span><input type="hidden" name="reply_idx" value="';
-            comment_section += $(item).find("reply_idx").text();
-            comment_section += '"><input type="hidden" name="member_idx" value="';
-            comment_section += $(item).find("member_idx").text();
-            comment_section += '">';
+          
           }
-          comment_section += '</div><div class="comment-text-sm"><span>';
-          comment_section += $(item).find("reply_content").text();
-          comment_section +=
-            '</span><div class="editor_parent"></div><div class="reply-section"><div class="d-flex flex-row align-items-center voting-icons txt-right"><h6 class="ml-2 mt-1 txt-right pull-right "></h6></div></div></section>';
-          $("div#comment_parent").append(comment_section);
+          
+          qna_section += '';
+          
+          $("tbody.qna_parent").append(qna_section);
         });
         console.log("불러오기 성공");
       },
@@ -452,7 +490,59 @@
         alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
       },
     });
-  }  getQnaList();
+  }  
+  function getAnswerList(){
+    $.ajax({
+      type: "GET",
+      url: "qna/listAnswer?product_idx=" + product_idx,
+      data: product_idx,
+      dataType: "JSON", 
+      success: function (result) {
+        
+        $("tbody.qna_parent").empty();
+        $(result).each(function (index, item) {
+          console.log(item);
+          
+          let qna_section = "";
+          let wdate_unix = item.wdate;
+          
+          //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
+          let wdate = new Date(wdate_unix).toISOString().slice(0, 19).replace('T', ' ');
+          
+          
+          qna_section += '<tr class="qna_answer"><td><div id="parent';
+          qna_section += item.parent_idx;
+          qna_section += '" class="collapse">';
+          qna_section += item.content;
+          qna_section += '</div></td><td class="text-center cl3">';
+          qna_section += wdate;
+          qna_section += '</td></tr>';
+          //console.log(qna_section);
+          if (session_member_idx == item.member_idx) {
+            /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
+            
+            /** 이 위로 member_idx 일치 유저만 출력*/
+          } else if (session_member_admin == "Y") {
+            /** 관리자인 경우엔 삭제버튼만 출력 */
+          
+          }
+          qna_section += '';
+          let parent_class_name = "tr.question" + item.parent_idx;
+          console.log(parent_class_name)
+          console.log($("tr.question"+item.parent_idx));
+          console.log($(parent_class_name));
+          $("tr.question"+item.parent_idx).after(qna_section);
+          
+        });
+        console.log("불러오기 성공");
+      },
+      error: function (request, status, error) {
+        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+      },
+    });
+  }
+  getQuestionList();
+  getAnswerList();
   
 </script>
 

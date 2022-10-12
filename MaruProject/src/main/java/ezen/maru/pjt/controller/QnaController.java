@@ -53,6 +53,15 @@ public class QnaController {
 		return qnaList;
 	}
 
+	@GetMapping("/listAnswer")
+	@ResponseBody
+	public List<QnaVo> getAnswerList(QnaVo qnaVo) {
+//		System.out.println("qnaVo in Controller : " + qnaVo);
+		List<QnaVo> qnaList = listService.getAnswerList(qnaVo);
+//		System.out.println("qnaList in Controller : " + qnaList);
+		return qnaList;
+	}
+
 	@PostMapping("/write")
 	@ResponseBody
 	public void writeQna(HttpServletRequest req, QnaVo qnaVo) {
