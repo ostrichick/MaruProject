@@ -19,6 +19,8 @@
       <div class="input-group mb-3">
         <input type="text" class="form-control col-9" id="member_id" name="member_id" placeholder="아이디를 입력해주세요" required>
         <input class="btn btn-outline-secondary cl0 bg7 col-3" type="button" id="duplicateCheck" value="중복확인" onclick="fn_idDuplicateChk()">
+        <div class="valid-feedback">유효한 아이디 입니다.</div>
+        <div class="invalid-feedback">6글자 이상 20글자 이하로 작성 후 중복확인을 해주세요.</div>
       </div>
 
       <div class="m-tb-20 signInMark">
@@ -150,6 +152,30 @@
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
   <script>
+      let isMember_idValid = false;
+
+      document.querySelector("#member_id").addEventListener("input", function() {
+        isNotDuplicated = false;
+      });
+      document.querySelector("#member_id").addEventListener("input", checkId);
+      function checkId() {
+
+        //1. 입력한 value 값을 읽어온다.
+        let member_id = document.querySelector("#member_id").value;
+        //2. 유효성(5글자이상 10글자 이하)을 검증한다.
+        isMember_idValid = member_id.length >= 8 && member_id.length <= 20;
+        //3. 유효하다면 input 요소에 is-valid 클래스 추가, 아니라면 is-invalid 클래스 추가
+
+        if (isMember_idValid && isNotDuplicated === true) {
+          document.querySelector("#member_id").classList.remove("is-invalid");
+          document.querySelector("#member_id").classList.add("is-valid");
+        } else {
+          document.querySelector("#member_id").classList.remove("is-valid");
+          document.querySelector("#member_id").classList.add("is-invalid");
+        }
+      }
+    </script>
+  <script>
       // 휴대폰 인증
       $("#sendPhoneNumber").click(function() {
         let phoneNumber = $("#member_phone").val();
@@ -187,9 +213,12 @@
       });
     </script>
   <script>
+      let isNotDuplicated = false;
+
       // 아이디 중복확인
       function fn_idDuplicateChk() {
         if ($("#member_id").val() !== "" || $("#member_id").val() === undefined) {
+          isDuplicated = false;
           $.ajax({
             url : "check/idDuplicate",
             type : "post",
@@ -200,10 +229,13 @@
             success : function(data) {
               if (data == 1) {
                 Swal.fire("중복된 아이디입니다.");
-
+                isNotDuplicated = false;
+                checkId();
               } else if (data == 0) {
                 $("#member_id").attr("value", "Y");
                 Swal.fire("사용가능한 아이디입니다.");
+                isNotDuplicated = true;
+                checkId();
               }
             }
           })
