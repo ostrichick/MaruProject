@@ -38,4 +38,8 @@ public interface MemberInfoService {
 		return null;
 	}
 
+	default int checkPw(MemberInfoVo memberInfoVo) {
+		return 0;
+	}
+
 }

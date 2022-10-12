@@ -51,4 +51,8 @@ public class MemberInfoDao {
 		return sqlSession.selectOne(MAPPER + ".getCryptedMemberPw", memberInfoVo);
 	}
 
+	public int checkPw(MemberInfoVo memberInfoVo) {
+		return sqlSession.selectOne(MAPPER + ".checkPw", memberInfoVo);
+	}
+
 }

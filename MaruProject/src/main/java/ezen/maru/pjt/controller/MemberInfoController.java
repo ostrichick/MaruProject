@@ -164,6 +164,19 @@ public class MemberInfoController {
 		return "member/myinfo";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/check/pw", method = RequestMethod.POST)
+	public boolean pw(MemberInfoVo memberInfoVo) throws Exception {
+		MemberInfoVo memberInfoVoFromDB = signinService.getCryptedMemberPw(memberInfoVo);
+		boolean pwMatchResult = false;
+		if (memberInfoVoFromDB.getMember_pw() != null) {
+			String getCryptedMemberPw = memberInfoVoFromDB.getMember_pw();
+			pwMatchResult = bCryptPasswordEncoder.matches(memberInfoVo.getMember_pw(), getCryptedMemberPw);
+		}
+		System.out.println("Password Check result is : " + pwMatchResult);
+		return pwMatchResult;
+	}
+
 	@GetMapping("/myinfo_edit") // 내 회원정보 페이지
 	public String myinfo_edit(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
@@ -179,6 +192,10 @@ public class MemberInfoController {
 		Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
 		int member_idx = (int) optional_member_idx.get();
 		memberInfoVo.setMember_idx(member_idx);
+		String input_member_pw = memberInfoVo.getMember_pw();
+		String member_pw = bCryptPasswordEncoder.encode(input_member_pw);
+
+		memberInfoVo.setMember_pw(member_pw);
 		int result = updateService.update(memberInfoVo);
 		String viewPage = "redirect:/member/myinfo";
 		if (result == 1) {
