@@ -132,7 +132,7 @@ public class MemberInfoController {
 	public String signin_process(MemberInfoVo memberInfoVo, HttpServletRequest req) throws Exception {
 		String viewPage = "member/signin";
 
-		System.out.println(bCryptPasswordEncoder.encode("1234"));
+//		System.out.println(bCryptPasswordEncoder.encode("1234"));
 
 		MemberInfoVo memberInfoVoFromDB = signinService.getCryptedMemberPw(memberInfoVo);
 		boolean pwMatchResult = false;
