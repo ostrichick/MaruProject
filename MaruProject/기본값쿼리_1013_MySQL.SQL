@@ -45,7 +45,7 @@ product_detail, product_inventory
 ) values (
 '1번상품', 10000, 'Y', 10,
 '100x200', 'livingroom',
-'상세설명입니다', 100);
+'상세설명입니다', 95);
 
 
 insert into product (
@@ -55,7 +55,7 @@ product_detail, product_inventory
 ) values (
 '2번상품', 20000, 'Y', 20,
 '100x200', 'bedroom',
-'상세설명입니다', 100);
+'상세설명입니다', 220);
 
 
 insert into product (
@@ -65,8 +65,16 @@ product_detail, product_inventory
 ) values (
 '3번상품', 30000, 'Y', 30,
 '100x200', 'library',
-'상세설명입니다', 100);
+'상세설명입니다', 550);
 
+insert into product (
+product_name, product_price, product_sale, product_sale_percent,
+product_size, product_major_category,
+product_detail, product_inventory
+) values (
+'4번상품', 30000, 'N', 20,
+'100x400', 'bathroom',
+'상세설명입니다', 400);
 
 INSERT INTO announce (
 title, content,

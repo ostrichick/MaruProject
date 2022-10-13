@@ -44,8 +44,8 @@ li.page-item.active>a.page-link:hover {
             <th>아이디</th>
             <th>이름</th>
             <th>전화번호</th>
-            <th>주소</th>
-            <th>상세주소</th>
+            <th class="col-lg-3 col-md-4 col-sm-4 col-xs-4">주소</th>
+            <th class="col-lg-3 col-md-4 col-sm-4 col-xs-4">상세주소</th>
             <th>가입일</th>
             <th>탈퇴여부</th>
           </tr>
@@ -84,28 +84,35 @@ li.page-item.active>a.page-link:hover {
       <table class="table table-bordered table-hover table-stripped">
         <thead>
           <tr class="bg1">
-            <th>선택</th>
             <th>상품명</th>
-            <th>가격</th>
-            <th>할인여부</th>
-            <th>할인율 %</th>
-            <th>할인된 가격</th>
-            <th>상품 재고</th>
-            <th>상품삭제</th>
+            <th class="col-2">가격</th>
+            <th class="col-1">할인여부</th>
+            <th class="col-1">할인율 %</th>
+            <th class="col-2">할인된 가격</th>
+            <th class="col-1">재고</th>
+            <th class="col-1">상품삭제</th>
           </tr>
         </thead>
         <c:forEach var="product" items="${productList}" varStatus="status">
           <tr class="bg0">
             <td>
-              <input type="checkbox" value="선택" />
-            </td>
-            <td>
               <a href="${MaruContextPath}/product/detail?product_idx=${product.product_idx}" class="">${product.product_name}</a>
             </td>
-            <td>${product.product_price}</td>
+            <td>
+              <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
+            </td>
             <td>${product.product_sale}</td>
-            <td>${product.product_sale_percent}</td>
-            <td>${product.product_price - product.product_price * product.product_sale_percent/100}</td>
+            <td>${product.product_sale_percent}%</td>
+            <td>
+              <c:choose>
+                <c:when test="${product.product_sale eq 'Y' }">
+                  <fmt:formatNumber value="${product.product_price - product.product_price * product.product_sale_percent/100}" type="currency" currencySymbol="₩" />
+                </c:when>
+                <c:otherwise>
+                  <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
+                </c:otherwise>
+              </c:choose>
+            </td>
             <td>${product.product_inventory}</td>
             <td>
               <a class="btn bg7 cl7 btn-outline-secondary m-all--10" href="${MaruContextPath}/product/delete_process?product_idx=${product.product_idx}">삭제</a>
@@ -131,26 +138,29 @@ li.page-item.active>a.page-link:hover {
       <table class="table table-bordered table-hover table-stripped">
         <thead>
           <tr class="bg1">
-            <th>선택</th>
-            <th>카테고리</th>
-            <th>상품 문의번호</th>
+            <th>상품</th>
+            <th class="col-6">문의내용</th>
             <th>아이디</th>
             <th>작성일</th>
-            <th>답변 여부</th>
+            <th>답변여부</th>
           </tr>
         </thead>
-        <tr class="bg0">
-          <td>
-            <input type="checkbox" value="선택" />
-          </td>
-          <td>카테고리</td>
-          <td>
-            <a href="#" class="">1123123</a>
-          </td>
-          <td>djhoqs</td>
-          <td>20220222</td>
-          <td>답변O</td>
-        </tr>
+        <c:forEach var="qna" items="${qnaList}" varStatus="status">
+          <tr class="bg0">
+            <td>
+              <a href="${MaruContextPath}/product/detail?product_idx=${qna.product_idx}">${qna.product_name }</a>
+            </td>
+            <td>${qna.content}</td>
+            <td>${qna.member_id}</td>
+            <td>${qna.wdate }</td>
+            <td>
+              <c:choose>
+                <c:when test="${qna.isAnswered eq 'N'}">X</c:when>
+                <c:otherwise>O</c:otherwise>
+              </c:choose>
+            </td>
+          </tr>
+        </c:forEach>
       </table>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -199,23 +209,5 @@ li.page-item.active>a.page-link:hover {
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
   <!-- script -->
-  <script type="text/javascript">
- function categoty(){
-	    var category = $("#category = option:selected").val();
-	    // $("category")의 선택한 값을 불러온다.
-
-	     $("#category").val(category);
-
-	    // 위에서 부른 값을 hidden값에 넣어서 DB 저장시 사용..
-	 }
- </script>
-  <script type="text/javascript">
- 	function answer(obj){
- 		let idx = $("button.qIdx").parent().prev().prev().prev().prev().children("p").val();
- 		let button = $("button.qIdx");
- 		
- 		let idx = let button;
- 	}
- </script>
 </body>
 </html>

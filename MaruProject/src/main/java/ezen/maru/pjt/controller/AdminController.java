@@ -48,7 +48,6 @@ public class AdminController {
   @GetMapping("/dashboard")
   public String dashboard(@RequestParam(required = false, defaultValue = "%%") String product_major_category,
       Model model) {
-
     List<ProductVo> productList = p_listService.getProductList(product_major_category);
     List<MemberInfoVo> memberList = m_listService.getMemberInfoList();
     List<QnaVo> qnaList = q_listService.getAllQuestionList();
@@ -56,7 +55,7 @@ public class AdminController {
     model.addAttribute("memberList", memberList);
     model.addAttribute("qnaList", qnaList);
     System.out.println(qnaList);
-
+//    System.out.println(qnaList);
     return "admin/dashboard";
   }
 

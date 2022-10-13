@@ -43,7 +43,6 @@ public class QnaDao {
   }
 
   public List<QnaVo> getAllQuestionList() {
-    System.out.println("dao check");
     return sqlSession.selectList(MAPPER + ".getAllQuestionList");
   }
 
