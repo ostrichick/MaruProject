@@ -6,10 +6,6 @@ import ezen.maru.pjt.vo.QnaVo;
 
 public interface QnaService {
 
-	default public int countQna(QnaVo qnaVo) {
-		return 0;
-	}
-
 	default List<QnaVo> getQnaList(QnaVo qnaVo) {
 		return null;
 	}

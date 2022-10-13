@@ -18,10 +18,6 @@ public class QnaDao {
 		this.sqlSession = sqlSession;
 	}
 
-	public int countQna(QnaVo qnaVo) {
-		return sqlSession.update(MAPPER + ".countQna", qnaVo);
-	}
-
 	public List<QnaVo> getQnaList(QnaVo qnaVo) {
 //		System.out.println("qnaVo input in Dao : " + qnaVo);
 //		System.out.println("return in DAO : " + sqlSession.selectList(MAPPER + ".getQnaList", qnaVo));

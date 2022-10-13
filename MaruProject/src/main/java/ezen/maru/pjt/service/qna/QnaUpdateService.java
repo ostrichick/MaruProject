@@ -20,9 +20,4 @@ public class QnaUpdateService implements QnaService {
 		return qnaDao.editQna(qnaVo);
 	}
 
-	@Override
-	public int countQna(QnaVo qnaVo) {
-		return qnaDao.countQna(qnaVo);
-	}
-
 }

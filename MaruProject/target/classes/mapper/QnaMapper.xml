@@ -63,13 +63,6 @@
     idx = #{idx}
   </delete>
 
-  <!-- 리뷰 갯수 세는 용도로 수정 후 qnamapper에서 삭제할것 -->
-  <update id="countQna" parameterType="qnaVo">
-    UPDATE product p
-    SET
-    p.qna_count = (SELECT COUNT(*) FROM product_qna q WHERE product_idx = #{product_idx})
-    WHERE
-    idx = #{idx}
-  </update>
+  <!-- 리뷰 갯수 세는 용도로 수정 후 qnamapper에서 삭제할것 <update id="countQna" parameterType="qnaVo"> UPDATE product p SET p.qna_count = (SELECT COUNT(*) FROM product_qna q WHERE product_idx = #{product_idx}) WHERE idx = #{idx} </update> -->
 
 </mapper>	

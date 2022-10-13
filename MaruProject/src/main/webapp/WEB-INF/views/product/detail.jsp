@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="${MaruContextPath}/resources/images/icons/favicon.png" />
+<style>
+</style>
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
@@ -284,7 +286,7 @@
                             <input type="hidden" value="${product.product_idx }" />
                             <input type="hidden" value="${sessionScope.member_idx }" />
                             <a type="button" class="btn bg6 btn-outline-secondary" data-dismiss="modal">취소</a>
-                            <input type="button" class="btn bg7 cl7 btn-outline-dark" value="등록">
+                            <input type="button" class="btn bg7 cl7 btn-outline-dark" value="등록" onclick="writeQuestion()">
 
                             <!-- 등록버튼 누르면 문의 등록시키고 ajax로 새로 목록 불러올 것 -->
                           </div>
@@ -296,8 +298,8 @@
                   <table class="table table-striped table-hover">
                     <thead>
                       <tr>
-                        <th class="text-center cl3 col-8">내용</th>
-                        <th class="text-center cl3 col-2">날짜</th>
+                        <th class="text-center cl3 col-9">내용</th>
+                        <th class="text-center cl3 col-3">날짜</th>
                       </tr>
                     </thead>
                     <tbody class="qna_parent">
@@ -353,14 +355,20 @@
 
                     <tr class="qna_question ${product_qna.idx }">
                       <td class="">
-                        <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content2" aria-expanded="false" aria-controls="answer_content">혼자 조립 설치하기 쉽나요 </a>
+                        <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content2" aria-expanded="true" aria-controls="answer_content">혼자 조립 설치하기 쉽나요 </a>
                       </td>
-                      <td class="text-center cl3">2022.09.01 11:23</td>
+                      <td class="text-center cl3">
+                        2022.09.01 11:23<span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a> <input type="hidden" value="${idx }"></span>
+
+                      </td>
                     </tr>
 
                     <tr class="qna_answer">
-                      <td colspan="2">
-                        <div id="answer_content2" class="collapse">그럼요</div>
+                      <td>
+                        <div id="answer_content2" class="collapse show">그럼요</div>
+                      </td>
+                      <td class="text-center cl3">
+                        2022.09.01 12:23 <span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a></span>
                       </td>
                     </tr>
 
@@ -378,6 +386,7 @@
     </div>
     <!-- 제품 상세 컨테이너 -->
   </section>
+
   <script>
   /** 장바구니 CRUD 기능을 및 ajax로 구현하는 게 목표 
   
@@ -433,8 +442,9 @@
   <script>
   let SaledPrice = "${SaledPrice}";
   $("body").on("click keyup", function () {
-    console.log("클릭, 키업");
-    let cart_product_number = $("#cart_product_number").val();    let total_price = SaledPrice * cart_product_number;
+    //console.log("클릭, 키업");
+    let cart_product_number = $("#cart_product_number").val();
+    let total_price = SaledPrice * cart_product_number;
     $("input[name=order_total_price]").val(SaledPrice * cart_product_number);
     $("span.total_price_print").html("₩" + total_price.toLocaleString("en").split(".")[0]);
   });
@@ -465,26 +475,31 @@
           qna_section += item.idx;
           qna_section += '"><td class=""><a class="cl6" href="#" data-toggle="collapse" data-target="#parent';
           qna_section += item.idx;
-          qna_section += '" aria-expanded="false" aria-controls="answer_content">';
+          qna_section += '" aria-expanded="true" aria-controls="answer_content">';
           qna_section += item.content;
           qna_section += '</a></td><td class="text-center cl3">';
           qna_section += wdate;
+          if (session_member_admin == "Y") {
+            /** 관리자인 경우엔 삭제버튼만 출력 */
+          qna_section += '<span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a><input type="hidden" value="';
+          qna_section += item.idx
+            qna_section += '"></span>';
+          }
           qna_section += '</td></tr>';
-          console.log(qna_section);
+          
           if (session_member_idx == item.member_idx) {
             /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
             
             /** 이 위로 member_idx 일치 유저만 출력*/
-          } else if (session_member_admin == "Y") {
-            /** 관리자인 경우엔 삭제버튼만 출력 */
-          
-          }
+          } 
           
           qna_section += '';
-          
+          console.log(qna_section);
           $("tbody.qna_parent").append(qna_section);
+          //$("tbody.qna_parent").append("ㅁㄴㅇ");
         });
-        console.log("불러오기 성공");
+        console.log("질문 목록 불러오기 성공");
+        getAnswerList();
       },
       error: function (request, status, error) {
         alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -499,7 +514,7 @@
       dataType: "JSON", 
       success: function (result) {
         
-        $("tbody.qna_parent").empty();
+        //$("tbody.qna_parent").empty();
         $(result).each(function (index, item) {
           console.log(item);
           
@@ -510,13 +525,27 @@
           let wdate = new Date(wdate_unix).toISOString().slice(0, 19).replace('T', ' ');
           
           
-          qna_section += '<tr class="qna_answer"><td><div id="parent';
+          qna_section += '<tr class="qna_answer"><td class="">'
+          qna_section += '<div id="parent';
           qna_section += item.parent_idx;
-          qna_section += '" class="collapse">';
+          qna_section += '" class="collapse show">';
+          qna_section += 'ㄴ 답변 : ';
           qna_section += item.content;
-          qna_section += '</div></td><td class="text-center cl3">';
+          qna_section += '</div></td>';
+          qna_section += '<td class="text-center cl3">';
+          qna_section += '<div id="parent';
+          qna_section += item.parent_idx;
+          qna_section += '" class="collapse show">';
           qna_section += wdate;
-          qna_section += '</td></tr>';
+          if (session_member_admin == "Y") {
+            /** 관리자인 경우엔 삭제버튼만 출력 */
+          qna_section += '<span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a><input type="hidden" value="';
+          qna_section += item.idx
+            qna_section += '"></span>';
+          }
+          qna_section += '</div>'
+          qna_section += '</td>';
+          qna_section += '</tr>';
           //console.log(qna_section);
           if (session_member_idx == item.member_idx) {
             /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
@@ -534,7 +563,7 @@
           $("tr.question"+item.parent_idx).after(qna_section);
           
         });
-        console.log("불러오기 성공");
+        console.log("답변 목록 불러오기 성공");
       },
       error: function (request, status, error) {
         alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -542,7 +571,60 @@
     });
   }
   getQuestionList();
-  getAnswerList();
+  
+  function writeQuestion() {
+    console.log("prevevnt");
+    event.preventDefault();
+    console.log("123");
+    if ($("input#reply_content").val() !== "") {
+      $.ajax({
+        type : 'post',
+        url : 'qna/write?product_idx=' + product_idx,
+        data : {
+          product_idx : product_idx,
+          content : $("textarea#content").val()
+        },
+        success : function(result) {
+          console.log(result);
+          console.log("작성 성공");
+          $("textarea#content").val("")
+          $('.modal').modal('hide');
+          getQuestionList();
+        },
+        error : function(request, status, error) {
+          alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+          console.log(status);
+          console.log(request);
+          console.log(error);
+        },
+      })
+    }
+  }
+  function removeQna(obj) {
+    console.log(obj);
+    let idx = $(obj).next().val();
+    console.log(idx)
+    //let member_idx = $(obj).parent().next().next().val();
+
+    $.ajax({
+      type : 'post',
+      url : 'qna/remove?idx=' + idx,
+      data : {
+        //member_idx : member_idx,
+      },
+      success : function(result) {
+        console.log(result);
+        console.log("삭제 성공");
+        getQuestionList();
+      },
+      error : function(request, status, error) {
+        alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+        console.log(status);
+        console.log(request);
+        console.log(error);
+      },
+    })
+  }
   
 </script>
 
