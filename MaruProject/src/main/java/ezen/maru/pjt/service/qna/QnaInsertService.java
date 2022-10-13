@@ -8,15 +8,21 @@ import ezen.maru.pjt.vo.QnaVo;
 
 @Service("q_insert")
 public class QnaInsertService implements QnaService {
-	private QnaDao qnaDao;
+  private QnaDao qnaDao;
 
-	@Autowired(required = false)
-	public QnaInsertService(QnaDao qnaDao) {
-		this.qnaDao = qnaDao;
-	}
+  @Autowired(required = false)
+  public QnaInsertService(QnaDao qnaDao) {
+    this.qnaDao = qnaDao;
+  }
 
-	@Override
-	public int writeQna(QnaVo qnaVo) {
-		return qnaDao.writeQna(qnaVo);
-	}
+  @Override
+  public int writeQna(QnaVo qnaVo) {
+    return qnaDao.writeQna(qnaVo);
+  }
+
+  @Override
+  public int writeAnswer(QnaVo qnaVo) {
+    return qnaDao.writeAnswer(qnaVo);
+  }
+
 }

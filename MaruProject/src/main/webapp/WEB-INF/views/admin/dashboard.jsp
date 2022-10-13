@@ -156,7 +156,33 @@ li.page-item.active>a.page-link:hover {
             <td>
               <c:choose>
                 <c:when test="${qna.isAnswered eq 'N'}">
-                  <input class="btn btn-outline-dark bg7 cl7" type="button" value="답변작성" onclick="answerQna('${qna.idx}')" />
+                  <%--                   <input class="btn btn-outline-dark bg7 cl7" type="button" value="답변작성" onclick="answerQna('${qna.idx}')" /> --%>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn bg7 cl7" data-toggle="modal" data-target="#idx${qna.idx }">답변작성</button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="idx${qna.idx }" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <form action="" method="post">
+                          <div class="modal-header">
+                            <h5 class="modal-title">답변 작성하기</h5>
+                            <a type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                            </a>
+                          </div>
+                          <div class="modal-body">
+                            <textarea class="form-control idx${qna.idx }" name="content" id="content" cols="30" rows="10"></textarea>
+                          </div>
+                          <div class="modal-footer">
+                            <input type="hidden" name="parent_idx" value="${qna.idx }" />
+                            <input type="hidden" name="parent_idx" value="${qna.product_idx }" />
+                            <a type="button" class="btn bg6 btn-outline-secondary" data-dismiss="modal">취소</a>
+                            <input type="button" class="btn bg7 cl7 btn-outline-dark" value="등록" onclick="writeAnswer('${qna.idx}','${qna.product_idx }', this)">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
                 </c:when>
                 <c:otherwise>답변완료</c:otherwise>
               </c:choose>
@@ -175,41 +201,78 @@ li.page-item.active>a.page-link:hover {
       </nav>
     </div>
   </section>
-  <!-- Modal -->
-  <form action="${pageContext.request.contextPath}/qna/qnaisanswered" method="post" id="answer">
-    <div class="modal fade" id="isanswer" role="dialog">
-      <!-- 사용자 지정 부분① : id명 -->
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">답변 등록</h4>
-            <!-- 사용자 지정 부분② : 타이틀 -->
-            <button type="button" class="close" data-dismiss="modal">×</button>
-          </div>
-          <div class="modal-body">
-            <%-- <c:forEach var="qna" items="${qnaList}" varStatus="status"> --%>
-            <input type="text" name="idx" id="idx" value="${qna.idx}" />
-            <input type="text" name="parent_idx" id="parent_idx" value="${qna.parent_idx}" />
-            <input type="text" name="member_idx" value="${sessionScope.member_idx}">
-            <%-- </c:forEach> --%>
-            <input type="text" name="category" id="category" value="답변" />
-            <input type="hidden" name="isanswered" id="isanswered" value="Y" />
-            <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50">--답변--</textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn bg2" data-dismiss="modal">닫기</button>
-            <button type="submit" class="qna-button btn bg2">등록</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
+
+  <!--   <!-- Modal -->
+
+  <%--   <form action="${pageContext.request.contextPath}/qna/qnaisanswered" method="post" id="answer"> --%>
+  <!--     <div class="modal fade" id="isanswer" role="dialog"> -->
+  <!--       사용자 지정 부분① : id명 -->
+  <!--       <div class="modal-dialog"> -->
+  <!--         Modal content -->
+  <!--         <div class="modal-content"> -->
+  <!--           <div class="modal-header"> -->
+  <!--             <h4 class="modal-title">답변 등록</h4> -->
+  <!--             사용자 지정 부분② : 타이틀 -->
+  <!--             <button type="button" class="close" data-dismiss="modal">×</button> -->
+  <!--           </div> -->
+  <!--           <div class="modal-body"> -->
+  <%--             <c:forEach var="qna" items="${qnaList}" varStatus="status"> --%>
+  <%--             <input type="text" name="idx" id="idx" value="${qna.idx}" /> --%>
+  <%--             <input type="text" name="parent_idx" id="parent_idx" value="${qna.parent_idx}" /> --%>
+  <%--             <input type="text" name="member_idx" value="${sessionScope.member_idx}"> --%>
+  <%--             </c:forEach> --%>
+  <!--             <input type="text" name="category" id="category" value="답변" /> -->
+  <!--             <input type="hidden" name="isanswered" id="isanswered" value="Y" /> -->
+  <!--             <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50">--답변--</textarea> -->
+  <!--           </div> -->
+  <!--           <div class="modal-footer"> -->
+  <!--             <button type="button" class="btn bg2" data-dismiss="modal">닫기</button> -->
+  <!--             <button type="submit" class="qna-button btn bg2">등록</button> -->
+  <!--           </div> -->
+  <!--         </div> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </form> -->
   <!-- end first container -->
 
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
   <!-- script -->
+  <script>
+      function writeAnswer(parent_idx, product_idx, obj) {
+        console.log(obj);
+        event.preventDefault();
+
+        let content = $("textarea.idx" + parent_idx).val();
+        console.log(content);
+        if ($("input#reply_content").val() !== "") {
+          $.ajax({
+            type : "post",
+            url : "../product/qna/writeAnswer?product_idx=" + product_idx,
+            data : {
+              product_idx : product_idx,
+              parent_idx : parent_idx,
+              content : $("textarea#content.idx" + parent_idx).val(),
+            },
+            success : function(result) {
+              console.log(result);
+              console.log("작성 성공");
+              $("textarea").val("");
+              $(".modal").modal("hide");
+              console.log($(obj).parent().parent().parent().parent().parent().parent());
+              $(obj).parent().parent().parent().parent().parent().parent().find("button").remove();
+              $(obj).parent().parent().parent().parent().parent().parent().prepend("답변완료");
+            },
+            error : function(request, status, error) {
+              alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+              console.log(status);
+              console.log(request);
+              console.log(error);
+            },
+          });
+        }
+      }
+    </script>
 </body>
 </html>

@@ -29,7 +29,6 @@ public class QnaDao {
   }
 
   public int writeQna(QnaVo qnaVo) {
-//		System.out.println("qnaVo in DAO : " + qnaVo);
     return sqlSession.insert(MAPPER + ".writeQna", qnaVo);
   }
 
@@ -44,6 +43,13 @@ public class QnaDao {
 
   public List<QnaVo> getAllQuestionList() {
     return sqlSession.selectList(MAPPER + ".getAllQuestionList");
+  }
+
+  public int writeAnswer(QnaVo qnaVo) {
+    System.out.println("qnaVo in DAO : " + qnaVo);
+    System.out.println(qnaVo.getParent_idx());
+    sqlSession.insert(MAPPER + ".writeQna", qnaVo);
+    return sqlSession.update(MAPPER + ".markAnswered", qnaVo);
   }
 
 }
