@@ -48,7 +48,7 @@
   </select>
 
   <select id="getAllQuestionList" resultType="qnaVo">
-    SELECT date_format(wdate,'%Y.%m.%d %H:%i') as wdate, product_name, content, member_id, isAnswered
+    SELECT date_format(wdate,'%Y.%m.%d %H:%i') as wdate, product_name, content, member_id, isAnswered, q.idx
     FROM product_qna q
     inner join product p 
     on q.product_idx = p.product_idx

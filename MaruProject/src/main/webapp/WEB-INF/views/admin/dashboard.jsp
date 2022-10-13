@@ -155,8 +155,10 @@ li.page-item.active>a.page-link:hover {
             <td>${qna.wdate }</td>
             <td>
               <c:choose>
-                <c:when test="${qna.isAnswered eq 'N'}">X</c:when>
-                <c:otherwise>O</c:otherwise>
+                <c:when test="${qna.isAnswered eq 'N'}">
+                  <input class="btn btn-outline-dark bg7 cl7" type="button" value="답변작성" onclick="answerQna('${qna.idx}')" />
+                </c:when>
+                <c:otherwise>답변완료</c:otherwise>
               </c:choose>
             </td>
           </tr>
