@@ -90,21 +90,21 @@ INSERT INTO announce_reply (
 idx, member_idx, reply_content
 ) VALUES (
 1, 1, '첫번재 리플!!!!'
-)
+);
 
     
 INSERT INTO announce_reply (
 idx, member_idx, reply_content
 ) VALUES (
 1, 1, '두번재 리플!!!!'
-)
+);
 
     
 INSERT INTO announce_reply (
 idx, member_idx, reply_content
 ) VALUES (
 2, 1, '2번 글의 첫번재 리플!!!! '
-)
+);
 
 ALTER TABLe product_cart MODIFY cart_idx INT NOT NULL AUTO_INCREMENT;
 
@@ -112,24 +112,44 @@ INSERT INTO product_qna (
 product_idx, member_idx, content
 ) VALUES (
 1, 1, '첫번재문의'
-)
+);
 
 INSERT INTO product_qna (
 product_idx, member_idx, content
 ) VALUES (
 1, 1, '두번재문의'
-)
+);
 
 INSERT INTO product_qna (
 product_idx, member_idx, content, parent_idx
 ) VALUES (
 1, 2, '첫번째답변', 1
-)
+);
 
 UPDATE product_qna
 SET
 isAnswered = 'Y'
 WHERE
-idx = 1
+idx = 1;
+
+INSERT INTO review (
+product_idx, member_idx, content, star
+) VALUES (
+1, 1, '1번리뷰', 5.0
+);
+
+INSERT INTO review (
+product_idx, member_idx, content, star
+) VALUES (
+1, 2, '2번리뷰', 4.0
+);
+
+UPDATE review
+SET
+content = '1번 리뷰 내용 수정'
+WHERE
+idx = 1 and member_idx = 1;
+
+
 
 commit;

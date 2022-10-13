@@ -136,7 +136,7 @@
                     </span>
                     <input type="hidden" name="order_total_price" value="${SaledPrice}">
                     <div class="btn-group" role="group">
-                      <a href="#" onClick="fn_addCart(${product.product_idx})" class="flex-c-m stext-101 cl0 size-107 bg1 hov-btn1 m-lr-15 trans-04 js-addcart-detail">장바구니</a>
+                      <a href="#" onClick="fn_addCart('${product.product_idx}')" class="flex-c-m stext-101 cl0 size-107 bg1 hov-btn1 m-lr-15 trans-04 js-addcart-detail">장바구니</a>
                       <input type="hidden" name="product_idx_list" value="${product.product_idx }" />
                       <button class="flex-c-m stext-101 cl0 size-107 bg1  hov-btn1 m-lr-15 trans-04 buy_button">즉시구매</button>
                     </div>
@@ -388,245 +388,236 @@
   </section>
 
   <script>
-  /** 장바구니 CRUD 기능을 및 ajax로 구현하는 게 목표 
-  
-  로그인 여부 -> 세션값을 가져와서 체크
-    
-  1) 장바구니 추가 
-    1. 로그인 됨, 비로그인 유저용 쿠키값 없음 
-      -> 세션에서 member_idx를 받아와 cartVo로 담아 전송
-    2. 로그인 됨, 비로그인 유저용 쿠키값 존재
-      -> db에 비로그인 유저용 장바구니 member_idx를 회원member_idx로 변경후 장바구니 추가 로직 진행
-    3. 비로그인, 쿠키값 없음 
-      -> 새로 난수와 쿠키를 생성하여 장바구니 추가
-    4. 비로그인, 쿠키값 존재
-      -> 
-  
-  1)-2 로그인 유저는 즉시 구매 버튼을 이용해 구매페이지로 이동 가능. 
-       비로그인일 경우 회원만 가능합니다. 로그인 하시겠습니까 confirm 창 띄우기 
-    
-  2) 장바구니 추가 성공시 -> 장바구니로 이동, 계속 쇼핑하기 modal창 출력.
-  
-  
-  번외
-  회원가입시 -> 장바구니 쿠키를 가지고 있을경우 해당 정보를 새로운 member_idx에 귀속된 회원용 장바구니로 이동
-    
-  */
-  function fn_addCart(idx){ //idx 값에는 product_idx가 담김. 장바구니 버튼 위치 line 096
-    
-    let cart_product_number = document.getElementById("cart_product_number").value; // 담을 물건 숫자
-    
-    $.ajax({
-      type:"post",
-      url:"${MaruContextPath}/cart/add_process?product_idx=" + idx + "&cart_product_number=" + cart_product_number, 
-      data: { 
-        "product_idx" : idx,
-        "cart_product_number" : cart_product_number 
-      },
-      success : addCartSuccess,
-      error : addCartFail,
-     })
-  }
-  
-  function addCartSuccess(){    //장바구니로 이동 혹은 계속 쇼핑하기 여부 modal 창으로 출력
-    console.log("성공");
-    
-  }
-  
-  function addCartFail(){    alert("오류가 발생했습니다. 다시 시도해주세요.");
-  }
-  </script>
+      /** 장바구니 CRUD 기능을 및 ajax로 구현하는 게 목표 
+      
+      로그인 여부 -> 세션값을 가져와서 체크
+        
+      1) 장바구니 추가 
+        1. 로그인 됨, 비로그인 유저용 쿠키값 없음 
+          -> 세션에서 member_idx를 받아와 cartVo로 담아 전송
+        2. 로그인 됨, 비로그인 유저용 쿠키값 존재
+          -> db에 비로그인 유저용 장바구니 member_idx를 회원member_idx로 변경후 장바구니 추가 로직 진행
+        3. 비로그인, 쿠키값 없음 
+          -> 새로 난수와 쿠키를 생성하여 장바구니 추가
+        4. 비로그인, 쿠키값 존재
+          -> 
+      
+      1)-2 로그인 유저는 즉시 구매 버튼을 이용해 구매페이지로 이동 가능. 
+           비로그인일 경우 회원만 가능합니다. 로그인 하시겠습니까 confirm 창 띄우기 
+        
+      2) 장바구니 추가 성공시 -> 장바구니로 이동, 계속 쇼핑하기 modal창 출력.
+      
+      
+      번외
+      회원가입시 -> 장바구니 쿠키를 가지고 있을경우 해당 정보를 새로운 member_idx에 귀속된 회원용 장바구니로 이동
+        
+       */
+      function fn_addCart(idx) { //idx 값에는 product_idx가 담김. 장바구니 버튼 위치 line 096
+
+        let cart_product_number = document.getElementById("cart_product_number").value; // 담을 물건 숫자
+
+        $.ajax({
+          type : "post",
+          url : "${MaruContextPath}/cart/add_process?product_idx=" + idx + "&cart_product_number=" + cart_product_number,
+          data : {
+            "product_idx" : idx,
+            "cart_product_number" : cart_product_number
+          },
+          success : addCartSuccess,
+          error : addCartFail,
+        })
+      }
+
+      function addCartSuccess() { //장바구니로 이동 혹은 계속 쇼핑하기 여부 modal 창으로 출력
+        console.log("성공");
+
+      }
+
+      function addCartFail() {
+        alert("오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    </script>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
   <script>
-  let SaledPrice = "${SaledPrice}";
-  $("body").on("click keyup", function () {
-    //console.log("클릭, 키업");
-    let cart_product_number = $("#cart_product_number").val();
-    let total_price = SaledPrice * cart_product_number;
-    $("input[name=order_total_price]").val(SaledPrice * cart_product_number);
-    $("span.total_price_print").html("₩" + total_price.toLocaleString("en").split(".")[0]);
-  });
-</script>
+      let SaledPrice = "${SaledPrice}";
+      $("body").on("click keyup", function() {
+        //console.log("클릭, 키업");
+        let cart_product_number = $("#cart_product_number").val();
+        let total_price = SaledPrice * cart_product_number;
+        $("input[name=order_total_price]").val(SaledPrice * cart_product_number);
+        $("span.total_price_print").html("₩" + total_price.toLocaleString("en").split(".")[0]);
+      });
+    </script>
   <script>
-  let product_idx = "${product.product_idx}";
-  let session_member_idx = "${sessionScope.member_idx}"
-  let session_member_admin = "${sessionScope.member_admin}"
-  function getQuestionList() {
-    $.ajax({
-      type: "GET",
-      url: "qna/list?product_idx=" + product_idx,
-      data: product_idx,
-      dataType: "JSON", 
-      success: function (result) {
-        
-        $("tbody.qna_parent").empty();
-        $(result).each(function (index, item) {
-          
-          let qna_section = "";
-          let wdate_unix = item.wdate;
-          
-          //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
-          let wdate = new Date(wdate_unix).toISOString().slice(0, 19).replace('T', ' ');
-          
-          
-          qna_section += '<tr class="qna_question question';
-          qna_section += item.idx;
-          qna_section += '"><td class=""><a class="cl6" href="#" data-toggle="collapse" data-target="#parent';
-          qna_section += item.idx;
-          qna_section += '" aria-expanded="true" aria-controls="answer_content">';
-          qna_section += item.content;
-          qna_section += '</a></td><td class="text-center cl3">';
-          qna_section += wdate;
-          if (session_member_admin == "Y") {
-            /** 관리자인 경우엔 삭제버튼만 출력 */
-          qna_section += '<span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a><input type="hidden" value="';
-          qna_section += item.idx
-            qna_section += '"></span>';
-          }
-          qna_section += '</td></tr>';
-          
-          if (session_member_idx == item.member_idx) {
-            /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
-            
-            /** 이 위로 member_idx 일치 유저만 출력*/
-          } 
-          
-          qna_section += '';
-          console.log(qna_section);
-          $("tbody.qna_parent").append(qna_section);
-          //$("tbody.qna_parent").append("ㅁㄴㅇ");
-        });
-        console.log("질문 목록 불러오기 성공");
-        getAnswerList();
-      },
-      error: function (request, status, error) {
-        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-      },
-    });
-  }  
-  function getAnswerList(){
-    $.ajax({
-      type: "GET",
-      url: "qna/listAnswer?product_idx=" + product_idx,
-      data: product_idx,
-      dataType: "JSON", 
-      success: function (result) {
-        
-        //$("tbody.qna_parent").empty();
-        $(result).each(function (index, item) {
-          console.log(item);
-          
-          let qna_section = "";
-          let wdate_unix = item.wdate;
-          
-          //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
-          let wdate = new Date(wdate_unix).toISOString().slice(0, 19).replace('T', ' ');
-          
-          
-          qna_section += '<tr class="qna_answer"><td class="">'
-          qna_section += '<div id="parent';
-          qna_section += item.parent_idx;
-          qna_section += '" class="collapse show">';
-          qna_section += 'ㄴ 답변 : ';
-          qna_section += item.content;
-          qna_section += '</div></td>';
-          qna_section += '<td class="text-center cl3">';
-          qna_section += '<div id="parent';
-          qna_section += item.parent_idx;
-          qna_section += '" class="collapse show">';
-          qna_section += wdate;
-          if (session_member_admin == "Y") {
-            /** 관리자인 경우엔 삭제버튼만 출력 */
-          qna_section += '<span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a><input type="hidden" value="';
-          qna_section += item.idx
-            qna_section += '"></span>';
-          }
-          qna_section += '</div>'
-          qna_section += '</td>';
-          qna_section += '</tr>';
-          //console.log(qna_section);
-          if (session_member_idx == item.member_idx) {
-            /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
-            
-            /** 이 위로 member_idx 일치 유저만 출력*/
-          } else if (session_member_admin == "Y") {
-            /** 관리자인 경우엔 삭제버튼만 출력 */
-          
-          }
-          qna_section += '';
-          let parent_class_name = "tr.question" + item.parent_idx;
-          console.log(parent_class_name)
-          console.log($("tr.question"+item.parent_idx));
-          console.log($(parent_class_name));
-          $("tr.question"+item.parent_idx).after(qna_section);
-          
-        });
-        console.log("답변 목록 불러오기 성공");
-      },
-      error: function (request, status, error) {
-        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-      },
-    });
-  }
-  getQuestionList();
-  
-  function writeQuestion() {
-    console.log("prevevnt");
-    event.preventDefault();
-    console.log("123");
-    if ($("input#reply_content").val() !== "") {
-      $.ajax({
-        type : 'post',
-        url : 'qna/write?product_idx=' + product_idx,
-        data : {
-          product_idx : product_idx,
-          content : $("textarea#content").val()
-        },
-        success : function(result) {
-          console.log(result);
-          console.log("작성 성공");
-          $("textarea#content").val("")
-          $('.modal').modal('hide');
-          getQuestionList();
-        },
-        error : function(request, status, error) {
-          alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
-          console.log(status);
-          console.log(request);
-          console.log(error);
-        },
-      })
-    }
-  }
-  function removeQna(obj) {
-    console.log(obj);
-    let idx = $(obj).next().val();
-    console.log(idx)
-    //let member_idx = $(obj).parent().next().next().val();
+      let product_idx = "${product.product_idx}";
+      let session_member_idx = "${sessionScope.member_idx}";
+      let session_member_admin = "${sessionScope.member_admin}";
+      function getQuestionList() {
+        $.ajax({
+          type : "GET",
+          url : "qna/list?product_idx=" + product_idx,
+          data : product_idx,
+          dataType : "JSON",
+          success : function(result) {
+            $("tbody.qna_parent").empty();
+            $(result).each(function(index, item) {
+              let qna_section = "";
+              let wdate_unix = item.wdate;
 
-    $.ajax({
-      type : 'post',
-      url : 'qna/remove?idx=' + idx,
-      data : {
-        //member_idx : member_idx,
-      },
-      success : function(result) {
-        console.log(result);
-        console.log("삭제 성공");
-        getQuestionList();
-      },
-      error : function(request, status, error) {
-        alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
-        console.log(status);
-        console.log(request);
-        console.log(error);
-      },
-    })
-  }
-  
-</script>
+              //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
+              let wdate = new Date(wdate_unix).toISOString().slice(0, 19).replace("T", " ");
+
+              qna_section += '<tr class="qna_question question';
+              qna_section += item.idx;
+              qna_section += '"><td class=""><a class="cl6" href="#" data-toggle="collapse" data-target="#parent';
+              qna_section += item.idx;
+              qna_section += '" aria-expanded="true" aria-controls="answer_content">';
+              qna_section += item.content;
+              qna_section += '</a></td><td class="text-center cl3">';
+              qna_section += wdate;
+              if (session_member_admin == "Y") {
+                /** 관리자인 경우엔 삭제버튼만 출력 */
+                qna_section += '<span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a><input type="hidden" value="';
+                qna_section += item.idx;
+                qna_section += '"></span>';
+              }
+              qna_section += "</td></tr>";
+
+              if (session_member_idx == item.member_idx) {
+                /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
+                /** 이 위로 member_idx 일치 유저만 출력*/
+              }
+
+              qna_section += "";
+              console.log(qna_section);
+              $("tbody.qna_parent").append(qna_section);
+              //$("tbody.qna_parent").append("ㅁㄴㅇ");
+            });
+            console.log("질문 목록 불러오기 성공");
+            getAnswerList();
+          },
+          error : function(request, status, error) {
+            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+          },
+        });
+      }
+      function getAnswerList() {
+        $.ajax({
+          type : "GET",
+          url : "qna/listAnswer?product_idx=" + product_idx,
+          data : product_idx,
+          dataType : "JSON",
+          success : function(result) {
+            //$("tbody.qna_parent").empty();
+            $(result).each(function(index, item) {
+              console.log(item);
+
+              let qna_section = "";
+              let wdate_unix = item.wdate;
+
+              //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
+              let wdate = new Date(wdate_unix).toISOString().slice(0, 19).replace("T", " ");
+
+              qna_section += '<tr class="qna_answer"><td class="">';
+              qna_section += '<div id="parent';
+              qna_section += item.parent_idx;
+              qna_section += '" class="collapse show">';
+              qna_section += "ㄴ 답변 : ";
+              qna_section += item.content;
+              qna_section += "</div></td>";
+              qna_section += '<td class="text-center cl3">';
+              qna_section += '<div id="parent';
+              qna_section += item.parent_idx;
+              qna_section += '" class="collapse show">';
+              qna_section += wdate;
+              if (session_member_admin == "Y") {
+                /** 관리자인 경우엔 삭제버튼만 출력 */
+                qna_section += '<span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a><input type="hidden" value="';
+                qna_section += item.idx;
+                qna_section += '"></span>';
+              }
+              qna_section += "</div>";
+              qna_section += "</td>";
+              qna_section += "</tr>";
+              //console.log(qna_section);
+              if (session_member_idx == item.member_idx) {
+                /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
+                /** 이 위로 member_idx 일치 유저만 출력*/
+              } else if (session_member_admin == "Y") {
+                /** 관리자인 경우엔 삭제버튼만 출력 */
+              }
+              qna_section += "";
+              let parent_class_name = "tr.question" + item.parent_idx;
+              console.log(parent_class_name);
+              console.log($("tr.question" + item.parent_idx));
+              console.log($(parent_class_name));
+              $("tr.question" + item.parent_idx).after(qna_section);
+            });
+            console.log("답변 목록 불러오기 성공");
+          },
+          error : function(request, status, error) {
+            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+          },
+        });
+      }
+      getQuestionList();
+
+      function writeQuestion() {
+        console.log("prevevnt");
+        event.preventDefault();
+        console.log("123");
+        if ($("input#reply_content").val() !== "") {
+          $.ajax({
+            type : "post",
+            url : "qna/write?product_idx=" + product_idx,
+            data : {
+              product_idx : product_idx,
+              content : $("textarea#content").val(),
+            },
+            success : function(result) {
+              console.log(result);
+              console.log("작성 성공");
+              $("textarea#content").val("");
+              $(".modal").modal("hide");
+              getQuestionList();
+            },
+            error : function(request, status, error) {
+              alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+              console.log(status);
+              console.log(request);
+              console.log(error);
+            },
+          });
+        }
+      }
+      function removeQna(obj) {
+        console.log(obj);
+        let idx = $(obj).next().val();
+        console.log(idx);
+        //let member_idx = $(obj).parent().next().next().val();
+
+        $.ajax({
+          type : "post",
+          url : "qna/remove?idx=" + idx,
+          data : {
+          //member_idx : member_idx,
+          },
+          success : function(result) {
+            console.log(result);
+            console.log("삭제 성공");
+            getQuestionList();
+          },
+          error : function(request, status, error) {
+            alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+            console.log(status);
+            console.log(request);
+            console.log(error);
+          },
+        });
+      }
+    </script>
 
 </body>
 </html>

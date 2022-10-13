@@ -203,6 +203,7 @@ CREATE TABLE PRODUCT
 	PRODUCT_DETAIL varchar(4000) NOT NULL COMMENT '상품 상세 설명',
 	-- 리뷰 평점
 	PRODUCT_AVGSTAR float DEFAULT 0  NOT NULL COMMENT '리뷰 평점',
+	product_review_count int unsigned DEFAULT 0 NOT NULL,
 	-- 상품 조회수
 	PRODUCT_HIT int unsigned DEFAULT 0  NOT NULL COMMENT '상품 조회수',
 	-- 상품 재고
@@ -294,8 +295,7 @@ CREATE TABLE REVIEW
 	-- 리뷰 사진 확장자
 	FILE_EXTENSION varchar(10) COMMENT '리뷰 사진 확장자',
 	deleted_yn varbinary(3) DEFAULT 'N' NOT NULL,
-	CONSTRAINT SYS_C0010795 PRIMARY KEY (IDX),
-	UNIQUE (PRODUCT_IDX)
+	CONSTRAINT SYS_C0010795 PRIMARY KEY (IDX)
 ) COMMENT = '리뷰';
 
 

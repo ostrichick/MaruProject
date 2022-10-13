@@ -14,93 +14,93 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ezen.maru.pjt.service.qna.QnaService;
-import ezen.maru.pjt.vo.QnaVo;
+import ezen.maru.pjt.service.review.ReviewService;
+import ezen.maru.pjt.vo.ReviewVo;
 
 @Controller
-@RequestMapping("/product/qna")
+@RequestMapping("/product/review")
 // 공지사항 게시판의 코멘트 기능 컨트롤러
-public class QnaController {
+public class ReviewController {
 
-  QnaService insertService, listService, updateService, deleteService;
+  ReviewService insertService, listService, updateService, deleteService;
 
   @Autowired(required = false)
-  public void setInsertService(@Qualifier("q_insert") QnaService insertService) {
+  public void setInsertService(@Qualifier("rv_insert") ReviewService insertService) {
     this.insertService = insertService;
   }
 
   @Autowired(required = false)
-  public void setListService(@Qualifier("q_list") QnaService listService) {
+  public void setListService(@Qualifier("rv_list") ReviewService listService) {
     this.listService = listService;
   }
 
   @Autowired(required = false)
-  public void setUpdateService(@Qualifier("q_update") QnaService updateService) {
+  public void setUpdateService(@Qualifier("rv_update") ReviewService updateService) {
     this.updateService = updateService;
   }
 
   @Autowired(required = false)
-  public void setDeleteService(@Qualifier("q_delete") QnaService deleteService) {
+  public void setDeleteService(@Qualifier("rv_delete") ReviewService deleteService) {
     this.deleteService = deleteService;
   }
 
   @GetMapping("/list")
   @ResponseBody
-  public List<QnaVo> getQnaList(QnaVo qnaVo) {
-//		System.out.println("qnaVo in Controller : " + qnaVo);
-    List<QnaVo> qnaList = listService.getQnaList(qnaVo);
-//		System.out.println("qnaList in Controller : " + qnaList);
-    return qnaList;
+  public List<ReviewVo> getReviewList(ReviewVo reviewVo) {
+//		System.out.println("reviewVo in Controller : " + reviewVo);
+    List<ReviewVo> reviewList = listService.getReviewList(reviewVo);
+//		System.out.println("reviewList in Controller : " + reviewList);
+    return reviewList;
   }
 
   @GetMapping("/listAnswer")
   @ResponseBody
-  public List<QnaVo> getAnswerList(QnaVo qnaVo) {
-//		System.out.println("qnaVo in Controller : " + qnaVo);
-    List<QnaVo> qnaList = listService.getAnswerList(qnaVo);
-//		System.out.println("qnaList in Controller : " + qnaList);
-    return qnaList;
+  public List<ReviewVo> getAnswerList(ReviewVo reviewVo) {
+//		System.out.println("reviewVo in Controller : " + reviewVo);
+    List<ReviewVo> reviewList = listService.getAnswerList(reviewVo);
+//		System.out.println("reviewList in Controller : " + reviewList);
+    return reviewList;
   }
 
   @PostMapping("/write")
   @ResponseBody
-  public void writeQna(HttpServletRequest req, QnaVo qnaVo) {
+  public void writeReview(HttpServletRequest req, ReviewVo reviewVo) {
     HttpSession session = req.getSession();
     Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
     int member_idx = (int) optional_member_idx.get();
-    qnaVo.setMember_idx(member_idx);
-    insertService.writeQna(qnaVo);
+    reviewVo.setMember_idx(member_idx);
+    insertService.writeReview(reviewVo);
   }
 
   @PostMapping("/writeAnswer")
   @ResponseBody
-  public void writeAnswer(HttpServletRequest req, QnaVo qnaVo) {
+  public void writeAnswer(HttpServletRequest req, ReviewVo reviewVo) {
     HttpSession session = req.getSession();
     Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
     int member_idx = (int) optional_member_idx.get();
-    qnaVo.setMember_idx(member_idx);
-    insertService.writeAnswer(qnaVo);
+    reviewVo.setMember_idx(member_idx);
+    insertService.writeAnswer(reviewVo);
   }
 
   @PostMapping("/edit")
   @ResponseBody
-  public void editQna(HttpServletRequest req, QnaVo qnaVo) {
+  public void editReview(HttpServletRequest req, ReviewVo reviewVo) {
     HttpSession session = req.getSession();
     Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
     int member_idx = (int) optional_member_idx.get();
-    qnaVo.setMember_idx(member_idx);
-    System.out.println(qnaVo);
-    updateService.editQna(qnaVo);
+    reviewVo.setMember_idx(member_idx);
+    System.out.println(reviewVo);
+    updateService.editReview(reviewVo);
   }
 
   @PostMapping("/remove")
   @ResponseBody
-  public void removeQna(HttpServletRequest req, QnaVo qnaVo) {
+  public void removeReview(HttpServletRequest req, ReviewVo reviewVo) {
     HttpSession session = req.getSession();
-//    System.out.println("qnaVo in Controller : " + qnaVo);
+//    System.out.println("reviewVo in Controller : " + reviewVo);
     Optional<Object> optional_member_id = Optional.ofNullable(session.getAttribute("member_id"));
     String member_id = (String) optional_member_id.get();
-    qnaVo.setMember_id(member_id);
-    deleteService.removeQna(qnaVo);
+
+    deleteService.removeReview(reviewVo);
   }
 }

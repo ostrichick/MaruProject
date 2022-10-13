@@ -47,6 +47,15 @@
     order by q.idx desc
   </select>
 
+  <select id="getAllQuestionList" resultType="qnaVo">
+    SELECT *
+    FROM product_qna q
+    INNER JOIN member_info m
+    ON q.member_idx = m.member_idx
+    WHERE q.deleted_yn = 'N' and parent_idx is null
+    order by q.idx desc
+  </select>
+
   <update id="editQna" parameterType="qnaVo">
     UPDATE product_qna
     SET

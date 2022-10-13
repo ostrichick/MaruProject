@@ -25,6 +25,7 @@
       <mapping path="/product/add" />
       <mapping path="/product/edit" />
       <mapping path="/product/delete" />
+      <mapping path="/product/qna/remove" />
       <exclude-mapping path="/notice/list" />
       <exclude-mapping path="/notice/view" />
       <exclude-mapping path="/notice/reply/**" />

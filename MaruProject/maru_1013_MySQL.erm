@@ -10,9 +10,9 @@
 		<right_margin>30</right_margin>
 	</page_setting>
 	<category_index>0</category_index>
-	<zoom>0.75</zoom>
-	<x>-18</x>
-	<y>317</y>
+	<zoom>1.0</zoom>
+	<x>-23</x>
+	<y>511</y>
 	<default_color>
 		<r>255</r>
 		<g>255</g>
@@ -41,7 +41,7 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path>maru_1012_MySQL.sql</output_path>
+				<output_path>maru_1013_MySQL.sql</output_path>
 				<encoding>UTF-8</encoding>
 				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2022-10-08 09:34:00</creation_date>
-			<updated_date>2022-10-12 15:12:41</updated_date>
+			<updated_date>2022-10-13 12:31:37</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -2694,7 +2694,7 @@
 					<foreign_key>true</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
-					<unique_key>true</unique_key>
+					<unique_key>false</unique_key>
 					<character_set></character_set>
 					<collation></collation>
 					<sequence>
