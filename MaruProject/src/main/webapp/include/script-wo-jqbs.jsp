@@ -39,7 +39,7 @@
 <!--===============================================================================================-->
 <script src="${pageContext.request.contextPath}/resources/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-<script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   $('.js-addwish-b2, .js-addwish-detail').on('click', function(e) {
     e.preventDefault();

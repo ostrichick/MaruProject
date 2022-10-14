@@ -305,18 +305,9 @@
                 <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                   <div class="p-b-30 m-lr-15-sm">
                     <!-- Review -->
-                    <div class="flex-w flex-t p-b-68">
-
-
-                      <div class="size-290">
-                        <div class="flex-w flex-sb-m p-b-17">
-                          <span class="mtext-107 cl2 p-r-20"> &#36;{member_id} </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i>
-                          </span>
-                        </div>
-
-                        <p class="stext-102 cl6">&#36;{content}리뷰리뷰리ㅇㅇㅇㅇㅇㅇㅇ뷰리뷰리뷰리뷰리뷰리뷰</p>
-                      </div>
-                    </div>
+                    <c:if test="${empty reviewList  }">
+                      <div class="p-b-68 txt-center">아직 작성된 리뷰가 없습니다.</div>
+                    </c:if>
                     <c:forEach var="review" items="${reviewList}" varStatus="status">
                       <div class="flex-w flex-t p-b-68">
 
@@ -324,14 +315,17 @@
                         <div class="size-290">
                           <div class="flex-w flex-sb-m p-b-17">
 
-                            <span class="mtext-107 cl2 p-r-20"> ${review.member_name } </span> <span class="fs-18 cl11"> <c:set var="emptyStar" value="5" /> <c:forEach var="i" begin="1" end="${review.star }" step="1">
-                                <i class="zmdi zmdi-star"></i>
-                                <c:set var="emptyStar" value="${emptyStar -1 }" />
-                              </c:forEach> <c:if test="${emptyStar ge 1 }">
-                                <c:forEach var="i" begin="1" end="${emptyStar }">
-                                  <i class="zmdi zmdi-star-outline"></i>
-                                </c:forEach>
-                              </c:if>
+                            <span class="mtext-107 cl2 p-r-20"> ${review.member_name } </span> <span class="fs-18 cl11"> 
+                            <c:set var="emptyStar" value="5" /> 
+                            <c:forEach var="i" begin="1" end="${review.star }" step="1">
+                              <i class="zmdi zmdi-star"></i>
+                              <c:set var="emptyStar" value="${emptyStar -1 }" />
+                            </c:forEach> 
+                            <c:if test="${emptyStar ge 1 }">
+                              <c:forEach var="i" begin="1" end="${emptyStar }">
+                                <i class="zmdi zmdi-star-outline"></i>
+                              </c:forEach>
+                            </c:if>
                             </span>
                           </div>
 

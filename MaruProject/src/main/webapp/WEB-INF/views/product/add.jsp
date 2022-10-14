@@ -27,45 +27,42 @@
 
           <div class="col-md-6 col-lg-5 p-b-30">
             <div class="p-r-50 p-t-5 p-lr-0-lg">
-              <h2 class="mtext-105 cl2 js-name-detail p-b-14">
+              <h2 class="mtext-105 cl2 js-name-detail p-b-14 txt-center">상품 등록</h2>
+              <div class="input-group m-tb-10">
+                <div class="input-group-text">제품명</div>
                 <input type="text" class="form-control" name="product_name" placeholder="제품명" />
-              </h2>
-              <div class="input-group">
-                <input type="number" class="form-control txt-right" name="product_price" id="price" placeholder="가격" />
+              </div>
+              <div class="input-group m-tb-10">
+                <div class="input-group-text">가격</div>
+                <input type="text" class="form-control txt-right" name="product_price" id="product_price" placeholder="가격" maxlength=8 onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                 <div class="input-group-text">₩</div>
               </div>
 
               <div class="input-group m-tb-10">
                 <div class="input-group-text">
+                  할인여부&nbsp;
                   <input type="checkbox" class="" name="product_sale" id="product_sale" value="Y" />
+
                 </div>
-                <input type="number" class="form-control txt-right" name="product_sale_percent" id="product_sale_percent" placeholder="왼쪽 할인여부 체크 후 여기에 할인율 입력" />
+                <input type="text" class="form-control txt-right" name="product_sale_percent" id="product_sale_percent" placeholder="" maxlength=2 onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                 <div class="input-group-text">%</div>
+                <div class="input-group-text">할인율</div>
               </div>
-              (1~99 사이의 숫자만 가능하도록 정규식 추가)
-              <div class="input-group">
-                <input type="number" class="form-control txt-right" name="sale_price" id="sale_price" placeholder="할인율이 적용 된 가격" readonly />
+              <div class="input-group m-tb-10">
+                <div class="input-group-text">할인가</div>
+                <input type="text" class="form-control txt-right" name="product_sale_price" id="product_sale_price" placeholder="할인율이 적용 된 가격" maxlength=8 onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                 <div class="input-group-text">₩</div>
               </div>
-              <script>
-                              window.load = function() {
-                                let product_price = document.querySelector("#price");
-                                let product_sale = document.querySelector("product_sale");
-                                let product_sale_percent = document.querySelector("product_sale_percent");
-                                let sale_price = document.querySelector("sale_price");
-
-                              }
-                            </script>
-
-              (입력한 가격과 할인율에 따라 할인된 가격이 계산되는 스크립트 추가, 100원단위 반올림)
-              <p class="stext-102 cl3 p-t-23">
-                규격
+              <div class="input-group m-tb-10">
+                <div class="input-group-text">규격</div>
                 <input type="text" class="form-control" name="product_size" placeholder="예시: '800x1500'" />
-              </p>
-              <p class="stext-102 cl3 p-t-23">
-                분류
+                <div class="input-group-text">mm</div>
+              </div>
+
+              <div class="input-group m-tb-10">
+                <div class="input-group-text">분류</div>
                 <select id="product_major_category" class="form-control" name="product_major_category">
-                  <option value="">분류 선택</option>
+                  <option value="">선택</option>
                   <option value="livingroom">거실</option>
                   <option value="bedroom">침실</option>
                   <option value="library">서재</option>
@@ -73,7 +70,7 @@
                   <option value="bathroom">욕실</option>
                   <option value="etcproduct">기타</option>
                 </select>
-              </p>
+              </div>
             </div>
           </div>
           <div class="m-lr-auto">
@@ -128,5 +125,50 @@
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/detail.jsp"%>
   <%@include file="/include/script-wo-jqbs.jsp"%>
+  <script>
+      /*
+       let product_price = document.querySelector("#product_price");
+       let product_sale = document.querySelector("product_sale");
+       let product_sale_percent = document.querySelector("product_sale_percent");
+       let product_sale_price = document.querySelector("sale_price");
+       */
+      $("#product_price").on("change keyup", function() {
+        if ($("#product_sale").is(":checked") && $("#product_sale_percent").val().length > 0) {
+          let product_price = $("#product_price").val();
+          let product_sale_percent = $("#product_sale_percent").val();
+          let product_sale_price = product_price - product_price * product_sale_percent / 100;
+          $("#product_sale_price").val(Math.floor(product_sale_price / 100) * 100);
+        }
+      })
+
+      $("#product_sale_percent").on("change keyup", function() {
+        if ($("#product_sale").is(":checked") && $("#product_price").val().length > 0) {
+          let product_price = $("#product_price").val();
+          let product_sale_percent = $("#product_sale_percent").val();
+          let product_sale_price = product_price - product_price * product_sale_percent / 100;
+          $("#product_sale_price").val(Math.floor(product_sale_price / 100) * 100);
+        }
+      })
+
+      $("#product_sale_price").on("change keyup", function() {
+
+        console.log("원래 가격 " + $("#product_price").val());
+        console.log("할인 가격 " + $("#product_sale_price").val());
+        console.log("원래 가격이 할인 가격보다 높은가? = " + $("#product_price").val() <= $("#product_sale_price").val());
+        console.log("원래 가격 length가 할인 가격보다 많은가? = " + $("#product_price").val().length <= $("#product_sale_price").val().length);
+        if ($("#product_price").val().length < $("#product_sale_price").val().length) {
+
+          Swal.fire("가격은 할인가보다 낮을 수 없습니다!");
+          $("#product_sale_price").val($("#product_sale_price").val().slice(0, -1));
+        }
+
+        if ($("#product_sale").is(":checked") && $("#product_price").val().length > 0) {
+          let product_price = $("#product_price").val(); // 10000
+          let product_sale_price = $("#product_sale_price").val(); // 8000
+          let product_sale_percent = (product_price - product_sale_price) / product_price * 100;
+          $("#product_sale_percent").val(Math.floor(product_sale_percent * 10) / 10);
+        }
+      })
+    </script>
 </body>
 </html>

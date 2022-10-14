@@ -131,7 +131,80 @@ span.cart_plus>i:hover {
                     </c:otherwise>
                   </c:choose>
 
-                  <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i></span>
+                  <span class="fs-18 cl11"> <c:choose>
+                      <c:when test="${ product.product_avgstar ge 4.8}">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar ge 4.3 and product.product_avgstar lt 4.8 }">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-half"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar ge 3.8 and product.product_avgstar lt 4.3 }">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar ge 3.3 and product.product_avgstar lt 3.8 }">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-half"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar ge 2.8 and product.product_avgstar lt 3.3 }">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar ge 2.3 and product.product_avgstar lt 2.8 }">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-half"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar ge 1.8 and product.product_avgstar lt 2.3 }">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar ge 1.3 and product.product_avgstar lt 1.8 }">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-half"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar ge 0.8 and product.product_avgstar lt 1.3 }">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                      </c:when>
+                      <c:when test="${ product.product_avgstar gt 0 and product.product_avgstar lt 0.8 }">
+                        <i class="zmdi zmdi-star-half"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                      </c:when>
+                      <c:otherwise></c:otherwise>
+                    </c:choose>
+                  </span>
                 </div>
                 <div class="block2-txt-child2 flex-r p-t-15">
                   <a onClick="fn_addCart(${product.product_idx}, '${product.product_name}')" href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"><span class="cl3 trans-04 cart_plus"><i class="zmdi zmdi-shopping-cart-plus zmdi-hc-2x mdc-text-grey"></i></span> </a>

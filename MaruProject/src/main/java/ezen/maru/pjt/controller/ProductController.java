@@ -67,8 +67,8 @@ public class ProductController {
     reviewList = r_listService.getReviewList(product_idx);
     model.addAttribute("product", productVo);
     model.addAttribute("reviewList", reviewList);
-    System.out.println(productVo.getProduct_avgstar());
-    System.out.println(reviewList);
+//    System.out.println(productVo.getProduct_avgstar());
+//    System.out.println(reviewList);
     return "product/detail";
   }
 
