@@ -201,45 +201,38 @@ li.page-item.active>a.page-link:hover {
       </nav>
     </div>
   </section>
-
-  <!--   <!-- Modal -->
-
-  <%--   <form action="${pageContext.request.contextPath}/qna/qnaisanswered" method="post" id="answer"> --%>
-  <!--     <div class="modal fade" id="isanswer" role="dialog"> -->
-  <!--       사용자 지정 부분① : id명 -->
-  <!--       <div class="modal-dialog"> -->
-  <!--         Modal content -->
-  <!--         <div class="modal-content"> -->
-  <!--           <div class="modal-header"> -->
-  <!--             <h4 class="modal-title">답변 등록</h4> -->
-  <!--             사용자 지정 부분② : 타이틀 -->
-  <!--             <button type="button" class="close" data-dismiss="modal">×</button> -->
-  <!--           </div> -->
-  <!--           <div class="modal-body"> -->
-  <%--             <c:forEach var="qna" items="${qnaList}" varStatus="status"> --%>
-  <%--             <input type="text" name="idx" id="idx" value="${qna.idx}" /> --%>
-  <%--             <input type="text" name="parent_idx" id="parent_idx" value="${qna.parent_idx}" /> --%>
-  <%--             <input type="text" name="member_idx" value="${sessionScope.member_idx}"> --%>
-  <%--             </c:forEach> --%>
-  <!--             <input type="text" name="category" id="category" value="답변" /> -->
-  <!--             <input type="hidden" name="isanswered" id="isanswered" value="Y" /> -->
-  <!--             <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50">--답변--</textarea> -->
-  <!--           </div> -->
-  <!--           <div class="modal-footer"> -->
-  <!--             <button type="button" class="btn bg2" data-dismiss="modal">닫기</button> -->
-  <!--             <button type="submit" class="qna-button btn bg2">등록</button> -->
-  <!--           </div> -->
-  <!--         </div> -->
-  <!--       </div> -->
-  <!--     </div> -->
-  <!--   </form> -->
-  <!-- end first container -->
-
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
   <!-- script -->
   <script>
+      let getStats = "${getStats}";
+
+      let stats = '${stats}';
+      stats = JSON.parse(stats);
+
+      function updateStats() {
+        $.ajax({
+          type : "post",
+          url : "/getStats,
+          success : function(result) {
+            console.log(result);
+            console.log("작성 성공");
+            $("textarea").val("");
+            $(".modal").modal("hide");
+            console.log($(obj).parent().parent().parent().parent().parent().parent());
+            $(obj).parent().parent().parent().parent().parent().parent().find("button").remove();
+            $(obj).parent().parent().parent().parent().parent().parent().prepend("답변완료");
+          },
+          error : function(request, status, error) {
+            alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+            console.log(status);
+            console.log(request);
+            console.log(error);
+          },
+        });
+      }
+
       function writeAnswer(parent_idx, product_idx, obj) {
         console.log(obj);
         event.preventDefault();

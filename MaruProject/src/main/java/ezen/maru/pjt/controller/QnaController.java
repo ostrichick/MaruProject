@@ -47,18 +47,14 @@ public class QnaController {
   @GetMapping("/list")
   @ResponseBody
   public List<QnaVo> getQnaList(QnaVo qnaVo) {
-//		System.out.println("qnaVo in Controller : " + qnaVo);
     List<QnaVo> qnaList = listService.getQnaList(qnaVo);
-//		System.out.println("qnaList in Controller : " + qnaList);
     return qnaList;
   }
 
   @GetMapping("/listAnswer")
   @ResponseBody
   public List<QnaVo> getAnswerList(QnaVo qnaVo) {
-//		System.out.println("qnaVo in Controller : " + qnaVo);
     List<QnaVo> qnaList = listService.getAnswerList(qnaVo);
-//		System.out.println("qnaList in Controller : " + qnaList);
     return qnaList;
   }
 
@@ -79,7 +75,6 @@ public class QnaController {
     Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
     int member_idx = (int) optional_member_idx.get();
     qnaVo.setMember_idx(member_idx);
-    System.out.println(qnaVo);
     insertService.writeAnswer(qnaVo);
   }
 
