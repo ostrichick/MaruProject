@@ -67,20 +67,19 @@ li.page-item.active>a.page-link:hover {
           </tr>
         </c:forEach>
       </table>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">다음</a></li>
-        </ul>
-      </nav>
+      <p>
+        전체 회원 <strong> ${stats.memberInfoCount }</strong>명 중 최근
+        <c:choose>
+          <c:when test="${stats.memberInfoCount gt 10 }">10</c:when>
+          <c:otherwise>${stats.memberInfoCount}</c:otherwise>
+        </c:choose>
+        명 출력
+      </p>
     </div>
 
     <!-- 상품 요약 -->
     <div class="container w-full txt-center bg6 p-all-30 m-b-50">
-      <a href="${pageContext.request.contextPath}/admin/updateList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">상품 업데이트</a>
+      <a href="${pageContext.request.contextPath}/admin/updateList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">상품 목록</a>
       <table class="table table-bordered table-hover table-stripped">
         <thead>
           <tr class="bg1">
@@ -121,15 +120,14 @@ li.page-item.active>a.page-link:hover {
         </c:forEach>
 
       </table>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">다음</a></li>
-        </ul>
-      </nav>
+      <p>
+        전체 상품 <strong> ${stats.productCount }</strong>개 중 최근
+        <c:choose>
+          <c:when test="${stats.productCount gt 10 }">10</c:when>
+          <c:otherwise>${stats.productCount}</c:otherwise>
+        </c:choose>
+        개 출력
+      </p>
     </div>
 
     <!-- 상품 문의 요약 -->
@@ -190,15 +188,9 @@ li.page-item.active>a.page-link:hover {
           </tr>
         </c:forEach>
       </table>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">다음</a></li>
-        </ul>
-      </nav>
+      <p>
+        전체 문의 <strong> ${stats.allQuestionCount }</strong>개 중 총 <strong>${stats.unansweredQuestionCount }</strong> 개의 답변 안 된 문의 출력
+      </p>
     </div>
   </section>
   <!-- Footer -->
@@ -211,18 +203,15 @@ li.page-item.active>a.page-link:hover {
       let stats = '${stats}';
       stats = JSON.parse(stats);
 
+      let data = undefined;
       function updateStats() {
         $.ajax({
-          type : "post",
-          url : "/getStats,
+          type : "GET",
+          url : "getStats",
+          dataType : "JSON",
           success : function(result) {
-            console.log(result);
-            console.log("작성 성공");
-            $("textarea").val("");
-            $(".modal").modal("hide");
-            console.log($(obj).parent().parent().parent().parent().parent().parent());
-            $(obj).parent().parent().parent().parent().parent().parent().find("button").remove();
-            $(obj).parent().parent().parent().parent().parent().parent().prepend("답변완료");
+            data = result;
+            console.log(data);
           },
           error : function(request, status, error) {
             alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
@@ -232,6 +221,7 @@ li.page-item.active>a.page-link:hover {
           },
         });
       }
+      updateStats();
 
       function writeAnswer(parent_idx, product_idx, obj) {
         console.log(obj);

@@ -8,16 +8,16 @@ import ezen.maru.pjt.vo.ReviewVo;
 
 @Service("rv_update")
 public class ReviewUpdateService implements ReviewService {
-  private ReviewDao qnaDao;
+  private ReviewDao reviewDao;
 
   @Autowired(required = false)
-  public ReviewUpdateService(ReviewDao qnaDao) {
-    this.qnaDao = qnaDao;
+  public ReviewUpdateService(ReviewDao reviewDao) {
+    this.reviewDao = reviewDao;
   }
 
   @Override
-  public int editReview(ReviewVo qnaVo) {
-    return qnaDao.editReview(qnaVo);
+  public int editReview(ReviewVo reviewVo) {
+    return reviewDao.editReview(reviewVo);
   }
 
 }

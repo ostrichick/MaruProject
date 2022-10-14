@@ -6,7 +6,7 @@ import ezen.maru.pjt.vo.ReviewVo;
 
 public interface ReviewService {
 
-  default List<ReviewVo> getReviewList(ReviewVo reviewVo) {
+  default List<ReviewVo> getReviewList(int product_idx) {
     return null;
   }
 

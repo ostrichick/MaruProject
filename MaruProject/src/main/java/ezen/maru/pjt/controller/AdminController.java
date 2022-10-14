@@ -1,5 +1,6 @@
 package ezen.maru.pjt.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,9 +63,9 @@ public class AdminController {
     List<MemberInfoVo> memberList = m_listService.getMemberInfoList();
     List<QnaVo> qnaList = q_listService.getAllQuestionList();
     Map<String, String> getStats = listService.getStats();
-    System.out.println(getStats);
+
     JSONObject stats = new JSONObject(getStats);
-    System.out.println(stats);
+
     model.addAttribute("productList", productList);
     model.addAttribute("memberList", memberList);
     model.addAttribute("qnaList", qnaList);
@@ -76,7 +77,8 @@ public class AdminController {
   @GetMapping("/getStats")
   @ResponseBody
   public Map<String, String> getStats(Model model) {
-    Map<String, String> getStats = listService.getStats();
+    Map<String, String> getStats = new HashMap<String, String>();
+    getStats = listService.getStats();
     JSONObject stats = new JSONObject(getStats);
     model.addAttribute("stats", stats);
     return getStats;

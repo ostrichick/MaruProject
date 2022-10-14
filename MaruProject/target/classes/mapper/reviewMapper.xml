@@ -10,7 +10,7 @@
     )
   </insert>
 
-  <select id="getReviewList" resultType="reviewVo">
+  <select id="getReviewList" parameterType="int" resultType="reviewVo">
     SELECT *
     FROM review r
     INNER JOIN member_info m

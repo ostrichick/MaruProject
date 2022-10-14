@@ -10,14 +10,15 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ReviewVo {
-	private int idx;
-	private int product_idx;
-	private int member_idx;
-	private String content;
-	private long star;
-	private Date wdate;
-	private String file_original;
-	private String file_system;
-	private String file_extension;
-	private String deleted_yn;
+  private int idx;
+  private int product_idx;
+  private int member_idx;
+  private String member_name;
+  private String content;
+  private long star;
+  private Date wdate;
+  private String file_original;
+  private String file_system;
+  private String file_extension;
+  private String deleted_yn;
 }

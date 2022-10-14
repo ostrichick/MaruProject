@@ -8,15 +8,15 @@ import ezen.maru.pjt.vo.ReviewVo;
 
 @Service("rv_delete")
 public class ReviewDeleteService implements ReviewService {
-  private ReviewDao qnaDao;
+  private ReviewDao reviewDao;
 
   @Autowired(required = false)
-  public ReviewDeleteService(ReviewDao qnaDao) {
-    this.qnaDao = qnaDao;
+  public ReviewDeleteService(ReviewDao reviewDao) {
+    this.reviewDao = reviewDao;
   }
 
   @Override
-  public int removeReview(ReviewVo qnaVo) {
-    return qnaDao.removeReview(qnaVo);
+  public int removeReview(ReviewVo reviewVo) {
+    return reviewDao.removeReview(reviewVo);
   }
 }

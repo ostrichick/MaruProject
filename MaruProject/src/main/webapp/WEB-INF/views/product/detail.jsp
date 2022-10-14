@@ -106,7 +106,80 @@
             </c:choose>
 
             <p class="txt-right">
-              <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i>
+              <span class="fs-18 cl11"> <c:choose>
+                  <c:when test="${ product.product_avgstar ge 4.8}">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar ge 4.3 and product.product_avgstar lt 4.8 }">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star-half"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar ge 3.8 and product.product_avgstar lt 4.3 }">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar ge 3.3 and product.product_avgstar lt 3.8 }">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star-half"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar ge 2.8 and product.product_avgstar lt 3.3 }">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar ge 2.3 and product.product_avgstar lt 2.8 }">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star-half"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar ge 1.8 and product.product_avgstar lt 2.3 }">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar ge 1.3 and product.product_avgstar lt 1.8 }">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star-half"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar ge 0.8 and product.product_avgstar lt 1.3 }">
+                    <i class="zmdi zmdi-star"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                  </c:when>
+                  <c:when test="${ product.product_avgstar gt 0 and product.product_avgstar lt 0.8 }">
+                    <i class="zmdi zmdi-star-half"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                    <i class="zmdi zmdi-star-outline"></i>
+                  </c:when>
+                  <c:otherwise></c:otherwise>
+                </c:choose>
+
               </span>
             </p>
 
@@ -244,18 +317,28 @@
                         <p class="stext-102 cl6">&#36;{content}리뷰리뷰리ㅇㅇㅇㅇㅇㅇㅇ뷰리뷰리뷰리뷰리뷰리뷰</p>
                       </div>
                     </div>
-                    <div class="flex-w flex-t p-b-68">
+                    <c:forEach var="review" items="${reviewList}" varStatus="status">
+                      <div class="flex-w flex-t p-b-68">
 
-                      <div class="size-290">
-                        <div class="flex-w flex-sb-m p-b-17">
-                          <span class="mtext-107 cl2 p-r-20"> 김삼식2 </span> <span class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star-half"></i> <i class="zmdi zmdi-star-outline"></i> <i class="zmdi zmdi-star-outline"></i>
-                          </span>
+
+                        <div class="size-290">
+                          <div class="flex-w flex-sb-m p-b-17">
+
+                            <span class="mtext-107 cl2 p-r-20"> ${review.member_name } </span> <span class="fs-18 cl11"> <c:set var="emptyStar" value="5" /> <c:forEach var="i" begin="1" end="${review.star }" step="1">
+                                <i class="zmdi zmdi-star"></i>
+                                <c:set var="emptyStar" value="${emptyStar -1 }" />
+                              </c:forEach> <c:if test="${emptyStar ge 1 }">
+                                <c:forEach var="i" begin="1" end="${emptyStar }">
+                                  <i class="zmdi zmdi-star-outline"></i>
+                                </c:forEach>
+                              </c:if>
+                            </span>
+                          </div>
+
+                          <p class="stext-102 cl6">${review.content }</p>
                         </div>
-
-                        <p class="stext-102 cl6">2222222222 리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰</p>
                       </div>
-                    </div>
-
+                    </c:forEach>
                   </div>
                 </div>
               </div>
@@ -303,75 +386,17 @@
                       </tr>
                     </thead>
                     <tbody class="qna_parent">
-                      <!-- 지워질 더미 -->
-                      <tr class="qna_question ${product_question.idx }">
-                        <td class="">
-                          <a class="cl6" href="#" data-toggle="collapse" data-target="qna${product_question.idx }" aria-expanded="false" aria-controls="answer_content">상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 </a>
-                        </td>
-                        <td class="text-center cl3">${product_question.wdate }</td>
+                      <tr>
+                        <td colspan="2" class="txt-center">작성된 문의가 없습니다.</td>
                       </tr>
 
-                      <tr class="qna_answer">
-                        <td>
-                          <div id="qna${product_answer.parent_idx }" class="collapse">${product_answer.content }얼마안걸려요</div>
-                        </td>
-                        <td class="text-center cl3">${product_answer.wdate }</td>
-                      </tr>
-
-                      <tr class="qna_question ${product_qna.idx }">
-                        <td class="">
-                          <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content2" aria-expanded="false" aria-controls="answer_content">혼자 조립 설치하기 쉽나요 </a>
-                        </td>
-                        <td class="text-center cl3">2022.09.01 11:23</td>
-                      </tr>
-                      <tr class="qna_answer">
-                        <td colspan="2">
-                          <div id="answer_content2" class="collapse">그럼요</div>
-                        </td>
-                      </tr>
-                    </tbody>
-                    <!-- 지워질 더미 -->
-
-                    <!-- 화면 테스트용 더미 -->
-                    <!-- Ajax로 출력할 로직
+                      <!-- 화면 테스트용 더미 -->
+                      <!-- Ajax로 출력할 로직
                     1. 먼저 question list를 불러와서 출력
                     2. answer list를 불러옴
                     3. answer item의 parent_idx를 조회해서 answeritem.parent_idx = question.idx 이면 .question.idx의 동생자리에 출력
                     
                      -->
-                    <tr class="qna_question question${product_question.idx }">
-                      <td class="">
-                        <a class="cl6" href="#" data-toggle="collapse" data-target="#parent${product_question.idx }" aria-expanded="false" aria-controls="answer_content">상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 상품 배송에 얼마나 걸리나요 </a>
-                      </td>
-                      <td class="text-center cl3">${product_question.wdate }</td>
-                    </tr>
-
-                    <tr class="qna_answer">
-                      <td>
-                        <div id="parent${product_answer.parent_idx }" class="collapse">${product_answer.content }얼마안걸려요</div>
-                      </td>
-                      <td class="text-center cl3">${product_answer.wdate }</td>
-                    </tr>
-
-                    <tr class="qna_question ${product_qna.idx }">
-                      <td class="">
-                        <a class="cl6" href="#" data-toggle="collapse" data-target="#answer_content2" aria-expanded="true" aria-controls="answer_content">혼자 조립 설치하기 쉽나요 </a>
-                      </td>
-                      <td class="text-center cl3">
-                        2022.09.01 11:23<span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a> <input type="hidden" value="${idx }"></span>
-
-                      </td>
-                    </tr>
-
-                    <tr class="qna_answer">
-                      <td>
-                        <div id="answer_content2" class="collapse show">그럼요</div>
-                      </td>
-                      <td class="text-center cl3">
-                        2022.09.01 12:23 <span class="pull-right"><a href="javascript:void(0)" onclick="removeQna(this)">삭제</a></span>
-                      </td>
-                    </tr>
-
                   </table>
                 </div>
               </div>
@@ -461,7 +486,11 @@
           data : product_idx,
           dataType : "JSON",
           success : function(result) {
-            $("tbody.qna_parent").empty();
+            console.log(result);
+            if (result.length > 0) { // 서버에서 받아온 결과의 길이가 0보다 크면 기본메세지를 삭제
+              $("tbody.qna_parent").empty();
+              console.log("문의 목록 초기화");
+            }
             $(result).each(function(index, item) {
               let qna_section = "";
               let wdate_unix = item.wdate;
@@ -491,11 +520,11 @@
               }
 
               qna_section += "";
-              console.log(qna_section);
+
               $("tbody.qna_parent").append(qna_section);
-              //$("tbody.qna_parent").append("ㅁㄴㅇ");
+
             });
-            console.log("질문 목록 불러오기 성공");
+
             getAnswerList();
           },
           error : function(request, status, error) {
@@ -510,14 +539,11 @@
           data : product_idx,
           dataType : "JSON",
           success : function(result) {
-            //$("tbody.qna_parent").empty();
-            $(result).each(function(index, item) {
-              console.log(item);
 
+            $(result).each(function(index, item) {
               let qna_section = "";
               let wdate_unix = item.wdate;
 
-              //reply_date += 32400; // 유닉스 시간으로 받아올경우 세계표준시므로 한국시간을 표현하려면 9시간 32400초를 더함
               let wdate = new Date(wdate_unix).toISOString().slice(0, 19).replace("T", " ");
 
               qna_section += '<tr class="qna_answer"><td class="">';
@@ -541,7 +567,7 @@
               qna_section += "</div>";
               qna_section += "</td>";
               qna_section += "</tr>";
-              //console.log(qna_section);
+
               if (session_member_idx == item.member_idx) {
                 /** 멤버 idx가 일치할 시에만 수정, 삭제 버튼 출력*/
                 /** 이 위로 member_idx 일치 유저만 출력*/
@@ -550,12 +576,9 @@
               }
               qna_section += "";
               let parent_class_name = "tr.question" + item.parent_idx;
-              console.log(parent_class_name);
-              console.log($("tr.question" + item.parent_idx));
-              console.log($(parent_class_name));
+
               $("tr.question" + item.parent_idx).after(qna_section);
             });
-            console.log("답변 목록 불러오기 성공");
           },
           error : function(request, status, error) {
             alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -577,7 +600,6 @@
               content : $("textarea#content").val(),
             },
             success : function(result) {
-              console.log(result);
               console.log("작성 성공");
               $("textarea#content").val("");
               $(".modal").modal("hide");

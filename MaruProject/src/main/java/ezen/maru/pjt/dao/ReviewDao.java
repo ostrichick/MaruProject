@@ -18,10 +18,10 @@ public class ReviewDao {
     this.sqlSession = sqlSession;
   }
 
-  public List<ReviewVo> getReviewList(ReviewVo reviewVo) {
+  public List<ReviewVo> getReviewList(int product_idx) {
 //		System.out.println("reviewVo input in Dao : " + reviewVo);
 //		System.out.println("return in DAO : " + sqlSession.selectList(MAPPER + ".getReviewList", reviewVo));
-    return sqlSession.selectList(MAPPER + ".getReviewList", reviewVo);
+    return sqlSession.selectList(MAPPER + ".getReviewList", product_idx);
   }
 
   public int writeReview(ReviewVo reviewVo) {

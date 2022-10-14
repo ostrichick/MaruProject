@@ -8,15 +8,15 @@ import ezen.maru.pjt.vo.ReviewVo;
 
 @Service("rv_insert")
 public class ReviewInsertService implements ReviewService {
-  private ReviewDao qnaDao;
+  private ReviewDao reviewDao;
 
   @Autowired(required = false)
-  public ReviewInsertService(ReviewDao qnaDao) {
-    this.qnaDao = qnaDao;
+  public ReviewInsertService(ReviewDao reviewDao) {
+    this.reviewDao = reviewDao;
   }
 
   @Override
-  public int writeReview(ReviewVo qnaVo) {
-    return qnaDao.writeReview(qnaVo);
+  public int writeReview(ReviewVo reviewVo) {
+    return reviewDao.writeReview(reviewVo);
   }
 }

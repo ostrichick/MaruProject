@@ -36,7 +36,7 @@ public class AdminDao {
     getStats.put("allQuestionCount", sqlSession.selectOne(MAPPER + ".allQuestoinCount"));
     getStats.put("unansweredQuestionCount", sqlSession.selectOne(MAPPER + ".unansweredQuestionCount"));
 
-    System.out.println(getStats);
+//    System.out.println(getStats);
     return getStats;
   }
 }

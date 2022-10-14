@@ -44,14 +44,14 @@ public class ReviewController {
     this.deleteService = deleteService;
   }
 
-  @GetMapping("/list")
-  @ResponseBody
-  public List<ReviewVo> getReviewList(ReviewVo reviewVo) {
-//		System.out.println("reviewVo in Controller : " + reviewVo);
-    List<ReviewVo> reviewList = listService.getReviewList(reviewVo);
-//		System.out.println("reviewList in Controller : " + reviewList);
-    return reviewList;
-  }
+//  @GetMapping("/list")
+//  @ResponseBody
+//  public List<ReviewVo> getReviewList(ReviewVo reviewVo) {
+////		System.out.println("reviewVo in Controller : " + reviewVo);
+//    List<ReviewVo> reviewList = listService.getReviewList();
+////		System.out.println("reviewList in Controller : " + reviewList);
+//    return reviewList;
+//  }
 
   @GetMapping("/listAnswer")
   @ResponseBody
@@ -96,10 +96,11 @@ public class ReviewController {
   @PostMapping("/remove")
   @ResponseBody
   public void removeReview(HttpServletRequest req, ReviewVo reviewVo) {
-    HttpSession session = req.getSession();
+    // HttpSession session = req.getSession();
 //    System.out.println("reviewVo in Controller : " + reviewVo);
-    Optional<Object> optional_member_id = Optional.ofNullable(session.getAttribute("member_id"));
-    String member_id = (String) optional_member_id.get();
+    // Optional<Object> optional_member_id =
+    // Optional.ofNullable(session.getAttribute("member_id"));
+    // String member_id = (String) optional_member_id.get();
 
     deleteService.removeReview(reviewVo);
   }

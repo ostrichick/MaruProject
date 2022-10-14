@@ -10,16 +10,16 @@ import ezen.maru.pjt.vo.ReviewVo;
 
 @Service("rv_list")
 public class ReviewListService implements ReviewService {
-  private ReviewDao qnaDao;
+  private ReviewDao reviewDao;
 
   @Autowired(required = false)
-  public ReviewListService(ReviewDao qnaDao) {
-    this.qnaDao = qnaDao;
+  public ReviewListService(ReviewDao reviewDao) {
+    this.reviewDao = reviewDao;
   }
 
   @Override
-  public List<ReviewVo> getReviewList(ReviewVo qnaVo) {
-    return qnaDao.getReviewList(qnaVo);
+  public List<ReviewVo> getReviewList(int product_idx) {
+    return reviewDao.getReviewList(product_idx);
   }
 
 }
