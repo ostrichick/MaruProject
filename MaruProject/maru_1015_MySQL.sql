@@ -203,7 +203,7 @@ CREATE TABLE PRODUCT
 	PRODUCT_DETAIL varchar(4000) NOT NULL COMMENT '상품 상세 설명',
 	-- 리뷰 평점
 	PRODUCT_AVGSTAR float DEFAULT 0  NOT NULL COMMENT '리뷰 평점',
-	product_review_count int unsigned DEFAULT 0 NOT NULL,
+	review_count int unsigned DEFAULT 0 NOT NULL,
 	-- 상품 조회수
 	PRODUCT_HIT int unsigned DEFAULT 0  NOT NULL COMMENT '상품 조회수',
 	-- 상품 재고

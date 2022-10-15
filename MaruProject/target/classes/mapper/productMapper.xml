@@ -19,7 +19,7 @@
     #{product_size}, #{product_major_category},
     #{product_detail}, #{product_inventory})
     <selectKey resultType="int" keyProperty="product_idx" order="AFTER">
-      SELECT SEQ_product_product_IDX.CURRVAL FROM dual
+      select max(product_idx) from product
     </selectKey>
   </insert>
 
