@@ -16,7 +16,7 @@
   <!-- 상품 상세 -->
   <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
-      <form action="${pageContext.request.contextPath}/product/add_process" method="post" enctype="multipart/form-data">
+      <form class="needs-validation" novalidate action="${pageContext.request.contextPath}/product/add_process" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-5 col-lg-6 p-b-30 m-l-auto">
             <div class="p-l-25 p-r-30 p-lr-0-lg" style="">
@@ -30,11 +30,11 @@
               <h2 class="mtext-105 cl2 js-name-detail p-b-14 txt-center">상품 등록</h2>
               <div class="input-group m-tb-10">
                 <div class="input-group-text">제품명</div>
-                <input type="text" class="form-control" name="product_name" placeholder="제품명" />
+                <input type="text" class="form-control" name="product_name" placeholder="제품명" required />
               </div>
               <div class="input-group m-tb-10">
                 <div class="input-group-text">가격</div>
-                <input type="text" class="form-control txt-right" name="product_price" id="product_price" placeholder="가격" maxlength=8 onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+                <input type="text" class="form-control txt-right" name="product_price" id="product_price" placeholder="가격" maxlength=8 onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required />
                 <div class="input-group-text">₩</div>
               </div>
 
@@ -74,9 +74,9 @@
             </div>
           </div>
           <div class="m-lr-auto">
-            <textarea class="m-t-15" id="summernote" name="product_detail"></textarea>
+            <textarea class="m-t-15" id="summernote" name="product_detail" required></textarea>
             <div class="text-right">
-              <button type="submit" id="btn_submit" class="btn btn-secondary m-tb-10">상품 등록</button>
+              <button type="submit" id="btn_submit" class="btn btn-secondary m-tb-10" onclick="submitForm()">상품 등록</button>
             </div>
           </div>
         </div>
@@ -169,6 +169,28 @@
           $("#product_sale_percent").val(Math.floor(product_sale_percent * 10) / 10);
         }
       })
+
+      function submitForm() {
+        "use strict";
+
+        $("input").each(function(index, item) {
+          $(item).val($(item).val().trim())
+        })
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function(form) {
+          form.addEventListener("submit", function(event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          }, false);
+        });
+      }
     </script>
 </body>
 </html>

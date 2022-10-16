@@ -35,7 +35,7 @@
             <!-- Menu desktop -->
             <div class="menu-desktop">
               <ul class="main-menu">
-
+                <li class="fs-20"><a href="${MaruContextPath}/product/list">전체제품</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=livingroom">거실</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=bedroom">침실</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=library">서재</a></li>
@@ -200,6 +200,7 @@
             <!-- Menu desktop -->
             <div class="menu-desktop">
               <ul class="main-menu">
+                <li class="fs-20"><a href="${MaruContextPath}/product/list">전체제품</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=livingroom">거실</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=bedroom">침실</a></li>
                 <li><a href="${MaruContextPath}/product/list?category=library">서재</a></li>
@@ -357,7 +358,7 @@
           <li class="m-tb-20 p-tb-10 bg7"><a href="${MaruContextPath}/member/myinfo" class="flex-c-m trans-04 p-lr-25 cl7">마이페이지</a></li>
           <li class="m-tb-20 p-tb-10 bg7 cl7"><a href="${MaruContextPath}/cart/" class="flex-c-m trans-04 p-lr-25  cl7" data-label1="hot">장바구니</a></li>
         </c:if>
-        
+
         <li class="m-tb-20 p-t-10 bg7 cl7">고객센터
           <ul class="bg6 menu-subcategory">
             <li class="m-tb-5 p-tb-10 bg6"><a href="${MaruContextPath}/notice/list" class="flex-c-m trans-04 p-lr-25 cl2">공지사항</a></li>

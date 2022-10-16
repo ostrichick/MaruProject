@@ -24,9 +24,11 @@ import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.certification.CertificationService;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.service.order.OrderService;
+import ezen.maru.pjt.service.qna.QnaService;
 import ezen.maru.pjt.service.review.ReviewService;
 import ezen.maru.pjt.vo.MemberInfoVo;
 import ezen.maru.pjt.vo.OrderVo;
+import ezen.maru.pjt.vo.QnaVo;
 import ezen.maru.pjt.vo.ReviewVo;
 
 @Controller
@@ -35,12 +37,10 @@ import ezen.maru.pjt.vo.ReviewVo;
 public class MemberInfoController {
 
   MemberInfoService signupService, signinService, updateService, selectService;
-
   BoardService blistService;
-
   OrderService olistService;
   ReviewService rvlistService;
-
+  QnaService qlistService;
   CertificationService certificationService;
 
   @Autowired
@@ -59,6 +59,11 @@ public class MemberInfoController {
   @Autowired(required = false)
   public void setRvListService2(@Qualifier("rv_list") ReviewService rvlistService) {
     this.rvlistService = rvlistService;
+  }
+
+  @Autowired(required = false)
+  public void setQListService2(@Qualifier("q_list") QnaService qlistService) {
+    this.qlistService = qlistService;
   }
 
   @Autowired(required = false)
@@ -154,7 +159,7 @@ public class MemberInfoController {
   public String signin_process(MemberInfoVo memberInfoVo, HttpServletRequest req) throws Exception {
     String viewPage = "member/signin";
 
-    System.out.println(bCryptPasswordEncoder.encode("123"));
+//    System.out.println(bCryptPasswordEncoder.encode("123"));
 
     MemberInfoVo memberInfoVoFromDB = signinService.getCryptedMemberPw(memberInfoVo);
     boolean pwMatchResult = false;
@@ -194,8 +199,10 @@ public class MemberInfoController {
     List<ReviewVo> reviewList = new ArrayList<ReviewVo>();
     reviewList = rvlistService.getReviewListMember(member_idx);
     model.addAttribute("reviewList", reviewList);
-    System.out.println(reviewList);
-
+    List<QnaVo> qnaList = new ArrayList<QnaVo>();
+    qnaList = qlistService.getQnaListMember(member_idx);
+    model.addAttribute("qnaList", qnaList);
+    // System.out.println(qnaList);
     model.addAttribute("memberStats", "보여주고 싶은 집계를 맵으로 넣을 것");
 
     return "member/myinfo";

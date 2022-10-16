@@ -51,31 +51,46 @@
       <div class="row">
         <div class="col-md-6 col-lg-7 p-b-30">
           <div class="p-l-25 p-r-30 p-lr-0-lg">
-            <div class="wrap-slick3 flex-sb flex-w">
-              <div class="wrap-slick3-dots"></div>
-              <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+            <div class=" flex-sb flex-w">
 
-              <div class="slick3 gallery-lb">
-                <div class="item-slick3" data-thumb="${MaruContextPath}/resources/upload/s_${product.file_original}">
-                  <div class="wrap-pic-w pos-relative">
-                    <img src="${MaruContextPath}/resources/upload/s_${product.file_original}" alt="IMG-PRODUCT"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${MaruContextPath}/resources/upload/s_${product.file_original}"> <i class="fa fa-expand"></i>
-                    </a>
+
+              <div class=" gallery-lb">
+                <div class="" data-thumb="${MaruContextPath}/resources/upload/s_${product.file_original}">
+                  <div class=" pos-relative">
+
+                    <c:choose>
+                      <c:when test="${not empty product.file_original}">
+                        <img src="${MaruContextPath}/resources/upload/s_${product.file_original}" alt="IMG-PRODUCT" width="500">
+                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${MaruContextPath}/resources/upload/s_${product.file_original}"> <i class="fa fa-expand"></i>
+                        </a>
+                      </c:when>
+                      <c:otherwise>
+                        <img src="http://www.jagagu.net/app/dubu_board/docs/imgs/a/a14647698154525_Untitled-1.jpg" alt="IMG-PRODUCT" width="500">
+                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${MaruContextPath}/resources/upload/s_${product.file_original}"> <i class="fa fa-expand"></i>
+                        </a>
+                      </c:otherwise>
+                    </c:choose>
+
+
+
                   </div>
                 </div>
 
-                <div class="item-slick3" data-thumb="${pageContext.request.contextPath}/resources/images/product-detail-02.jpg">
-                  <div class="wrap-pic-w pos-relative">
-                    <img src="${pageContext.request.contextPath}/resources/images/product-detail-02.jpg" alt="IMG-PRODUCT"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${pageContext.request.contextPath}/resources/images/product-detail-02.jpg"> <i class="fa fa-expand"></i>
-                    </a>
-                  </div>
-                </div>
+                <%--                 <div class="item-slick3" data-thumb="${pageContext.request.contextPath}/resources/images/product-detail-02.jpg"> --%>
+                <!--                   <div class="wrap-pic-w pos-relative"> -->
+                <%--                     <img src="${pageContext.request.contextPath}/resources/images/product-detail-02.jpg" alt="IMG-PRODUCT"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${pageContext.request.contextPath}/resources/images/product-detail-02.jpg"> <i class="fa fa-expand"></i> --%>
+                <!--                     </a> -->
+                <!--                   </div> -->
+                <!--                 </div> -->
 
-                <div class="item-slick3" data-thumb="${pageContext.request.contextPath}/resources/images/product-detail-03.jpg">
-                  <div class="wrap-pic-w pos-relative">
-                    <img src="${pageContext.request.contextPath}/resources/images/product-detail-03.jpg" alt="IMG-PRODUCT"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${pageContext.request.contextPath}/resources/images/product-detail-03.jpg"> <i class="fa fa-expand"></i>
-                    </a>
-                  </div>
-                </div>
+                <%--                 <div class="item-slick3" data-thumb="${pageContext.request.contextPath}/resources/images/product-detail-03.jpg"> --%>
+                <!--                   <div class="wrap-pic-w pos-relative"> -->
+                <%--                     <img src="${pageContext.request.contextPath}/resources/images/product-detail-03.jpg" alt="IMG-PRODUCT"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${pageContext.request.contextPath}/resources/images/product-detail-03.jpg"> <i class="fa fa-expand"></i> --%>
+                <!--                     </a> -->
+                <!--                   </div> -->
+                <!--                 </div> -->
+
+
               </div>
             </div>
           </div>
@@ -315,17 +330,14 @@
                         <div class="size-290">
                           <div class="flex-w flex-sb-m p-b-17">
 
-                            <span class="mtext-107 cl2 p-r-20"> ${review.member_name } </span> <span class="fs-18 cl11"> 
-                            <c:set var="emptyStar" value="5" /> 
-                            <c:forEach var="i" begin="1" end="${review.star }" step="1">
-                              <i class="zmdi zmdi-star"></i>
-                              <c:set var="emptyStar" value="${emptyStar -1 }" />
-                            </c:forEach> 
-                            <c:if test="${emptyStar ge 1 }">
-                              <c:forEach var="i" begin="1" end="${emptyStar }">
-                                <i class="zmdi zmdi-star-outline"></i>
-                              </c:forEach>
-                            </c:if>
+                            <span class="mtext-107 cl2 p-r-20"> ${review.member_name } </span> <span class="fs-18 cl11"> <c:set var="emptyStar" value="5" /> <c:forEach var="i" begin="1" end="${review.star }" step="1">
+                                <i class="zmdi zmdi-star"></i>
+                                <c:set var="emptyStar" value="${emptyStar -1 }" />
+                              </c:forEach> <c:if test="${emptyStar ge 1 }">
+                                <c:forEach var="i" begin="1" end="${emptyStar }">
+                                  <i class="zmdi zmdi-star-outline"></i>
+                                </c:forEach>
+                              </c:if>
                             </span>
                           </div>
 

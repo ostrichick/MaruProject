@@ -47,4 +47,9 @@ public class QnaDao {
     return sqlSession.update(MAPPER + ".markAnswered", qnaVo);
   }
 
+  public List<QnaVo> getQnaListMember(int member_idx) {
+    System.out.println("memberidx dao : " + member_idx);
+    return sqlSession.selectList(MAPPER + ".getQnaListMember", member_idx);
+  }
+
 }

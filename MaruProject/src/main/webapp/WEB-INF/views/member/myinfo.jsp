@@ -154,46 +154,39 @@ li.page-item.active>a.page-link:hover {
       </p>
     </div>
 
-<!-- 문의 목록 -->
+    <!-- 문의 목록 -->
     <div class="container w-full txt-center bg6 p-all-30 m-b-50">
-      <a href="${MaruContextPath}/myinfo/reviewList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">문의 내역</a>
+      <a href="${MaruContextPath}/myinfo/qnaList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">문의 내역</a>
       <table class="table table-bordered table-hover table-stripped">
         <thead>
           <tr class="bg1 txt-center">
             <th>상품명</th>
-            <th>내용</th>
-            <th>별점</th>
+            <th>문의내용</th>
             <th>등록일</th>
+            <th>답변내용</th>
+            <th>답변일</th>
           </tr>
         </thead>
-        <c:forEach var="review" items="${reviewList}" varStatus="status">
+        <c:forEach var="qna" items="${qnaList}" varStatus="status">
           <tr class="bg0">
             <td>
-              <a href="${MaruContextPath}/product/detail?product_idx='${review.product_idx }'">${review.product_name }</a>
+              <a href="${MaruContextPath}/product/detail?product_idx=${qna.product_idx }"> ${qna.product_name }</a>
             </td>
-            <td>${review.content}</td>
+            <td>${qna.content}</td>
             <td>
-              <span class="fs-18 cl11"> <c:set var="emptyStar" value="5" /> <c:forEach var="i" begin="1" end="${review.star }" step="1">
-                  <i class="zmdi zmdi-star"></i>
-                  <c:set var="emptyStar" value="${emptyStar -1 }" />
-                </c:forEach> <c:if test="${emptyStar ge 1 }">
-                  <c:forEach var="i" begin="1" end="${emptyStar }">
-                    <i class="zmdi zmdi-star-outline"></i>
-                  </c:forEach>
-                </c:if>
-              </span>
+              <%--               <fmt:formatDate pattern="yyyy.MM.dd" value="${qna.wdate}" /> --%>
+              ${qna.wdate }
             </td>
-            <td>
-              <fmt:formatDate pattern="yyyy.MM.dd" value="${review.wdate}" />
-            </td>
+            <td>답변내용</td>
+            <td>답변일</td>
           </tr>
         </c:forEach>
       </table>
       <p>
-        전체 리뷰 <strong> ${stats.reviewCount }</strong>개 중 최근
+        전체 문의 <strong> ${stats.qnaCount }</strong>개 중 최근
         <c:choose>
-          <c:when test="${stats.reviewCount gt 10 }">10</c:when>
-          <c:otherwise>${stats.reviewCount}</c:otherwise>
+          <c:when test="${stats.qnaCount gt 10 }">10</c:when>
+          <c:otherwise>${stats.qnaCount}</c:otherwise>
         </c:choose>
         개 출력
       </p>
@@ -279,161 +272,7 @@ li.page-item.active>a.page-link:hover {
     </div>
     <!-- 주문내역 목록 끝-->
     <hr style="margin: 50px 0;">
-    <!-- 리뷰내역 시작 -->
-    <div class="container">
-      <h5 class="ml-5">
-        <strong>member_name 님의 리뷰내역 입니다</strong>
-      </h5>
-      <table class="table mt-5">
-        <thead>
-          <tr>
-            <th>리뷰일자</th>
-            <th>상품</th>
-            <th>별점</th>
-            <th>내용</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2022.07.08</td>
-            <td>
-              <img src="${MaruContextPath}/resources/images/product-10.jpg" width="50px" height="50px" />&nbsp; 조이갈란드
-            </td>
-            <td>
-              <p style="font-size: 20px;">★★★★★</p>
-            </td>
-            <td>
-              <p>좋아요!!!!!!</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <nav aria-label="Page navigation example" style="margin: 0 500px;">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-          </a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-          </a></li>
-        </ul>
-      </nav>
-    </div>
-    <!-- 리뷰내역 끝 -->
-    <hr style="margin: 50px 0;">
-    <!-- 문의내역 시작 -->
-    <div class="container">
-      <h5 class="ml-5">
-        <strong>member_name 님의 문의내역 입니다</strong>
-      </h5>
-      <table class="table mt-5">
-        <thead>
-          <tr>
-            <th>문의등록일</th>
-            <th>카테고리분류</th>
-            <th>내용</th>
-            <th>답변일자</th>
-            <th>삭제</th>
-          </tr>
-        </thead>
-        <tbody>
-          <c:forEach var="qna" items="${qnaList}" varStatus="status">
-            <tr>
-              <td>
-                <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.wdate}" />
-              </td>
-              <td>${qna.category}</td>
-              <td>
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab">
-                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#con${qna.idx}" aria-expanded="false">${qna.content}</a>
-                    </div>
-                    <div id="con${qna.idx}" class="panel-collapse collapse" role="tabpanel">
-                      <div class="panel-body">
-                        <hr>
-                        <div class="p-3" style="border: 1px solid black;">
-                          <p>
-                            <strong>답변</strong>
-                          </p>
-                          <br>
-                          <p>환불가능 사유가 아닙니다</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p>2022.07.25</p>
-              </td>
-              <td>
-                <button type="button" class="qEdit btn bg2" data-toggle="modal" data-target="#qEdit">수정</button>
-              </td>
-            </tr>
-          </c:forEach>
-        </tbody>
-      </table>
-      <nav aria-label="Page navigation example" style="margin: 0 500px;">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-          </a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-          </a></li>
-        </ul>
-      </nav>
-    </div>
-    <!-- 문의내역 끝 -->
-    <hr style="visibility: hidden; margin-bottom: 150px;">
 
-    <!-- Modal -->
-    <form action="${pageContext.request.contextPath}/qna/Edit" method="post" id="edit">
-       
-      <div class="modal fade" id="qEdit" role="dialog">
-        <!-- 사용자 지정 부분① : id명 -->
-           
-        <div class="modal-dialog">
-               
-          <!-- Modal content-->
-               
-          <div class="modal-content">
-                   
-            <div class="modal-header">
-                     
-              <h4 class="modal-title">문의 수정</h4>
-              <!-- 사용자 지정 부분② : 타이틀 -->
-                     
-              <button type="button" class="close" data-dismiss="modal">×</button>
-                     
-            </div>
-                 
-            <div class="modal-body">
-              <c:forEach var="qna" items="${qnaList}" varStatus="status">
-                <input type="hidden" name="idx" id="idx" value="${qna.idx}" />
-              </c:forEach>
-              <input type="hidden" name="isanswered" id="isanswered" value="N" />
-                      
-              <textarea rows="8" cols="45" name="content" id="content" class="bor10 m-l-50" placeholder="기존에있던 내용은 사라지고 새로등록됩니다."></textarea>
-                    
-            </div>
-                  
-            <div class="modal-footer">
-                     
-              <button type="button" class="btn bg2" data-dismiss="modal">닫기</button>
-              <button type="submit" class="qna-button btn bg2">수정</button>
-                   
-            </div>
-                 
-          </div>
-             
-        </div>
-         
-      </div>
-    </form>
   </section>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>

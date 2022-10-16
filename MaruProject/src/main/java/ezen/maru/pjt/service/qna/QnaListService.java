@@ -32,4 +32,9 @@ public class QnaListService implements QnaService {
     return qnaDao.getAllQuestionList();
   }
 
+  @Override
+  public List<QnaVo> getQnaListMember(int member_idx) {
+    return qnaDao.getQnaListMember(member_idx);
+  }
+
 }

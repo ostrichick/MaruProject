@@ -17,7 +17,7 @@
         <label for="member_id"> 아이디 </label>
       </p>
       <div class="input-group mb-3">
-        <input type="text" class="form-control col-9" id="member_id" name="member_id" placeholder="아이디를 입력해주세요" required>
+        <input type="text" class="form-control col-9" id="member_id" name="member_id" placeholder="아이디를 입력해주세요" required onKeyup="this.value=this.value.replace( /^[a-z|A-Z]+$/g,'');">
         <input class="btn btn-outline-secondary cl0 bg7 col-3" type="button" id="duplicateCheck" value="중복확인" onclick="fn_idDuplicateChk()">
         <div class="valid-feedback">유효한 아이디 입니다.</div>
         <div class="invalid-feedback">6글자 이상 20글자 이하로 작성 후 중복확인을 해주세요.</div>
