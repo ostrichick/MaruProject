@@ -38,4 +38,8 @@ public class ReviewDao {
     return sqlSession.update(MAPPER + ".removeReview", reviewVo);
   }
 
+  public List<ReviewVo> getReviewListMember(int member_idx) {
+    return sqlSession.selectList(MAPPER + ".getReviewListMember", member_idx);
+  }
+
 }

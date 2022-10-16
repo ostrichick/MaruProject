@@ -40,6 +40,7 @@
     <params>
       <param name="content" useDefender="false" />
       <param name="product_detail" useDefender="false" />
+      <param name="rsp" useDefender="false" />
       <param name="globalParameter" useDefender="false" />
       <param name="globalPrefixParameter1" usePrefix="true" useDefender="false" />
       <param name="globalPrefixParameter2" usePrefix="true" />

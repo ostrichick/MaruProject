@@ -25,7 +25,7 @@ import ezen.maru.pjt.vo.ReviewVo;
 // 회원들이 조회하고 관리자가 업로드, 수정, 삭제할 수 있는 상품 페이지 관련 컨트롤러
 public class ProductController {
   ProductService insertService, listService, updateService, deleteService;
-  ReviewService r_listService;
+  ReviewService rvlistService;
 
   @Autowired(required = false)
   public void setListService(@Qualifier("p_list") ProductService listService) {
@@ -33,8 +33,8 @@ public class ProductController {
   }
 
   @Autowired(required = false)
-  public void setListService(@Qualifier("rv_list") ReviewService r_listService) {
-    this.r_listService = r_listService;
+  public void setListService(@Qualifier("rv_list") ReviewService rvlistService) {
+    this.rvlistService = rvlistService;
   }
 
   @Autowired(required = false)
@@ -64,7 +64,7 @@ public class ProductController {
   public String detail(int product_idx, Model model) {
     ProductVo productVo = listService.getProduct(product_idx);
     List<ReviewVo> reviewList = new ArrayList<ReviewVo>();
-    reviewList = r_listService.getReviewList(product_idx);
+    reviewList = rvlistService.getReviewList(product_idx);
     model.addAttribute("product", productVo);
     model.addAttribute("reviewList", reviewList);
 //    System.out.println(productVo.getProduct_avgstar());

@@ -22,4 +22,9 @@ public class ReviewListService implements ReviewService {
     return reviewDao.getReviewList(product_idx);
   }
 
+  @Override
+  public List<ReviewVo> getReviewListMember(int member_idx) {
+    return reviewDao.getReviewListMember(member_idx);
+  }
+
 }

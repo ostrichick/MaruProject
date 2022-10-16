@@ -30,4 +30,8 @@ public interface ReviewService {
     return 0;
   }
 
+  default List<ReviewVo> getReviewListMember(int member_idx) {
+    return null;
+  }
+
 }

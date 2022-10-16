@@ -12,6 +12,7 @@ import lombok.ToString;
 public class ReviewVo {
   private int idx;
   private int product_idx;
+  private String product_name;
   private int member_idx;
   private String member_name;
   private String content;

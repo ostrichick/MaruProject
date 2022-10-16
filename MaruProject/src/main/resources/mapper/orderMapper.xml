@@ -10,32 +10,33 @@
     #{order_name}, #{order_address}, #{order_address2}, #{order_postcode}, #{order_phone}
     )
     <selectKey resultType="int" keyProperty="order_idx" order="AFTER">
-      SELECT SEQ_ORDER_LOG_ORDER_IDX.CURRVAL FROM dual
+      SELECT LAST_INSERT_ID() 
     </selectKey>
   </insert>
 
   <!-- 오라클은 insert all 쓰고 mysql은 separator=","로 나누는 foreach 반복문 사용함 -->
-  <insert id="addOrderProduct" parameterType="java.util.List">
-    <foreach collection="list" item="item" index="index" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL">
-      into order_product (
-      order_idx, product_idx, order_quantity
-      ) values (
-      #{item.order_idx}, #{item.product_idx}, #{item.order_quantity}
-      )
-    </foreach>
-  </insert>
-
-  <!-- <insert id="addOrderProduct" parameterType="orderProductVo"> -->
-  <!-- INSERT INTO order_product ( -->
+  <!-- <insert id="addOrderProduct" parameterType="java.util.List"> -->
+  <!-- <foreach collection="list" item="item" index="index" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL"> -->
+  <!-- into order_product ( -->
   <!-- order_idx, product_idx, order_quantity -->
-  <!-- ) VALUES -->
-  <!-- <foreach collection="list" item="orderProduct" index="index" separator=","> -->
-  <!-- ( -->
-  <!-- #{orderProduct.order_idx}, #{orderProduct.product_idx}, #{orderProduct.order_quantity} -->
+  <!-- ) values ( -->
+  <!-- #{item.order_idx}, #{item.product_idx}, #{item.order_quantity} -->
   <!-- ) -->
   <!-- </foreach> -->
   <!-- </insert> -->
 
+  <insert id="addOrderProduct" parameterType="orderProductVo">
+    INSERT INTO order_product (
+    order_idx, product_idx, order_quantity
+    ) VALUES
+    <foreach collection="list" item="orderProduct" index="index" separator=",">
+      (
+      #{orderProduct.order_idx}, #{orderProduct.product_idx}, #{orderProduct.order_quantity}
+      )
+    </foreach>
+  </insert>
+
+  <!-- 장바구니 안 통하고 한 품목만 바로 구매 -->
   <insert id="addOrderProductOne" parameterType="orderProductVo">
     INSERT INTO order_product (
     order_idx, product_idx, order_quantity
@@ -54,12 +55,10 @@
   <!-- </update> -->
 
 
-  <!-- <select id="getOrderList" parameterType="int" resultType="orderVo"> -->
-  <!-- select * from product_order ct -->
-  <!-- INNER join product p ON ct.product_idx = p.product_idx -->
-  <!-- where member_idx = #{member_idx} -->
-  <!-- order by ct.product_idx DESC -->
-  <!-- </select> -->
+  <select id="getOrderList" parameterType="int" resultType="orderVo">
+    select * from order_log
+    where member_idx = #{member_idx}
+  </select>
 
   <!-- <update id="updateOrder" parameterType="orderVo"> -->
   <!-- UPDATE product_order -->

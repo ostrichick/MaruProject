@@ -103,7 +103,9 @@
       </div>
 
       <p class="m-tb-20 fs-22">
-        결제 예정 금액 : <span id="order_total_price">${order_total_price}</span><br />
+        결제 예정 금액 : <span id="order_total_price">${order_total_price}</span>
+        <input type="hidden" name="order_total_price" value="${order_total_price}" />
+        <br />
       </p>
       <hr />
       <input type="checkbox" id="testPrice" />
