@@ -53,7 +53,19 @@ public class ProductController {
   }
 
   @GetMapping("/list")
-  public String list(@RequestParam(required = false, defaultValue = "%%") String category, Model model) {
+  public String list(@RequestParam(required = false, defaultValue = "%%") String category, String product_name,
+      String orderBy, String priceRange, Model model) {
+    System.out.println("---------");
+    System.out.println("category " + category);
+    System.out.println("orderBy " + orderBy);
+    System.out.println("priceRange " + priceRange);
+    System.out.println("product_name " + product_name);
+    System.out.println("---------");
+    /*
+     * category = 거실, 침실, 서재, 주방, 욕실, 기타
+     * orderBy = 인기순, 평점순, 가격낮, 가격높
+     * priceRange = 5만, 5~10, 10~20, 20~50, 50~100, 100~
+     */
     String product_major_category = category;
     List<ProductVo> productList = listService.getProductList(product_major_category);
     model.addAttribute("productList", productList);

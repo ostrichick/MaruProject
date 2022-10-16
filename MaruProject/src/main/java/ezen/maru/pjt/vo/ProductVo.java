@@ -21,4 +21,6 @@ public class ProductVo extends FileVo {
   private String product_detail;
   private double product_avgstar;
   private int product_hit;
+  private String orderBy;
+
 }

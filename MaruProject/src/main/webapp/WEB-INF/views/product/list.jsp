@@ -37,15 +37,15 @@ span.cart_plus>i:hover {
           </div>
         </div>
 
-        <!--         <div class="flex-w flex-l-m filter-tope-group m-tb-10"> -->
-        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">전체</button> -->
-        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".livingroom">거실</button> -->
-        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bedroom">침실</button> -->
-        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".library">서재</button> -->
-        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".kitchen">주방</button> -->
-        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bathroom">욕실</button> -->
-        <!--           <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".etcproduct">기타</button> -->
-        <!--         </div> -->
+        <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">전체</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".livingroom">거실</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bedroom">침실</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".library">서재</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".kitchen">주방</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bathroom">욕실</button>
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".etcproduct">기타</button>
+        </div>
 
         <!-- Search product -->
         <div class="dis-none panel-search w-full p-t-10 p-b-15">
@@ -53,8 +53,9 @@ span.cart_plus>i:hover {
             <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
               <i class="zmdi zmdi-search"></i>
             </button>
-
-            <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="검색">
+            <form action="${MaruContextPath}/product/list?search=" method="get">
+              <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="product_name" placeholder="검색어를 입력해주세요.">
+            </form>
           </div>
         </div>
 
@@ -65,12 +66,12 @@ span.cart_plus>i:hover {
               <div class="mtext-102 cl2 p-b-15">정렬하기</div>
 
               <ul>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> 기본값 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> 인기순 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> 평점순 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04 filter-link-active"> 신상품 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> 낮은 가격순 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> 높은 가격순 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list" class="filter-link stext-106 trans-04"> 기본값 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=popular" class="filter-link stext-106 trans-04"> 인기순 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=avgstar" class="filter-link stext-106 trans-04"> 평점순 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=newitem" class="filter-link stext-106 trans-04 filter-link-active"> 신상품 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=lowprice" class="filter-link stext-106 trans-04"> 낮은 가격순 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=highprice" class="filter-link stext-106 trans-04"> 높은 가격순 </a></li>
               </ul>
             </div>
 
@@ -78,13 +79,13 @@ span.cart_plus>i:hover {
               <div class="mtext-102 cl2 p-b-15">가격</div>
 
               <ul>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04 filter-link-active"> 전체 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> ₩0 - ₩50,000 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> ₩50,000 - ₩100,000 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> ₩100,000 - ₩200,000 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> ₩200,000 - ₩500,000 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> ₩500,000 - ₩1,000,000 </a></li>
-                <li class="p-b-6"><a href="#" class="filter-link stext-106 trans-04"> ₩1,000,000 이상 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list" class="filter-link stext-106 trans-04 filter-link-active"> 전체 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?priceRange=lt50k" class="filter-link stext-106 trans-04"> ₩0 - ₩50,000 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?priceRange=50kTo100k" class="filter-link stext-106 trans-04"> ₩50,000 - ₩100,000 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?priceRange=100kTo200k" class="filter-link stext-106 trans-04"> ₩100,000 - ₩200,000 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?priceRange=200kTo500k" class="filter-link stext-106 trans-04"> ₩200,000 - ₩500,000 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?priceRange=500kTo1m" class="filter-link stext-106 trans-04"> ₩500,000 - ₩1,000,000 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?priceRange=gt1m" class="filter-link stext-106 trans-04"> ₩1,000,000 이상 </a></li>
               </ul>
             </div>
           </div>
