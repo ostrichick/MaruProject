@@ -118,14 +118,18 @@ public class OrderController {
     Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
     int member_idx = (int) optional_member_idx.get();
     orderVo.setMember_idx(member_idx);
-
+    System.out.println("--order_complete controller--");
+    System.out.println(orderVo);
+    System.out.println(rsp);
     String[] checkedItemList = (String[]) session.getAttribute("checkedItemList");
     Object orderProductList_obj = (Object) session.getAttribute("orderProductList");
+    System.out.println("checkedItemList in Controller : " + checkedItemList);
     List<OrderProductVo> orderProductList = null;
     if (orderProductList_obj != null) {
       orderProductList = (ArrayList<OrderProductVo>) orderProductList_obj;
     }
     System.out.println("orderProductList in Controller : " + orderProductList);
+
     int result = insertService.addOrder(orderVo, checkedItemList, orderProductList);
     System.out.println("result is : " + result);
     model.addAttribute("rsp", rsp);

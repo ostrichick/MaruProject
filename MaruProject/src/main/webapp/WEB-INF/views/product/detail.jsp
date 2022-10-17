@@ -103,18 +103,25 @@
             <c:choose>
               <c:when test="${product.product_sale eq 'Y' and product.product_sale_percent gt 0 }">
                 <del>
-                  <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
+                  <%--                   <fmt:parseNumber var="test" value="${product.product_price }" integerOnly="true" /> --%>
+                  <%--                   ${test } --%>
+                  <%--                   <fmt:formatNumber value="${test }" type="currency" currencySymbol="₩" pattern="###,###,###,###,###,###" /> --%>
+
+                  ₩
+                  <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" pattern="###,###,###" />
                 </del>
                 <fmt:formatNumber value="${product.product_sale_percent/100 }" type="percent" />
                 <h4 class="mtext-106 cl2">
-                  <fmt:formatNumber value="${product.product_price - product.product_price * product.product_sale_percent / 100}" type="currency" currencySymbol="₩" />
+                  ₩
+                  <fmt:formatNumber value="${product.product_price - product.product_price * product.product_sale_percent / 100}" type="currency" currencySymbol="₩" pattern="###,###,###" />
                 </h4>
                 <c:set var="SaledPrice" value="${product.product_price - product.product_price * product.product_sale_percent / 100}" scope="request" />
               </c:when>
               <c:otherwise>
                 <!-- 할인을 안 할 경우 정상가격 표시 -->
                 <h4 class="mtext-106 cl2">
-                  <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" />
+                  ₩
+                  <fmt:formatNumber value="${product.product_price }" type="currency" currencySymbol="₩" pattern="###,###,###" />
                 </h4>
                 <c:set var="SaledPrice" value="${product.product_price}" scope="request" />
               </c:otherwise>
@@ -220,7 +227,7 @@
                         <i class="fs-16 zmdi zmdi-plus"></i>
                       </div>
                     </div>
-                    <span class="total_price_print m-lr-auto"> <fmt:formatNumber value="${SaledPrice}" type="currency" currencySymbol="₩" />
+                    <span class="total_price_print m-lr-auto"> ₩<fmt:formatNumber value="${SaledPrice}" type="currency" currencySymbol="₩" pattern="###,###,###" />
                     </span>
                     <input type="hidden" name="order_total_price" value="${SaledPrice}">
                     <input type="hidden" name="product_price_list" value="${SaledPrice}">

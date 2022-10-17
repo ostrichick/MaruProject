@@ -11,5 +11,5 @@ public class OrderProductVo extends CartVo {
   private int order_idx;
   private int product_idx;
   private int order_quantity;
-  private int product_price;
+  private int paid_price;
 }

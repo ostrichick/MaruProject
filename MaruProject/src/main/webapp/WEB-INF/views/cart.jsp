@@ -246,7 +246,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
             .next()
             .next()
             .next()
-            .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+            .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' name='product_price_list' value='" + saledXNumber + "'>");
           $(obj).prev().prop("checked", true);
           $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", false);
         } else {
@@ -258,7 +258,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
             .next()
             .next()
             .next()
-            .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + 0 + "'>");
+            .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' name='product_price_list' value='" + 0 + "'>");
           $(obj).prev().prop("checked", false);
           $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", true);
         }
@@ -280,7 +280,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
             .next()
             .next()
             .next()
-            .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+            .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' name='product_price_list' value='" + saledXNumber + "'>");
           $(obj).prev().prop("checked", true);
           $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", false);
         } else {
@@ -292,7 +292,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
             .next()
             .next()
             .next()
-            .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + 0 + "'>");
+            .html("₩" + "0".toLocaleString() + "<input class='saledXNumber' type='hidden' name='product_price_list' value='" + 0 + "'>");
           $(obj).prev().prop("checked", false);
           $(obj).parent().parent().next().next().next().next().children().children("input[type=number]").attr("disabled", true);
         }
@@ -317,7 +317,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
               .parent()
               .parent()
               .next()
-              .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' value='" + saledXNumber + "'>");
+              .html("₩" + saledXNumber.toLocaleString() + "<input class='saledXNumber' type='hidden' name='product_price_list' value='" + saledXNumber + "'>");
             totalPriceCalc();
           },
           error: function () {
@@ -342,7 +342,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
         let totalPrice = sumSaledXNumber + deliveryFee;
         $(".DeliveryFee").html("₩" + deliveryFee.toLocaleString());
         $(".TotalPrice").html("₩" + totalPrice.toLocaleString());
-        $(".TotalPrice").append("<input type='hidden' name='order_total_price' value=" + totalPrice + "/>");
+        $(".TotalPrice").append("<input type='hidden' name='order_total_price' value=" + totalPrice + " />");
 
         if (totalPrice == 0) {
           // 합계 금액이 0이면 구매버튼 비활성화
@@ -394,6 +394,12 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 //           },
 //         });
 //       }
+       $("input[type=hidden]").each(function(index, item) {
+          $(item).val(Math.floor($(item).val()))
+        })
+        $("input[type=number]").each(function(index, item) {
+          $(item).val(Math.floor($(item).val()))
+        })
     </script>
 
 </body>

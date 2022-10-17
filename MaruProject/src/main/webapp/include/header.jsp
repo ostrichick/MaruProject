@@ -230,12 +230,11 @@
             <i class="zmdi zmdi-search"></i>
           </div>
 
-          <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+          <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 js-show-cart" data-notify="2">
             <i class="zmdi zmdi-shopping-cart"></i>
           </div>
 
-          <a href="${MaruContextPath}/#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0"> <i class="zmdi zmdi-favorite-outline"></i>
-          </a>
+
         </div>
 
         <!-- Button show menu -->
@@ -247,19 +246,8 @@
 
       <!-- Menu Mobile -->
       <div class="menu-mobile">
-        <ul class="topbar-mobile">
-          <li>
-            <div class="left-top-bar">Free shipping for standard order over $100</div>
-          </li>
 
-          <li>
-            <div class="right-top-bar flex-w h-full">
-              <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> 1:1 문의 </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> My Account </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> EN </a> <a href="${MaruContextPath}/#" class="flex-c-m p-lr-10 trans-04"> USD </a>
-            </div>
-          </li>
-        </ul>
-
-        <ul class="main-menu-m">
+        <ul class="main-menu-m bg7">
           <li class="fs-20"><a href="${MaruContextPath}/product/list">전체제품</a></li>
           <li><a href="${MaruContextPath}/product/list?category=livingroom">거실</a></li>
           <li><a href="${MaruContextPath}/product/list?category=bedroom">침실</a></li>
