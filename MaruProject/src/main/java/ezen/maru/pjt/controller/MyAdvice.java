@@ -17,7 +17,7 @@ public class MyAdvice {
   @ExceptionHandler(Exception.class)
   public String handleException(Exception ex, Model model) {
     logger.error("Exception 발생 : {}", ex.getMessage());
-    System.out.println("핸들익셉션 에러");
+    System.out.println("핸들익셉션 에러" + ex.getMessage());
     model.addAttribute("msg", "잠시 후 다시 시도해주세요");
     return "error/error";
   }
