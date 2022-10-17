@@ -20,40 +20,36 @@ import com.google.gson.JsonObject;
 // SummerNote에 내장된 파일업로드 기능을 지원하는 컨트롤러
 public class FileController {
 
-	@RequestMapping(value = "**/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
-			HttpServletRequest request) {
-		JsonObject jsonObject = new JsonObject();
+  @RequestMapping(value = "**/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
+  @ResponseBody
+  public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
+      HttpServletRequest request) {
+    JsonObject jsonObject = new JsonObject();
 
-		/*
-		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-		 */
-
-		// 내부경로로 저장
+    // 내부경로로 저장
 //		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		String contextRoot = request.getSession().getServletContext().getRealPath("/");
-		String fileRoot = contextRoot + "resources/fileupload/";
+    String contextRoot = request.getSession().getServletContext().getRealPath("/");
+    String fileRoot = contextRoot + "resources/fileupload/";
 
-		String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
-		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+    String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
+    String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+    String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
 
-		File targetFile = new File(fileRoot + savedFileName);
-		try {
-			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-			jsonObject.addProperty("url", "/pjt/resources/fileupload/" + savedFileName); // contextroot +
-																							// resources + 저장할 내부
-																							// 폴더명
-			jsonObject.addProperty("responseCode", "success");
+    File targetFile = new File(fileRoot + savedFileName);
+    try {
+      InputStream fileStream = multipartFile.getInputStream();
+      FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+      jsonObject.addProperty("url", "/maru/resources/fileupload/" + savedFileName); // contextroot +
+                                                                                    // resources + 저장할 내부
+                                                                                    // 폴더명
+      jsonObject.addProperty("responseCode", "success");
 
-		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
-			e.printStackTrace();
-		}
-		String a = jsonObject.toString();
-		return a;
-	}
+    } catch (IOException e) {
+      FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
+      jsonObject.addProperty("responseCode", "error");
+      e.printStackTrace();
+    }
+    String a = jsonObject.toString();
+    return a;
+  }
 }

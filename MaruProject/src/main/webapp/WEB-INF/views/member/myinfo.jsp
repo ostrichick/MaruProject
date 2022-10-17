@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -77,33 +78,33 @@ li.page-item.active>a.page-link:hover {
             <th>품목</th>
 
             <th>진행상황</th>
-            <th>별점</th>
-            <th>리뷰</th>
+
           </tr>
         </thead>
         <c:forEach var="order" items="${orderList}" varStatus="status">
           <tr class="bg0">
             <td>
-              <a href="${MaruContextPath}/myinfo/orderList?order_idx='${order.order_idx }'">상세보기</a>
+              <a href="${MaruContextPath}/myinfo/orderList?order_idx=${order.order_idx }">상세보기</a>
             </td>
             <td>
               <fmt:formatDate pattern="yyyy.MM.dd" value="${order.order_date}" />
             </td>
-            <td>${order.order_total_price}</td>
+            <td>
+              <fmt:formatNumber value="${order.order_total_price}" type="currency" currencySymbol="₩" />
+            </td>
             <td>
               <a href="${MaruContextPath}/myinfo/orderList?order_idx='${order.order_idx }'">대표상품명 + 외 x개</a>
             </td>
             <td>${order.order_status}</td>
-            <td></td>
-            <td></td>
+
           </tr>
         </c:forEach>
       </table>
       <p>
-        전체 주문 <strong> ${stats.orderCount }</strong>개 중 최근
+        전체 리뷰 <strong> ${memberStats.orderCount }</strong>개 중 최근
         <c:choose>
-          <c:when test="${stats.orderCount gt 10 }">10</c:when>
-          <c:otherwise>${stats.orderCount}</c:otherwise>
+          <c:when test="${memberStats.orderCount gt 10 }">10</c:when>
+          <c:otherwise>${memberStats.orderCount}</c:otherwise>
         </c:choose>
         개 출력
       </p>
@@ -145,10 +146,10 @@ li.page-item.active>a.page-link:hover {
         </c:forEach>
       </table>
       <p>
-        전체 리뷰 <strong> ${stats.reviewCount }</strong>개 중 최근
+        전체 리뷰 <strong> ${memberStats.reviewCount }</strong>개 중 최근
         <c:choose>
-          <c:when test="${stats.reviewCount gt 10 }">10</c:when>
-          <c:otherwise>${stats.reviewCount}</c:otherwise>
+          <c:when test="${memberStats.reviewCount gt 10 }">10</c:when>
+          <c:otherwise>${memberStats.reviewCount}</c:otherwise>
         </c:choose>
         개 출력
       </p>
@@ -175,18 +176,27 @@ li.page-item.active>a.page-link:hover {
             <td>${qna.content}</td>
             <td>
               <%--               <fmt:formatDate pattern="yyyy.MM.dd" value="${qna.wdate}" /> --%>
-              ${qna.wdate }
+              ${fn:substring(qna.wdate,0,10) }
             </td>
-            <td>답변내용</td>
-            <td>답변일</td>
+            <c:forEach var="qnaAnswer" items="${qnaAnswerList }" varStatus="status">
+              <c:choose>
+                <c:when test="${qnaAnswer.parent_idx eq qna.idx }">
+                  <td>${qnaAnswer.content }</td>
+                  <td>${fn:substring(qnaAnswer.wdate ,0,10) }</td>
+                </c:when>
+                <c:otherwise>
+
+                </c:otherwise>
+              </c:choose>
+            </c:forEach>
           </tr>
         </c:forEach>
       </table>
       <p>
-        전체 문의 <strong> ${stats.qnaCount }</strong>개 중 최근
+        전체 문의 <strong> ${memberStats.qnaCount }</strong>개 중 최근
         <c:choose>
-          <c:when test="${stats.qnaCount gt 10 }">10</c:when>
-          <c:otherwise>${stats.qnaCount}</c:otherwise>
+          <c:when test="${memberStats.qnaCount gt 10 }">10</c:when>
+          <c:otherwise>${memberStats.qnaCount}</c:otherwise>
         </c:choose>
         개 출력
       </p>

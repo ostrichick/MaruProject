@@ -172,7 +172,8 @@ li.page-item.active>a.page-link:hover {
                           </div>
                           <div class="modal-footer">
                             <input type="hidden" name="parent_idx" value="${qna.idx }" />
-                            <input type="hidden" name="parent_idx" value="${qna.product_idx }" />
+                            <input type="hidden" name="parent_member_idx" value="${qna.member_idx }" />
+                            <input type="hidden" name="product_idx" value="${qna.product_idx }" />
                             <a type="button" class="btn bg6 btn-outline-secondary" data-dismiss="modal">취소</a>
                             <input type="button" class="btn bg7 cl7 btn-outline-dark" value="등록" onclick="writeAnswer('${qna.idx}','${qna.product_idx }', this)">
                           </div>

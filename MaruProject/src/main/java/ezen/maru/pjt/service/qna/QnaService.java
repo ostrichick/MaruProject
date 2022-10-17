@@ -38,4 +38,8 @@ public interface QnaService {
     return null;
   }
 
+  default List<QnaVo> getQnaAnswerListMember(int member_idx) {
+    return null;
+  }
+
 }

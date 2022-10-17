@@ -48,8 +48,11 @@ public class QnaDao {
   }
 
   public List<QnaVo> getQnaListMember(int member_idx) {
-    System.out.println("memberidx dao : " + member_idx);
     return sqlSession.selectList(MAPPER + ".getQnaListMember", member_idx);
+  }
+
+  public List<QnaVo> getQnaAnswerListMember(int member_idx) {
+    return sqlSession.selectList(MAPPER + ".getQnaAnswerListMember", member_idx);
   }
 
 }

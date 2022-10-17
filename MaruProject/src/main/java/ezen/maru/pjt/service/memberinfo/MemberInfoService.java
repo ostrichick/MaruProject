@@ -1,45 +1,50 @@
 package ezen.maru.pjt.service.memberinfo;
 
 import java.util.List;
+import java.util.Map;
 
 import ezen.maru.pjt.vo.MemberInfoVo;
 
 public interface MemberInfoService {
 
-	default int signup(MemberInfoVo memberInfoVo) {
-		return 0;
-	}
+  default int signup(MemberInfoVo memberInfoVo) {
+    return 0;
+  }
 
-	default MemberInfoVo signin(MemberInfoVo memberInfoVoParam) {
-		return null;
-	}
+  default MemberInfoVo signin(MemberInfoVo memberInfoVoParam) {
+    return null;
+  }
 
-	default MemberInfoVo getMember(String member_id) {
-		return null;
-	}
+  default MemberInfoVo getMember(String member_id) {
+    return null;
+  }
 
-	default int update(MemberInfoVo memberInfoVo) {
-		return 0;
-	}
+  default int update(MemberInfoVo memberInfoVo) {
+    return 0;
+  }
 
-	default int delete(MemberInfoVo memberInfoVo) {
-		return 0;
-	}
+  default int delete(MemberInfoVo memberInfoVo) {
+    return 0;
+  }
 
-	default List<MemberInfoVo> getMemberInfoList() {
-		return null;
-	}
+  default List<MemberInfoVo> getMemberInfoList() {
+    return null;
+  }
 
-	default int idDuplicateCheck(String member_id) {
-		return 0;
-	}
+  default int idDuplicateCheck(String member_id) {
+    return 0;
+  }
 
-	default MemberInfoVo getCryptedMemberPw(MemberInfoVo memberInfoVo) {
-		return null;
-	}
+  default MemberInfoVo getCryptedMemberPw(MemberInfoVo memberInfoVo) {
+    return null;
+  }
 
-	default int checkPw(MemberInfoVo memberInfoVo) {
-		return 0;
-	}
+  default int checkPw(MemberInfoVo memberInfoVo) {
+    return 0;
+  }
+
+  default Map<String, String> getMemberStats(int member_idx) {
+    return null;
+  }
 
 }

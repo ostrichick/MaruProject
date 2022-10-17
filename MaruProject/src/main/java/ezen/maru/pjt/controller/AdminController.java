@@ -1,5 +1,6 @@
 package ezen.maru.pjt.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,10 +60,14 @@ public class AdminController {
   @GetMapping("/dashboard")
   public String dashboard(@RequestParam(required = false, defaultValue = "%%") String product_major_category,
       Model model) {
-    List<ProductVo> productList = p_listService.getProductList(product_major_category);
-    List<MemberInfoVo> memberList = m_listService.getMemberInfoList();
-    List<QnaVo> qnaList = q_listService.getAllQuestionList();
-    Map<String, String> getStats = listService.getStats();
+    List<ProductVo> productList = new ArrayList<ProductVo>();
+    productList = p_listService.getProductList(product_major_category);
+    List<MemberInfoVo> memberList = new ArrayList<MemberInfoVo>();
+    memberList = m_listService.getMemberInfoList();
+    List<QnaVo> qnaList = new ArrayList<QnaVo>();
+    qnaList = q_listService.getAllQuestionList();
+    Map<String, String> getStats = new HashMap<String, String>();
+    getStats = listService.getStats();
 
     JSONObject stats = new JSONObject(getStats);
 

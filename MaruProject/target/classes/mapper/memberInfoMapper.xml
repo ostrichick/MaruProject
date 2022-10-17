@@ -86,6 +86,20 @@
     </foreach>
   </delete>
 
+  <!-- 집계쿼리 -->
+  <select id="getOrderCount" parameterType="int" resultType="string">
+    select count(*) from order_log
+    where member_idx = #{member_idx}
+  </select>
 
+  <select id="getReviewCount" parameterType="int" resultType="string">
+    select count(*) from review
+    where member_idx = #{member_idx}
+  </select>
+
+  <select id="getQnaCount" parameterType="int" resultType="string">
+    select count(*) from product_qna
+    where member_idx = #{member_idx} and parent_idx is null
+  </select>
 
 </mapper>	

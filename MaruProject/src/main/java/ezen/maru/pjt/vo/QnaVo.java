@@ -18,5 +18,6 @@ public class QnaVo {
   private String wdate;
   private String isAnswered;
   private int parent_idx;
+  private int parent_member_idx;
   private String deleted_yn;
 }

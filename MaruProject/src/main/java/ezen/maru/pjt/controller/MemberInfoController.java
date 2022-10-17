@@ -1,7 +1,9 @@
 package ezen.maru.pjt.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -36,7 +38,7 @@ import ezen.maru.pjt.vo.ReviewVo;
 // 회원가입, 로그인, 정보수정, 탈퇴 등 회원 관리기능 컨트롤러
 public class MemberInfoController {
 
-  MemberInfoService signupService, signinService, updateService, selectService;
+  MemberInfoService signupService, signinService, updateService, selectService, mlistService;
   BoardService blistService;
   OrderService olistService;
   ReviewService rvlistService;
@@ -84,6 +86,11 @@ public class MemberInfoController {
   @Autowired(required = false)
   public void setUpdateService(@Qualifier("member_update") MemberInfoService updateService) {
     this.updateService = updateService;
+  }
+
+  @Autowired(required = false)
+  public void setMListService(@Qualifier("m_list") MemberInfoService mlistService) {
+    this.mlistService = mlistService;
   }
 
   @Autowired(required = false)
@@ -193,17 +200,27 @@ public class MemberInfoController {
     int member_idx = (int) session.getAttribute("member_idx");
     MemberInfoVo memberInfoVo = updateService.getMember(member_id);
     model.addAttribute("memberInfoVo", memberInfoVo);
+
     List<OrderVo> orderList = new ArrayList<OrderVo>();
     orderList = olistService.getOrderList(member_idx);
     model.addAttribute("orderList", orderList);
+
     List<ReviewVo> reviewList = new ArrayList<ReviewVo>();
     reviewList = rvlistService.getReviewListMember(member_idx);
     model.addAttribute("reviewList", reviewList);
+
     List<QnaVo> qnaList = new ArrayList<QnaVo>();
     qnaList = qlistService.getQnaListMember(member_idx);
     model.addAttribute("qnaList", qnaList);
-    // System.out.println(qnaList);
-    model.addAttribute("memberStats", "보여주고 싶은 집계를 맵으로 넣을 것");
+
+    List<QnaVo> qnaAnswerList = new ArrayList<QnaVo>();
+    qnaAnswerList = qlistService.getQnaAnswerListMember(member_idx);
+    model.addAttribute("qnaAnswerList", qnaAnswerList);
+
+    Map<String, String> memberStats = new HashMap<String, String>();
+    memberStats = mlistService.getMemberStats(member_idx);
+    model.addAttribute("memberStats", memberStats);
+    System.out.println(memberStats);
 
     return "member/myinfo";
   }
