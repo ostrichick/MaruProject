@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <c:set var="MaruContextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -27,33 +29,35 @@
       <div class="wrap-table-shopping-cart">
         <table class="table-shopping-cart txt-center">
           <tr class="table_head">
+            <th class="col-1">선택</th>
             <th class="col-8" colspan="2">상품</th>
-            <th class="col-2 p-r-10">가격</th>
             <th class="col-1">수량</th>
+            <th class="col-2 ">총가격</th>
           </tr>
 
           <c:forEach var="orderProduct" items="${orderProductList }" varStatus="status">
+
             <tr class="table_row">
               <td class="">
+                <div class="form-check">
+                  <input class="input-lg form-check-input dis-inline-block" type="checkbox" value="" id="delete_item">
+                </div>
+              </td>
+              <td class="col-2">
                 <div class="">
                   <img class="img-fluid img-thumbnail" src="${MaruContextPath}/resources/upload/s_${orderProduct.file_original}" width="150" alt="IMG">
                 </div>
               </td>
-              <td class=" txt-left">${orderProduct.product_name}</td>
-              <td class=" txt-right p-r-10">${orderProduct.product_price}</td>
+              <td class="col-6 p-l-30 txt-left">${orderProduct.product_name}</td>
               <td class="">${orderProduct.order_quantity}</td>
+              <td class=" txt-right p-r-30">
+                <fmt:formatNumber value="${orderProduct.product_price }" type="currency" currencySymbol="₩" pattern="###,###,###" />
+                ₩
+              </td>
+
             </tr>
           </c:forEach>
-          <tr class="table_row">
-            <td class="">
-              <div class="">
-                <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
-              </div>
-            </td>
-            <td class=" txt-left">제품명ㅇㅇㅇㅇ ㅇㅇㅇㅇㅇㅇㅇ ㅇㅇㅇㅇ</td>
-            <td class=" txt-right p-r-10">180,000원</td>
-            <td class="">2</td>
-          </tr>
+
         </table>
       </div>
 
@@ -65,7 +69,10 @@
         <table class="txt-right table-hover">
           <tr>
             <td>결제금액 :</td>
-            <td>${ orderProductList[0].order_total_price}</td>
+            <td>
+              <fmt:formatNumber value="${orderProductList[0].order_total_price }" type="currency" currencySymbol="₩" pattern="###,###,###" />
+              ₩
+            </td>
           </tr>
         </table>
       </div>
