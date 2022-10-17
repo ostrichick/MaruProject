@@ -63,8 +63,9 @@ li.page-item.active>a.page-link:hover {
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
   <section class="container m-t-50">
-
+    <a href="${MaruContextPath}/member/myinfo_edit" type="button" class="btn bg-dark text-white pull-right">회원정보수정</a>
     <h2 class="m-tb-50">마이페이지</h2>
+
 
     <!-- 주문 목록 -->
     <div class="container w-full txt-center bg6 p-all-30 m-b-50">

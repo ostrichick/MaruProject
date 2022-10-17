@@ -62,34 +62,38 @@ public class OrderController {
   // product_idx_list = 장바구니 목록 아이템들의 product_idx
   @PostMapping("/order")
   public String order(@RequestParam(required = false) String[] checkedItemList, String[] cart_product_number,
-      String[] product_idx_list, String[] product_price_list, String order_total_price, HttpServletRequest req,
+      String[] product_idx_list, int[] product_price_list, String order_total_price, HttpServletRequest req,
       Model model) {
-    HttpSession session = req.getSession();
-    String member_id = (String) session.getAttribute("member_id");
-    MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
+    try {
+      HttpSession session = req.getSession();
+      String member_id = (String) session.getAttribute("member_id");
+      MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
 
-    System.out.println("Controller checkedItemList : " + Arrays.toString(checkedItemList));
-    System.out.println("Controller cart_product_number : " + Arrays.toString(cart_product_number));
-    System.out.println("Controller product_idx_list : " + Arrays.toString(product_idx_list));
-    System.out.println("Controller product_price_list : " + Arrays.toString(product_price_list));
-    System.out.println("Controller order_total_price : " + order_total_price);
+      System.out.println("Controller checkedItemList : " + Arrays.toString(checkedItemList));
+      System.out.println("Controller cart_product_number : " + Arrays.toString(cart_product_number));
+      System.out.println("Controller product_idx_list : " + Arrays.toString(product_idx_list));
+      System.out.println("Controller product_price_list : " + Arrays.toString(product_price_list));
+      System.out.println("Controller order_total_price : " + order_total_price);
 
-    List<OrderProductVo> orderProductList = new ArrayList<OrderProductVo>();
-    if (product_idx_list.length == cart_product_number.length) {
-      for (int i = 0; i < product_idx_list.length; i++) {
-        OrderProductVo orderProductVo = new OrderProductVo();
-        orderProductVo.setProduct_idx(Integer.parseInt(product_idx_list[i]));
-        orderProductVo.setOrder_quantity(Integer.parseInt(cart_product_number[i]));
-        orderProductVo.setProduct_price(Integer.parseInt(product_price_list[i]));
-        orderProductList.add(orderProductVo);
+      List<OrderProductVo> orderProductList = new ArrayList<OrderProductVo>();
+      if (product_idx_list.length == cart_product_number.length) {
+        for (int i = 0; i < product_idx_list.length; i++) {
+          OrderProductVo orderProductVo = new OrderProductVo();
+          orderProductVo.setProduct_idx(Integer.parseInt(product_idx_list[i]));
+          orderProductVo.setOrder_quantity(Integer.parseInt(cart_product_number[i]));
+          orderProductVo.setProduct_price(product_price_list[i]);
+          orderProductList.add(orderProductVo);
+        }
       }
-    }
 
-    model.addAttribute("memberInfoVo", memberInfoVo);
-    model.addAttribute("order_total_price", order_total_price);
-    session.setAttribute("checkedItemList", checkedItemList);
-    session.setAttribute("orderProductList", orderProductList);
-    // 세션에 List<OrderProductVo> 전송하려면 직렬화가 권장됨. 가능하다면 다른방법 찾을 것
+      model.addAttribute("memberInfoVo", memberInfoVo);
+      model.addAttribute("order_total_price", order_total_price);
+      session.setAttribute("checkedItemList", checkedItemList);
+      session.setAttribute("orderProductList", orderProductList);
+      // 세션에 List<OrderProductVo> 전송하려면 직렬화가 권장됨. 가능하다면 다른방법 찾을 것
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return "order/order";
   }
 
