@@ -75,7 +75,7 @@ li.page-item.active>a.page-link:hover {
             <th></th>
             <th>주문일자</th>
             <th>결제금액</th>
-            <th>품목</th>
+            <th>주문품목</th>
 
             <th>진행상황</th>
 
@@ -84,7 +84,7 @@ li.page-item.active>a.page-link:hover {
         <c:forEach var="order" items="${orderList}" varStatus="status">
           <tr class="bg0">
             <td>
-              <a href="${MaruContextPath}/myinfo/orderList?order_idx=${order.order_idx }">상세보기</a>
+              <a href="${MaruContextPath}/order/detail?order_idx=${order.order_idx }">상세보기</a>
             </td>
             <td>
               <fmt:formatDate pattern="yyyy.MM.dd" value="${order.order_date}" />
@@ -93,7 +93,13 @@ li.page-item.active>a.page-link:hover {
               <fmt:formatNumber value="${order.order_total_price}" type="currency" currencySymbol="₩" />
             </td>
             <td>
-              <a href="${MaruContextPath}/myinfo/orderList?order_idx='${order.order_idx }'">대표상품명 + 외 x개</a>
+              <c:forEach var="orderProduct" items="${orderProductList }" varStatus="status">
+                <c:if test="${order.order_idx eq orderProduct.order_idx }">
+                  <a href="${MaruContextPath}/product/detail?product_idx=${orderProduct.product_idx }">${orderProduct.product_name }</a>
+                </c:if>
+              </c:forEach>
+
+
             </td>
             <td>${order.order_status}</td>
 

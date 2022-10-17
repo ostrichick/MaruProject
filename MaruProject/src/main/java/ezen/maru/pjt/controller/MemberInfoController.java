@@ -205,6 +205,11 @@ public class MemberInfoController {
     orderList = olistService.getOrderList(member_idx);
     model.addAttribute("orderList", orderList);
 
+    List<OrderVo> orderProductList = new ArrayList<OrderVo>();
+    orderProductList = olistService.getOrderProductList(member_idx);
+    model.addAttribute("orderProductList", orderProductList);
+    System.out.println("orderProductList controller: " + orderProductList);
+
     List<ReviewVo> reviewList = new ArrayList<ReviewVo>();
     reviewList = rvlistService.getReviewListMember(member_idx);
     model.addAttribute("reviewList", reviewList);

@@ -10,15 +10,26 @@ import ezen.maru.pjt.vo.OrderVo;
 
 @Service("o_list")
 public class OrderListService implements OrderService {
-	private OrderDao orderDao;
+  private OrderDao orderDao;
 
-	@Autowired(required = false)
-	public OrderListService(OrderDao orderDao) {
-		this.orderDao = orderDao;
-	}
+  @Autowired(required = false)
+  public OrderListService(OrderDao orderDao) {
+    this.orderDao = orderDao;
+  }
 
-	@Override
-	public List<OrderVo> getOrderList(int member_idx) {
-		return orderDao.getOrderList(member_idx);
-	}
+  @Override
+  public List<OrderVo> getOrderList(int member_idx) {
+    return orderDao.getOrderList(member_idx);
+  }
+
+  @Override
+  public List<OrderVo> getOrderProductList(int member_idx) {
+    return orderDao.getOrderProductList(member_idx);
+  }
+
+  @Override
+  public List<OrderVo> getOneOrder(String order_idx) {
+    return orderDao.getOneOrder(order_idx);
+  }
+
 }

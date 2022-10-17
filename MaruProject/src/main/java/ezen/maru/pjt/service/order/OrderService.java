@@ -7,20 +7,28 @@ import ezen.maru.pjt.vo.OrderVo;
 
 public interface OrderService {
 
-	default List<OrderVo> getOrderList(int member_idx) {
-		return null;
-	}
+  default List<OrderVo> getOrderList(int member_idx) {
+    return null;
+  }
 
-	default int addOrder(OrderVo orderVo, String[] checkedItemList, List<OrderProductVo> orderProductList) {
-		return 0;
-	}
+  default int addOrder(OrderVo orderVo, String[] checkedItemList, List<OrderProductVo> orderProductList) {
+    return 0;
+  }
 
-	default int updateOrder(OrderVo orderVo) {
-		return 0;
-	}
+  default int updateOrder(OrderVo orderVo) {
+    return 0;
+  }
 
-	default int deleteOrder(OrderVo orderVo) {
-		return 0;
-	}
+  default int deleteOrder(OrderVo orderVo) {
+    return 0;
+  }
+
+  default List<OrderVo> getOrderProductList(int member_idx) {
+    return null;
+  }
+
+  default List<OrderVo> getOneOrder(String order_idx) {
+    return null;
+  }
 
 }

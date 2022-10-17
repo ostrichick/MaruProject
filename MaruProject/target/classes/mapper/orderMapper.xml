@@ -10,7 +10,7 @@
     #{order_name}, #{order_address}, #{order_address2}, #{order_postcode}, #{order_phone}
     )
     <selectKey resultType="int" keyProperty="order_idx" order="AFTER">
-      SELECT LAST_INSERT_ID() 
+      SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
 
@@ -59,6 +59,22 @@
     select * from order_log
     where member_idx = #{member_idx}
   </select>
+  
+  <select id="getOrderProductList" parameterType="int" resultType="orderVo">
+    select * from order_log o
+    left join order_product op ON o.ORDER_IDX = op.ORDER_IDX
+    left join product p on op.product_idx = p.product_idx
+    where member_idx = #{member_idx}
+  </select>
+  
+  <select id="getOneOrder" parameterType="string" resultType="orderVo">
+    select * from order_log o
+    left join order_product op ON o.ORDER_IDX = op.ORDER_IDX
+    left join product p on op.product_idx = p.product_idx
+    where o.order_idx = #{order_idx}
+  </select>
+  
+
 
   <!-- <update id="updateOrder" parameterType="orderVo"> -->
   <!-- UPDATE product_order -->
