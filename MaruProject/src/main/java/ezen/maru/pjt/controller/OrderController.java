@@ -61,7 +61,8 @@ public class OrderController {
   // product_idx_list = 장바구니 목록 아이템들의 product_idx
   @PostMapping("/order")
   public String order(@RequestParam(required = false) String[] checkedItemList, String[] cart_product_number,
-      String[] product_idx_list, String order_total_price, HttpServletRequest req, Model model) {
+      String[] product_idx_list, String[] product_price_list, String order_total_price, HttpServletRequest req,
+      Model model) {
     HttpSession session = req.getSession();
     String member_id = (String) session.getAttribute("member_id");
     MemberInfoVo memberInfoVo = mUpdateService.getMember(member_id);
@@ -77,6 +78,7 @@ public class OrderController {
         OrderProductVo orderProductVo = new OrderProductVo();
         orderProductVo.setProduct_idx(Integer.parseInt(product_idx_list[i]));
         orderProductVo.setOrder_quantity(Integer.parseInt(cart_product_number[i]));
+        orderProductVo.setProduct_price(Integer.parseInt(product_price_list[i]));
         orderProductList.add(orderProductVo);
       }
     }
@@ -134,7 +136,7 @@ public class OrderController {
     List<OrderVo> orderProductList = new ArrayList<OrderVo>();
     orderProductList = listService.getOneOrder(order_idx);
     System.out.println(orderProductList);
-    model.addAttribute("orderVo", orderProductList);
+    model.addAttribute("orderProductList", orderProductList);
     return "order/detail";
   }
 

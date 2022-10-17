@@ -27,34 +27,24 @@
       <div class="wrap-table-shopping-cart">
         <table class="table-shopping-cart txt-center">
           <tr class="table_head">
-            <th class="col-1">선택</th>
             <th class="col-8" colspan="2">상품</th>
             <th class="col-2 p-r-10">가격</th>
             <th class="col-1">수량</th>
           </tr>
 
+          <c:forEach var="orderProduct" items="${orderProductList }" varStatus="status">
+            <tr class="table_row">
+              <td class="">
+                <div class="">
+                  <img class="img-fluid img-thumbnail" src="${MaruContextPath}/resources/upload/s_${orderProduct.file_original}" width="150" alt="IMG">
+                </div>
+              </td>
+              <td class=" txt-left">${orderProduct.product_name}</td>
+              <td class=" txt-right p-r-10">${orderProduct.product_price}</td>
+              <td class="">${orderProduct.order_quantity}</td>
+            </tr>
+          </c:forEach>
           <tr class="table_row">
-            <td class="">
-              <div class="form-check">
-                <input class="input-lg form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
-              </div>
-            </td>
-            <td class="">
-              <div class="">
-                <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
-              </div>
-            </td>
-            <td class=" txt-left">제품명ㅇㅇㅇㅇ ㅇㅇㅇㅇㅇ</td>
-            <td class=" txt-right p-r-10">1,380,000원</td>
-            <td class="">1</td>
-          </tr>
-
-          <tr class="table_row">
-            <td class="">
-              <div class="form-check">
-                <input class="form-check-input dis-inline-block" type="checkbox" value="" id="delete_item" checked>
-              </div>
-            </td>
             <td class="">
               <div class="">
                 <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
@@ -74,22 +64,14 @@
         </p>
         <table class="txt-right table-hover">
           <tr>
-            <td>주문금액 :</td>
-            <td>180,000원</td>
-          </tr>
-          <tr>
-            <td>배송비 :</td>
-            <td>2,500원</td>
-          </tr>
-          <tr>
-            <td>총주문금액 :</td>
-            <td>182,500원</td>
+            <td>결제금액 :</td>
+            <td>${ orderProductList[0].order_total_price}</td>
           </tr>
         </table>
       </div>
       <div class="mt-5 txt-center">
         <a href="order_refund?order_idx=" type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택 상품 환불/결제 취소</a>
-<!--         <button type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택 상품 교환</button> -->
+        <!--         <button type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택 상품 교환</button> -->
       </div>
     </form>
     <!-- ==================== -->

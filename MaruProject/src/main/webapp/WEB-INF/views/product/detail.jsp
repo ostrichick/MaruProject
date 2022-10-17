@@ -223,6 +223,7 @@
                     <span class="total_price_print m-lr-auto"> <fmt:formatNumber value="${SaledPrice}" type="currency" currencySymbol="₩" />
                     </span>
                     <input type="hidden" name="order_total_price" value="${SaledPrice}">
+                    <input type="hidden" name="product_price" value="${SaledPrice}">
                     <div class="btn-group" role="group">
                       <a href="#" onClick="fn_addCart('${product.product_idx}')" class="flex-c-m stext-101 cl0 size-107 bg1 hov-btn1 m-lr-15 trans-04 js-addcart-detail">장바구니</a>
                       <input type="hidden" name="product_idx_list" value="${product.product_idx }" />

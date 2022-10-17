@@ -15,15 +15,15 @@
   </insert>
 
   <!-- 오라클은 insert all 쓰고 mysql은 separator=","로 나누는 foreach 반복문 사용함 -->
-  <!-- <insert id="addOrderProduct" parameterType="java.util.List"> -->
-  <!-- <foreach collection="list" item="item" index="index" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL"> -->
-  <!-- into order_product ( -->
-  <!-- order_idx, product_idx, order_quantity -->
-  <!-- ) values ( -->
-  <!-- #{item.order_idx}, #{item.product_idx}, #{item.order_quantity} -->
-  <!-- ) -->
-  <!-- </foreach> -->
-  <!-- </insert> -->
+  <insert id="addOrderProduct_Oracle" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL">
+      into order_product (
+      order_idx, product_idx, order_quantity
+      ) values (
+      #{item.order_idx}, #{item.product_idx}, #{item.order_quantity}, #{item.product_price}
+      )
+    </foreach>
+  </insert>
 
   <insert id="addOrderProduct" parameterType="orderProductVo">
     INSERT INTO order_product (
@@ -31,7 +31,7 @@
     ) VALUES
     <foreach collection="list" item="orderProduct" index="index" separator=",">
       (
-      #{orderProduct.order_idx}, #{orderProduct.product_idx}, #{orderProduct.order_quantity}
+      #{orderProduct.order_idx}, #{orderProduct.product_idx}, #{orderProduct.order_quantity}, #{item.product_price}
       )
     </foreach>
   </insert>
@@ -59,21 +59,22 @@
     select * from order_log
     where member_idx = #{member_idx}
   </select>
-  
+
   <select id="getOrderProductList" parameterType="int" resultType="orderVo">
     select * from order_log o
     left join order_product op ON o.ORDER_IDX = op.ORDER_IDX
     left join product p on op.product_idx = p.product_idx
     where member_idx = #{member_idx}
   </select>
-  
+
   <select id="getOneOrder" parameterType="string" resultType="orderVo">
     select * from order_log o
     left join order_product op ON o.ORDER_IDX = op.ORDER_IDX
     left join product p on op.product_idx = p.product_idx
+    left join product_photo pt on p.product_idx = pt.product_idx
     where o.order_idx = #{order_idx}
   </select>
-  
+
 
 
   <!-- <update id="updateOrder" parameterType="orderVo"> -->

@@ -77,7 +77,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
               </div>
             </td>
             <td class="col-3">
-              <img class="img-fluid img-thumbnail" src="${pageContext.request.contextPath}/resources/images/product-01.jpg" width="150" alt="IMG">
+              <img class="img-fluid img-thumbnail" src="${MaruContextPath}/resources/upload/s_${cart.file_original}" width="150" alt="IMG">
             </td>
             <td class="txt-left">
               <a href="${MaruContextPath}/product/detail?product_idx=${cart.product_idx}">${cart.product_name }</a>
@@ -118,7 +118,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
 
             <td class="txt-right p-r-20 saledPrice">
               <fmt:formatNumber value="${saledPrice * cart.cart_product_number}" type="currency" currencySymbol="₩" />
-              <input class="saledXNumber" type="hidden" value="${saledPrice * cart.cart_product_number}">
+              <input class="saledXNumber" type="hidden" name="product_price_list" value="${saledPrice * cart.cart_product_number}">
             </td>
 
             <td class="">
