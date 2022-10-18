@@ -98,7 +98,7 @@
                 <i class="zmdi zmdi-search"></i>
               </div>
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 cart-icon" data-notify="0">
-                <i class="zmdi zmdi-shopping-cart"></i>
+                <a href="${MaruContextPath}/cart/"> <i class="zmdi zmdi-shopping-cart"></i></a>
               </div>
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart">
                 <i class="zmdi zmdi-view-headline"></i>
@@ -211,7 +211,7 @@
                 <i class="zmdi zmdi-search"></i>
               </div>
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 cart-icon" data-notify="0">
-                <i class="zmdi zmdi-shopping-cart"></i>
+                <a href="${MaruContextPath}/cart/"><i class="zmdi zmdi-shopping-cart"></i></a>
               </div>
 
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart">
@@ -236,7 +236,7 @@
           </div>
           <!-- noti -->
           <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 cart-icon" data-notify="0">
-            <i class="zmdi zmdi-shopping-cart"></i>
+            <a href="${MaruContextPath}/cart/"><i class="zmdi zmdi-shopping-cart"></i></a>
           </div>
         </div>
 

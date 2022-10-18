@@ -82,50 +82,35 @@
         product_sale eq 'Y' 인 아이템들 List로 가져와서 하나씩 진열
       </div>
       <div class="row">
-        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-          <!-- Block1 -->
-          <div class="block1 wrap-pic-w">
-            <img src="${MaruContextPath}/resources/images/banner-01.jpg" alt="IMG-BANNER" /> <a href="${MaruContextPath}/product/list" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-              <div class="block1-txt-child1 flex-col-l">
-                <span class="block1-name ltext-102 trans-04 p-b-8"> 부엌장 </span> <span class="block1-info stext-102 trans-04"> 2022년 가을 </span>
-              </div>
 
-              <div class="block1-txt-child2 p-b-4 trans-05">
-                <div class="block1-link stext-101 cl0 trans-09">지금 구매</div>
-              </div>
-            </a>
+
+        <c:forEach var="sale" items="${saleList}" varStatus="status">
+
+          <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+            <!-- Block1 -->
+            <div class="block1 wrap-pic-w">
+
+              <img src="${MaruContextPath}/resources/upload/s_${sale.file_original}" alt="IMG-BANNER" /> <a href="${MaruContextPath}/product/detail?product_idx=${sale.product_idx}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                <div class="block1-txt-child1 flex-col-l">
+                  <span class="block1-name ltext-102 trans-04 p-b-8"> ${sale.product_name } </span>
+                  <p class="block1-info stext-102 trans-04">
+                    <del>
+                      <fmt:formatNumber value="${sale.product_price }" type="currency" currencySymbol="₩" />
+                    </del>
+                    <fmt:formatNumber value="${sale.product_sale_percent / 100 }" type="percent" />
+                    <fmt:formatNumber value="${sale.product_price - sale.product_price * sale.product_sale_percent/100}" type="currency" currencySymbol="₩" />
+                  </p>
+                </div>
+
+                <div class="block1-txt-child2 p-b-4 trans-05">
+                  <div class="block1-link stext-101 cl0 trans-09">지금 구매</div>
+                </div>
+              </a>
+            </div>
           </div>
-        </div>
+        </c:forEach>
 
-        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-          <!-- Block1 -->
-          <div class="block1 wrap-pic-w">
-            <img src="${MaruContextPath}/resources/images/banner-02.jpg" alt="IMG-BANNER" /> <a href="${MaruContextPath}/product/list" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-              <div class="block1-txt-child1 flex-col-l">
-                <span class="block1-name ltext-102 trans-04 p-b-8"> 세면대 </span> <span class="block1-info stext-102 trans-04"> 2022년 여름 </span>
-              </div>
 
-              <div class="block1-txt-child2 p-b-4 trans-05">
-                <div class="block1-link stext-101 cl0 trans-09">지금 구매</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-          <!-- Block1 -->
-          <div class="block1 wrap-pic-w">
-            <img src="${MaruContextPath}/resources/images/banner-03.jpg" alt="IMG-BANNER" /> <a href="${MaruContextPath}/product/list" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-              <div class="block1-txt-child1 flex-col-l">
-                <span class="block1-name ltext-102 trans-04 p-b-8"> 식탁 의자 세트 </span> <span class="block1-info stext-102 trans-04"> 2022년 여름 </span>
-              </div>
-
-              <div class="block1-txt-child2 p-b-4 trans-05">
-                <div class="block1-link stext-101 cl0 trans-09">지금 구매</div>
-              </div>
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   </div>
