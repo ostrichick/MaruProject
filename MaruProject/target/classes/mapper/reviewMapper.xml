@@ -4,9 +4,9 @@
 
   <insert id="writeReview" parameterType="reviewVo">
     INSERT INTO review (
-    product_idx, member_idx, content
+    product_idx, member_idx, content, star
     ) VALUES (
-    #{product_idx}, #{member_idx}, #{content}
+    #{product_idx}, #{member_idx}, #{content}, #{star}
     )
   </insert>
 
@@ -19,7 +19,7 @@
     and r.deleted_yn = 'N'
     order by r.idx desc
   </select>
-  
+
   <select id="getReviewListMember" parameterType="int" resultType="reviewVo">
     SELECT *
     FROM review r

@@ -11,37 +11,38 @@ import ezen.maru.pjt.vo.BoardVo;
 
 @Repository
 public class BoardDao {
-	private SqlSession sqlSession;
-	private final String MAPPER = "ezen.maru.pjt.board";
+  private SqlSession sqlSession;
+  private final String MAPPER = "ezen.maru.pjt.board";
 
-	@Autowired
-	public BoardDao(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
+  @Autowired
+  public BoardDao(SqlSession sqlSession) {
+    this.sqlSession = sqlSession;
+  }
 
-	public int countBoard() {
-		return sqlSession.selectOne(MAPPER + ".countBoard");
-	}
+  public int countBoard() {
+    return sqlSession.selectOne(MAPPER + ".countBoard");
+  }
 
-	public List<BoardVo> getNoticeList(PagingUtil pagingUtil) {
-		return sqlSession.selectList(MAPPER + ".getNoticeList", pagingUtil);
-	}
+  public List<BoardVo> getNoticeList(PagingUtil pagingUtil) {
+    System.out.println(pagingUtil);
+    return sqlSession.selectList(MAPPER + ".getNoticeList", pagingUtil);
+  }
 
-	public int noticeWriteProcess(BoardVo boardVo) {
-		return sqlSession.insert(MAPPER + ".noticeWriteProcess", boardVo);
-	}
+  public int noticeWriteProcess(BoardVo boardVo) {
+    return sqlSession.insert(MAPPER + ".noticeWriteProcess", boardVo);
+  }
 
-	public BoardVo getNotice(int idx) {
-		sqlSession.update(MAPPER + ".upHit", idx);
-		return sqlSession.selectOne(MAPPER + ".getNotice", idx);
-	}
+  public BoardVo getNotice(int idx) {
+    sqlSession.update(MAPPER + ".upHit", idx);
+    return sqlSession.selectOne(MAPPER + ".getNotice", idx);
+  }
 
-	public int noticeEditProcess(BoardVo boardVo) {
-		return sqlSession.update(MAPPER + ".noticeEditProcess", boardVo);
-	}
+  public int noticeEditProcess(BoardVo boardVo) {
+    return sqlSession.update(MAPPER + ".noticeEditProcess", boardVo);
+  }
 
-	public int deleteNotice(int idx) {
-		return sqlSession.update(MAPPER + ".noticeDeleteProcess", idx);
-	}
+  public int deleteNotice(int idx) {
+    return sqlSession.update(MAPPER + ".noticeDeleteProcess", idx);
+  }
 
 }

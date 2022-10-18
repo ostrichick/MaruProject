@@ -30,9 +30,10 @@
         <table class="table-shopping-cart txt-center">
           <tr class="table_head">
             <th class="col-1">선택</th>
-            <th class="col-8" colspan="2">상품</th>
+            <th class="col-6" colspan="2">상품</th>
             <th class="col-1">수량</th>
             <th class="col-2 ">총가격</th>
+            <th class="col-1">리뷰</th>
           </tr>
 
           <c:forEach var="orderProduct" items="${orderProductList }" varStatus="status">
@@ -48,19 +49,43 @@
                   <img class="img-fluid img-thumbnail" src="${MaruContextPath}/resources/upload/s_${orderProduct.file_original}" width="150" alt="IMG">
                 </div>
               </td>
-              <td class="col-6 p-l-30 txt-left">${orderProduct.product_name}</td>
+              <td class="col-4 p-l-30 txt-left">${orderProduct.product_name}</td>
               <td class="">${orderProduct.order_quantity}</td>
               <td class=" txt-right p-r-30">
                 <fmt:formatNumber value="${orderProduct.product_price }" type="currency" currencySymbol="₩" pattern="###,###,###" />
                 ₩
               </td>
+              <td class="">
 
+
+
+                <button type="button" class="btn bg7 cl7" data-toggle="modal" data-target="#idx${orderProduct.product_idx }">리뷰작성</button>
+                <div class="modal fade" id="idx${orderProduct.product_idx }" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">답변 작성하기</h5>
+                        <a type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </a>
+                      </div>
+                      <div class="modal-body">
+                        <textarea class="form-control idx${orderProduct.product_idx }" name="content" id="content" cols="30" rows="10"></textarea>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="hidden" name="member_idx" value="${orderProduct.member_idx }" />
+                        <input type="hidden" name="product_idx" value="${orderProduct.product_idx }" />
+                        <a type="button" class="btn bg6 btn-outline-secondary" data-dismiss="modal">취소</a>
+                        <input type="button" class="btn bg7 cl7 btn-outline-dark" value="등록" onclick="writeReview('${orderProduct.member_idx}','${orderProduct.product_idx }', this)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </td>
             </tr>
           </c:forEach>
-
         </table>
       </div>
-
 
       <div class="bg8 text-dark p-l-150 p-tb-40 fs-18 ">
         <p class="fs-20 p-tb-10">
@@ -81,42 +106,44 @@
         <!--         <button type="button" class="btn bg7 cl7 btn-outline-dark btn-lg m-lr-30">선택 상품 교환</button> -->
       </div>
     </form>
-    <!-- ==================== -->
-    <section class="col-6 m-lr-auto p-all-20 m-tb-50 cl6 bg2">
-      <h3 class="mt-5">배송정보</h3>
-      <hr>
-      <div class="">
-        <p class="form-label">수령인</p>
-        <p class="form-control">홍길동</p>
-      </div>
-      <br>
-      <div class="">
-        <p class="form-label">연락처</p>
-        <p class="form-control">010-1111-1111</p>
-
-      </div>
-      <br>
-      <div class="">
-        <p class="form-label">배송주소</p>
-        <p class="form-control">전라북도 전주시 덕진구</p>
-        <p class="form-control">백제대로 342</p>
-        <p class="form-control">54915</p>
-
-      </div>
-      <br>
-      <div class="">
-        <p class="form-label">결제방식</p>
-        <p class="form-control">신용카드</p>
-      </div>
-      <br>
-      <div class="">
-        <p class="form-label">배송일자</p>
-        <p class="form-control">2022.08.25</p>
-      </div>
-    </section>
   </section>
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>
+  <script>
+      function writeReview(member_idx, product_idx, obj) {
+        console.log(obj);
+        event.preventDefault();
+
+        let content = $("textarea.idx" + product_idx).val();
+        console.log(content);
+        if ($("input#reply_content").val() !== "") {
+          $.ajax({
+            type : "post",
+            url : "../product/review/write?product_idx=" + product_idx,
+            data : {
+              product_idx : product_idx,
+              member_idx : member_idx,
+              content : content,
+            },
+            success : function(result) {
+              console.log(result);
+              console.log("작성 성공");
+              $("textarea").val("");
+              $(".modal").modal("hide");
+              console.log($(obj).parent().parent().parent().parent().parent().parent());
+              $(obj).parent().parent().parent().parent().parent().find("button").remove();
+              $(obj).parent().parent().parent().parent().parent().prepend("작성완료");
+            },
+            error : function(request, status, error) {
+              alert("status:" + status + "\n\n" + "code:" + request.status + "\n\n" + "message:" + request.responseText + "\n\n" + "error:" + error);
+              console.log(status);
+              console.log(request);
+              console.log(error);
+            },
+          });
+        }
+      }
+    </script>
 </body>
 </html>

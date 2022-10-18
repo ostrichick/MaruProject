@@ -24,7 +24,6 @@ public class MailController {
   private JavaMailSender mailSender;
   private static final Logger logger = LoggerFactory.getLogger(MailController.class);
 
-  // ----------------------------메일발송 JSP 로 이동------------------------
   @RequestMapping(value = "/write", method = RequestMethod.GET)
   public void getMailSend(HttpServletRequest req, Model model) {
     HttpSession session = req.getSession();
@@ -33,8 +32,6 @@ public class MailController {
     logger.info("메일발송 JSP진입");
   }
 
-  // --------------------------------메일발송-----------------------------
-  // mailSend 코드
   @RequestMapping(value = "/send", method = RequestMethod.POST)
   public String mailSend(HttpServletRequest request, String member_email, String content,
       RedirectAttributes redirect) {

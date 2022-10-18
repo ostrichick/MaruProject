@@ -204,15 +204,7 @@
               if ($.trim(res) == $("#inputCertifiedNumber").val()) {
                 Swal.fire("인증성공!", "휴대폰 인증이 정상적으로 완료되었습니다.", "success");
                 $("#member_phone").attr("readonly", true);
-                //             $.ajax({
-                //               type: "GET",
-                //               url: "update/phone",
-                //               data: {
-                //                 phoneNumber: $("#inputPhoneNumber").val(),
-                //               },
-                //             });
-                //             document.location.href = "/home";
-              } else {
+                             } else {
                 Swal.fire({
                   icon: "error",
                   title: "인증오류",

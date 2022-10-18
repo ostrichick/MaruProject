@@ -69,7 +69,7 @@ li.page-item.active>a.page-link:hover {
 
     <!-- 주문 목록 -->
     <div class="container w-full txt-center bg6 p-all-30 m-b-50">
-      <a href="${MaruContextPath}/myinfo/orderList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">주문 내역</a>
+      <a href="#" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">주문 내역</a>
       <table class="table table-bordered table-hover table-stripped">
         <thead>
           <tr class="bg1 txt-center">

@@ -126,6 +126,7 @@ CREATE TABLE ORDER_LOG
 	ORDER_IDX int unsigned NOT NULL AUTO_INCREMENT COMMENT '주문번호',
 	-- 회원번호
 	MEMBER_IDX int unsigned NOT NULL COMMENT '회원번호',
+	order_product_name varchar(60),
 	-- 주문날자
 	ORDER_DATE datetime DEFAULT now() NOT NULL COMMENT '주문날자',
 	-- 주문 총 가격
@@ -162,6 +163,7 @@ CREATE TABLE ORDER_LOG
 	ORDER_REFUND_MONEY int unsigned COMMENT '환불 금액',
 	-- 환불 진행 상태
 	ORDER_REFUND_STATUS varchar(30) COMMENT '환불 진행 상태',
+	order_review_yn varchar(3) DEFAULT 'N' NOT NULL,
 	CONSTRAINT SYS_C0010760 PRIMARY KEY (ORDER_IDX)
 ) COMMENT = '주문 내역';
 
@@ -174,7 +176,8 @@ CREATE TABLE ORDER_PRODUCT
 	-- 상품번호
 	PRODUCT_IDX int unsigned NOT NULL COMMENT '상품번호',
 	-- 주문 개수
-	ORDER_QUANTITY int unsigned NOT NULL COMMENT '주문 개수'
+	ORDER_QUANTITY int unsigned NOT NULL COMMENT '주문 개수',
+	paid_price int unsigned NOT NULL
 ) COMMENT = '주문 상품';
 
 
@@ -268,6 +271,7 @@ CREATE TABLE PRODUCT_QNA
 	ISANSWERED varchar(3) DEFAULT 'N' NOT NULL COMMENT '답변이 있음',
 	-- 원본글 번호
 	PARENT_IDX int unsigned COMMENT '원본글 번호',
+	parent_member_idx int unsigned,
 	deleted_yn varchar(3) DEFAULT 'N' NOT NULL,
 	CONSTRAINT SYS_C0010789 PRIMARY KEY (IDX)
 ) COMMENT = '상품문의';
@@ -285,7 +289,7 @@ CREATE TABLE REVIEW
 	-- 리뷰 내용
 	CONTENT varchar(1500) COMMENT '리뷰 내용',
 	-- 리뷰 별점
-	STAR double unsigned NOT NULL COMMENT '리뷰 별점',
+	STAR double unsigned COMMENT '리뷰 별점',
 	-- 리뷰 작성일
 	WDATE datetime DEFAULT now() NOT NULL COMMENT '리뷰 작성일',
 	-- 리뷰 사진 원본이름

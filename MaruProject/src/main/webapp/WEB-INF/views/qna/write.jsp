@@ -40,7 +40,7 @@
   <script>
       const mailSendResult = "${mailSendResult}"
       if (mailSendResult !== '') {
-        alert(mailSendResult);
+        Swal.fire(mailSendResult);
       }
     </script>
 </body>

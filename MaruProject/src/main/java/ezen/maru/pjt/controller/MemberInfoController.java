@@ -163,20 +163,20 @@ public class MemberInfoController {
   }
 
   @PostMapping("/signin_process") // 로그인 요청
-  public String signin_process(MemberInfoVo memberInfoVo, HttpServletRequest req) throws Exception {
+  public String signin_process(MemberInfoVo memberInfoVo, HttpServletRequest req, RedirectAttributes redirectAttributes)
+      throws Exception {
     String viewPage = "member/signin";
-
-//    System.out.println(bCryptPasswordEncoder.encode("123"));
-
+//  System.out.println(bCryptPasswordEncoder.encode("123"));
     MemberInfoVo memberInfoVoFromDB = signinService.getCryptedMemberPw(memberInfoVo);
     boolean pwMatchResult = false;
-    if (memberInfoVoFromDB.getMember_pw() != null) {
-      String getCryptedMemberPw = memberInfoVoFromDB.getMember_pw();
-//			System.out.println(bCryptPasswordEncoder.encode(memberInfoVo.getMember_pw()));
-      pwMatchResult = bCryptPasswordEncoder.matches(memberInfoVo.getMember_pw(), getCryptedMemberPw);
-//			System.out.println(memberInfoVo.getMember_pw());
-//			System.out.println(getCryptedMemberPw);
-//			System.out.println(pwMatchResult);
+    if (memberInfoVoFromDB != null) {
+      if (memberInfoVoFromDB.getMember_pw() != null) {
+        String getCryptedMemberPw = memberInfoVoFromDB.getMember_pw();
+        pwMatchResult = bCryptPasswordEncoder.matches(memberInfoVo.getMember_pw(), getCryptedMemberPw);
+      }
+    } else {
+      redirectAttributes.addFlashAttribute("LoginFailMessage", "로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
+      viewPage = "redirect:/member/signin";
     }
     // 입력받은 값과 암호화된 값을 matches로 비교
     if (pwMatchResult) {

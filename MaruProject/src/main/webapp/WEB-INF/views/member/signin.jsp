@@ -14,12 +14,15 @@
   <div class="container bor10 bg6 col-lg-5 col-md-6 col-sm-8 col-xs-10 p-all-30 m-b-50">
     <div class="container">
       <form class="needs-validation" novalidate action="${pageContext.request.contextPath}/member/signin_process" method="post">
+        <p class="">${LoginFailMessage }</p>
         <div class="bor8 m-b-20 how-pos4-parent">
           <input class="form-control" type="text" id="member_id" name="member_id" placeholder="아이디를 입력해주세요" required>
         </div>
         <div class="bor8 m-b-20 how-pos4-parent">
           <input class="form-control" type="password" id="member_pw" name="member_pw" placeholder="패스워드를 입력해주세요" required>
         </div>
+        <p>테스트용 관리자 아이디, 비밀번호 as/as</p>
+
         <div class="m-t-30 txt-center">
           <button type="submit" class="btn btn-outline-secondary bg7 cl7 col-12">로그인</button>
         </div>

@@ -69,6 +69,7 @@ public class ReviewController {
     Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
     int member_idx = (int) optional_member_idx.get();
     reviewVo.setMember_idx(member_idx);
+    System.out.println(reviewVo);
     insertService.writeReview(reviewVo);
   }
 

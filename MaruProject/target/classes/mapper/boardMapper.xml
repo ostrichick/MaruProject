@@ -12,7 +12,7 @@
     )
     <!-- 방금 작성한 글의 idx를 셀렉트키로 받아서 boardVo객체의 속성으로 반환 -->
     <selectKey resultType="int" keyProperty="idx" order="AFTER">
-      SELECT LAST_INSERT_ID() 
+      SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
 
@@ -26,7 +26,7 @@
     select * from announce b
     ORDER BY b.idx DESC
     ) a
-    limit 0, #{end}
+    limit #{start}, #{perPage}
   </select>
 
   <select id="getNotice" parameterType="int" resultType="boardVo">
