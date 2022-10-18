@@ -34,6 +34,8 @@
       </div>
     </form>
   </div>
+  <span class="cl12">2022-10-18 2:48</span>
+
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/script.jsp"%>

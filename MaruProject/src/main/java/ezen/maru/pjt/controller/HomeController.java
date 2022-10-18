@@ -26,6 +26,7 @@ public class HomeController {
   public String index(Model model) {
     List<ProductVo> saleList = new ArrayList<ProductVo>();
     saleList = listService.getSaleList();
+    model.addAttribute("indexHeader", "Y");
     model.addAttribute("saleList", saleList);
     System.out.println(saleList);
     // 할인 중인 제품 받기
@@ -35,7 +36,11 @@ public class HomeController {
 
   @GetMapping("/index")
   public String indexdo(Model model) {
+    List<ProductVo> saleList = new ArrayList<ProductVo>();
+    saleList = listService.getSaleList();
     model.addAttribute("indexHeader", "Y");
+    model.addAttribute("saleList", saleList);
+    System.out.println(saleList);
     return "index";
   }
 

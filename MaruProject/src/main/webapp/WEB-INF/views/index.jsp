@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>마루 </title>
+<title>마루</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--===============================================================================================-->
@@ -21,15 +21,15 @@
           <div class="container h-full">
             <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
               <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-                <span class="ltext-101 cl2 respon2"> 2022년 가을 신상품 </span>
+                <!--                 <span class="ltext-101 cl2 respon2"> 2022년 가을 신상품 </span> -->
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">행거</h2>
+                <!--                 <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">행거</h2> -->
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금 구매 </a>
+                <%--                 <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금 구매 </a> --%>
               </div>
             </div>
           </div>
@@ -39,15 +39,15 @@
           <div class="container h-full">
             <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
               <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-                <span class="ltext-101 cl2 respon2"> 2층 침대 </span>
+                <!--                 <span class="ltext-101 cl2 respon2"> 2층 침대 </span> -->
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
-                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">......</h2>
+                <!--                 <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">......</h2> -->
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-                <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금 구매 </a>
+                <%--                 <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금 구매 </a> --%>
               </div>
             </div>
           </div>
@@ -57,15 +57,15 @@
           <div class="container h-full">
             <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
               <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
-                <span class="ltext-101 cl2 respon2"> 와이드 소파 </span>
+                <!--                 <span class="ltext-101 cl2 respon2"> 와이드 소파 </span> -->
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
-                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">......</h2>
+                <!--                 <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">......</h2> -->
               </div>
 
               <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-                <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금구매 </a>
+                <%--                 <a href="${MaruContextPath}/product/list" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 지금구매 </a> --%>
               </div>
             </div>
           </div>
@@ -78,7 +78,8 @@
   <div class="sec-banner bg0 p-t-80 p-b-50">
     <div class="container">
       <div class="p-b-10">
-        <h3 class="ltext-103 cl5">할인 중인 제품</h3> product_sale eq 'Y' 인 아이템들 List로 가져와서 하나씩 진열
+        <h3 class="ltext-103 cl5">할인 중인 제품</h3>
+        product_sale eq 'Y' 인 아이템들 List로 가져와서 하나씩 진열
       </div>
       <div class="row">
         <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
@@ -130,7 +131,7 @@
   </div>
 
   <!-- Product -->
- 
+
 
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>

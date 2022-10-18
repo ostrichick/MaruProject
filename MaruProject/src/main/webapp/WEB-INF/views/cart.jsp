@@ -372,6 +372,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
               $(obj).parent().parent().remove();
             }
             totalPriceCalc();
+            getCartCount();
           },
           error: function () {
             console.log(data);

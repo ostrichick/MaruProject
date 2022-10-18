@@ -239,6 +239,7 @@ span.cart_plus>i:hover {
       },
       success: function () {
         Swal.fire(product_name, "장바구니에 추가되었습니다!", "success");
+        getCartCount();
       },
       error: function () {
         alert("실패");

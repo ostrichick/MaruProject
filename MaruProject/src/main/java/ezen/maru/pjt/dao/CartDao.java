@@ -10,27 +10,31 @@ import ezen.maru.pjt.vo.CartVo;
 
 @Repository
 public class CartDao {
-	private SqlSession sqlSession;
-	private final String MAPPER = "ezen.maru.pjt.cart";
+  private SqlSession sqlSession;
+  private final String MAPPER = "ezen.maru.pjt.cart";
 
-	@Autowired
-	public CartDao(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
+  @Autowired
+  public CartDao(SqlSession sqlSession) {
+    this.sqlSession = sqlSession;
+  }
 
-	public List<CartVo> getCartList(int member_idx) {
-		return sqlSession.selectList(MAPPER + ".getCartList", member_idx);
-	}
+  public List<CartVo> getCartList(int member_idx) {
+    return sqlSession.selectList(MAPPER + ".getCartList", member_idx);
+  }
 
-	public int updateCart(CartVo cartVo) {
-		return sqlSession.update(MAPPER + ".updateCart", cartVo);
-	}
+  public int updateCart(CartVo cartVo) {
+    return sqlSession.update(MAPPER + ".updateCart", cartVo);
+  }
 
-	public int addCart(CartVo cartVo) {
-		return sqlSession.update(MAPPER + ".addCart", cartVo);
-	}
+  public int addCart(CartVo cartVo) {
+    return sqlSession.update(MAPPER + ".addCart", cartVo);
+  }
 
-	public int deleteCart(CartVo cartVo) {
-		return sqlSession.delete(MAPPER + ".deleteCart", cartVo);
-	}
+  public int deleteCart(CartVo cartVo) {
+    return sqlSession.delete(MAPPER + ".deleteCart", cartVo);
+  }
+
+  public int getCartCount(int member_idx) {
+    return sqlSession.selectOne(MAPPER + ".getCartCount", member_idx);
+  }
 }

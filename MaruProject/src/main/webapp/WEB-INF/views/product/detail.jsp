@@ -263,7 +263,7 @@
             <!-- - -->
             <div class="tab-pane fade show active" id="description" role="tabpanel">
               <div class="how-pos2 p-lr-15-md">
-                <p class="stext-102 cl6">상세설명을 적어주세요. &#36;{product.product_detail} ${product.product_detail}</p>
+                <p class="stext-102 cl6">${product.product_detail}</p>
               </div>
             </div>
 
@@ -469,6 +469,7 @@
 
       function addCartSuccess() { //장바구니로 이동 혹은 계속 쇼핑하기 여부 modal 창으로 출력
         console.log("성공");
+        getCartCount()
 
       }
 
@@ -502,8 +503,10 @@
           dataType : "JSON",
           success : function(result) {
             console.log(result);
+            $("tbody.qna_parent").empty();
+
             if (result.length > 0) { // 서버에서 받아온 결과의 길이가 0보다 크면 기본메세지를 삭제
-              $("tbody.qna_parent").empty();
+
               console.log("문의 목록 초기화");
             }
             $(result).each(function(index, item) {

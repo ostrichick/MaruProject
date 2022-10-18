@@ -10,15 +10,21 @@ import ezen.maru.pjt.vo.CartVo;
 
 @Service("c_list")
 public class CartListService implements CartService {
-	private CartDao cartDao;
+  private CartDao cartDao;
 
-	@Autowired(required = false)
-	public CartListService(CartDao cartDao) {
-		this.cartDao = cartDao;
-	}
+  @Autowired(required = false)
+  public CartListService(CartDao cartDao) {
+    this.cartDao = cartDao;
+  }
 
-	@Override
-	public List<CartVo> getCartList(int member_idx) {
-		return cartDao.getCartList(member_idx);
-	}
+  @Override
+  public List<CartVo> getCartList(int member_idx) {
+    return cartDao.getCartList(member_idx);
+  }
+
+  @Override
+  public int getCartCount(int member_idx) {
+    return cartDao.getCartCount(member_idx);
+  }
+
 }

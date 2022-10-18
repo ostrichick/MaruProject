@@ -155,4 +155,15 @@ public class CartController {
     }
     return cartList;
   }
+
+  @ResponseBody
+  @GetMapping("/getCartCount")
+  public int getCartCount(HttpServletRequest req, Model model) {
+    HttpSession session = req.getSession();
+    Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
+    int member_idx = (int) optional_member_idx.get();
+    int cartCount = listService.getCartCount(member_idx);
+    System.out.println(cartCount);
+    return cartCount;
+  }
 }
