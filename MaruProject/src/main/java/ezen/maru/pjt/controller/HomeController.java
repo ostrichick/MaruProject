@@ -1,67 +1,87 @@
 package ezen.maru.pjt.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import ezen.maru.pjt.service.product.ProductService;
+import ezen.maru.pjt.vo.ProductVo;
+
 @Controller
 
 public class HomeController {
-	@GetMapping("/")
-	public String index(Model model) {
-		model.addAttribute("indexHeader", "Y");
-		return "index";
-	}
+  ProductService listService;
 
-	@GetMapping("/index")
-	public String indexdo(Model model) {
-		model.addAttribute("indexHeader", "Y");
-		return "index";
-	}
+  @Autowired(required = false)
+  public void setListService(@Qualifier("p_list") ProductService listService) {
+    this.listService = listService;
+  }
 
-	@GetMapping("/contact")
-	public String contact() {
-		return "contact";
-	}
+  @GetMapping("/")
+  public String index(Model model) {
+    List<ProductVo> saleList = new ArrayList<ProductVo>();
+    saleList = listService.getSaleList();
+    model.addAttribute("saleList", saleList);
+    System.out.println(saleList);
+    // 할인 중인 제품 받기
 
-	@GetMapping("/error")
-	public String error() {
-		return "error/error";
-	}
+    return "index";
+  }
 
-	@GetMapping("/product")
-	public String product() {
-		return "product";
-	}
+  @GetMapping("/index")
+  public String indexdo(Model model) {
+    model.addAttribute("indexHeader", "Y");
+    return "index";
+  }
 
-	@GetMapping("/about")
-	public String about() {
-		return "about";
-	}
+  @GetMapping("/contact")
+  public String contact() {
+    return "contact";
+  }
 
-	@GetMapping("/index2")
-	public String index2do() {
-		return "index2";
-	}
+  @GetMapping("/error")
+  public String error() {
+    return "error/error";
+  }
 
-	@GetMapping("/blog")
-	public String blog() {
-		return "blog";
-	}
+  @GetMapping("/product")
+  public String product() {
+    return "product";
+  }
 
-	@GetMapping("/blog-detail")
-	public String blog_detail() {
-		return "blog-detail";
-	}
+  @GetMapping("/about")
+  public String about() {
+    return "about";
+  }
 
-	@GetMapping("/review")
-	public String review() {
-		return "review";
-	}
+  @GetMapping("/index2")
+  public String index2do() {
+    return "index2";
+  }
 
-	@GetMapping("/faq")
-	public String faq() {
-		return "/faq/list";
-	}
+  @GetMapping("/blog")
+  public String blog() {
+    return "blog";
+  }
+
+  @GetMapping("/blog-detail")
+  public String blog_detail() {
+    return "blog-detail";
+  }
+
+  @GetMapping("/review")
+  public String review() {
+    return "review";
+  }
+
+  @GetMapping("/faq")
+  public String faq() {
+    return "/faq/list";
+  }
 
 }

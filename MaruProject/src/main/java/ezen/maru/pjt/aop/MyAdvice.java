@@ -1,4 +1,4 @@
-package ezen.maru.pjt.controller;
+package ezen.maru.pjt.aop;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

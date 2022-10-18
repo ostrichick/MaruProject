@@ -8,6 +8,15 @@
     where deleted_yn = 'N' and product_major_category like #{product_major_category}
     order by p.product_idx DESC
   </select>
+
+  <select id="getSaleList" resultType="productVo">
+    select * from product p
+    left outer join product_photo pp
+    on p.product_idx = pp.product_idx
+    where deleted_yn = 'N' and product_sale = 'Y'
+    order by p.product_sale_percent limit 3
+  </select>
+
   <!-- ================================================= -->
   <insert id="productAdd" parameterType="productVo">
     insert into product (

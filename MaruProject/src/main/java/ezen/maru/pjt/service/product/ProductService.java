@@ -10,24 +10,28 @@ import ezen.maru.pjt.vo.ProductVo;
 
 public interface ProductService {
 
-	default List<ProductVo> getProductList(String product_major_category) {
-		return null;
-	}
+  default List<ProductVo> getProductList(String product_major_category) {
+    return null;
+  }
 
-	default int productAdd(ProductVo productVo, MultipartRequest uploadFile1, HttpServletRequest req) {
-		return 0;
-	}
+  default int productAdd(ProductVo productVo, MultipartRequest uploadFile1, HttpServletRequest req) {
+    return 0;
+  }
 
-	default ProductVo getProduct(int product_idx) {
-		return null;
-	}
+  default ProductVo getProduct(int product_idx) {
+    return null;
+  }
 
-	default int productEdit(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest req) {
-		return 0;
-	}
+  default int productEdit(ProductVo productVo, MultipartRequest uploadFile, HttpServletRequest req) {
+    return 0;
+  }
 
-	default int deleteProduct(int product_idx) {
-		return 0;
-	}
+  default int deleteProduct(int product_idx) {
+    return 0;
+  }
+
+  default List<ProductVo> getSaleList() {
+    return null;
+  }
 
 }

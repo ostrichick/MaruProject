@@ -10,33 +10,37 @@ import ezen.maru.pjt.vo.ProductVo;
 
 @Repository
 public class ProductDao {
-	private SqlSession sqlSession;
-	private final String MAPPER = "ezen.maru.pjt.product";
+  private SqlSession sqlSession;
+  private final String MAPPER = "ezen.maru.pjt.product";
 
-	@Autowired
-	public ProductDao(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
+  @Autowired
+  public ProductDao(SqlSession sqlSession) {
+    this.sqlSession = sqlSession;
+  }
 
-	public List<ProductVo> getProductList(String product_major_category) {
-		return sqlSession.selectList(MAPPER + ".getProductList", product_major_category);
-	}
+  public List<ProductVo> getProductList(String product_major_category) {
+    return sqlSession.selectList(MAPPER + ".getProductList", product_major_category);
+  }
 
-	public int productAdd(ProductVo productVo) {
-		sqlSession.insert(MAPPER + ".productAdd", productVo);
-		return sqlSession.insert(MAPPER + ".productAdd_file", productVo);
-	}
+  public int productAdd(ProductVo productVo) {
+    sqlSession.insert(MAPPER + ".productAdd", productVo);
+    return sqlSession.insert(MAPPER + ".productAdd_file", productVo);
+  }
 
-	public ProductVo getProduct(int product_idx) {
-		sqlSession.update(MAPPER + ".upHit", product_idx);
-		return sqlSession.selectOne(MAPPER + ".getProduct", product_idx);
-	}
+  public ProductVo getProduct(int product_idx) {
+    sqlSession.update(MAPPER + ".upHit", product_idx);
+    return sqlSession.selectOne(MAPPER + ".getProduct", product_idx);
+  }
 
-	public int productEdit(ProductVo productVo) {
-		return sqlSession.update(MAPPER + ".productUpdate", productVo);
-	}
+  public int productEdit(ProductVo productVo) {
+    return sqlSession.update(MAPPER + ".productUpdate", productVo);
+  }
 
-	public int deleteProduct(int product_idx) {
-		return sqlSession.update(MAPPER + ".deleteProduct", product_idx);
-	}
+  public int deleteProduct(int product_idx) {
+    return sqlSession.update(MAPPER + ".deleteProduct", product_idx);
+  }
+
+  public List<ProductVo> getSaleList() {
+    return sqlSession.selectList(MAPPER + ".getSaleList");
+  }
 }

@@ -17,17 +17,17 @@
         <label for="member_id"> 아이디 </label>
       </p>
       <div class="input-group mb-3">
-        <input type="text" class="form-control col-9" id="member_id" name="member_id" placeholder="아이디를 입력해주세요" required onKeyup="this.value=this.value.replace( /^[a-z|A-Z]+$/g,'');" />
+        <input type="text" class="form-control col-9" id="member_id" name="member_id" placeholder="아이디를 입력해주세요" required onKeyup="this.value=this.value.replace( /[^a-z0-9]/,'');" />
         <input class="btn btn-outline-secondary cl0 bg7 col-3" type="button" id="duplicateCheck" value="중복확인" onclick="fn_idDuplicateChk()" />
         <div class="valid-feedback">유효한 아이디 입니다.</div>
-        <div class="invalid-feedback">6글자 이상 20글자 이하로 작성 후 중복확인을 해주세요.</div>
+        <div class="invalid-feedback">영문, 숫자로 이뤄진 6글자 이상 20글자 아이디를 입력 후 중복확인을 해주세요.</div>
       </div>
 
       <div class="m-tb-20 signInMark">
         <p class="form-label">비밀번호</p>
         <input type="password" class="pw form-control" id="member_pw" name="member_pw" placeholder="비밀번호를 입력해주세요(6글자~16글자 이하[특수문자 포함])" required onkeyup="check_pw()" onchange="check_pw()" />
         <div class="valid-feedback">비밀번호가 일치합니다.</div>
-        <div class="invalid-feedback">영문과 특수문자를 포함한 6글자 이상 20글자 이하 비밀번호를 만들어주세요.</div>
+        <div class="invalid-feedback">영문, 특수문자를 포함한 6글자 이상 20글자 이하 비밀번호를 만들어주세요.</div>
       </div>
 
       <div class="m-tb-20 signInMark">
@@ -176,7 +176,7 @@
         //1. 입력한 value 값을 읽어온다.
         let member_id = document.querySelector("#member_id").value;
         //2. 유효성(5글자이상 10글자 이하)을 검증한다.
-        isMember_idValid = member_id.length >= 8 && member_id.length <= 20;
+        isMember_idValid = member_id.length >= 6 && member_id.length <= 20;
         //3. 유효하다면 input 요소에 is-valid 클래스 추가, 아니라면 is-invalid 클래스 추가
 
         if (isMember_idValid && isNotDuplicated === true) {
