@@ -68,23 +68,6 @@ public class ProductController {
      */
     List<ProductVo> productList = new ArrayList<ProductVo>();
     if (orderBy != null) {
-      switch (orderBy) {
-        case "popular":
-          orderBy = "product_hit desc";
-          break;
-        case "avgstar":
-          orderBy = "product_avgstar desc";
-          break;
-        case "newitem":
-          orderBy = "product_idx desc";
-          break;
-        case "lowprice":
-          orderBy = "product_price ";
-          break;
-        case "highprice":
-          orderBy = "product_price desc";
-      }
-      System.out.println(orderBy);
       productList = listService.getOrderByProductList(orderBy);
     } else if (priceRange != null) {
       productList = listService.getPriceRangeProductList(priceRange);

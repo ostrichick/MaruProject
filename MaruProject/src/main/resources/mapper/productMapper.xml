@@ -20,25 +20,45 @@
     where a.deleted_yn = 'N' and a.product_sale = 'Y'
   </select>
 
-  <select id="getProductNameProductList" resultType="productVo">
+  <select id="getProductNameProductList" parameterType="map" resultType="productVo">
     select * from product p
     left outer join product_photo pp
     on p.product_idx = pp.product_idx
-    where product_name like '%'||#{product_name}||'%'
+    where deleted_yn = 'N'
+    and product_name like CONCAT('%',#{product_name},'%')
   </select>
 
-  <select id="getPriceRangeProductList" resultType="productVo">
+  <select id="getPriceRangeProductList" parameterType="map" resultType="productVo">
     select * from product p
     left outer join product_photo pp
     on p.product_idx = pp.product_idx
-    where product_price
+    where deleted_yn = 'N' and product_price &gt;= 50000 and product_price &lt; 100000
+    order by product_price desc
   </select>
-  
-  <select id="getOrderByProductList" resultType="productVo">
+  <!-- where deleted_yn = 'N' and product_price &gt;= 50000 and product_price &lt; 100000 -->
+  <!-- where deleted_yn = 'N' and product_price &gt;= 0 and product_price &lt; 50000 -->
+  <!-- where deleted_yn = 'N' and product_price &gt;= #{min} and product_price &lt; #{max} -->
+
+  <select id="getOrderByProductList" parameterType="map" resultType="productVo">
     select * from product p
     left outer join product_photo pp
     on p.product_idx = pp.product_idx
-    order by #{orderBy}
+    where deleted_yn = 'N'
+    <if test="orderBy.equals('lowprice')">
+      order by product_price
+    </if>
+    <if test="orderBy == 'highprice'">
+      order by product_price desc
+    </if>
+    <if test="orderBy == 'popular'">
+      order by product_hit desc
+    </if>
+    <if test="orderBy == 'avgstar'">
+      order by product_avgstar desc
+    </if>
+    <if test="orderBy == 'newitem'">
+      order by p.product_idx desc
+    </if>
   </select>
 
 

@@ -66,10 +66,10 @@ span.cart_plus>i:hover {
               <div class="mtext-102 cl2 p-b-15">정렬하기</div>
 
               <ul>
-                <li class="p-b-6"><a href="${MaruContextPath}/product/list" class="filter-link stext-106 trans-04"> 기본값 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list" class="filter-link stext-106 trans-04 filter-link-active"> 기본값 </a></li>
                 <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=popular" class="filter-link stext-106 trans-04"> 인기순 </a></li>
                 <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=avgstar" class="filter-link stext-106 trans-04"> 평점순 </a></li>
-                <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=newitem" class="filter-link stext-106 trans-04 filter-link-active"> 신상품 </a></li>
+                <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=newitem" class="filter-link stext-106 trans-04 "> 신상품 </a></li>
                 <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=lowprice" class="filter-link stext-106 trans-04"> 낮은 가격순 </a></li>
                 <li class="p-b-6"><a href="${MaruContextPath}/product/list?orderBy=highprice" class="filter-link stext-106 trans-04"> 높은 가격순 </a></li>
               </ul>

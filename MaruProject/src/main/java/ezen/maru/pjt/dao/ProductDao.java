@@ -1,6 +1,8 @@
 package ezen.maru.pjt.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,17 +47,41 @@ public class ProductDao {
   }
 
   public List<ProductVo> getOrderByProductList(String orderBy) {
-    System.out.println("dao 11111111111");
-    return sqlSession.selectList(MAPPER + ".getOrderByProductList", orderBy);
+    Map<String, String> map = new HashMap<String, String>();
+    map.put("orderBy", orderBy);
+    System.out.println(map);
+    return sqlSession.selectList(MAPPER + ".getOrderByProductList", map);
   }
 
   public List<ProductVo> getPriceRangeProductList(String priceRange) {
-    System.out.println("dao 2222222");
+    Map<String, Integer> map = new HashMap<String, Integer>();
+    if (priceRange.equals("lt50k")) {
+      map.put("min", 0);
+      map.put("max", 50000);
+    } else if (priceRange.equals("50kTo100k")) {
+      map.put("min", 50000);
+      map.put("max", 100000);
+    } else if (priceRange.equals("100kTo200k")) {
+      map.put("min", 100000);
+      map.put("max", 200000);
+    } else if (priceRange.equals("200kTo500k")) {
+      map.put("min", 200000);
+      map.put("max", 500000);
+    } else if (priceRange.equals("500kTo1m")) {
+      map.put("min", 500000);
+      map.put("max", 1000000);
+    } else if (priceRange.equals("gt1m")) {
+      map.put("min", 1000000);
+      map.put("max", 10000000);
+    }
+    System.out.println(map);
     return sqlSession.selectList(MAPPER + ".getPriceRangeProductList", priceRange);
   }
 
   public List<ProductVo> getProductNameProductList(String product_name) {
-    System.out.println("dao 3333");
-    return sqlSession.selectList(MAPPER + ".getProductNameProductList", product_name);
+    Map<String, String> map = new HashMap<String, String>();
+    map.put("product_name", product_name);
+    System.out.println(map);
+    return sqlSession.selectList(MAPPER + ".getProductNameProductList", map);
   }
 }
