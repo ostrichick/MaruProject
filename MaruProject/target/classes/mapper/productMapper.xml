@@ -10,12 +10,38 @@
   </select>
 
   <select id="getSaleList" resultType="productVo">
+    select * from (select
+    product_name, product_price, product_sale, product_sale_price, product_sale_percent,
+    deleted_yn, p.PRODUCT_IDX, pp.FILE_ORIGINAL
+    from product p
+    left outer join product_photo pp
+    on p.product_idx = pp.product_idx
+    order by p.product_sale_percent desc) a
+    where a.deleted_yn = 'N' and a.product_sale = 'Y'
+  </select>
+
+  <select id="getProductNameProductList" resultType="productVo">
     select * from product p
     left outer join product_photo pp
     on p.product_idx = pp.product_idx
-    where deleted_yn = 'N' and product_sale = 'Y'
-    order by p.product_sale_percent limit 3
+    where product_name like '%'||#{product_name}||'%'
   </select>
+
+  <select id="getPriceRangeProductList" resultType="productVo">
+    select * from product p
+    left outer join product_photo pp
+    on p.product_idx = pp.product_idx
+    where product_price
+  </select>
+  
+  <select id="getOrderByProductList" resultType="productVo">
+    select * from product p
+    left outer join product_photo pp
+    on p.product_idx = pp.product_idx
+    order by #{orderBy}
+  </select>
+
+
 
   <!-- ================================================= -->
   <insert id="productAdd" parameterType="productVo">

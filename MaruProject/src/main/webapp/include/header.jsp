@@ -98,7 +98,7 @@
                 <i class="zmdi zmdi-search"></i>
               </div>
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 cart-icon" data-notify="0">
-                <a href="${MaruContextPath}/cart/"> <i class="zmdi zmdi-shopping-cart"></i></a>
+                <a href="${MaruContextPath}/cart/" style="color: black;"> <i class="zmdi zmdi-shopping-cart"></i></a>
               </div>
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart">
                 <i class="zmdi zmdi-view-headline"></i>
@@ -211,7 +211,7 @@
                 <i class="zmdi zmdi-search"></i>
               </div>
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 cart-icon" data-notify="0">
-                <a href="${MaruContextPath}/cart/"><i class="zmdi zmdi-shopping-cart"></i></a>
+                <a href="${MaruContextPath}/cart/" style="color: black;"><i class="zmdi zmdi-shopping-cart"></i></a>
               </div>
 
               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart">
@@ -236,7 +236,7 @@
           </div>
           <!-- noti -->
           <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 cart-icon" data-notify="0">
-            <a href="${MaruContextPath}/cart/"><i class="zmdi zmdi-shopping-cart"></i></a>
+            <a href="${MaruContextPath}/cart/" style="color: black;"><i class="zmdi zmdi-shopping-cart"></i></a>
           </div>
         </div>
 
@@ -344,32 +344,34 @@
 <script>
   let member_idx_session = "${sessionScope.member_idx}";
   function getCartCount() {
-    $.ajax({
-      type : "GET",
-      url : "${MaruContextPath}/cart/getCartCount",
-      dataType : "JSON",
-      data : {
-        member_idx : member_idx_session,
-      },
-      success : function(result) {
-        console.log("불러오기 성공");
-        console.log(result);
-        if (result >= 1) {
-          $("div.cart-icon").each(function(index, item) {
-            $(item).addClass("icon-header-noti");
-            $(item).attr("data-notify", result);
-          });
-        } else {
-          $("div.cart-icon").each(function(index, item) {
-            $(item).removeClass("icon-header-noti");
-            $(item).attr("data-notify", result);
-          });
-        }
-      },
-      error : function(request, status, error) {
-        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-      },
-    });
+    if (member_idx_session.length >= 1) {
+      $.ajax({
+        type : "GET",
+        url : "${MaruContextPath}/cart/getCartCount",
+        dataType : "JSON",
+        data : {
+          member_idx : member_idx_session,
+        },
+        success : function(result) {
+          console.log("불러오기 성공");
+          console.log(result);
+          if (result >= 1) {
+            $("div.cart-icon").each(function(index, item) {
+              $(item).addClass("icon-header-noti");
+              $(item).attr("data-notify", result);
+            });
+          } else {
+            $("div.cart-icon").each(function(index, item) {
+              $(item).removeClass("icon-header-noti");
+              $(item).attr("data-notify", result);
+            });
+          }
+        },
+        error : function(request, status, error) {
+          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+        },
+      });
+    }
   }
   getCartCount()
 </script>

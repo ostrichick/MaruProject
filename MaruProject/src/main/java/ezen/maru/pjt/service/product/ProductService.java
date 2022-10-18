@@ -34,4 +34,16 @@ public interface ProductService {
     return null;
   }
 
+  default List<ProductVo> getOrderByProductList(String orderBy) {
+    return null;
+  }
+
+  default List<ProductVo> getPriceRangeProductList(String priceRange) {
+    return null;
+  }
+
+  default List<ProductVo> getProductNameProductList(String product_name) {
+    return null;
+  }
+
 }

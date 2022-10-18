@@ -66,8 +66,36 @@ public class ProductController {
      * orderBy = 인기순, 평점순, 가격낮, 가격높
      * priceRange = 5만, 5~10, 10~20, 20~50, 50~100, 100~
      */
-    String product_major_category = category;
-    List<ProductVo> productList = listService.getProductList(product_major_category);
+    List<ProductVo> productList = new ArrayList<ProductVo>();
+    if (orderBy != null) {
+      switch (orderBy) {
+        case "popular":
+          orderBy = "product_hit desc";
+          break;
+        case "avgstar":
+          orderBy = "product_avgstar desc";
+          break;
+        case "newitem":
+          orderBy = "product_idx desc";
+          break;
+        case "lowprice":
+          orderBy = "product_price ";
+          break;
+        case "highprice":
+          orderBy = "product_price desc";
+      }
+      System.out.println(orderBy);
+      productList = listService.getOrderByProductList(orderBy);
+    } else if (priceRange != null) {
+      productList = listService.getPriceRangeProductList(priceRange);
+    } else if (product_name != null) {
+      productList = listService.getProductNameProductList(product_name);
+    } else {
+      String product_major_category = category;
+      productList = listService.getProductList(product_major_category);
+    }
+    System.out.println("productList Controller " + productList);
+    System.out.println("length " + productList.size());
     model.addAttribute("productList", productList);
     return "product/list";
   }

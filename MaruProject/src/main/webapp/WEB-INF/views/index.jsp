@@ -79,12 +79,11 @@
     <div class="container">
       <div class="p-b-10">
         <h3 class="ltext-103 cl5">할인 중인 제품</h3>
-        product_sale eq 'Y' 인 아이템들 List로 가져와서 하나씩 진열
       </div>
       <div class="row">
 
 
-        <c:forEach var="sale" items="${saleList}" varStatus="status">
+        <c:forEach var="sale" items="${saleList}" varStatus="status" begin="0" end="11">
 
           <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
             <!-- Block1 -->

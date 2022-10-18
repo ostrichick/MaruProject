@@ -32,4 +32,19 @@ public class ProductListService implements ProductService {
     return productDao.getSaleList();
   }
 
+  @Override
+  public List<ProductVo> getOrderByProductList(String orderBy) {
+    return productDao.getOrderByProductList(orderBy);
+  }
+
+  @Override
+  public List<ProductVo> getPriceRangeProductList(String priceRange) {
+    return productDao.getPriceRangeProductList(priceRange);
+  }
+
+  @Override
+  public List<ProductVo> getProductNameProductList(String product_name) {
+    return productDao.getProductNameProductList(product_name);
+  }
+
 }

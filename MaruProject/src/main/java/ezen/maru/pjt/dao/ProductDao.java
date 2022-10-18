@@ -43,4 +43,19 @@ public class ProductDao {
   public List<ProductVo> getSaleList() {
     return sqlSession.selectList(MAPPER + ".getSaleList");
   }
+
+  public List<ProductVo> getOrderByProductList(String orderBy) {
+    System.out.println("dao 11111111111");
+    return sqlSession.selectList(MAPPER + ".getOrderByProductList", orderBy);
+  }
+
+  public List<ProductVo> getPriceRangeProductList(String priceRange) {
+    System.out.println("dao 2222222");
+    return sqlSession.selectList(MAPPER + ".getPriceRangeProductList", priceRange);
+  }
+
+  public List<ProductVo> getProductNameProductList(String product_name) {
+    System.out.println("dao 3333");
+    return sqlSession.selectList(MAPPER + ".getProductNameProductList", product_name);
+  }
 }
