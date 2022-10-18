@@ -40,7 +40,7 @@ public class HomeController {
     saleList = listService.getSaleList();
     model.addAttribute("indexHeader", "Y");
     model.addAttribute("saleList", saleList);
-    System.out.println(saleList);
+    System.out.println("saleList" + saleList);
     return "index";
   }
 

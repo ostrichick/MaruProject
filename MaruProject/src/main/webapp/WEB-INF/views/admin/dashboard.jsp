@@ -79,7 +79,7 @@ li.page-item.active>a.page-link:hover {
 
     <!-- 상품 요약 -->
     <div class="container w-full txt-center bg6 p-all-30 m-b-50">
-      <a href="${pageContext.request.contextPath}/admin/updateList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">상품 목록</a>
+      <a href="${pageContext.request.contextPath}/admin/updateList" class="btn bg7 cl7 btn-outline-secondary pull-left m-l--30 m-t--30 m-b-30">상품 관리</a>
       <table class="table table-bordered table-hover table-stripped">
         <thead>
           <tr class="bg1">
@@ -89,10 +89,10 @@ li.page-item.active>a.page-link:hover {
             <th class="col-1">할인율 %</th>
             <th class="col-2">할인된 가격</th>
             <th class="col-1">재고</th>
-            <th class="col-1">상품삭제</th>
+            <th class="col-1">품절처리</th>
           </tr>
         </thead>
-        <c:forEach var="product" items="${productList}" varStatus="status">
+        <c:forEach var="product" items="${productList}" varStatus="status" begin="0" end="9">
           <tr class="bg0">
             <td>
               <a href="${MaruContextPath}/product/detail?product_idx=${product.product_idx}" class="">${product.product_name}</a>
@@ -114,7 +114,7 @@ li.page-item.active>a.page-link:hover {
             </td>
             <td>${product.product_inventory}</td>
             <td>
-              <a class="btn bg7 cl7 btn-outline-secondary m-all--10" href="${MaruContextPath}/product/delete_process?product_idx=${product.product_idx}">삭제</a>
+              <a class="btn bg7 cl7 btn-outline-secondary m-all--10" href="${MaruContextPath}/product/delete_process?product_idx=${product.product_idx}">품절</a>
             </td>
           </tr>
         </c:forEach>
