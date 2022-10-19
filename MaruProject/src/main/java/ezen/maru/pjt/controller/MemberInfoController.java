@@ -221,6 +221,7 @@ public class MemberInfoController {
     List<QnaVo> qnaAnswerList = new ArrayList<QnaVo>();
     qnaAnswerList = qlistService.getQnaAnswerListMember(member_idx);
     model.addAttribute("qnaAnswerList", qnaAnswerList);
+    System.out.println(qnaAnswerList);
 
     Map<String, String> memberStats = new HashMap<String, String>();
     memberStats = mlistService.getMemberStats(member_idx);

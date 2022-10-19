@@ -32,12 +32,9 @@
     select * from product p
     left outer join product_photo pp
     on p.product_idx = pp.product_idx
-    where deleted_yn = 'N' and product_price &gt;= 50000 and product_price &lt; 100000
+    where deleted_yn = 'N' and product_price &gt;= #{min} and product_price &lt; #{max}
     order by product_price desc
   </select>
-  <!-- where deleted_yn = 'N' and product_price &gt;= 50000 and product_price &lt; 100000 -->
-  <!-- where deleted_yn = 'N' and product_price &gt;= 0 and product_price &lt; 50000 -->
-  <!-- where deleted_yn = 'N' and product_price &gt;= #{min} and product_price &lt; #{max} -->
 
   <select id="getOrderByProductList" parameterType="map" resultType="productVo">
     select * from product p

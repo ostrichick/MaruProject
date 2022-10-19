@@ -98,8 +98,15 @@
   </select>
 
   <select id="getQnaCount" parameterType="int" resultType="string">
-    select count(*) from product_qna
-    where member_idx = #{member_idx} and parent_idx is null
+    SELECT count(*)
+    FROM product_qna q
+    INNER JOIN member_info m
+    ON q.member_idx = m.member_idx
+    inner join product p
+    on q.product_idx = p.product_idx
+    WHERE q.member_idx = #{member_idx}
+    and q.deleted_yn = 'N' and parent_idx is null
+    order by q.idx desc
   </select>
 
 </mapper>	

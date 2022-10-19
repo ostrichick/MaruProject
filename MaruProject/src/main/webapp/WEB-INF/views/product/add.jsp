@@ -55,7 +55,7 @@
               <div class="input-group m-tb-10">
                 <div class="input-group-text">규격</div>
                 <input type="text" class="form-control" name="product_size" placeholder="예시: '800x1500'" />
-                <div class="input-group-text">mm</div>
+                <div class="input-group-text">cm</div>
               </div>
 
               <div class="input-group m-tb-10">

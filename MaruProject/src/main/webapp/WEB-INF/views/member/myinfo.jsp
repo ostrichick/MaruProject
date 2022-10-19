@@ -212,85 +212,8 @@ li.page-item.active>a.page-link:hover {
 
 
 
-  <h3 class="ml-5" style="margin-top: 150px;">마이페이지</h3>
-  <section class="">
-    <hr>
-    <div class="container">
-      <h5 class="float-left ml-5">
-        <strong>member_name 님 환영합니다</strong>
-      </h5>
-      <button type="button" class="btn bg-dark text-white float-right link_to_myinfo_edit" style="margin-right: 100px;">회원정보수정</button>
-    </div>
-    <hr style="clear: both; visibility: hidden; margin: 0;">
-    <hr>
-    <!-- 주문내역 목록 시작-->
-    <div class="mt-5 container">
-      <h5 class="ml-5">
-        <strong>member_name 님의 주문내역 목록입니다</strong>
-      </h5>
-      <table class="table mt-5">
-        <thead>
-          <tr>
-            <th></th>
-            <th>주문일자</th>
-            <th>결제금액</th>
-            <th>품목</th>
-            <th>진행상황</th>
-            <th>별점</th>
-            <th>리뷰</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <a href="${MaruContextPath}/order/order_detail?order_idx=" id="order_detail">상세보기</a>
-            </td>
-            <td>2022.07.08</td>
-            <td>180,000원</td>
-            <td>
-              <img src="${MaruContextPath}/resources/images/product-10.jpg" width="50px" height="50px" />&nbsp; 조이갈란드
-            </td>
-            <td>
-              배송중 &nbsp;
-              <button type="button" class="btn btn-outline-primary btn-sm">배송조회</button>
-            </td>
-            <td>
-              <div class="star-rating space-x-4">
-                <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" />
-                <label for="5-stars" class="star pr-4">★</label>
-                <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" />
-                <label for="4-stars" class="star">★</label>
-                <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" />
-                <label for="3-stars" class="star">★</label>
-                <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" />
-                <label for="2-stars" class="star">★</label>
-                <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
-                <label for="1-star" class="star">★</label>
-              </div>
-            </td>
-            <td>
-              <button type="button" class="btn btn-outline-primary btn-sm">리뷰등록하기</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- 페이지 네이게이션 만들기 -->
-      <nav aria-label="Page navigation example" style="margin: 0 500px;">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-          </a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-          </a></li>
-        </ul>
-      </nav>
-    </div>
-    <!-- 주문내역 목록 끝-->
-    <hr style="margin: 50px 0;">
 
-  </section>
+
   <!-- Footer -->
   <%@include file="/include/footer.jsp"%>
   <%@include file="/include/detail.jsp"%>

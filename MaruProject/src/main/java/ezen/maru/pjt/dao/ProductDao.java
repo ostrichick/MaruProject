@@ -75,7 +75,7 @@ public class ProductDao {
       map.put("max", 10000000);
     }
     System.out.println(map);
-    return sqlSession.selectList(MAPPER + ".getPriceRangeProductList", priceRange);
+    return sqlSession.selectList(MAPPER + ".getPriceRangeProductList", map);
   }
 
   public List<ProductVo> getProductNameProductList(String product_name) {

@@ -224,7 +224,7 @@ li.page-item.active>a.page-link:hover {
       }
       updateStats();
 
-      function writeAnswer(parent_idx, product_idx, obj) {
+      function writeAnswer(parent_member_idx, parent_idx, product_idx, obj) {
         console.log(obj);
         event.preventDefault();
 
@@ -235,6 +235,7 @@ li.page-item.active>a.page-link:hover {
             type : "post",
             url : "../product/qna/writeAnswer?product_idx=" + product_idx,
             data : {
+              parent_member_idx : parent_member_idx,
               product_idx : product_idx,
               parent_idx : parent_idx,
               content : $("textarea#content.idx" + parent_idx).val(),
