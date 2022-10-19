@@ -7,12 +7,11 @@
 <title>상품 등록</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@include file="/include/summernote-head.jsp"%>
 
 <link rel="icon" type="image/png" href="${MaruContextPath}/resources/images/icons/favicon.png" />
 </head>
 <body class="animsition">
-  <%@include file="/include/header.jsp"%>
+  <%@include file="/include/header.jsp"%><%@include file="/include/summernote-head.jsp"%>
   <!-- 상품 상세 -->
   <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">

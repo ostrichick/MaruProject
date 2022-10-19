@@ -41,7 +41,6 @@
       <mapping path="/member/deleteprocess" />
       <mapping path="/product/qna/write" />
       <mapping path="/product/qna/edit" />
-      <!-- <exclude-mapping path="/product/qna/**" /> -->
       <beans:bean id="loginInterceptor" class="ezen.maru.pjt.interceptor.LoginInterceptor" />
     </interceptor>
   </interceptors>

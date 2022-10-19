@@ -7,11 +7,11 @@
 <title>공지사항 수정</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@include file="/include/summernote-head.jsp"%>
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
+  <%@include file="/include/summernote-head.jsp"%>
   <div class="container" style="margin: 30px auto;">
     <form action="edit_process" method="post" enctype="multipart/form-data">
       <input type="text" name="title" class="form-control mt-4 mb-2" value="${boardVo.title}" required>
@@ -22,7 +22,7 @@
       <div class="text-right">
         <button type="submit" id="btn_submit" class="btn btn-secondary mb-3">수정하기</button>
       </div>
-    </form> 
+    </form>
   </div>
   <script>
       $("#summernote").summernote({

@@ -96,7 +96,9 @@
                     <del>
                       <fmt:formatNumber value="${sale.product_price }" type="currency" currencySymbol="₩" />
                     </del>
+                    <br>
                     <fmt:formatNumber value="${sale.product_sale_percent / 100 }" type="percent" />
+                    <br>
                     <fmt:formatNumber value="${sale.product_price - sale.product_price * sale.product_sale_percent/100}" type="currency" currencySymbol="₩" />
                   </p>
                 </div>

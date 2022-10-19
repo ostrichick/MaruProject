@@ -130,7 +130,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
       </table>
     </div>
 
-    <div class="bg8 text-dark p-l-150 p-tb-40 fs-18 ">
+    <div class="bg8 text-dark p-l-150 p-tb-20 fs-18 ">
       <p class="fs-20 p-tb-10">
         <strong>[ 주문내역 ]</strong>
       </p>
@@ -363,7 +363,7 @@ product_number의 값을 올리고 내릴때마다 JS 이벤트를 사용해 실
             product_idx: product_idx,
           },
           success: function () {
-            alert("성공");
+            Swal.fire("성공적으로 상품을 장바구니에서 삭제했습니다.");
             let tr_list_length = document.querySelectorAll(".table-shopping-cart tr").length;
             if (tr_list_length > 2) {
               $(obj).parent().parent().remove();

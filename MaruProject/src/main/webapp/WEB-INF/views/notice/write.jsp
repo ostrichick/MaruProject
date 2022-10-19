@@ -7,11 +7,11 @@
 <title>공지사항 글쓰기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@include file="/include/summernote-head.jsp"%>
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
 </head>
 <body class="animsition">
   <%@include file="/include/header.jsp"%>
+  <%@include file="/include/summernote-head.jsp"%>
   <div class="container">
     <form action="write_process" id="writeForm" method="post" enctype="multipart/form-data">
       <input type="text" name="title" class="form-control mt-4 mb-2" placeholder="제목을 입력해주세요." required>
@@ -25,6 +25,7 @@
     </form>
   </div>
   <script>
+      getCartCount();
       $("#summernote").summernote({
         placeholder : "내용을 작성해주세요.",
         tabsize : 2,

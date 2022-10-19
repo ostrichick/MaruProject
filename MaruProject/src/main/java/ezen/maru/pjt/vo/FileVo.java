@@ -8,10 +8,9 @@ import lombok.ToString;
 @Setter
 @ToString
 public class FileVo {
-
-	private int product_idx;
-	private int file_idx;
-	private String file_original;
-	private String file_system;
-	private String file_extension;
+  private int product_idx;
+  private int file_idx;
+  private String file_original;
+  private String file_system;
+  private String file_extension;
 }
