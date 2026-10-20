@@ -14,21 +14,18 @@
 
   <!-- Root Context: defines shared resources visible to all other web components -->
 
+  <!-- Resolve database and SMTP credentials from the server environment. -->
+  <context:property-placeholder />
+
   <!-- MySQL 연결을 위한 DriverManagerDataSource 빈 등록 -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
     <property name="url" value="jdbc:mysql://jjezen.cafe24.com:3307/maru?characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;allowMultiQueries=true" />
     <property name="username" value="maru" />
-    <property name="password" value="maru1234!!" />
+    <property name="password" value="${MARU_DB_PASSWORD}" />
   </bean>
 
   <!-- Root Context: defines shared resources visible to all other web components -->
-  <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-  <!-- <property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" /> -->
-  <!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
-  <!-- <property name="username" value="c##dev" /> -->
-  <!-- <property name="password" value="1234" /> -->
-  <!-- </bean> -->
 
   <!-- mybatis 연동을 위한 SqlSessionFactoryBean, SqlSessionTemplate 빈 등록 -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -46,7 +43,7 @@
     <property name="host" value="smtp.gmail.com" />
     <property name="port" value="587" />
     <property name="username" value="maru.portfolio@gmail.com" /> <!-- 자신의 이메일 아이디 -->
-    <property name="password" value="gbanvzqaeurntmqi" /> <!-- 자신의 비밀번호 -->
+    <property name="password" value="${MARU_SMTP_PASSWORD}" /> <!-- 자신의 비밀번호 -->
     <!-- 보안연결 TLS과 관련된 설정 -->
     <property name="javaMailProperties">
       <props>

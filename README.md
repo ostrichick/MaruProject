@@ -9,3 +9,5 @@
 
 Google Maps JavaScript API 키는 브라우저에서 공개되는 유형입니다. 운영 중인 키에는 Google Cloud Console에서 **HTTP 리퍼러(실제 서비스 도메인)** 및 **Maps JavaScript API만 허용**하는 API 제한을 적용하고, 기존 공개 키는 교체해야 합니다.
 
+데이터베이스와 메일 발송에도 서버 환경변수 `MARU_DB_PASSWORD`, `MARU_SMTP_PASSWORD`가 필요합니다. Spring은 `root-context.xml`을 시작할 때 두 값을 확인합니다. 서버에 값을 설정한 후 재기동해야 하며, 과거 저장소에 공개된 DB·SMTP 비밀번호도 서비스 제공자에서 교체하세요.
+
