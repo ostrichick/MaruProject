@@ -15,6 +15,7 @@ public class CertificationSMSService implements CertificationService {
   public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
     String api_key = MaruInfo.COOLSMS_APIKEY;
     String api_secret = MaruInfo.COOLSMS_APISECRET;
+    requireCredentials(api_key, api_secret);
     Message coolsms = new Message(api_key, api_secret);
     // 4 params(to, from, type, text) are mandatory. must be filled
     HashMap<String, String> params = new HashMap<String, String>();
@@ -29,6 +30,12 @@ public class CertificationSMSService implements CertificationService {
     } catch (CoolsmsException e) {
       System.out.println(e.getMessage());
       System.out.println(e.getCode());
+    }
+  }
+
+  static void requireCredentials(String apiKey, String apiSecret) {
+    if (apiKey == null || apiKey.trim().isEmpty() || apiSecret == null || apiSecret.trim().isEmpty()) {
+      throw new IllegalStateException("CoolSMS credentials must be configured in server environment variables");
     }
   }
 
