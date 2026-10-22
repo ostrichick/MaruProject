@@ -271,15 +271,18 @@ public class MemberInfoController {
 
   @ResponseBody
   @RequestMapping(value = "/check/pw", method = RequestMethod.POST)
-  public boolean pw(MemberInfoVo memberInfoVo) throws Exception {
-    MemberInfoVo memberInfoVoFromDB = signinService.getCryptedMemberPw(memberInfoVo);
-    boolean pwMatchResult = false;
-    if (memberInfoVoFromDB.getMember_pw() != null) {
-      String getCryptedMemberPw = memberInfoVoFromDB.getMember_pw();
-      pwMatchResult = bCryptPasswordEncoder.matches(memberInfoVo.getMember_pw(), getCryptedMemberPw);
+  public boolean pw(MemberInfoVo memberInfoVo, HttpServletRequest req) throws Exception {
+    HttpSession session = req.getSession(false);
+    if (session == null || !(session.getAttribute("member_id") instanceof String)
+        || memberInfoVo == null || memberInfoVo.getMember_pw() == null
+        || memberInfoVo.getMember_pw().isEmpty()) {
+      return false;
     }
-    System.out.println("Password Check result is : " + pwMatchResult);
-    return pwMatchResult;
+    // Never trust an account ID supplied by the browser for a password oracle.
+    memberInfoVo.setMember_id((String) session.getAttribute("member_id"));
+    MemberInfoVo memberInfoVoFromDB = signinService.getCryptedMemberPw(memberInfoVo);
+    return memberInfoVoFromDB != null && memberInfoVoFromDB.getMember_pw() != null
+        && bCryptPasswordEncoder.matches(memberInfoVo.getMember_pw(), memberInfoVoFromDB.getMember_pw());
   }
 
   @GetMapping("/myinfo_edit") // 내 회원정보 페이지
