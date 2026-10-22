@@ -1,11 +1,13 @@
 package ezen.maru.pjt.controller;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Objects;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.server.ResponseStatusException;
 
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.certification.CertificationService;
@@ -284,6 +288,12 @@ public class MemberInfoController {
     String member_id = (String) session.getAttribute("member_id");
     MemberInfoVo memberInfoVo = updateService.getMember(member_id);
     model.addAttribute("memberInfoVo", memberInfoVo);
+    String deleteCsrfToken = (String) session.getAttribute("memberDeleteCsrfToken");
+    if (deleteCsrfToken == null) {
+      deleteCsrfToken = UUID.randomUUID().toString();
+      session.setAttribute("memberDeleteCsrfToken", deleteCsrfToken);
+    }
+    model.addAttribute("memberDeleteCsrfToken", deleteCsrfToken);
     return "member/myinfo_edit";
   }
 
@@ -322,12 +332,27 @@ public class MemberInfoController {
     return viewPage;
   }
 
-  @GetMapping("/deleteprocess") // 회원 탈퇴 요청
-  public String delete(MemberInfoVo memberInfoVo, HttpServletRequest req, RedirectAttributes redirect) {
-    HttpSession session = req.getSession();
-    Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
-    int member_idx = (int) optional_member_idx.get();
-    memberInfoVo.setMember_idx(member_idx);
+  @PostMapping("/deleteprocess") // 회원 탈퇴는 로그인 세션과 CSRF 토큰을 확인한 후 처리
+  public String delete(@RequestParam(value = "csrfToken", required = false) String csrfToken,
+      HttpServletRequest req, RedirectAttributes redirect) {
+    HttpSession session = req.getSession(false);
+    if (session == null || !(session.getAttribute("member_id") instanceof String)
+        || !(session.getAttribute("member_idx") instanceof Integer)) {
+      return "redirect:/member/signin";
+    }
+    String expectedToken = (String) session.getAttribute("memberDeleteCsrfToken");
+    if (expectedToken == null || csrfToken == null || !MessageDigest.isEqual(
+        expectedToken.getBytes(StandardCharsets.US_ASCII), csrfToken.getBytes(StandardCharsets.US_ASCII))) {
+      throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+    }
+    String memberId = (String) session.getAttribute("member_id");
+    int memberIdx = (Integer) session.getAttribute("member_idx");
+    MemberInfoVo memberInfoVo = updateService.getMember(memberId);
+    if (memberInfoVo == null || memberInfoVo.getMember_idx() != memberIdx
+        || !memberId.equals(memberInfoVo.getMember_id()) || !"N".equals(memberInfoVo.getDeleted_yn())) {
+      throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+    }
+    session.removeAttribute("memberDeleteCsrfToken");
     int result = updateService.delete(memberInfoVo);
     String viewPage = "redirect:/member/myinfo";
     if (result == 1) {

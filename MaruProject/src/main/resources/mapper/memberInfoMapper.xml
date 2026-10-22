@@ -50,7 +50,7 @@
     SET
     deleted_yn = 'Y'
     WHERE
-    member_idx = #{member_idx}
+    member_idx = #{member_idx} AND member_id = #{member_id} AND deleted_yn = 'N'
   </update>
 
   <select id="getMemberList" resultType="memberInfoVo">
@@ -109,4 +109,4 @@
     order by q.idx desc
   </select>
 
-</mapper>	
+</mapper>

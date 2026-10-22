@@ -82,6 +82,9 @@
         <input type="button" id="main_btn" class="btn btn-lg cl0 bg1" value="취소">
       </div>
     </form>
+    <form id="deleteAccountForm" action="${pageContext.request.contextPath}/member/deleteprocess" method="post">
+      <input type="hidden" name="csrfToken" value="${memberDeleteCsrfToken}" />
+    </form>
   </div>
   <!-- 회원가입 폼 끝 -->
 
@@ -107,7 +110,9 @@
       });
       $("#deleteAccount").on('click', function(event) {
         event.preventDefault();
-        $(location).attr('href', "${pageContext.request.contextPath}/member/deleteprocess");
+        if (window.confirm("정말 회원 탈퇴하시겠습니까?")) {
+          document.getElementById("deleteAccountForm").submit();
+        }
       });
       //                         document.getElementById("main_btn").addEventListener("click", function() {
       //                           event.preventDefault();
