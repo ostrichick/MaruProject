@@ -2,7 +2,6 @@ package ezen.maru.pjt.service.certification;
 
 import java.util.HashMap;
 
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import ezen.maru.pjt.common.MaruInfo;
@@ -25,11 +24,9 @@ public class CertificationSMSService implements CertificationService {
     params.put("text", "[마루] 회원 가입을 위한 휴대폰 인증번호는" + " [" + cerNum + "] " + "입니다.");
     params.put("app_version", "test app 1.2"); // application name and version
     try {
-      JSONObject obj = (JSONObject) coolsms.send(params);
-      System.out.println(obj.toString());
+      coolsms.send(params);
     } catch (CoolsmsException e) {
-      System.out.println(e.getMessage());
-      System.out.println(e.getCode());
+      throw new IllegalStateException("SMS delivery failed");
     }
   }
 

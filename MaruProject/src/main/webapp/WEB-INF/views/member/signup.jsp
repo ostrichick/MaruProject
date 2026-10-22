@@ -54,7 +54,7 @@
         <label for="inputCertifiedNumber">인증번호</label>
       </p>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" id="inputCertifiedNumber" placeholder="인증번호를 입력해주세요" required />
+        <input type="text" class="form-control" id="inputCertifiedNumber" placeholder="6자리 인증번호를 입력해주세요" maxlength="6" inputmode="numeric" required />
         <input type="button" class="col-3 btn cl0 bg7" id="checkBtn" value="인증번호 확인" />
       </div>
 
@@ -190,29 +190,45 @@
     </script>
   <script>
       // 휴대폰 인증
+      if (window.location.search.indexOf("verification=required") !== -1) {
+        Swal.fire("휴대전화 인증을 완료한 뒤 가입해 주세요.");
+      }
       $("#sendPhoneNumber").click(function () {
         let phoneNumber = $("#member_phone").val();
-        Swal.fire("인증번호 발송 완료!");
         $.ajax({
-          type: "GET",
-          url: "check/sendSMS",
+          type: "POST",
+          url: "${pageContext.request.contextPath}/member/check/sendSMS",
+          dataType: "json",
           data: {
             phoneNumber: phoneNumber,
           },
           success: function (res) {
-            $("#checkBtn").click(function () {
-              if ($.trim(res) == $("#inputCertifiedNumber").val()) {
-                Swal.fire("인증성공!", "휴대폰 인증이 정상적으로 완료되었습니다.", "success");
-                $("#member_phone").attr("readonly", true);
-                             } else {
-                Swal.fire({
-                  icon: "error",
-                  title: "인증오류",
-                  text: "인증번호가 올바르지 않습니다!",
-                  /* footer: '<a onClick="window.location.reload()">다시 인증하기</a>', */
-                });
-              }
-            });
+            if (res === true) Swal.fire("인증번호를 전송했습니다.");
+          },
+          error: function () {
+            Swal.fire("인증번호를 전송하지 못했습니다. 잠시 후 다시 시도해 주세요.");
+          },
+        });
+      });
+      $("#checkBtn").click(function () {
+        $.ajax({
+          type: "POST",
+          url: "${pageContext.request.contextPath}/member/check/verifySMS",
+          dataType: "json",
+          data: {
+            phoneNumber: $("#member_phone").val(),
+            code: $("#inputCertifiedNumber").val(),
+          },
+          success: function (verified) {
+            if (verified === true) {
+              Swal.fire("인증성공!", "휴대폰 인증이 정상적으로 완료되었습니다.", "success");
+              $("#member_phone").prop("readonly", true);
+            } else {
+              Swal.fire("인증번호가 올바르지 않거나 만료되었습니다.");
+            }
+          },
+          error: function () {
+            Swal.fire("인증에 실패했습니다. 다시 시도해 주세요.");
           },
         });
       });

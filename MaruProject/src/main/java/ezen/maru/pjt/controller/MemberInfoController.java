@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezen.maru.pjt.service.board.BoardService;
 import ezen.maru.pjt.service.certification.CertificationService;
+import ezen.maru.pjt.service.certification.PhoneVerification;
 import ezen.maru.pjt.service.memberinfo.MemberInfoService;
 import ezen.maru.pjt.service.order.OrderService;
 import ezen.maru.pjt.service.qna.QnaService;
@@ -103,19 +106,45 @@ public class MemberInfoController {
     return "member/signup";
   }
 
-  @GetMapping("/check/sendSMS") // 무작위 4자리 숫자를 만들어서 전송
-  public @ResponseBody String sendSMS(String phoneNumber) {
-    Random rand = new Random();
-    String numStr = "";
-    for (int i = 0; i < 4; i++) {
-      String ran = Integer.toString(rand.nextInt(10));
-      numStr += ran;
+  @PostMapping("/check/sendSMS")
+  public @ResponseBody boolean sendSMS(@RequestParam("phoneNumber") String phoneNumber,
+      HttpServletRequest req, HttpServletResponse response) {
+    if (phoneNumber == null || !phoneNumber.matches("01[0-9]{8,9}")) {
+      response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+      return false;
     }
+    HttpSession session = req.getSession();
+    synchronized (session) {
+      PhoneVerification state = (PhoneVerification) session.getAttribute("phoneVerification");
+      if (state == null) {
+        state = new PhoneVerification();
+        session.setAttribute("phoneVerification", state);
+      }
+      synchronized (state) {
+        long now = System.currentTimeMillis();
+        if (!state.canSend(now)) {
+          response.setStatus(429);
+          return false;
+        }
+        state.clearChallenge();
+        String code = PhoneVerification.generateCode();
+        certificationService.certifiedPhoneNumber(phoneNumber, code);
+        state.recordSent(phoneNumber, code, now);
+        return true;
+      }
+    }
+  }
 
-    System.out.println("수신자 번호 : " + phoneNumber);
-    System.out.println("인증번호 : " + numStr);
-    certificationService.certifiedPhoneNumber(phoneNumber, numStr);
-    return numStr;
+  @PostMapping("/check/verifySMS")
+  public @ResponseBody boolean verifySMS(@RequestParam("phoneNumber") String phoneNumber,
+      @RequestParam("code") String code, HttpServletRequest req) {
+    PhoneVerification state = phoneVerification(req);
+    return state != null && state.verify(phoneNumber, code, System.currentTimeMillis());
+  }
+
+  private PhoneVerification phoneVerification(HttpServletRequest req) {
+    HttpSession session = req.getSession(false);
+    return session == null ? null : (PhoneVerification) session.getAttribute("phoneVerification");
   }
 
   @ResponseBody
@@ -128,6 +157,10 @@ public class MemberInfoController {
 
   @PostMapping("/signup_process") // 회원가입 처리 요청
   public String signup_process(MemberInfoVo memberInfoVo, Model model, HttpServletRequest req) {
+    PhoneVerification state = phoneVerification(req);
+    if (state == null || !state.isVerifiedPhone(memberInfoVo.getMember_phone(), System.currentTimeMillis())) {
+      return "redirect:/member/signup?verification=required";
+    }
     int id_result = selectService.idDuplicateCheck(memberInfoVo.getMember_id());
     System.out.println("id_result : " + id_result);
     String viewPage = "member/signup";
@@ -139,6 +172,7 @@ public class MemberInfoController {
       int result = signupService.signup(memberInfoVo);
 
       if (result == 1) {
+        req.getSession().removeAttribute("phoneVerification");
         viewPage = "redirect:/";
         userSessionUpdate(memberInfoVo, req);
       }
@@ -256,8 +290,22 @@ public class MemberInfoController {
   @PostMapping("/updateinfo") // 회원정보 수정
   public String update(MemberInfoVo memberInfoVo, HttpServletRequest req, RedirectAttributes redirect) {
     HttpSession session = req.getSession();
-    Optional<Object> optional_member_idx = Optional.ofNullable(session.getAttribute("member_idx"));
-    int member_idx = (int) optional_member_idx.get();
+    String member_id = (String) session.getAttribute("member_id");
+    if (member_id == null) {
+      return "redirect:/member/signin";
+    }
+    MemberInfoVo currentMember = updateService.getMember(member_id);
+    if (currentMember == null) {
+      return "redirect:/member/signin";
+    }
+    if (!Objects.equals(currentMember.getMember_phone(), memberInfoVo.getMember_phone())) {
+      PhoneVerification state = phoneVerification(req);
+      if (state == null || !state.isVerifiedPhone(memberInfoVo.getMember_phone(), System.currentTimeMillis())) {
+        return "redirect:/member/myinfo_edit?verification=required";
+      }
+    }
+    int member_idx = (int) session.getAttribute("member_idx");
+    memberInfoVo.setMember_id(member_id);
     memberInfoVo.setMember_idx(member_idx);
     String input_member_pw = memberInfoVo.getMember_pw();
     String member_pw = bCryptPasswordEncoder.encode(input_member_pw);
@@ -266,6 +314,7 @@ public class MemberInfoController {
     int result = updateService.update(memberInfoVo);
     String viewPage = "redirect:/member/myinfo";
     if (result == 1) {
+      session.removeAttribute("phoneVerification");
       redirect.addFlashAttribute("updateResult", "회원정보 수정 성공");
       viewPage = "redirect:/";
       userSessionUpdate(memberInfoVo, req);
